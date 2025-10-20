@@ -1,0 +1,69 @@
+﻿@model VmProductImage
+
+
+
+
+<div class="row pt-2">
+    <div class="col-12">
+        <form asp-action="AddProductImage" asp-controller="ContentManager" asp-area="CMS" method="post" enctype="multipart/form-data">
+            <div class="card card-primary">
+                <div class="card-header">
+                   افزودن تصویر برای محصول <span>@Model.productOrService.ShortTitle</span>
+                    <p>@Model.productOrService.CategoryName</p>
+                    <div asp-validation-summary="ModelOnly"></div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="row">
+                              
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <label asp-for="VmImage.name"></label>
+                                        <input type="text" asp-for="VmImage.name" class="form-control" />
+                                        <span asp-validation-for="VmImage.name" class="text-danger mr-3"></span>
+                                    </div>
+                                </div>
+                              
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label asp-for="VmImage.Description"></label>
+                                        <textarea rows="3" type="text" asp-for="VmImage.Description" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label asp-for="VmImage.Priority"></label>
+                                        <input type="number" min="0" asp-for="VmImage.Priority" class="form-control" />
+                                    </div>
+                                </div>
+                             
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox ml-3">
+                                            <input asp-for="VmImage.IsMainImage" class="custom-control-input" type="checkbox" checked="">
+                                            <label asp-for="VmImage.IsMainImage" class="custom-control-label"></label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox ml-3">
+                                            <input asp-for="VmImage.AllowToShow" class="custom-control-input" type="checkbox" checked="">
+                                            <label asp-for="VmImage.AllowToShow" class="custom-control-label"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-8 mb-2"><input type="submit" data-toggle="saveData" class="btn btn-block btn-info" value="ثبت اطلاعات" /></div>
+                                <div class="col-4 mb-2"><input type="reset" class="btn btn-block btn-primary" value="انصراف" /></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-footer"></div>
+            </div>
+        </form>
+    </div>
+</div>
+

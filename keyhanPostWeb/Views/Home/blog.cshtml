@@ -1,0 +1,170 @@
+﻿@using keyhanPostWeb.Areas.CMS.Dtos
+@model VmSiteContent
+@{
+	var blog = Model.AllSection.Where(n => n.SectionID == 9).FirstOrDefault();
+	var sideBox1 = Model.AllSection.Where(n => n.SectionID == 1006).FirstOrDefault();
+	var companyInfo = Model.CompanyInfo;
+	ViewData["Title"] = blog.Title;
+
+}
+
+@{
+	ViewData["Title"] = "اخبار و مقالات";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Page Title -->
+<section class="page-title" style="background-image:url(../lib/gymfit/images/background/page-title.jpg)">
+	<div class="auto-container">
+		<h1>بلاگ</h1>
+		<ul class="bread-crumb clearfix">
+			<li><a asp-action="Index" asp-controller="Home" asp-area="">صفحه اصلی</a></li>
+			<li>اخبار و مقالات</li>
+		</ul>
+	</div>
+</section>
+<!-- End Page Title -->
+
+<!-- Sidebar Page Container -->
+<div class="sidebar-page-container">
+	<div class="auto-container">
+		<div class="row clearfix">
+			<!-- Sidebar Side -->
+			<div class="sidebar-side col-lg-4 col-md-12 col-sm-12">
+				<aside class="sidebar sticky-top">
+
+					<!-- Sidebar Widget -->
+					<div class="sidebar-widget search-box">
+						<div class="widget-content">
+							<form method="post" action="https://themerange.net/html/gymfit/gymfit/contact.html">
+								<div class="form-group">
+									<input type="search" name="search-field" value="" placeholder="جستجو" required>
+									<button type="submit"><span class="icon fa fa-search"></span></button>
+								</div>
+							</form>
+						</div>
+					</div>
+
+					<!-- Category Widget -->
+					<div class="sidebar-widget category-widget">
+						<div class="widget-content">
+							<!-- Sidebar Title -->
+							<div class="sidebar-title">
+								<h4>دسته بندی مطالب</h4>
+							</div>
+							<ul class="category-list">
+								@if (Model.NewsCategories.Any())
+								{
+									foreach (var c in Model.NewsCategories)
+									{
+										<li><a asp-action="blog" asp-controller="Home" asp-area="" asp-route-pageID="1" asp-route-category="@c.name">@c.name <span>@c.PostQty</span></a></li>
+									}
+								}
+							</ul>
+						</div>
+					</div>
+
+					<!-- Post Widget -->
+					<div class="sidebar-widget post-widget">
+						<div class="widget-content">
+							<!-- Sidebar Title -->
+							<div class="sidebar-title">
+								<h4>جدیدترین مطالب</h4>
+							</div>
+							<div class="content">
+								@if (Model.LastNews.Any())
+								{
+									foreach (var item in Model.LastNews)
+									{
+										<!-- Post -->
+										<div class="post">
+											<div class="thumb"><a asp-action="blogDetails" asp-controller="Home" asp-area="" asp-route-BlogID="@item.Id"><img src="~/img/blog/@item.Image" alt="@item.Title"></a></div>
+											<h6><a asp-action="blogDetails" asp-controller="Home" asp-area="" asp-route-BlogID="@item.Id">@item.Title</a></h6>
+											<div class="post-date">@item.PostDate.LatinToPersian()</div>
+										</div>
+									}
+								}
+							</div>
+						</div>
+					</div>
+
+					<!-- Help Widget -->
+					<div class="sidebar-widget">
+						<div class="help-widget" style="background-image:url(../img/ContentImages/@sideBox1?.image)">
+							<h3 class="help-widget_heading">@sideBox1?.Title</h3>
+							<div class="help-widget_text">@sideBox1?.Subtitle</div>
+							<a class="help-widget_number" href="#">@sideBox1?.Text1</a>
+							<a class="help-widget_email" href="mailto:info@gymfitness.com">@sideBox1?.Text2</a>
+						</div>
+					</div>
+
+				</aside>
+			</div>
+
+			<!-- Content Side -->
+			<div class="content-side col-lg-8 col-md-12 col-sm-12">
+				<div class="row clearfix">
+
+					@if (Model.Blogs.Blogs.Any())
+					{
+						foreach (var b in Model.Blogs.Blogs)
+						{
+							<div class="news-block_three col-lg-6 col-md-6 col-sm-12">
+								<div class="news-block_three-inner">
+									<div class="news-block_three-image">
+										<a asp-action="blogDetails" asp-controller="Home" asp-area="" asp-route-BlogID="@b.Id"><img src="~/img/blog/@b.Image" alt="@b.HeaderText" /></a>
+									</div>
+									<div class="news-block_three-content">
+										<div class="news-block_three-title">@b.Sender <span>@b.PostDate.LatinToPersian()</span></div>
+										<h3 class="news-block_three-heading"><a asp-action="blogDetails" asp-controller="Home" asp-area="" asp-route-BlogID="@b.Id">@b.HeaderText</a></h3>
+										<div class="news-block_three-lower">
+											<ul class="news-block_three-meta">
+												<li><a href="javascript:void(0)">@b.CommentQty بازخورد</a></li>
+											</ul>
+											<a class="news-block_three-more" asp-action="blogDetails" asp-controller="Home" asp-area="" asp-route-BlogID="@b.Id">مطالعه</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						}
+					}
+					<!-- News Block Three -->
+					
+					<!--Pagination----------------------------------------------------------------------------------------------------------------------------->
+					@if (Model.Blogs.PageCount > 1)
+					{
+						int currentPage = Model.Blogs.CurrentPage;
+						int nextPage = currentPage < Model.Blogs.PageCount ? currentPage + 1 : 0;
+						int perPage = currentPage > 1 ? currentPage - 1 : 0;
+						<ul class="styled-pagination text-center">
+
+							<li class='@(perPage <= 0?"disabled":"")'>
+								<a asp-action="blog" asp-route-pageID="@perPage" aria-label="Previous">
+									<i class="fa-solid fa-angle-left fa-fw"></i>
+								</a>
+							</li>
+
+							@for (int i = 1; i <= Model.Blogs.PageCount; i++)
+							{
+								<li class="@(i == Model.Blogs.CurrentPage ? "active" : "")"><a class="page-link" asp-action="blog" asp-route-pageID="@i">@i</a></li>
+							}
+
+							<li class='@(nextPage <= 0?"disabled":"")'>
+								<a asp-action="blog" asp-route-pageID="@nextPage" aria-label="Next">
+									<i class="fa-solid fa-angle-right fa-fw"></i>
+								</a>
+							</li>
+						</ul>
+					}
+				</div>
+			</div>
+
+			
+		</div>
+	</div>
+</div>
+
+
+
+

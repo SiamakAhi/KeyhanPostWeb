@@ -1,0 +1,248 @@
+﻿@{
+    Layout = "_Layout";
+}
+<!-- Hero Section -->
+<section class="min-h-[300px] md:min-h-[500px] py-16  text-white" style="background-image: url('/img/ui/branch.png')">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+           
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="scrollToSection('map')" class="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition-all flex items-center justify-center">
+                    <i class="fas fa-map-marker-alt ml-2"></i>
+                    مشاهده نقشه
+                </button>
+                <button onclick="openRepresentativePage()" class="border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white hover:text-blue-600 transition-all flex items-center justify-center">
+                    <i class="fas fa-handshake ml-2"></i>
+                    درخواست نمایندگی
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Branches Stats -->
+<section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 text-center">
+                <div class="stats-counter">
+                    <div class="text-4xl font-bold text-blue-600 mb-2">250+</div>
+                    <div class="text-gray-600">شعبه فعال</div>
+                </div>
+                <div class="stats-counter">
+                    <div class="text-4xl font-bold text-green-600 mb-2">450+</div>
+                    <div class="text-gray-600">نماینده سراسری</div>
+                </div>
+                <div class="stats-counter">
+                    <div class="text-4xl font-bold text-purple-600 mb-2">31</div>
+                    <div class="text-gray-600">استان پوشش داده شده</div>
+                </div>
+                <div class="stats-counter">
+                    <div class="text-4xl font-bold text-orange-600 mb-2">24/7</div>
+                    <div class="text-gray-600">پشتیبانی آنلاین</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Branches & Representatives Section -->
+<section id="branches" class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">شعب و نمایندگان</h2>
+
+        <!-- Search Section -->
+        <div class="max-w-3xl mx-auto mb-12">
+            <div class="bg-white card-shadow p-6 rounded-xl">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">جستجوی شعبه</h3>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">استان</label>
+                        <select id="province-search" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                            <option>همه استان‌ها</option>
+                            <option>تهران</option>
+                            <option>اصفهان</option>
+                            <option>شیراز</option>
+                            <option>مشهد</option>
+                            <option>کرمانشاه</option>
+                            <option>خراسان رضوی</option>
+                            <option>خوزستان</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">شهر</label>
+                        <input type="text" id="city-search" placeholder="نام شهر را وارد کنید" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div class="flex items-end">
+                        <button onclick="searchBranches()" class="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition-colors search-animation">
+                            <i class="fas fa-search ml-2"></i>
+                            جستجو
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-6xl mx-auto">
+            <div class="bg-white card-shadow p-8 mb-8">
+                <div class="text-center mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">نقشه پوشش سراسری</h3>
+                    <p class="text-gray-600">استان‌های قرمز: فعال | استان‌های خاکستری: به‌زودی</p>
+                </div>
+
+                <!-- Iran Map -->
+                <div class="relative bg-blue-50 rounded-xl p-8 min-h-96">
+                    <svg viewBox="0 0 400 300" class="w-full h-full">
+                        <!-- Active Provinces (Red) -->
+                        <circle cx="100" cy="80" r="15" class="province active-province" data-province="تهران" data-rep="محمد احمدی" data-phone="021-12345678" data-address="تهران، خیابان ولیعصر"></circle>
+                        <circle cx="80" cy="200" r="15" class="province active-province" data-province="خوزستان" data-rep="علی رضایی" data-phone="061-33445566" data-address="اهواز، خیابان کیانپارس"></circle>
+                        <circle cx="200" cy="150" r="15" class="province active-province" data-province="اصفهان" data-rep="فاطمه محمدی" data-phone="031-12345678" data-address="اصفهان، میدان نقش جهان"></circle>
+                        <circle cx="250" cy="200" r="15" class="province active-province" data-province="فارس" data-rep="حسن کریمی" data-phone="071-12345678" data-address="شیراز، بلوار چمران"></circle>
+                        <circle cx="320" cy="100" r="15" class="province active-province" data-province="خراسان رضوی" data-rep="مریم صادقی" data-phone="051-12345678" data-address="مشهد، ابوقریب"></circle>
+                        <circle cx="150" cy="50" r="15" class="province active-province" data-province="قزوین" data-rep="رضا حسینی" data-phone="028-12345678" data-address="قزوین، میدان تختی"></circle>
+                        <circle cx="300" cy="150" r="15" class="province active-province" data-province="یزد" data-rep="نگین کریمی" data-phone="035-12345678" data-address="یزد، کوچه صدیق"></circle>
+
+                        <!-- Inactive Provinces (Gray) -->
+                        <circle cx="150" cy="100" r="15" class="province inactive-province" data-province="قم" data-rep="به‌زودی"></circle>
+                        <circle cx="180" cy="80" r="15" class="province inactive-province" data-province="سمنان" data-rep="به‌زودی"></circle>
+                        <circle cx="120" cy="120" r="15" class="province inactive-province" data-province="مرکزی" data-rep="به‌زودی"></circle>
+                        <circle cx="50" cy="120" r="15" class="province inactive-province" data-province="کرمانشاه" data-rep="به‌زودی"></circle>
+                        <circle cx="200" cy="250" r="15" class="province inactive-province" data-province="سیستان و بلوچستان" data-rep="به‌زودی"></circle>
+                    </svg>
+
+                    <!-- Tooltip -->
+                    <div id="province-tooltip" class="absolute bg-gray-800 text-white px-4 py-3 rounded-lg text-sm hidden pointer-events-none z-10 max-w-xs">
+                        <div class="font-semibold mb-1" id="province-name"></div>
+                        <div class="text-gray-300 text-xs mb-1" id="province-rep"></div>
+                        <div class="text-gray-300 text-xs mb-1" id="province-address"></div>
+                        <div class="text-gray-300 text-xs" id="province-phone"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Branch Details Section -->
+            <div id="branch-details" class="bg-white card-shadow p-8 mb-8 hidden">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6">جزئیات شعبه</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-800 mb-4">اطلاعات تماس</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 text-blue-600 p-2 rounded-full ml-3 mt-1">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-800">آدرس</div>
+                                    <div class="text-gray-600" id="detail-address">تهران، خیابان ولیعصر، پست سریع ایران</div>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-green-100 text-green-600 p-2 rounded-full ml-3 mt-1">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-800">تلفن</div>
+                                    <div class="text-gray-600" id="detail-phone">021-12345678</div>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-purple-100 text-purple-600 p-2 rounded-full ml-3 mt-1">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-800">نماینده</div>
+                                    <div class="text-gray-600" id="detail-rep">محمد احمدی</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-800 mb-4">ساعات کاری</h4>
+                        <div class="space-y-2">
+                            <div class="flex justify-between p-2 bg-gray-50 rounded-lg">
+                                <span>شنبه - چهارشنبه</span>
+                                <span class="font-medium">08:00 - 20:00</span>
+                            </div>
+                            <div class="flex justify-between p-2 bg-gray-50 rounded-lg">
+                                <span>پنجشنبه</span>
+                                <span class="font-medium">08:00 - 14:00</span>
+                            </div>
+                            <div class="flex justify-between p-2 bg-gray-50 rounded-lg">
+                                <span>جمعه</span>
+                                <span class="font-medium">تعطیل</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                            <div class="flex items-center">
+                                <i class="fas fa-info-circle text-blue-600 ml-2"></i>
+                                <span class="text-blue-800 text-sm">خدمات اکسپرس تا ساعت 18:00 پذیرفته می‌شود</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contract Section -->
+            <div class="bg-white card-shadow p-8">
+                <h3 class="text-xl font-semibold text-gray-800 mb-6">تایید قرارداد الکترونیکی</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">کد ملی</label>
+                        <input type="text" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="1234567890">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">شماره موبایل</label>
+                        <input type="text" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="09123456789">
+                    </div>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4 mt-6">
+                    <button onclick="verifyContract()" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors flex-1">
+                        احراز هویت و دریافت کد اعتباری
+                    </button>
+                    <button onclick="openRepresentativePage()" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors flex-1">
+                        <i class="fas fa-handshake ml-2"></i>
+                        درخواست نمایندگی
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Branch Services -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">خدمات شعبه</h2>
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover-scale text-center">
+                    <div class="bg-blue-100 text-blue-600 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mb-2">ارسال اکسپرس</h3>
+                    <p class="text-gray-600 text-sm">تحویل طی 24-48 ساعت در سراسر کشور</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover-scale text-center">
+                    <div class="bg-green-100 text-green-600 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mb-2">بسته‌بندی</h3>
+                    <p class="text-gray-600 text-sm">بسته‌بندی ایمن و حرفه‌ای کالاها</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover-scale text-center">
+                    <div class="bg-purple-100 text-purple-600 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-file-invoice"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mb-2">پرداخت در محل</h3>
+                    <p class="text-gray-600 text-sm">امکان دریافت وجه هنگام تحویل کالا</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover-scale text-center">
+                    <div class="bg-orange-100 text-orange-600 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mb-2">بیمه کالا</h3>
+                    <p class="text-gray-600 text-sm">حفاظت از ارزش کالاهای ارسالی</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

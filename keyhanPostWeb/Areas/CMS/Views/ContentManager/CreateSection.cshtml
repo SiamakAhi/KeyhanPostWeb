@@ -1,0 +1,89 @@
+﻿@model VmSectionContent
+@{
+    ViewData["Title"] = "فصد خون پارس";
+    Layout = "~/Views/Shared/_adminPanelLayout.cshtml";
+}
+
+<div class="container p-3">
+    <div class="row mt-2">
+        <div class="col-12">
+            <form role="form" asp-action="CreateSection" asp-controller="ContentManager" asp-area="CMS" method="post" enctype="multipart/form-data">
+
+                <div class="card">
+                    <h3 class="card-header text-info">
+                        ایجاد سکشن
+                    </h3>
+                    <!-- /.card-header -->
+
+                    <div class="card-body">
+                        <input type="hidden" asp-for="SectionID" value="@ViewBag.SectionID" />
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label asp-for="Title"></label>
+                                    <input asp-for="Title" type="text" class="form-control" placeholder="تیتر یا عنوان مطلب ...">
+                                    <span asp-validation-for="Title" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label asp-for="Subtitle"></label>
+                                    <input asp-for="Subtitle" type="text" class="form-control" placeholder="عنوان کامل">
+                                    <span asp-validation-for="Subtitle" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <!-- textarea -->
+                                <div class="form-group">
+                                    <label asp-for="Text1"></label>
+                                    <textarea asp-for="Text1" class="form-control" rows="5" placeholder="پاراگراف اول"></textarea>
+                                    <span asp-validation-for="Text1" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <!-- textarea -->
+                                <div class="form-group">
+                                    <label asp-for="Text2"></label>
+                                    <textarea asp-for="Text2" class="form-control" rows="5" placeholder="پاراگراف دوم "></textarea>
+                                    <span asp-validation-for="Text2" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <!-- textarea -->
+                                <div class="form-group">
+                                    <label asp-for="FooterText"></label>
+                                    <textarea asp-for="FooterText" class="form-control" rows="3" placeholder="نوشته ی انتهای مطلب"></textarea>
+                                    <span asp-validation-for="FooterText" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="imageFile"></label>
+                                    <input type="file" asp-for="imageFile" class="form-control" accept="image/*, video/mp4" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <div class="d-flex gap-2 ">
+                            <button type="submit" class="btn btn-light ml-2">ثبت اطلاعات</button>
+                            <button type="reset" class="btn btn-danger">انصراف</button>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

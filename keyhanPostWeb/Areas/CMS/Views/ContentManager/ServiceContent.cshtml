@@ -1,0 +1,63 @@
+﻿@model List<ServicePageViewModel>
+@{
+    ViewData["Title"] = "مدیریت خدمات";
+    Layout = "~/Views/Shared/_adminPanelLayout.cshtml";
+}
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        مدیریت خدمات
+                        <a asp-action="AddService" asp-controller="ContentManager" asp-area="CMS" class="btn btn-warning mr-2">افزودن خدمت جدید</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-borderless table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>الویت</th>
+                                        <th class="td-img-thumb">تصویر اصلی</th>
+                                        <th>عنوان</th>
+                                        <th>توصیف</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @if (Model.Count > 0)
+                                    {
+                                        foreach (var x in Model)
+                                        {
+                                            <tr>
+                                                <td>@x.Priority</td>
+                                                <td class="td-img-thumb"><img src="/img/ContentImages/@x.Image1Path" /></td>
+                                                <td>@x.Title</td>
+                                                <td>@x.ShortDescription</td>
+                                                <td>
+                                                    <a class="btn btn-small btn-warning m-1" asp-action="UpdateServiceInfo" asp-controller="ContentManager" asp-area="CMS" asp-route-id="@x.Id">ویرایش</a>
+                                                    <a class="btn btn-small btn-danger m-1"asp-action="DeleteServiceInfo" asp-controller="ContentManager" asp-area="CMS" asp-route-id="@x.Id">حذف</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="5">
+                                                اطلاعاتی برای نمایش وجود ندارد
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

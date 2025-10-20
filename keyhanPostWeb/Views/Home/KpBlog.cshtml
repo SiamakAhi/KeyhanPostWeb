@@ -1,0 +1,733 @@
+﻿@{
+    Layout = "_Layout";
+}
+<head>
+    <link rel="stylesheet" href="~/css/KpBlog.css" />
+</head>
+
+<!-- Breadcrumb -->
+<section class="bg-white py-4 border-b">
+    <div class="container mx-auto px-4">
+        <nav class="text-sm text-gray-600">
+            <a href="#" class="hover:text-blue-600">خانه</a>
+            <span class="mx-2">/</span>
+            <a href="#" class="hover:text-blue-600">بلاگ</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-800">راهنمای کامل خدمات پستی</span>
+        </nav>
+    </div>
+</section>
+
+<div class="container mx-auto px-4 py-8">
+    <div class="grid lg:grid-cols-4 gap-8">
+        <!-- Social Share Sidebar -->
+        <div class="hidden lg:block">
+            <div class="social-share">
+                <div class="bg-white card-shadow p-4 space-y-3">
+                    <h4 class="font-bold text-gray-800 text-center mb-4">اشتراک‌گذاری</h4>
+                    <button onclick="shareOnSocial('telegram')" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                        <i class="fab fa-telegram-plane ml-2"></i>
+                        تلگرام
+                    </button>
+                    <button onclick="shareOnSocial('whatsapp')" class="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition-colors">
+                        <i class="fab fa-whatsapp ml-2"></i>
+                        واتساپ
+                    </button>
+                    <button onclick="shareOnSocial('twitter')" class="w-full bg-blue-400 text-white py-2 rounded-lg hover:bg-blue-500 transition-colors">
+                        <i class="fab fa-twitter ml-2"></i>
+                        توییتر
+                    </button>
+                    <button onclick="shareOnSocial('linkedin')" class="w-full bg-blue-700 text-white py-2 rounded-lg hover:bg-blue-800 transition-colors">
+                        <i class="fab fa-linkedin ml-2"></i>
+                        لینکدین
+                    </button>
+                    <button onclick="copyLink()" class="w-full bg-gray-600 text-white py-2 rounded-lg hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-link ml-2"></i>
+                        کپی لینک
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="lg:col-span-2">
+            <article class="bg-white card-shadow rounded-2xl overflow-hidden">
+                <!-- Article Header -->
+                <div class="p-8">
+                    <!-- Keywords -->
+                    <div class="mb-6">
+                        <h4 class="text-sm font-semibold text-gray-600 mb-3">کلمات کلیدی:</h4>
+                        <div class="flex flex-wrap">
+                            <span class="tag">پست اکسپرس</span>
+                            <span class="tag">حمل و نقل بین‌المللی</span>
+                            <span class="tag">صادرات کالا</span>
+                            <span class="tag">واردات</span>
+                            <span class="tag">ترخیص گمرکی</span>
+                            <span class="tag">فریت بار</span>
+                            <span class="tag">بسته‌بندی</span>
+                        </div>
+                    </div>
+
+                    <!-- Title -->
+                    <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                        راهنمای کامل خدمات پستی و حمل و نقل بین‌المللی
+                    </h1>
+
+                    <!-- Subtitle -->
+                    <p class="text-xl text-gray-600 mb-6">
+                        همه چیزی که باید درباره ارسال کالا، صادرات، واردات و قوانین گمرکی بدانید
+                    </p>
+
+                    <!-- Meta Info -->
+                    <div class="flex flex-wrap items-center text-sm text-gray-500 mb-8 space-x-6 space-x-reverse">
+                        <div class="flex items-center">
+                            <i class="fas fa-calendar ml-2"></i>
+                            <span>15 آذر 1403</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-user ml-2"></i>
+                            <span>علی احمدی</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-clock ml-2"></i>
+                            <span>10 دقیقه مطالعه</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-eye ml-2"></i>
+                            <span>1,245 بازدید</span>
+                        </div>
+                    </div>
+
+                    <!-- Featured Image -->
+                    <div class="mb-8">
+                        <svg class="w-full h-64 blog-image bg-gradient-to-br from-blue-100 to-green-100" viewBox="0 0 800 400">
+                            <!-- Background -->
+                            <rect width="800" height="400" fill="url(#grad1)" />
+                            <defs>
+                                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#e3f2fd;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#e8f5e8;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+
+                            <!-- Shipping containers -->
+                            <rect x="50" y="200" width="120" height="80" fill="#3498db" rx="5" />
+                            <rect x="55" y="205" width="110" height="70" fill="#2980b9" rx="3" />
+                            <text x="110" y="245" text-anchor="middle" fill="white" font-size="14" font-weight="bold">CARGO</text>
+
+                            <rect x="200" y="180" width="120" height="80" fill="#e74c3c" rx="5" />
+                            <rect x="205" y="185" width="110" height="70" fill="#c0392b" rx="3" />
+                            <text x="260" y="230" text-anchor="middle" fill="white" font-size="14" font-weight="bold">EXPRESS</text>
+
+                            <!-- Airplane -->
+                            <g transform="translate(500,100)">
+                                <ellipse cx="0" cy="0" rx="80" ry="15" fill="#34495e" />
+                                <ellipse cx="-20" cy="-5" rx="25" ry="8" fill="#2c3e50" />
+                                <ellipse cx="30" cy="5" rx="15" ry="5" fill="#2c3e50" />
+                                <circle cx="-40" cy="0" r="8" fill="#f39c12" />
+                            </g>
+
+                            <!-- Globe -->
+                            <circle cx="650" cy="250" r="60" fill="#27ae60" opacity="0.8" />
+                            <circle cx="650" cy="250" r="55" fill="none" stroke="#2ecc71" stroke-width="2" />
+                            <path d="M 610 250 Q 650 220 690 250 Q 650 280 610 250" fill="none" stroke="#2ecc71" stroke-width="2" />
+                            <path d="M 650 200 Q 680 250 650 300 Q 620 250 650 200" fill="none" stroke="#2ecc71" stroke-width="2" />
+
+                            <!-- Arrows -->
+                            <path d="M 350 240 L 450 180" stroke="#f39c12" stroke-width="3" marker-end="url(#arrowhead)" />
+                            <path d="M 350 240 L 580 240" stroke="#f39c12" stroke-width="3" marker-end="url(#arrowhead)" />
+
+                            <defs>
+                                <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#f39c12" />
+                                </marker>
+                            </defs>
+
+                            <!-- Title -->
+                            <text x="400" y="50" text-anchor="middle" fill="#2c3e50" font-size="24" font-weight="bold">خدمات حمل و نقل بین‌المللی</text>
+                        </svg>
+                        <p class="text-sm text-gray-500 mt-2 text-center">تصویر: نمایی از خدمات حمل و نقل بین‌المللی و ارسال کالا</p>
+                    </div>
+
+                    <!-- Article Content -->
+                    <div class="blog-content">
+                        <p>
+                            در دنیای امروز، <a href="https://example.com/international-shipping" class="keyword-link">حمل و نقل بین‌المللی</a>
+                            نقش بسیار مهمی در تجارت جهانی ایفا می‌کند. شرکت‌ها و افراد برای ارسال کالاهای خود به سراسر جهان،
+                            نیاز به خدمات مطمئن و حرفه‌ای دارند که بتواند نیازهای متنوع آن‌ها را پوشش دهد.
+                        </p>
+
+                        <h2>انواع خدمات پستی داخلی</h2>
+
+                        <p>
+                            خدمات پستی داخلی شامل دو دسته اصلی <a href="https://example.com/express-post" class="keyword-link">پست اکسپرس</a>
+                            و پست اقتصادی می‌باشد. هر کدام از این خدمات ویژگی‌ها و مزایای خاص خود را دارند.
+                        </p>
+
+                        <h3>پست اکسپرس</h3>
+                        <p>
+                            پست اکسپرس برای مواردی طراحی شده که سرعت تحویل اولویت اصلی است. این سرویس شامل:
+                        </p>
+                        <ul>
+                            <li>تحویل همان روز در شهرهای بزرگ</li>
+                            <li>پیگیری لحظه‌ای مرسوله</li>
+                            <li>اطلاع‌رسانی پیامکی و تماس تلفنی</li>
+                            <li>بیمه رایگان تا سقف مشخص</li>
+                            <li>ضمانت تحویل به‌موقع</li>
+                        </ul>
+
+                        <!-- Second Image -->
+                        <div class="my-8">
+                            <svg class="w-full h-48 blog-image bg-gradient-to-r from-red-100 to-orange-100" viewBox="0 0 600 300">
+                                <rect width="600" height="300" fill="url(#grad2)" />
+                                <defs>
+                                    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" style="stop-color:#ffebee;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#fff3e0;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+
+                                <!-- Express delivery truck -->
+                                <rect x="200" y="150" width="100" height="60" fill="#e74c3c" rx="5" />
+                                <rect x="210" y="160" width="80" height="40" fill="#c0392b" rx="3" />
+                                <circle cx="220" cy="220" r="15" fill="#2c3e50" />
+                                <circle cx="280" cy="220" r="15" fill="#2c3e50" />
+                                <circle cx="220" cy="220" r="8" fill="#95a5a6" />
+                                <circle cx="280" cy="220" r="8" fill="#95a5a6" />
+
+                                <!-- Speed lines -->
+                                <line x1="150" y1="170" x2="180" y2="170" stroke="#f39c12" stroke-width="3" />
+                                <line x1="140" y1="180" x2="170" y2="180" stroke="#f39c12" stroke-width="3" />
+                                <line x1="130" y1="190" x2="160" y2="190" stroke="#f39c12" stroke-width="3" />
+
+                                <!-- Clock -->
+                                <circle cx="400" cy="100" r="40" fill="#3498db" />
+                                <circle cx="400" cy="100" r="35" fill="white" />
+                                <line x1="400" y1="100" x2="400" y2="80" stroke="#2c3e50" stroke-width="3" />
+                                <line x1="400" y1="100" x2="415" y2="100" stroke="#2c3e50" stroke-width="2" />
+
+                                <text x="300" y="50" text-anchor="middle" fill="#e74c3c" font-size="20" font-weight="bold">پست اکسپرس - تحویل سریع</text>
+                            </svg>
+                            <p class="text-sm text-gray-500 mt-2 text-center">تصویر: خدمات پست اکسپرس با تحویل سریع</p>
+                        </div>
+
+                        <h3>پست اقتصادی</h3>
+                        <p>
+                            <a href="https://example.com/economy-post" class="keyword-link">پست اقتصادی</a>
+                            گزینه مناسبی برای کسانی است که به دنبال قیمت مناسب و کیفیت خوب هستند. ویژگی‌های این سرویس عبارتند از:
+                        </p>
+                        <ul>
+                            <li>قیمت رقابتی و مناسب</li>
+                            <li>امکان ارسال بارهای سنگین‌تر</li>
+                            <li>تخفیف برای مرسولات متعدد</li>
+                            <li>پوشش کامل سراسر کشور</li>
+                            <li>زمان تحویل 2 تا 3 روز کاری</li>
+                        </ul>
+
+                        <h2>خدمات بین‌المللی</h2>
+
+                        <p>
+                            خدمات بین‌المللی ما شامل سه بخش اصلی <a href="https://example.com/freight" class="keyword-link">فریت بار</a>،
+                            <a href="https://example.com/export" class="keyword-link">صادرات</a> و
+                            <a href="https://example.com/import" class="keyword-link">واردات</a> می‌باشد.
+                        </p>
+
+                        <h3>فریت بار</h3>
+                        <p>
+                            فریت بار برای حمل بارهای تجاری و صنعتی طراحی شده است. این خدمات شامل:
+                        </p>
+                        <ul>
+                            <li>فریت هوایی برای ارسال سریع</li>
+                            <li>فریت دریایی برای بارهای حجیم</li>
+                            <li>فریت زمینی برای کشورهای همسایه</li>
+                            <li><a href="https://example.com/customs-clearance" class="keyword-link">ترخیص گمرکی</a> کامل</li>
+                            <li>بیمه جامع کالا</li>
+                        </ul>
+
+                        <!-- Third Image -->
+                        <div class="my-8">
+                            <svg class="w-full h-48 blog-image bg-gradient-to-br from-purple-100 to-blue-100" viewBox="0 0 600 300">
+                                <rect width="600" height="300" fill="url(#grad3)" />
+                                <defs>
+                                    <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#f3e5f5;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#e3f2fd;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+
+                                <!-- Ship -->
+                                <ellipse cx="150" cy="200" rx="80" ry="20" fill="#34495e" />
+                                <rect x="120" y="180" width="60" height="20" fill="#2c3e50" />
+                                <rect x="135" y="160" width="30" height="20" fill="#e74c3c" />
+
+                                <!-- Containers on ship -->
+                                <rect x="90" y="170" width="20" height="15" fill="#3498db" />
+                                <rect x="115" y="170" width="20" height="15" fill="#e74c3c" />
+                                <rect x="165" y="170" width="20" height="15" fill="#2ecc71" />
+                                <rect x="190" y="170" width="20" height="15" fill="#f39c12" />
+
+                                <!-- Airplane -->
+                                <g transform="translate(400,80)">
+                                    <ellipse cx="0" cy="0" rx="60" ry="12" fill="#95a5a6" />
+                                    <ellipse cx="-15" cy="-3" rx="20" ry="6" fill="#7f8c8d" />
+                                    <ellipse cx="25" cy="3" rx="12" ry="4" fill="#7f8c8d" />
+                                </g>
+
+                                <!-- Truck -->
+                                <rect x="450" y="200" width="80" height="40" fill="#27ae60" rx="5" />
+                                <circle cx="470" cy="250" r="12" fill="#2c3e50" />
+                                <circle cx="510" cy="250" r="12" fill="#2c3e50" />
+
+                                <text x="300" y="40" text-anchor="middle" fill="#8e44ad" font-size="18" font-weight="bold">انواع حمل و نقل بین‌المللی</text>
+                            </svg>
+                            <p class="text-sm text-gray-500 mt-2 text-center">تصویر: انواع مختلف حمل و نقل بین‌المللی (دریایی، هوایی، زمینی)</p>
+                        </div>
+
+                        <h3>نکات مهم در انتخاب سرویس</h3>
+                        <p>
+                            برای انتخاب بهترین سرویس <a href="https://example.com/shipping-guide" class="keyword-link">حمل و نقل</a>،
+                            باید عوامل مختلفی را در نظر بگیرید:
+                        </p>
+                        <ul>
+                            <li>نوع و ویژگی کالای مورد نظر</li>
+                            <li>مقصد نهایی و فاصله مسیر</li>
+                            <li>زمان مورد نیاز برای تحویل</li>
+                            <li>بودجه در نظر گرفته شده</li>
+                            <li>نیاز به خدمات جانبی مثل <a href="https://example.com/packaging" class="keyword-link">بسته‌بندی</a></li>
+                        </ul>
+
+                        <h2>قوانین و مقررات گمرکی</h2>
+                        <p>
+                            آشنایی با <a href="https://example.com/customs-rules" class="keyword-link">قوانین گمرکی</a>
+                            برای هر فردی که قصد صادرات یا واردات دارد، ضروری است. این قوانین شامل:
+                        </p>
+                        <ul>
+                            <li>مدارک مورد نیاز برای ترخیص</li>
+                            <li>محاسبه تعرفه‌های گمرکی</li>
+                            <li>کالاهای ممنوع و محدود</li>
+                            <li>استانداردهای بسته‌بندی</li>
+                            <li>مهلت‌های قانونی ترخیص</li>
+                        </ul>
+
+                        <h2>نتیجه‌گیری</h2>
+                        <p>
+                            انتخاب درست سرویس حمل و نقل می‌تواند تأثیر بسزایی در موفقیت کسب‌وکار شما داشته باشد.
+                            با در نظر گیری نیازهای خاص خود و مشاوره با متخصصان، می‌توانید بهترین تصمیم را بگیرید.
+                            تیم <a href="https://example.com/consultation" class="keyword-link">مشاوران ما</a> آماده ارائه راهنمایی‌های تخصصی به شما هستند.
+                        </p>
+                    </div>
+
+                    <!-- Tags -->
+                    <div class="mt-8 pt-6 border-t border-gray-200">
+                        <h4 class="font-semibold text-gray-800 mb-3">برچسب‌ها:</h4>
+                        <div class="flex flex-wrap">
+                            <a href="#" class="tag hover:bg-blue-500 hover:text-white">#پست_اکسپرس</a>
+                            <a href="#" class="tag hover:bg-blue-500 hover:text-white">#حمل_و_نقل</a>
+                            <a href="#" class="tag hover:bg-blue-500 hover:text-white">#صادرات</a>
+                            <a href="#" class="tag hover:bg-blue-500 hover:text-white">#واردات</a>
+                            <a href="#" class="tag hover:bg-blue-500 hover:text-white">#گمرک</a>
+                            <a href="#" class="tag hover:bg-blue-500 hover:text-white">#فریت</a>
+                            <a href="#" class="tag hover:bg-blue-500 hover:text-white">#بین_المللی</a>
+                        </div>
+                    </div>
+
+                    <!-- Share Buttons Mobile -->
+                    <div class="lg:hidden mt-8 pt-6 border-t border-gray-200">
+                        <h4 class="font-semibold text-gray-800 mb-4">اشتراک‌گذاری:</h4>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button onclick="shareOnSocial('telegram')" class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors">
+                                <i class="fab fa-telegram-plane ml-2"></i>
+                                تلگرام
+                            </button>
+                            <button onclick="shareOnSocial('whatsapp')" class="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-colors">
+                                <i class="fab fa-whatsapp ml-2"></i>
+                                واتساپ
+                            </button>
+                            <button onclick="shareOnSocial('twitter')" class="bg-blue-400 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition-colors">
+                                <i class="fab fa-twitter ml-2"></i>
+                                توییتر
+                            </button>
+                            <button onclick="copyLink()" class="bg-gray-600 text-white py-2 px-4 rounded-lg hover:bg-gray-700 transition-colors">
+                                <i class="fas fa-link ml-2"></i>
+                                کپی لینک
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Comments Section -->
+            <section class="bg-white card-shadow rounded-2xl p-8 mt-8">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6">نظرات (3)</h3>
+
+                <!-- Existing Comments -->
+                <div class="space-y-6 mb-8">
+                    <div class="border-b border-gray-200 pb-6">
+                        <div class="flex items-start space-x-4 space-x-reverse">
+                            <div class="bg-blue-500 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold">
+                                م
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center space-x-2 space-x-reverse mb-2">
+                                    <h4 class="font-semibold text-gray-800">محمد رضایی</h4>
+                                    <span class="text-sm text-gray-500">2 روز پیش</span>
+                                </div>
+                                <p class="text-gray-600">
+                                    مقاله بسیار مفیدی بود. خصوصاً بخش قوانین گمرکی خیلی کاربردی بود. ممنون از تیم شما.
+                                </p>
+                                <button class="text-blue-600 text-sm mt-2 hover:text-blue-800">پاسخ</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-gray-200 pb-6">
+                        <div class="flex items-start space-x-4 space-x-reverse">
+                            <div class="bg-green-500 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold">
+                                س
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center space-x-2 space-x-reverse mb-2">
+                                    <h4 class="font-semibold text-gray-800">سارا احمدی</h4>
+                                    <span class="text-sm text-gray-500">1 هفته پیش</span>
+                                </div>
+                                <p class="text-gray-600">
+                                    آیا امکان ارسال کالاهای فاسدشدنی با پست اکسپرس وجود دارد؟
+                                </p>
+                                <button class="text-blue-600 text-sm mt-2 hover:text-blue-800">پاسخ</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex items-start space-x-4 space-x-reverse">
+                            <div class="bg-purple-500 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold">
+                                ع
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center space-x-2 space-x-reverse mb-2">
+                                    <h4 class="font-semibold text-gray-800">علی کریمی</h4>
+                                    <span class="text-sm text-gray-500">2 هفته پیش</span>
+                                </div>
+                                <p class="text-gray-600">
+                                    تعرفه‌های ارائه شده رقابتی هستند. از خدمات شما استفاده کردم و راضی بودم.
+                                </p>
+                                <button class="text-blue-600 text-sm mt-2 hover:text-blue-800">پاسخ</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comment Form -->
+                <div class="bg-gray-50 rounded-xl p-6">
+                    <h4 class="font-semibold text-gray-800 mb-4">نظر خود را بنویسید</h4>
+                    <form class="space-y-4">
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <input type="text" placeholder="نام شما" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                            <input type="email" placeholder="ایمیل شما" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <textarea rows="4" placeholder="نظر شما..." class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"></textarea>
+                        <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                            <i class="fas fa-paper-plane ml-2"></i>
+                            ارسال نظر
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="space-y-8">
+            <!-- Search -->
+            <div class="bg-white card-shadow rounded-2xl p-6">
+                <h3 class="font-bold text-gray-800 mb-4">جستجو در مقالات</h3>
+                <div class="relative">
+                    <input type="text" placeholder="جستجو..." class="w-full p-3 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                    <i class="fas fa-search absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                </div>
+            </div>
+
+            <!-- Latest Articles -->
+            <div class="bg-white card-shadow rounded-2xl p-6">
+                <h3 class="font-bold text-gray-800 mb-6">آخرین مطالب</h3>
+                <div class="space-y-4">
+                    <article class="flex space-x-3 space-x-reverse">
+                        <svg class="w-16 h-16 bg-blue-100 rounded-lg flex-shrink-0" viewBox="0 0 64 64">
+                            <rect width="64" height="64" fill="#e3f2fd" rx="8" />
+                            <rect x="12" y="20" width="40" height="24" fill="#2196f3" rx="2" />
+                            <circle cx="32" cy="32" r="6" fill="white" />
+                        </svg>
+                        <div>
+                            <h4 class="font-semibold text-sm text-gray-800 mb-1">
+                                <a href="#" class="hover:text-blue-600">نکات مهم بسته‌بندی برای ارسال بین‌المللی</a>
+                            </h4>
+                            <p class="text-xs text-gray-500 mb-2">10 آذر 1403</p>
+                            <p class="text-xs text-gray-600">راهنمای کامل بسته‌بندی استاندارد...</p>
+                        </div>
+                    </article>
+
+                    <article class="flex space-x-3 space-x-reverse">
+                        <svg class="w-16 h-16 bg-green-100 rounded-lg flex-shrink-0" viewBox="0 0 64 64">
+                            <rect width="64" height="64" fill="#e8f5e8" rx="8" />
+                            <rect x="16" y="16" width="32" height="32" fill="#4caf50" rx="4" />
+                            <path d="M24 32 L28 36 L40 24" stroke="white" stroke-width="2" fill="none" />
+                        </svg>
+                        <div>
+                            <h4 class="font-semibold text-sm text-gray-800 mb-1">
+                                <a href="#" class="hover:text-blue-600">مراحل ترخیص گمرکی کالا</a>
+                            </h4>
+                            <p class="text-xs text-gray-500 mb-2">8 آذر 1403</p>
+                            <p class="text-xs text-gray-600">آشنایی با فرآیند کامل ترخیص...</p>
+                        </div>
+                    </article>
+
+                    <article class="flex space-x-3 space-x-reverse">
+                        <svg class="w-16 h-16 bg-orange-100 rounded-lg flex-shrink-0" viewBox="0 0 64 64">
+                            <rect width="64" height="64" fill="#fff3e0" rx="8" />
+                            <circle cx="32" cy="32" r="16" fill="#ff9800" />
+                            <path d="M32 20 L36 28 L44 28 L38 34 L40 42 L32 38 L24 42 L26 34 L20 28 L28 28 Z" fill="white" />
+                        </svg>
+                        <div>
+                            <h4 class="font-semibold text-sm text-gray-800 mb-1">
+                                <a href="#" class="hover:text-blue-600">بهترین روش‌های صادرات به اروپا</a>
+                            </h4>
+                            <p class="text-xs text-gray-500 mb-2">5 آذر 1403</p>
+                            <p class="text-xs text-gray-600">راهکارهای موثر برای صادرات...</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="bg-white card-shadow rounded-2xl p-6">
+                <h3 class="font-bold text-gray-800 mb-6">دسته‌بندی مقالات</h3>
+                <div class="space-y-2">
+                    <a href="#" class="flex justify-between items-center py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors">
+                        <span class="text-gray-700">خدمات داخلی</span>
+                        <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">12</span>
+                    </a>
+                    <a href="#" class="flex justify-between items-center py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors">
+                        <span class="text-gray-700">خدمات بین‌المللی</span>
+                        <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">8</span>
+                    </a>
+                    <a href="#" class="flex justify-between items-center py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors">
+                        <span class="text-gray-700">قوانین گمرکی</span>
+                        <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">6</span>
+                    </a>
+                    <a href="#" class="flex justify-between items-center py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors">
+                        <span class="text-gray-700">نکات کاربردی</span>
+                        <span class="bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full">15</span>
+                    </a>
+                    <a href="#" class="flex justify-between items-center py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors">
+                        <span class="text-gray-700">اخبار و رویدادها</span>
+                        <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">4</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Popular Tags -->
+            <div class="bg-white card-shadow rounded-2xl p-6">
+                <h3 class="font-bold text-gray-800 mb-6">برچسب‌های محبوب</h3>
+                <div class="flex flex-wrap gap-2">
+                    <a href="#" class="tag hover:bg-blue-500 hover:text-white">#پست</a>
+                    <a href="#" class="tag hover:bg-blue-500 hover:text-white">#حمل_نقل</a>
+                    <a href="#" class="tag hover:bg-blue-500 hover:text-white">#صادرات</a>
+                    <a href="#" class="tag hover:bg-blue-500 hover:text-white">#واردات</a>
+                    <a href="#" class="tag hover:bg-blue-500 hover:text-white">#گمرک</a>
+                    <a href="#" class="tag hover:bg-blue-500 hover:text-white">#فریت</a>
+                    <a href="#" class="tag hover:bg-blue-500 hover:text-white">#اکسپرس</a>
+                    <a href="#" class="tag hover:bg-blue-500 hover:text-white">#بین_المللی</a>
+                </div>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="bg-gradient-to-br from-blue-500 to-green-500 text-white rounded-2xl p-6">
+                <h3 class="font-bold mb-4">عضویت در خبرنامه</h3>
+                <p class="text-sm mb-4 opacity-90">از آخرین مقالات و اخبار مطلع شوید</p>
+                <form class="space-y-3">
+                    <input type="email" placeholder="ایمیل شما" class="w-full p-3 rounded-lg text-gray-800">
+                    <button type="submit" class="w-full bg-white text-blue-600 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                        عضویت
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Related Articles -->
+    <section class="mt-16">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">مطالب مرتبط</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <article class="bg-white card-shadow rounded-2xl overflow-hidden hover-scale">
+                <svg class="w-full h-48 bg-gradient-to-br from-blue-100 to-purple-100" viewBox="0 0 400 200">
+                    <rect width="400" height="200" fill="url(#grad4)" />
+                    <defs>
+                        <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#e3f2fd;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#f3e5f5;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <rect x="100" y="80" width="200" height="40" fill="#3498db" rx="5" />
+                    <text x="200" y="105" text-anchor="middle" fill="white" font-size="14" font-weight="bold">بسته‌بندی استاندارد</text>
+                </svg>
+                <div class="p-6">
+                    <h3 class="font-bold text-lg text-gray-800 mb-3">
+                        <a href="#" class="hover:text-blue-600">استانداردهای بسته‌بندی برای ارسال بین‌المللی</a>
+                    </h3>
+                    <p class="text-gray-600 text-sm mb-4">
+                        آشنایی با اصول و روش‌های صحیح بسته‌بندی کالا برای ارسال به خارج از کشور و جلوگیری از آسیب...
+                    </p>
+                    <div class="flex justify-between items-center text-sm text-gray-500">
+                        <span>12 آذر 1403</span>
+                        <span>5 دقیقه مطالعه</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bg-white card-shadow rounded-2xl overflow-hidden hover-scale">
+                <svg class="w-full h-48 bg-gradient-to-br from-green-100 to-blue-100" viewBox="0 0 400 200">
+                    <rect width="400" height="200" fill="url(#grad5)" />
+                    <defs>
+                        <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#e8f5e8;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#e3f2fd;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="200" cy="100" r="40" fill="#27ae60" />
+                    <path d="M180 100 L195 115 L220 85" stroke="white" stroke-width="4" fill="none" />
+                </svg>
+                <div class="p-6">
+                    <h3 class="font-bold text-lg text-gray-800 mb-3">
+                        <a href="#" class="hover:text-blue-600">مراحل کامل ترخیص گمرکی</a>
+                    </h3>
+                    <p class="text-gray-600 text-sm mb-4">
+                        راهنمای گام به گام فرآیند ترخیص گمرکی، مدارک مورد نیاز و نکات مهم برای تسریع در روند...
+                    </p>
+                    <div class="flex justify-between items-center text-sm text-gray-500">
+                        <span>10 آذر 1403</span>
+                        <span>8 دقیقه مطالعه</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bg-white card-shadow rounded-2xl overflow-hidden hover-scale">
+                <svg class="w-full h-48 bg-gradient-to-br from-orange-100 to-red-100" viewBox="0 0 400 200">
+                    <rect width="400" height="200" fill="url(#grad6)" />
+                    <defs>
+                        <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#fff3e0;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#ffebee;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <rect x="150" y="70" width="100" height="60" fill="#e74c3c" rx="5" />
+                    <circle cx="170" cy="140" r="8" fill="#2c3e50" />
+                    <circle cx="230" cy="140" r="8" fill="#2c3e50" />
+                </svg>
+                <div class="p-6">
+                    <h3 class="font-bold text-lg text-gray-800 mb-3">
+                        <a href="#" class="hover:text-blue-600">انتخاب بهترین روش حمل برای کالای شما</a>
+                    </h3>
+                    <p class="text-gray-600 text-sm mb-4">
+                        مقایسه انواع روش‌های حمل و نقل و انتخاب مناسب‌ترین گزینه بر اساس نوع کالا، مقصد و بودجه...
+                    </p>
+                    <div class="flex justify-between items-center text-sm text-gray-500">
+                        <span>8 آذر 1403</span>
+                        <span>6 دقیقه مطالعه</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+</div>
+<script>
+        // Social sharing functions
+        function shareOnSocial(platform) {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(document.title);
+            
+            let shareUrl = '';
+            
+            switch(platform) {
+                case 'telegram':
+                    shareUrl = `https://t.me/share/url?url=${url}&text=${title}`;
+                    break;
+                case 'whatsapp':
+                    shareUrl = `https://wa.me/?text=${title} ${url}`;
+                    break;
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
+                    break;
+                case 'linkedin':
+                    shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+                    break;
+            }
+            
+            if (shareUrl) {
+                window.open(shareUrl, '_blank', 'width=600,height=400');
+            }
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('لینک کپی شد!');
+            });
+        }
+
+        // Mobile menu functionality
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            alert('منوی موبایل در حال توسعه است.');
+        });
+
+        // Comment form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('نظر شما با موفقیت ارسال شد و پس از تأیید نمایش داده خواهد شد.');
+        });
+
+        // Newsletter subscription
+        document.querySelector('.bg-gradient-to-br form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('با موفقیت در خبرنامه عضو شدید!');
+        });
+
+        // Search functionality
+        document.querySelector('input[placeholder="جستجو..."]').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                alert('جستجو برای: ' + this.value);
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('article, .card-shadow').forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>

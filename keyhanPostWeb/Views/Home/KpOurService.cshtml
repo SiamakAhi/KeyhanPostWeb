@@ -1,0 +1,176 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<body class="bg-gray-50">
+   
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">خدمات پستی و حمل و نقل</h1>
+                <p class="text-xl md:text-2xl mb-8 opacity-90">مجموعه کاملی از خدمات داخلی و بین‌المللی برای تمام نیازهای شما</p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="scrollToSection('domestic')" class="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition-all">
+                        <i class="fas fa-map-marker-alt ml-2"></i>
+                        خدمات داخلی
+                    </button>
+                    <button onclick="scrollToSection('international')" class="border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white hover:text-blue-600 transition-all">
+                        <i class="fas fa-globe ml-2"></i>
+                        خدمات بین‌المللی
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Domestic Services Section -->
+    <section id="domestic" class="py-16 bg-gradient-to-br from-blue-50 to-green-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">خدمات داخلی</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">ارسال سریع و مطمئن در سراسر کشور</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <!-- Express Service -->
+                <div class="service-card bg-white rounded-2xl p-8 card-shadow">
+                    <div class="text-center mb-6">
+                        <div class="bg-gradient-to-br from-red-500 to-red-600 text-white p-6 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-bolt text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">پست اکسپرس</h3>
+                    </div>
+
+                    <div class="text-gray-600 leading-relaxed space-y-2">
+                        <p>پست اکسپرس بین‌المللی سریع‌ترین روش ارسال بسته‌ها به نقاط مختلف جهان است.</p>
+                        <p>امکان ارسال هوایی مرسولات به بیش از 290 مقصد جهانی تنها در 7 تا 12 روز کاری فراهم می‌شود.</p>
+                        <p>خدمات به صورت درب به درب انجام شده و دریافت و تحویل مرسوله بدون مراجعه حضوری انجام می‌گیرد.</p>
+                        <p>با همکاری شرکت‌های معتبر پستی بین‌المللی، ایمنی، سرعت و رهگیری آنلاین محموله‌ها تضمین می‌شود.</p>
+                        <p>این سرویس بهترین انتخاب برای اسناد مهم، نمونه‌های تجاری و بسته‌های فوری شماست.</p>
+                    </div>
+                    
+                    
+                </div>
+                
+                <!-- Economy Service -->
+                <div class="service-card bg-white rounded-2xl p-8 card-shadow">
+                    <div class="text-center mb-6">
+                        <div class="bg-gradient-to-br from-green-500 to-green-600 text-white p-6 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-box text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">پست اقتصادی</h3>
+                    </div>
+
+                    <div class="text-gray-600 leading-relaxed space-y-2">
+                        <p>پست اقتصادی کیهان پست راهکاری مقرون‌به‌صرفه برای ارسال بسته‌ها و مرسولات در داخل کشور است.</p>
+                        <p>این سرویس با ترکیب خدمات پستی و فناوری اطلاعات، هزینه حمل‌ونقل را به شکل چشمگیری کاهش می‌دهد.</p>
+                        <p>مناسب برای فروشگاه‌های اینترنتی و کسب‌وکارهای آنلاین که نیاز به ارسال سریع و کم‌هزینه دارند.</p>
+                        <p>امکان تحویل بسته‌ها در بازه زمانی 24 تا 72 ساعت به همراه گزینه پرداخت پس‌کرایه فراهم است.</p>
+                        <p>پست اقتصادی انتخابی هوشمندانه برای ارسال مطمئن و به‌صرفه به مشتریان سراسر کشور می‌باشد.</p>
+                    </div>
+
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- International Services Section -->
+    <section id="international" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">خدمات بین‌المللی</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">ارسال به سراسر جهان با استانداردهای بین‌المللی</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+                <!-- Freight Service -->
+                <div class="service-card bg-white rounded-2xl p-8 card-shadow">
+                    <div class="text-center mb-6">
+                        <div class="bg-gradient-to-br from-purple-500 to-purple-600 text-white p-6 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-plane text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">فریت بار</h3>
+                    </div>
+                    
+                    <div class="text-gray-600 leading-relaxed space-y-2">
+                        <p>فریت بار راهی مطمئن و اقتصادی برای ارسال اضافه بار مسافران به خارج از کشور است.</p>
+                        <p>این سرویس شامل حمل هوایی وسایل شخصی، لوازم خانگی، کتاب و سایر کالاهای مجاز می‌باشد.</p>
+                        <p>مناسب برای دانشجویان، مهاجران و مسافرانی که نمی‌خواهند هزینه‌های سنگین اضافه بار پرداخت کنند.</p>
+                        <p>با ارائه خدمات بسته‌بندی استاندارد، بیمه بار و ترخیص گمرکی در مقصد، آسودگی خاطر شما تضمین می‌شود.</p>
+                        <p>کارشناسان ما بهترین روش ارسال را متناسب با نوع بار و مقصد انتخاب می‌کنند.</p>
+                    </div>
+
+                    
+                   
+                </div>
+                
+                <!-- Export Service -->
+                <div class="service-card bg-white rounded-2xl p-8 card-shadow">
+                    <div class="text-center mb-6">
+                        <div class="bg-gradient-to-br from-blue-500 to-blue-600 text-white p-6 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-upload text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">صادرات</h3>
+                    </div>
+                    
+                    <div class="text-gray-600 leading-relaxed space-y-2">
+                        <p>خدمات جامع صادرات برای ارسال کالاهای ایرانی به بازارهای بین‌المللی ارائه می‌شود.</p>
+                        <p>شامل مشاوره تخصصی صادراتی، تهیه اسناد مورد نیاز و انجام کلیه فرآیندهای گمرکی.</p>
+                        <p>مناسب برای تولیدکنندگان، صنعتگران و تجاری که قصد ورود به بازارهای جهانی را دارند.</p>
+                        <p>پوشش کامل کشورهای همسایه، خلیج فارس، اروپا، آسیا و آمریکا با شبکه گسترده نمایندگان.</p>
+                        <p>بسته‌بندی استاندارد صادراتی، بیمه کامل و پیگیری تا تحویل در مقصد از خدمات ما است.</p>
+                    </div>
+                    
+              
+                </div>
+                
+                <!-- Import Service -->
+                <div class="service-card bg-white rounded-2xl p-8 card-shadow">
+                    <div class="text-center mb-6">
+                        <div class="bg-gradient-to-br from-orange-500 to-orange-600 text-white p-6 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-download text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">واردات</h3>
+                    </div>
+                    
+                    <div class="text-gray-600 leading-relaxed space-y-2">
+                        <p>خدمات کامل واردات برای تأمین کالاهای مورد نیاز از بازارهای بین‌المللی ارائه می‌دهیم.</p>
+                        <p>شامل مشاوره وارداتی، بررسی قوانین، اخذ مجوزهای لازم و انجام فرآیندهای گمرکی.</p>
+                        <p>مناسب برای واردکنندگان، شرکت‌ها و کسب‌وکارهایی که نیاز به تأمین کالا از خارج دارند.</p>
+                        <p>محاسبه دقیق تعرفه‌های گمرکی، انبارداری موقت و تحویل درب منزل یا محل کار.</p>
+                        <p>پشتیبانی کامل از لحظه سفارش تا تحویل نهایی با رعایت تمام استانداردهای کیفی.</p>
+                    </div>
+             
+                </div>
+                <!-- Express International Air Mail Service -->
+<div class="service-card bg-white rounded-2xl p-8 card-shadow">
+    <div class="text-center mb-6">
+        <div class="bg-gradient-to-br from-green-500 to-green-600 text-white p-6 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-paper-plane text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-gray-800 mb-4">پست سریع هوایی بین‌المللی</h3>
+    </div>
+
+                    <div class="text-gray-600 leading-relaxed space-y-2">
+                        <p>پست سریع هوایی بین‌المللی بهترین گزینه برای ارسال بسته‌ها به سراسر جهان با سرعت و اطمینان است.</p>
+                        <p>این سرویس امکان ارسال مرسولات به بیش از 290 نقطه دنیا را تنها در 7 تا 12 روز کاری فراهم می‌کند.</p>
+                        <p>ارسال به صورت درب به درب انجام می‌شود و نیازی به مراجعه حضوری به دفاتر پستی نخواهید داشت.</p>
+                        <p>با همکاری شرکت‌های بزرگ پستی بین‌المللی، ایمنی و رهگیری لحظه‌ای مرسولات شما تضمین می‌شود.</p>
+                        <p>کارشناسان ما مناسب‌ترین روش حمل و کم‌هزینه‌ترین مسیر را برای ارسال بسته‌های شما انتخاب می‌کنند.</p>
+                    </div>
+
+</div>
+            </div>
+            
+           
+        </div>
+</section>
+   <script src="~/js/KpOurService.js"></script>
+    </body>
+   

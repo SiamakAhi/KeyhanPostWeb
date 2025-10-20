@@ -1,0 +1,50 @@
+﻿@model VmProductCategory
+
+
+<h5 class="text-bold pt-3">ویرایش اطلاعات</h5>
+<form asp-action="UpdateCategory" asp-controller="ContentManager" asp-area="CMS" method="post" enctype="multipart/form-data">
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" id="IsValid" value="@ViewData.ModelState.IsValid.ToString()" />
+    <input type="hidden" asp-for="Id" value="@Model.Id" />
+    <div class="row p-3">
+        <div class="col-sm-4">
+            <label asp-for="CategoryName"></label>
+            <input type="text" class="form-control" asp-for="CategoryName" placeholder="نام دسته" />
+            <span asp-validation-for="CategoryName" class="text-danger mr-3"></span>
+        </div>
+        <div class="col-sm-8">
+            <label asp-for="Description"></label>
+            <input type="text" class="form-control" asp-for="Description" placeholder="شرح" />
+            <span asp-validation-for="Description" class="text-danger mr-3"></span>
+        </div>
+
+
+        <div class="col-md-4">
+            <div class="custom-control custom-checkbox">
+                <input asp-for="IsProduct" class="custom-control-input" type="checkbox" name="IsProduct" id="IsProduct">
+                <label for="IsProduct" class="custom-control-label">این دسته شامل محصول است</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+                <input asp-for="IsActive" class="custom-control-input" type="checkbox" checked="checked" value="true" name="IsActive" id="IsActive">
+                <label for="IsActive" class="custom-control-label">زیر مجموعه این دسته در سایت نمایش داده شود</label>
+            </div>
+        </div>
+        <div class="col-md-3 p-1">
+            @*<label asp-for="ImageFile"></label>*@
+            <input type="file" accept="image/*" class="form-control" asp-for="ImageFile" placeholder="انتخاب تصویر" />
+            <span asp-validation-for="ImageFile" class="text-danger mr-3"></span>
+        </div>
+        <div class="col-sm-3 p-1">
+            <input type="button" data-toggle="saveData" class="btn btn-block btn-info" value="ثبت اطلاعات" />
+        </div>
+        <div class="col-sm-2 p-1">
+            <input type="reset" data-toggle="closeForm" class="btn btn-block btn-primary close-form" value="انصراف" />
+        </div>
+    </div>
+</form>
+
+<script src="~/js/ProductsMethod.js"></script>
+
+
+

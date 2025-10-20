@@ -1,0 +1,90 @@
+﻿@model VmProject
+@{
+    ViewData["Title"] = "ویرایش اطلاعات پروژه";
+}
+
+<form asp-action="UpdateProject" asp-controller="ContentManager" asp-area="CMS" method="post" enctype="multipart/form-data">
+    <div class="card">
+        <div class="card-header">
+            ویرایش اطلاعات پروژه
+            <div asp-validation-summary="ModelOnly"></div>
+            <input type="hidden" asp-for="projectID" value="@Model.projectID" />
+            <input type="hidden" asp-for="ProductID" value="@Model.ProductID" />
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label asp-for="ProductID"></label>
+                    <select asp-for="ProductID" asp-items="@ViewBag.ProductAndServicesList" class="form-control select2 select2-hidden-accessible">
+                        <option value="0">انتخاب کنید</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label asp-for="Customer"></label>
+                    <input type="text" asp-for="Customer" class="form-control" placeholder="نام کارفرما" />
+                    <span asp-validation-for="Customer" class="text-danger mr-3"></span>
+                </div>
+
+                <div class="form-group col-md-12">
+                    <label asp-for="Title"></label>
+                    <input type="text" asp-for="Title" class="form-control" placeholder="عنوان پروژه" />
+                    <span asp-validation-for="Title" class="text-danger mr-3"></span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label asp-for="Description"></label>
+                    <textarea rows="3" type="text" asp-for="Description" class="form-control" placeholder="شرح پروژه"></textarea>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label asp-for="Description2"></label>
+                    <textarea rows="3" type="text" asp-for="Description2" class="form-control" placeholder="توضیحات بیشتر"></textarea>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Description3"></label>
+                    <textarea rows="3" type="text" asp-for="Description3" class="form-control" placeholder="توضیحات بیشتر"></textarea>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Description4"></label>
+                    <textarea rows="3" type="text" asp-for="Description4" class="form-control" placeholder="توضیحات بیشتر"></textarea>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="FooterText"></label>
+                    <textarea rows="3" type="text" asp-for="FooterText" class="form-control" placeholder="توضیحات بیشتر"></textarea>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="StartDate"></label>
+                    <input type="text" asp-for="StartDate" class="form-control" />
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label asp-for="EndDate"></label>
+                    <input type="text" asp-for="EndDate" class="form-control" />
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label asp-for="Duration"></label>
+                    <input type="text" asp-for="Duration" class="form-control" />
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label asp-for="ImageFile"></label>
+                    <input type="file" accept=".png,jpg,.jpeg,.PNG,.JPG,.JPEG" asp-for="ImageFile" class="form-control" placeholder="تصویر اصلی پروژه" />
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-md-4 p-1"><input type="submit" data-toggle="saveData" class="btn btn-block btn-success" value="ثبت اطلاعات" /></div>
+                <div class="col-md-2 p-1"><input type="reset" class="btn btn-block btn-warning" value="انصراف" /></div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+

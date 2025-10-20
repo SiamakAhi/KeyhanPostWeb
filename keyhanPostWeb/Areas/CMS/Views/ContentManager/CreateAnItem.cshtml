@@ -1,0 +1,146 @@
+﻿@model VmSectionListItem
+@{
+    ViewData["Title"] = "افزودن آیتم به لیست";
+    Layout = "~/Views/Shared/_adminPanelLayout.cshtml";
+}
+
+
+<div class="container">
+    <h4 class="section-title text-light text-center">افزودن آیتم جدید</h4>
+    <form role="form" asp-action="CreateAnItem" asp-controller="ContentManager" asp-area="CMS" method="post" enctype="multipart/form-data">
+
+        <div class="card-body">
+            <input type="hidden" asp-for="ContentID" value="@ViewBag.ContentID" />
+            <input type="hidden" asp-for="SectionID" value="@ViewBag.SectionID" />
+
+            @*<input type="hidden" asp-for="Id" value="@Model.Id" />*@
+            <div class="row">
+                <div class="col-sm-6">
+                    <!-- text input -->
+                    <div class="form-group">
+                        <label asp-for="Title"></label>
+                        <input asp-for="Title" type="text" class="form-control">
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <!-- text input -->
+                    <div class="form-group">
+                        <label asp-for="Subtitle"></label>
+                        <input asp-for="Subtitle" type="text" class="form-control">
+                        <span asp-validation-for="Subtitle" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- textarea -->
+                    <div class="form-group">
+                        <label asp-for="Text"></label>
+                        <textarea asp-for="Text" class="form-control" rows="5"></textarea>
+                        <span asp-validation-for="Text" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <!-- textarea -->
+                    <div class="form-group">
+                        <label asp-for="Text1"></label>
+                        <textarea asp-for="Text1" class="form-control" rows="5"></textarea>
+                        <span asp-validation-for="Text1" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <!-- textarea -->
+                    <div class="form-group">
+                        <label asp-for="Text2"></label>
+                        <textarea asp-for="Text2" class="form-control" rows="5"></textarea>
+                        <span asp-validation-for="Text2" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <!-- textarea -->
+                    <div class="form-group">
+                        <label asp-for="FooterText"></label>
+                        <textarea asp-for="FooterText" class="form-control" rows="5"></textarea>
+                        <span asp-validation-for="FooterText" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+
+                    <div class="form-group">
+                        <label asp-for="ImageFile"></label>
+                        <input type="file" asp-for="ImageFile" class="form-control" accept="image/*, video/*" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="altImage"></label>
+                        <input type="text" asp-for="altImage" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+
+                    <div class="form-group">
+                        <label asp-for="Priority"></label>
+                        <input type="number" min="1" asp-for="Priority" class="form-control" value="1" />
+                        <span asp-validation-for="Priority" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-2  mb-1">
+                    <label> لینک اول : </label>
+                </div>
+                <div class="col-md-5  mb-1">
+                    <input type="text" asp-for="link1_Title" class="form-control" placeholder="عنوان لینک یا دکمه" />
+                </div>
+                <div class="col-md-5 mb-1">
+                    <input type="text" asp-for="link1_Address" class="form-control" placeholder="آدرس لینک" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 mb-1">
+                    <label> لینک دوم : </label>
+                </div>
+                <div class="col-md-5 mb-1">
+                    <input type="text" asp-for="link2_Title" class="form-control" placeholder="عنوان لینک یا دکمه" />
+                </div>
+                <div class="col-md-5 mb-1">
+                    <input type="text" asp-for="link2_Address" class="form-control" placeholder="آدرس لینک" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 mb-1">
+                    <label> لینک سوم : </label>
+                </div>
+                <div class="col-md-5 mb-1">
+                    <input type="text" asp-for="link3_Title" class="form-control" placeholder="عنوان لینک یا دکمه" />
+                </div>
+                <div class="col-md-5 mb-1">
+                    <input type="text" asp-for="link3_Address" class="form-control" placeholder="آدرس لینک" />
+                </div>
+            </div>
+
+        </div>
+        <div class="card-footer p-4">
+            <div class="d-flex gap-3">
+                <button type="submit" class="btn btn-primary ml-2">ثبت اطلاعات</button>
+                <button type="reset" class="btn btn-secondary">انصراف</button>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+<div class="row mt-3">
+    <div class="col-12">
+        
+
+    </div>
+</div>

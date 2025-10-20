@@ -1,0 +1,242 @@
+﻿@using keyhanPostWeb.GeneralService
+<!DOCTYPE html>
+@inject IApplicationUserManager _userManager;
+@{
+    var user = _userManager.UserInfo(User.Identity.Name);
+    var userAvatar = string.IsNullOrEmpty(user.Image) ? (user.Gender == 1 ? "1.png" : "2.png") : user.Image;
+}
+
+
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>مدیریت سفارشات</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @* <link rel="stylesheet" href="~/lib/AdminLte/plugins/fontawesome-free/css/all.min.css"> *@
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/1.1.2/css/bootstrap-multiselect.min.css">
+
+        <link rel="stylesheet" href="~/lib/AdminLte/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+        <link rel="stylesheet" href="~/lib/AdminLte/plugins/jqvmap/jqvmap.min.css">
+        <link rel="stylesheet" href="~/lib/AdminLte/dist/css/adminlte.min.css">
+        <link rel="stylesheet" href="~/lib/select2/select2.css">
+        <link rel="stylesheet" href="~/lib/AdminLte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+        <link rel="stylesheet" href="~/lib/sweetalert2/sweetalert2.css">
+        <link rel="stylesheet" href="~/lib/AdminLte/dist/css/custom.css">
+        <link rel="stylesheet" href="~/lib/flatpickr/flatpickr.css" />
+        <link rel="stylesheet" href="~/css/bootstrap-Jurnal.rtl.min.css">
+        <link href="~/css/font.css" rel="stylesheet" />
+        <link href="~/css/admincustom.css" rel="stylesheet" asp-append-version="true" />
+
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div id="loader" class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+    <div class="wrapper">
+        <nav class="main-header navbar bg-dark navbar-expand">
+            <ul class="navbar-nav ms-3">
+                <li class="nav-item">
+                    <a class="nav-link text-light" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="Index" asp-controller="Home" asp-area="" class="nav-link">
+                        <i class="fa-solid fa-house me-2 text-lighe"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <aside class="main-sidebar bg-dark elevation-4">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="~/img/avatars/@userAvatar" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block">@user.FirstName @user.LastName</a>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2 pb-5">
+                    <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">
+
+                        @if (User.IsInRole("Manager") || User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item has-treeview active open">
+                                <a href="#" class="nav-link">
+                                    <i class="fa-solid fa-list-ol me-2 text-secondary"></i>
+                                    سفارشات
+                                    <i class="right fas fa-angle-left"></i>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a asp-action="CurrentOrders" asp-controller="Order" asp-area="" class="nav-link ">
+                                            <i class="fas fa-circle-thin nav-icon"></i>
+                                            سفارشات جاری
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-action="NotPayedOrders" asp-controller="Order" asp-area="" class="nav-link ">
+                                            <i class="fas fa-circle-thin nav-icon"></i>
+                                            سفارشات پرداخت نشده
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-action="ArchiveOrders" asp-controller="Order" asp-area="" class="nav-link">
+                                            <i class="far fa-circle-thin nav-icon"></i>
+                                            آرشیو سفارشات
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-action="GetCustomersSummary" asp-controller="Order" asp-area="" class="nav-link">
+                                    <i class="fa-solid fa-people-group  me-2 text-secondary"></i>
+                                    <p>مشتریان</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-action="ProductPakages" asp-controller="Clubmanager" asp-area="Club" class="nav-link">
+                                    <i class="fa-solid fa-dollar-sign me-2 text-secondary"></i>
+                                    مالی
+                                </a>
+                            </li>
+                     
+                            <li>
+                                <a asp-action="Index" asp-controller="ContentManager" asp-area="CMS" class="nav-link">
+                                    <i class="fa-solid fa-dollar-sign me-2 text-secondary"></i>
+                                    پنل مدیریت محتوا
+                                </a>
+                            </li>
+
+                        }
+                        <li class="nav-item">
+                            <a asp-action="UserProfile" asp-controller="Account" asp-area=""
+                               class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
+                                حساب کاربری
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-action="SignOut" asp-controller="Account" asp-area=""
+                               class="nav-link">
+                                <i class="nav-icon fa fa-sign-out"></i>
+                                خروح
+                            </a>
+                        </li>
+
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+
+        <div class="content-wrapper">
+
+
+            <section class="content">
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+            </section>
+
+        </div>
+        <footer class="main-footer">
+            <strong>گروه نرم افزاری گارنت <a href="http://ahi.siamak@gmail.com">Ahi.Siamak@gmail.Com</a></strong>
+
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 1.0.0
+            </div>
+        </footer>
+
+        <div id="messageBox-Holder" class="day-alert-box">
+        </div>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+
+    <!-- Model -->
+    <div class="modal fade" id="model-general-larg" tabindex="-1" style="display: none;" aria-hidden="true">
+    </div>
+
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/popper/popper.min.js"></script>
+
+    <script src="~/lib/AdminLte/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/1.1.2/js/bootstrap-multiselect.min.js"></script>
+    <script>$.widget.bridge('uibutton', $.ui.button)</script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/AdminLte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/AdminLte/plugins/moment/moment.min.js"></script>
+    <script src="~/lib/AdminLte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script> 
+    <script src="~/lib/AdminLte/plugins/summernote/summernote-bs4.min.js"></script>
+    <script src="~/lib/AdminLte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <script src="~/lib/AdminLte/dist/js/adminlte.js"></script>
+    @* <script src="~/lib/AdminLte/dist/js/demo.js"></script>
+    @* <script src="~/lib/dateTimepicker/jquery.md.bootstrap.datetimepicker.js"></script> *@
+    <script src="~/lib/sweetalert2/sweetalert2.js"></script>
+    <script src="~/lib/jdate/jdate.js"></script>
+    <script src="~/lib/flatpickr/flatpickr-jdate.js"></script>
+    <script src="~/lib/flatpickr/l10n/fa-jdate.js"></script>
+    <script src="~/lib/select2/select2.js"></script>
+    <script src="~/js/quine.js"></script>
+
+    <script src="~/js/forms-pickers.js"></script>
+    <script src="~/js/forms-selects.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+
+              $(document).find('.flatpickr-input').flatpickr({
+                        locale: 'fa',
+                        altInput: true,
+                        altFormat: 'Y/m/d',
+                        allowInput: true,
+                        disableMobile: true
+                    });
+        })
+        var FormPlace = $("#formPlaceHolder");
+        var FormPlaceProduct = $("#formProductAction");
+
+        $("input:checkbox").change(function () {
+            if ($(this).prop('checked') == true)
+                $(this).val("true");
+            else
+                $(this).val("false");
+        });
+
+        $('.btn-tool,[data-toggle="callForm"]').click(function () {
+            var actionUrl = $(this).data('url');
+
+            $.get(actionUrl).done(function (data) {
+                FormPlace.html(data);
+                FormPlace.slideDown(350);
+            });
+        });
+
+
+        $("td >a[data-toggle='edit']").click(function () {
+            var acctionUrl = $(this).data('url');
+            $.get(acctionUrl).done(function (data) {
+                FormPlace.html(data);
+                FormPlace.slideDown(350);
+            });
+        });
+
+    </script>
+</body>
+</html>

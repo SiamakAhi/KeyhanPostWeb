@@ -1,0 +1,62 @@
+﻿@model List<VmSitePages>
+@{
+    ViewData["Title"] = "مدیریت محتوای سایت";
+    Layout = "~/Views/Shared/_adminPanelLayout.cshtml";
+}
+@inject IContentManager cmanager
+
+<div class="container">
+    <h3 class="mt-4 mb-0 text-center">مدیریت محتوای سایت</h3>
+    <h5 class="mb-4 mt-0 text-center">لیست بخش ها</h5>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-info">
+                <tr>
+                    <th style="width: 10px">#</th>
+                    @* <th>کد</th> *@
+                    <th>بخش</th>
+                    <th>عنوان فعلی</th>
+                    <th>عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    if (Model != null && Model.Count > 0)
+                    {
+                        int rowCount = 1;
+
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@rowCount</td>
+                                <td>
+                                    @item.SerctionName
+                                </td>
+                                <td> @await cmanager.GetSectionTitle(item.Id)</td>
+                                <td>
+                                    @if (@item.SerctionName == "موردی یافت نشد")
+                                    {
+                                        <a class="actionlink" asp-action="CreateSection" asp-controller="ContentManager" asp-area="CMS" asp-route-SectionID="@item.Id" asp-route-PageTitle="@item.SerctionName"><i class="fas fa-plus"></i></a>
+                                    }
+                                    <a class="actionlink" asp-action="EditTheContent" asp-controller="ContentManager" asp-area="CMS" asp-route-SectionID="@item.Id" asp-route-PageTitle="@item.SerctionName"><i class="far fa-edit"></i></a>
+                                </td>
+                            </tr>
+                            rowCount++;
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4">
+                                <h5>محتوایی برای این سایت در نظر گرفته نشده است. جهت ادامه کار با برنامه نویس سایت تماس حاصل فرمایید</h5>
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

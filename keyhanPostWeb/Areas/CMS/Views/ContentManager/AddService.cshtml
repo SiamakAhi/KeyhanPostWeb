@@ -1,0 +1,267 @@
+﻿@model ServicePageViewModel
+@{
+    ViewData["Title"] = "افزودن خدمت جدید";
+    Layout = "~/Views/Shared/_adminPanelLayout.cshtml";
+}
+
+
+<div class="content mt-2">
+    <form role="form" asp-action="AddService" asp-controller="ContentManager" asp-area="CMS" method="post" enctype="multipart/form-data">
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">اطلاعات خدمت</h3>
+                        </div>
+                        <!-- /.card-header -->
+
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label asp-for="Title"></label>
+                                    <input type="text" asp-for="Title" class="form-control" placeholder="">
+                                    <span asp-validation-for="Title" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label asp-for="CategoryName"></label>
+                                    <input type="text" asp-for="CategoryName" class="form-control" placeholder="">
+                                    <span asp-validation-for="CategoryName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label asp-for="Priority"></label>
+                                    <input type="number" min="1" value="1" asp-for="Priority" class="form-control" placeholder="">
+                                    <span asp-validation-for="Priority" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label asp-for="ShortDescription"></label>
+                                    <input type="text" asp-for="ShortDescription" class="form-control" placeholder="">
+                                    <span asp-validation-for="ShortDescription" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label asp-for="Text1"></label>
+                                    <textarea rows="4" asp-for="Text1" class="form-control" placeholder=""></textarea>
+                                    <span asp-validation-for="Text1" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label asp-for="Text2"></label>
+                                    <textarea rows="4" asp-for="Text2" class="form-control" placeholder=""></textarea>
+                                    <span asp-validation-for="Text2" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label asp-for="Text3"></label>
+                                    <textarea rows="4" asp-for="Text3" class="form-control" placeholder=""></textarea>
+                                    <span asp-validation-for="Text3" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label asp-for="Text4"></label>
+                                    <textarea rows="4" asp-for="Text4" class="form-control" placeholder=""></textarea>
+                                    <span asp-validation-for="Text4" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label asp-for="Text5"></label>
+                                    <textarea rows="4" asp-for="Text5" class="form-control" placeholder=""></textarea>
+                                    <span asp-validation-for="Text5" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label asp-for="Text6"></label>
+                                    <textarea rows="4" asp-for="Text6" class="form-control" placeholder=""></textarea>
+                                    <span asp-validation-for="Text6" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label asp-for="LastText"></label>
+                                    <textarea rows="4" asp-for="LastText" class="form-control" placeholder=""></textarea>
+                                    <span asp-validation-for="LastText" class="text-danger"></span>
+                                </div>
+                            </div>
+                            
+
+                            <hr />
+                            <div class="row">
+                                <div class="form-group col-md-5">
+                                    <label asp-for="ImageFile1"></label>
+                                    <input type="file" asp-for="ImageFile1" class="form-control" placeholder="">
+                                    <span asp-validation-for="ImageFile1" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-7">
+                                    <label asp-for="Image1Description"></label>
+                                    <input type="text" asp-for="Image1Description" class="form-control" placeholder="">
+                                    <span asp-validation-for="Image1Description" class="text-danger"></span>
+                                </div>
+                            </div>
+                              <div class="row">
+                                <div class="form-group col-md-5">
+                                    <label asp-for="ImageFile2"></label>
+                                    <input type="file" asp-for="ImageFile2" class="form-control" placeholder="">
+                                    <span asp-validation-for="ImageFile2" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-7">
+                                    <label asp-for="Image2Description"></label>
+                                    <input type="text" asp-for="Image2Description" class="form-control" placeholder="">
+                                    <span asp-validation-for="Image2Description" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-5">
+                                    <label asp-for="ImageFile3"></label>
+                                    <input type="file" asp-for="ImageFile3" class="form-control" placeholder="">
+                                    <span asp-validation-for="ImageFile3" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-7">
+                                    <label asp-for="Image3Description"></label>
+                                    <input type="text" asp-for="Image3Description" class="form-control" placeholder="">
+                                    <span asp-validation-for="Image3Description" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-5">
+                                    <label asp-for="ImageFile4"></label>
+                                    <input type="file" asp-for="ImageFile4" class="form-control" placeholder="">
+                                    <span asp-validation-for="ImageFile4" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-7">
+                                    <label asp-for="Image4Description"></label>
+                                    <input type="text" asp-for="Image4Description" class="form-control" placeholder="">
+                                    <span asp-validation-for="Image4Description" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-5">
+                                    <label asp-for="ImageFile5"></label>
+                                    <input type="file" asp-for="ImageFile5" class="form-control" placeholder="">
+                                    <span asp-validation-for="ImageFile5" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-7">
+                                    <label asp-for="Image5Description"></label>
+                                    <input type="text" asp-for="Image5Description" class="form-control" placeholder="">
+                                    <span asp-validation-for="Image5Description" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-5">
+                                    <label asp-for="ImageFile6"></label>
+                                    <input type="file" asp-for="ImageFile6" class="form-control" placeholder="">
+                                    <span asp-validation-for="ImageFile6" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-7">
+                                    <label asp-for="Image6Description"></label>
+                                    <input type="text" asp-for="Image6Description" class="form-control" placeholder="">
+                                    <span asp-validation-for="Image6Description" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <hr />
+                            <div class="row">
+                                <div class="form-group col-md-5">
+                                    <label asp-for="Link1"></label>
+                                    <input type="text" asp-for="Link1" class="form-control" placeholder="">
+                                </div>
+                                <div class="form-group col-md-7">
+                                    <label asp-for="Link1Title"></label>
+                                    <input type="text" asp-for="Link1Title" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                             <div class="row">
+                                <div class="form-group col-md-5">
+                                    <label asp-for="Link2"></label>
+                                    <input type="text" asp-for="Link2" class="form-control" placeholder="">
+                                </div>
+                                <div class="form-group col-md-7">
+                                    <label asp-for="Link2Title"></label>
+                                    <input type="text" asp-for="Link2Title" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-5">
+                                    <label asp-for="Link3"></label>
+                                    <input type="text" asp-for="Link3" class="form-control" placeholder="">
+                                </div>
+                                <div class="form-group col-md-7">
+                                    <label asp-for="Link3Title"></label>
+                                    <input type="text" asp-for="Link3Title" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-5">
+                                    <label asp-for="Link4"></label>
+                                    <input type="text" asp-for="Link4" class="form-control" placeholder="">
+                                </div>
+                                <div class="form-group col-md-7">
+                                    <label asp-for="Link4Title"></label>
+                                    <input type="text" asp-for="Link4Title" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-5">
+                                    <label asp-for="Link5"></label>
+                                    <input type="text" asp-for="Link5" class="form-control" placeholder="">
+                                </div>
+                                <div class="form-group col-md-7">
+                                    <label asp-for="Link5Title"></label>
+                                    <input type="text" asp-for="Link5Title" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- form start -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">ثبت اطلاعات</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-warning">
+                        <div class="card-header">
+                            <h3 class="card-title">اطلاعات سئو</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label asp-for="Meta_title"></label>
+                                        <input type="text" asp-for="Meta_title" class="form-control" placeholder="عنوان ...">
+                                        <span asp-validation-for="Meta_title" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label asp-for="Meta_name"></label>
+                                        <input type="text" asp-for="Meta_name" class="form-control" placeholder="نام ...">
+                                        <span asp-validation-for="Meta_name" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label asp-for="Meta_author"></label>
+                                        <input type="text" asp-for="Meta_author" class="form-control" placeholder="تهیه کننده ...">
+                                        <span asp-validation-for="Meta_author" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label asp-for="Meta_description"></label>
+                                        <textarea rows="4" asp-for="Meta_description" class="form-control" placeholder="شرح ..."></textarea>
+                                        <span asp-validation-for="Meta_description" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label asp-for="Meta_keywords"></label>
+                                        <textarea rows="4" asp-for="Meta_keywords" class="form-control" placeholder="کلیدواژه ها ..."></textarea>
+                                        <span asp-validation-for="Meta_keywords" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

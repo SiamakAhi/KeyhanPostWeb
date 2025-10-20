@@ -1,0 +1,45 @@
+﻿@using keyhanPostWeb.GeneralViewModels.Identity
+@model VmUpdateProfile
+
+
+<form class="row g-2" asp-action="UpdateUserProfile" asp-controller="Account" asp-area="" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id" value="@Model.Id" />
+    <input type="hidden" asp-for="userName" value="@Model.userName" />
+    <div class="col-lg-6">
+        <label class="form-label" asp-for="FirstName"></label>
+        <input class="form-control" type="text" asp-for="FirstName">
+    </div>
+    <div class="col-lg-6">
+        <label class="form-label" asp-for="LastName"></label>
+        <input class="form-control" type="text" asp-for="LastName">
+    </div>
+    <div class="col-lg-6">
+        <label asp-for="Gender">جنسیت</label>
+        <select class="form-select" asp-for="Gender">
+            <option value="2">زن</option>
+            <option value="1">مرد</option>
+        </select>
+    </div>
+    <div class="col-lg-6">
+        <label class="form-label" asp-for="Email"></label>
+        <input class="form-control" type="email" asp-for="Email">
+    </div>
+    <div class="col-lg-6">
+        <label class="form-label" asp-for="Mobile"></label>
+        <input class="form-control" type="text" asp-for="Mobile">
+    </div>
+    <div class="col-lg-6">
+        <label asp-for="StrBirthDate" class="form-label">تاریخ تولد</label>
+        <input type="text" asp-for="StrBirthDate" class="form-control flatpickr-input" placeholder="YYYY/MM/DD"  value="@Model.BirthDate?.LatinToPersian()" id="flatpickr-date">
+    </div>
+    <div class="col-12">
+        <label asp-for="ImageFile"></label>
+        <input type="file" class="form-control" asp-for="ImageFile" placeholder="تصویر پروفایل" />
+    </div>
+
+
+    <div class="col-12 d-flex justify-content-end">
+        <button class="btn btn-primary accAjaxSubmit" type="button">به روز رسانی</button>
+    </div>
+</form>
+

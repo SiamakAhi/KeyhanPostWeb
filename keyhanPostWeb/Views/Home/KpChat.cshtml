@@ -1,0 +1,167 @@
+﻿
+<head>
+    <meta charset="UTF-8">
+    <title>Chat Widget</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        .chat-bubble {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #16a34a;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: 0.3s;
+        }
+        .chat-bubble:hover { background: #15803d; }
+
+        .chat-box {
+            position: fixed;
+            bottom: 80px;
+            left: 20px;
+            width: 320px;
+            height: 420px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            font-family: sans-serif;
+        }
+        .chat-header {
+            background: #16a34a;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .chat-messages {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            font-size: 14px;
+            background: #f5f5f5;
+        }
+
+        /* پیام من */
+        .message.me {
+            background: #dcf8c6;
+            color: #000;
+            align-self: flex-end;
+            border-radius: 10px 0 10px 10px;
+            padding: 8px 12px;
+            margin: 5px;
+            max-width: 70%;
+        }
+
+        /* پیام دیگران */
+        .message.other {
+            background: #ececec;
+            color: #000;
+            align-self: flex-start;
+            border-radius: 0 10px 10px 10px;
+            padding: 8px 12px;
+            margin: 5px;
+            max-width: 70%;
+        }
+
+        .chat-input {
+            display: flex;
+            border-top: 1px solid #ccc;
+            background: white;
+        }
+        .chat-input input {
+            flex: 1;
+            border: none;
+            padding: 10px;
+            outline: none;
+        }
+        .chat-input button {
+            background: #16a34a;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- دکمه باز کردن چت -->
+    <button class="chat-bubble" onclick="toggleChat()">
+        <i class="fas fa-comments"></i>
+    </button>
+
+    <!-- باکس چت -->
+    <div class="chat-box" id="chatBox">
+        <div class="chat-header">چت آنلاین</div>
+        <div class="chat-messages" id="messagesList"></div>
+        <div class="chat-input">
+            <input type="text" id="userInput" placeholder="نام..." style="width:30%">
+            <input type="text" id="messageInput" placeholder="پیام..." style="width:70%">
+            <button onclick="sendMessage()">➤</button>
+        </div>
+    </div>
+
+    <script>
+        let currentUser = "";
+
+        // اتصال به SignalR
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/chatHub")
+            .build();
+
+        connection.on("ReceiveMessage", (user, message) => {
+            const div = document.createElement("div");
+            div.classList.add("message");
+
+            if (user === currentUser) {
+                div.classList.add("me");
+            } else {
+                div.classList.add("other");
+            }
+
+            div.textContent = `${user}: ${message}`;
+            document.getElementById("messagesList").appendChild(div);
+            scrollToBottom();
+        });
+
+        connection.start().catch(err => console.error(err));
+
+        function sendMessage() {
+            const user = document.getElementById("userInput").value;
+            const message = document.getElementById("messageInput").value;
+
+            if (!user) {
+                alert("لطفا نام وارد کنید");
+                return;
+            }
+            currentUser = user;
+
+            if (message) {
+                connection.invoke("SendMessage", user, message)
+                    .catch(err => console.error(err));
+                document.getElementById("messageInput").value = "";
+            }
+        }
+
+        function toggleChat() {
+            const chatBox = document.getElementById("chatBox");
+            chatBox.style.display = (chatBox.style.display === "flex") ? "none" : "flex";
+            chatBox.style.flexDirection = "column";
+        }
+
+        function scrollToBottom() {
+            const messages = document.getElementById("messagesList");
+            messages.scrollTop = messages.scrollHeight;
+        }
+    </script>
+</body>
+</html>

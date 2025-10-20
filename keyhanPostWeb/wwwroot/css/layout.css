@@ -1,0 +1,356 @@
+﻿
+
+.hover-scale {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .hover-scale:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+.form-step {
+    display: none;
+}
+
+    .form-step.active {
+        display: block;
+    }
+
+.step-indicator {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin: 0 auto 10px auto;
+    transition: all 0.3s ease;
+}
+
+    .step-indicator.active {
+        background-color: #3b82f6;
+        color: white;
+        transform: scale(1.1);
+    }
+
+    .step-indicator.completed {
+        background-color: #10b981;
+        color: white;
+    }
+
+    .step-indicator.inactive {
+        background-color: #e5e7eb;
+        color: #6b7280;
+    }
+
+.step-title {
+    font-size: 14px;
+    text-align: center;
+    color: #6b7280;
+}
+
+    .step-title.active {
+        color: #3b82f6;
+        font-weight: bold;
+    }
+
+    .step-title.completed {
+        color: #10b981;
+    }
+
+.progress-bar {
+    height: 4px;
+    background-color: #e5e7eb;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, #3b82f6, #10b981);
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+.package-type-card {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+    .package-type-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .package-type-card.selected {
+        border-color: #3b82f6;
+        background-color: #eff6ff;
+    }
+
+        .package-type-card.selected .card-icon {
+            background-color: #3b82f6;
+            color: white;
+        }
+
+        .package-type-card.selected .card-title {
+            color: #3b82f6;
+            font-weight: bold;
+        }
+
+.card-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem auto;
+    transition: all 0.3s ease;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+    .modal.show {
+        display: flex;
+        opacity: 1;
+    }
+
+.modal-content {
+    background-color: white;
+    margin: auto;
+    padding: 2rem;
+    border-radius: 1rem;
+    max-width: 800px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: translateY(-50px);
+    transition: transform 0.3s ease;
+}
+
+.modal.show .modal-content {
+    transform: translateY(0);
+}
+
+.success-animation {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: #10b981;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: scaleIn 0.5s ease forwards;
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.checkmark {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+    border: 10px solid transparent;
+    border-top-color: white;
+    border-right-color: white;
+    transform: rotate(45deg);
+    animation: checkmark 0.5s ease forwards;
+}
+
+@keyframes checkmark {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+
+    50% {
+        width: 0;
+        height: 50px;
+        opacity: 1;
+    }
+
+    100% {
+        width: 50px;
+        height: 50px;
+        opacity: 1;
+    }
+}
+.mt-header {
+    margin-top: 60px; 
+}
+.gradient-bg {
+    background: linear-gradient(135deg, #3498db 0%, #2ecc71 100%);
+}
+
+.card-shadow {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+
+
+.shipping-step {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+    .shipping-step:hover .step-icon {
+        transform: scale(1.1);
+    }
+
+.progress-bar {
+    transition: width 2s ease-in-out;
+}
+
+.step-tooltip {
+    pointer-events: none;
+}
+
+.province {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+    .province:hover {
+        transform: scale(1.1);
+    }
+
+.active-province {
+    fill: #dc2626;
+}
+
+.inactive-province {
+    fill: #9ca3af;
+}
+
+.slider {
+    animation: slide 15s infinite;
+}
+
+@keyframes slide {
+    0%, 33% {
+        transform: translateX(0);
+    }
+
+    34%, 66% {
+        transform: translateX(-100%);
+    }
+
+    67%, 100% {
+        transform: translateX(-200%);
+    }
+}
+
+.stats-counter {
+    animation: countUp 2s ease-out;
+}
+
+@keyframes countUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.chat-bubble {
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-10px);
+    }
+
+    60% {
+        transform: translateY(-5px);
+    }
+}
+.card-shadow {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+
+
+.img {
+    width: 24px; /* اندازه ثابت عرض */
+    height: 24px; /* اندازه ثابت ارتفاع */
+    object-fit: contain; /* حفظ تناسب بدون کشیدگی */
+    margin-left: 8px; /* فاصله از آیکون چک */
+}
+
+.service-card {
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+    .service-card:hover {
+        border-color: #3498db;
+        transform: translateY(-8px);
+        box-shadow: 0 12px 24px rgba(52, 152, 219, 0.15);
+    }
+
+.feature-check {
+    color: #2ecc71;
+}
+
+.feature-cross {
+    color: #e74c3c;
+}
+.tab-button {
+    transition: all 0.3s ease;
+}
+
+    .tab-button.active {
+        background: linear-gradient(135deg, #3498db, #2ecc71);
+        color: white;
+    }
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

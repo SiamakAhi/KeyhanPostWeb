@@ -1,0 +1,101 @@
+﻿@model Vm_Projects
+@{
+    ViewData["Title"] = "فصد خون پارس";
+    Layout = "~/Views/Shared/_adminPanelLayout.cshtml";
+}
+
+
+
+<div class="row  pt-4">
+    <div class="col-md-12">
+        <div class="card card-white">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-9 col-sm-6 text-success"> <h3 class="card-title">لیست پروژه ها</h3></div>
+                    <div class="col-md-3 col-sm-6"><a asp-action="AddNewProject" asp-controller="ContentManager" asp-area="CMS" class="btn btn-info btn-block">افزودن پروژه جدید</a> </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <table class="table table-bordered table-responsive">
+                    <thead class="text-center">
+                        <tr>
+                            <th style="width: 10px">#</th>
+                            <th>تصویر</th>
+                            <th>عنوان</th>
+                            <th>شرح</th>
+                            <th>عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            if (Model.Projects.Count > 0)
+                            {
+                                foreach (var i in Model.Projects)
+                                {
+                                                <tr>
+                                                    <td>@i.projectID</td>
+                                                    <td>
+                                                        <a href="~/img/Gallery/@i.Image" target="_blank">
+                                                            <img style="width:100px" src="~/img/ContentImages/@i.Image" />
+                                                        </a>
+                                                    </td>
+                                                    <td>@i.ProductName</td>
+                                                    <td>@i.Title</td>
+                                                    <td>@i.Description</td>
+
+
+                                                    <td class="text-center">
+                                                        <a asp-action="UpdateProject" asp-controller="ContentManager" asp-area="CMS" asp-route-id="@i.projectID" class="btn btn-sm btn-warning m-1">ویرایش</a>
+                                                        <a asp-action="DeleteProject" asp-controller="ContentManager" asp-area="CMS" asp-route-id="@i.projectID" class="btn btn-sm btn-danger m-1">حذف</a>
+                                                        <a asp-action="AddProjectImage" asp-controller="ContentManager" asp-area="CMS" asp-route-id="@i.projectID" class="btn btn-sm btn-primary m-1">گالری پروژه</a>
+                                                    </td>
+                                                </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="6" class="text-success text-lg-center">در بخش پروژه ها اطلاعاتی وارد نشده است.</td>
+                                </tr>
+                            }
+
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer clearfix">
+                @{
+                    int courentPage = Model.CurrentPage;
+                    int NextPage = courentPage + 1;
+                    int PerPage = courentPage - 1;
+
+                }
+                <ul class="pagination pagination-sm m-0 float-right">
+                    @if (courentPage > 1)
+                    {
+                        <li class="page-item"><a class="page-link" href="#">«</a></li>
+                    }
+
+                    @for (int i = 1; i <= Model.PageCount; i++)
+                    {
+                        <li class="page-item"><a class="page-link" asp-action="projects" asp-controller="ContentManager" asp-area="CMS" asp-route-pageId="@i">@i</a></li>
+                    }
+
+
+                    @if (NextPage <= Model.PageCount)
+                    {
+                        <li class="page-item"><a class="page-link" href="#">»</a></li>
+                    }
+
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

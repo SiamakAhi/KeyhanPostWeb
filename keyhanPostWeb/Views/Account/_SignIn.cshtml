@@ -1,0 +1,53 @@
+﻿@using keyhanPostWeb.GeneralViewModels.Identity
+@model SignInViewModel
+
+
+<div class="modal-dialog quine-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title ">
+               فرم ورود
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="loginform">
+                <div>
+                 
+                    <h5 class="mb-4 text-center">ورود به حساب کاربری</h5>
+                </div>
+                <form class="loginform-form" asp-action="SignIn" asp-controller="Account" method="post">
+                    <div class="validation-error-box">
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                        <div asp-validation-summary="ModelOnly"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mb-2">
+                            <label asp-for="UserName">نام کاربری</label>
+                            <input class="form-control" type="text" asp-for="UserName" autocomplete="off" placeholder="نام کاربری">
+                        </div>
+                        <div class="col-12 mb-2">
+                            <label asp-for="Password">رمز عبور</label>
+                            <input class="form-control" type="password" asp-for="Password" autocomplete="off" placeholder="رمز عبور">
+                        </div>
+                        <div class="col-12 mb-2">
+                            <div class="checkbox-container">
+                                <input asp-for="RememberMe" />
+                                <label asp-for="RememberMe"></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid p-3">
+                        <button type="button" class="btn  accAjaxSubmit">ورود</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

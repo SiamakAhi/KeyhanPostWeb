@@ -1,0 +1,161 @@
+﻿
+@model VmCompanyInfo
+@{
+    ViewData["Title"] = "اطلاعات کسب و کار";
+    Layout = "~/Views/Shared/_adminPanelLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-10 m-auto">
+        <form>
+            <div class="card card-primary mt-3">
+                <div class="card-header">
+                    <h3 class="card-title">ویرایش اطلاعات شرکت</h3>
+                </div>
+                <div class="card-body">
+                    
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label asp-for="ShortName"></label>
+                            <input asp-for="ShortName" type="text" class="form-control" placeholder="نام کوتاه">
+                            <span asp-validation-for="ShortName"></span>
+                        </div>
+                        <div class="col-sm-5">
+                            <label asp-for="FullName"> </label>
+                            <input asp-for="FullName" type="text" class="form-control" placeholder="نام کامل">
+                            <span asp-validation-for="FullName"></span>
+                        </div>
+                        <div class="col-sm-2">
+                            <label asp-for="SabtNo"></label>
+                            <input asp-for="SabtNo" type="text" class="form-control" placeholder="شماره ثبت">
+                            <span asp-validation-for="SabtNo"></span>
+                        </div>
+                        <div class="col-sm-2">
+                            <label asp-for="MeliNo"></label>
+                            <input asp-for="MeliNo" type="text" class="form-control" placeholder="شناسه ملی">
+                            <span asp-validation-for="MeliNo"></span>
+                        </div>
+                    </div>
+                    <p class="text-danger mt-3 text-bold">شبکه های اجتماعی</p>
+                    <div class="row">
+                        <div class="col-md-3 mb-1">
+                            <label asp-for="Instagram">اینستاگرام</label>
+                            <input asp-for="Instagram" type="text" class="form-control" placeholder="لینک پروفایل">
+                            <span asp-validation-for="Instagram"></span>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <label asp-for="Facebook">فیس بوک (متا) </label>
+                            <input asp-for="Facebook" type="text" class="form-control" placeholder="لینک پروفایل">
+                            <span asp-validation-for="Facebook"></span>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <label asp-for="YouTube">یوتیوب</label>
+                            <input asp-for="YouTube" type="text" class="form-control" placeholder="لینک پروفایل">
+                            <span asp-validation-for="YouTube"></span>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <label asp-for="LinkedIn">لینکداین</label>
+                            <input asp-for="LinkedIn" type="text" class="form-control" placeholder="لینک پروفایل">
+                            <span asp-validation-for="LinkedIn"></span>
+                        </div>
+                    </div>
+                    <p class="text-danger mt-4 text-bold">آدرس اول</p>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <label asp-for="AddressName1"></label>
+                            <input asp-for="AddressName1" type="text" class="form-control" placeholder="">
+                            <span asp-validation-for="AddressName1"></span>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-sm-3">
+                            <label asp-for="Address1_Phone1"></label>
+                            <input asp-for="Address1_Phone1" type="text" class="form-control" placeholder="تلفن اصلی">
+                            <span asp-validation-for="Address1_Phone1"></span>
+                        </div>
+                        <div class="col-sm-3">
+                            <label asp-for="Address1_Phone2"> </label>
+                            <input asp-for="Address1_Phone2" type="text" class="form-control" placeholder="تلفن دوم">
+                            <span asp-validation-for="Address1_Phone2"></span>
+                        </div>
+                        <div class="col-sm-3">
+                            <label asp-for="Address1_fax"></label>
+                            <input asp-for="Address1_fax" type="text" class="form-control" placeholder="تلفکس">
+                            <span asp-validation-for="Address1_fax"></span>
+                        </div>
+                        <div class="col-sm-3">
+                            <label asp-for="Address1_Mobile"></label>
+                            <input asp-for="Address1_Mobile" type="text" class="form-control" placeholder="شماره همراه">
+                            <span asp-validation-for="Address1_Mobile"></span>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-sm-10">
+                            <label asp-for="Address1"></label>
+                            <input asp-for="Address1" type="text" class="form-control" placeholder="آدرس">
+                            <span asp-validation-for="Address1"></span>
+                        </div>
+                        <div class="col-sm-2">
+                            <label asp-for="Address1_email"></label>
+                            <input asp-for="Address1_email" type="text" class="form-control" placeholder="پست الکترونیک">
+                            <span asp-validation-for="Address1_email"></span>
+                        </div>
+                    </div>
+
+                    <p class="text-danger mt-4 text-bold">آدرس دوم</p>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <label asp-for="AddressName2"></label>
+                            <input asp-for="AddressName2" type="text" class="form-control" placeholder="نام آدرس">
+                            <span asp-validation-for="AddressName2"></span>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-sm-3">
+                            <label asp-for="Address2_Phone1"></label>
+                            <input asp-for="Address2_Phone1" type="text" class="form-control" placeholder="تلفن اصلی">
+                            <span asp-validation-for="Address2_Phone1"></span>
+                        </div>
+                        <div class="col-sm-3">
+                            <label asp-for="Address2_Phone2"> </label>
+                            <input asp-for="Address2_Phone2" type="text" class="form-control" placeholder="تلفن دوم">
+                            <span asp-validation-for="Address2_Phone2"></span>
+                        </div>
+                        <div class="col-sm-3">
+                            <label asp-for="Address2_fax"></label>
+                            <input asp-for="Address2_fax" type="text" class="form-control" placeholder="تلفکس">
+                            <span asp-validation-for="Address2_fax"></span>
+                        </div>
+                        <div class="col-sm-3">
+                            <label asp-for="Address2_Mobile"></label>
+                            <input asp-for="Address2_Mobile" type="text" class="form-control" placeholder="شماره همراه">
+                            <span asp-validation-for="Address2_Mobile"></span>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-sm-10">
+                            <label asp-for="Address2"></label>
+                            <input asp-for="Address2" type="text" class="form-control" placeholder="آدرس">
+                            <span asp-validation-for="Address1"></span>
+                        </div>
+                        <div class="col-sm-2">
+                            <label asp-for="Address2_email"></label>
+                            <input asp-for="Address2_email" type="text" class="form-control" placeholder="پست الکترونیک">
+                            <span asp-validation-for="Address2_email"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input type="submit" class="btn btn-block btn-info" value="ثبت اطلاعات" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+

@@ -1,0 +1,61 @@
+﻿@using keyhanPostWeb.GeneralViewModels.Identity
+@model VmSignUp
+
+
+<div class="modal-dialog quine-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title ">
+                فرم ورود
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="loginform">
+                <div>
+                    <img src="~/img/ui/logo.png" />
+                    <h5 class="mb-4 text-center">ایجاد حساب کاربری</h5>
+                </div>
+                <form class="loginform-form" asp-action="SignUp" asp-controller="Account" asp-area="" method="post">
+                    <input type="hidden" asp-for="Roles" value="Customer" />
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <label asp-for="FName" class="ms-1">نام </label>
+                            <input class="form-control" type="text" asp-for="FName" autocomplete="off" placeholder="نام ">
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label asp-for="LName" class="ms-1">نام خانوادگی</label>
+                            <input class="form-control" type="text" asp-for="LName" autocomplete="off" placeholder="نام خانوادگی">
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label asp-for="Mobile" class="ms-1">شماره همراه </label>
+                            <input class="form-control" type="tel" asp-for="Mobile" autocomplete="off" placeholder="0912XXX4954 ">
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label asp-for="Email" class="ms-1">ایمیل معتبر</label>
+                            <input class="form-control" type="email" asp-for="Email" autocomplete="off" placeholder="mailaddress@example.com">
+                        </div>
+                        <div class="col-12 mb-2">
+                            <label asp-for="Name" class="ms-1"></label>
+                            <input class="form-control" type="text" asp-for="Name" autocomplete="off" placeholder="فقط لاتین">
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label asp-for="Password" class="ms-1"></label>
+                            <input class="form-control" type="password" asp-for="Password" autocomplete="off" placeholder="رمز عبور">
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label asp-for="ConfirmPassword" class="ms-1"></label>
+                            <input class="form-control" type="password" asp-for="ConfirmPassword" autocomplete="off" placeholder="تکرار رمز عبور">
+                        </div>
+                    </div>
+
+                    <div class="d-grid p-3">
+                        <button type="button" class="btn accAjaxSubmit">ثبت نام</button>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

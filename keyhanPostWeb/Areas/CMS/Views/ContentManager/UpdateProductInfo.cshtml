@@ -1,0 +1,130 @@
+﻿@model VmProductAndService
+
+@{
+    ViewData["Title"] = "ویرایش اطلاعات محصول";
+    Layout = "~/Views/Shared/_adminPanelLayout.cshtml";
+}
+
+<div class="row pt-2">
+    <div class="col-12">
+        <form asp-action="UpdateProductInfo" asp-controller="ContentManager" asp-area="CMS" method="post">
+            <div class="card card-white">
+                <div class="card-header">
+                    ویرایش اطلاعات محصول
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <input type="hidden" asp-for="ProductID" value="@Model.ProductID"/>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label asp-for="CategoryID"></label>
+                                        <select asp-for="CategoryID" asp-items="@ViewBag.CategoryList" class="form-control select2 select2-hidden-accessible">
+                                            <option>انتخاب کنید</option>
+                                        </select>
+                                        <span asp-validation-for="CategoryID" class="text-danger mr-3"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <label asp-for="ShortTitle"></label>
+                                        <input type="text" asp-for="ShortTitle" class="form-control" />
+                                        <span asp-validation-for="ShortTitle" class="text-danger mr-3"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label asp-for="LongTitle"></label>
+                                        <input type="text" asp-for="LongTitle" class="form-control" />
+                                        <span asp-validation-for="LongTitle" class="text-danger mr-3"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label asp-for="Description"></label>
+                                        <textarea rows="3" type="text" asp-for="Description" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label asp-for="MainText"></label>
+                                        <textarea rows="3" type="text" asp-for="MainText" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label asp-for="Subtext1"></label>
+                                        <textarea rows="3" type="text" asp-for="Subtext1" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label asp-for="Subtext2"></label>
+                                        <textarea rows="3" type="text" asp-for="Subtext2" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label asp-for="Subtext3"></label>
+                                        <textarea rows="3" type="text" asp-for="Subtext3" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label asp-for="FooterText"></label>
+                                        <textarea rows="3" type="text" asp-for="FooterText" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label asp-for="price"></label>
+                                        <input type="number" min="0" asp-for="price" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label asp-for="discount"></label>
+                                        <input type="number" min="0" asp-for="discount" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label asp-for="FinalPrice"></label>
+                                        <input type="number" min="0" asp-for="FinalPrice" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox ml-3">
+                                            <input asp-for="ShowInHome" class="custom-control-input" type="checkbox" checked="">
+                                            <label asp-for="ShowInHome" class="custom-control-label"></label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox ml-3">
+                                            <input asp-for="AlowShowPrice" class="custom-control-input" type="checkbox">
+                                            <label asp-for="AlowShowPrice" class="custom-control-label"></label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox ml-3">
+                                            <input asp-for="IsAvalable" class="custom-control-input" type="checkbox" checked="">
+                                            <label asp-for="IsAvalable" class="custom-control-label"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-8"><input type="submit" data-toggle="saveData" class="btn btn-block btn-success" value="ثبت اطلاعات" /></div>
+                                <div class="col-4"><input type="reset" class="btn btn-block btn-warning" value="انصراف" /></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-footer"></div>
+            </div>
+        </form>
+    </div>
+</div>
+

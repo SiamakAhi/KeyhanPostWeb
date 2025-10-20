@@ -1,0 +1,44 @@
+﻿@model VmBlogCategory
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header p-3 ">
+            <h5 class="modal-title ">
+                دسته بندی اخبار و مقالات
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form role="form" asp-action="AddBlogCategory" asp-controller="ContentManager" asp-area="CMS" method="post" enctype="multipart/form-data">
+                <div class="card-body p-4">
+                    <div class="form-group">
+                        <label asp-for="Name"></label>
+                        <input type="text" class="form-control" asp-for="Name" placeholder="نام گروه">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description"></label>
+                        <textarea type="text" rows="3" class="form-control" asp-for="Description" placeholder="شرح"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="imageFile"></label>
+                        <input type="file" class="form-control" asp-for="imageFile" placeholder="انتخاب تصویر">
+                        <span asp-validation-for="imageFile" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="AltImage"></label>
+                        <input type="text" class="form-control" asp-for="AltImage" placeholder="شرح تصویر">
+                        <span asp-validation-for="AltImage" class="text-info"></span>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer d-grid p-3">
+                    <button type="button" class="btn btn-danger accAjaxSubmit">ثبت</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

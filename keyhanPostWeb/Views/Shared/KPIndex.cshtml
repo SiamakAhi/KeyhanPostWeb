@@ -1,0 +1,1391 @@
+﻿<!-- Hero Slider Section -->
+<section class="relative overflow-hidden text-white mt-1">
+    <div class="slider-container relative" style="height: 630px;">
+
+        <!-- Slide 1 -->
+        <div class="slide active absolute inset-0 flex flex-col justify-center items-start bg-cover bg-center bg-no-repeat"
+             style="background-image: url('/img/ui/slider33.png');">
+            <div class="text-right max-w-2xl px-4">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">ارسال سریع و مطمئن</h1>
+                <p class="text-xl mb-8 text-blue-100">مرسولات خود را با بالاترین کیفیت و سرعت ارسال کنید</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-start">
+                    <button onclick="scrollToSection('cost-calculator')" class="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition-all">
+                        محاسبه هزینه
+                    </button>
+                    <button onclick="scrollToSection('tracking')" class="border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white hover:text-blue-600 transition-all">
+                        پیگیری مرسوله
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide absolute inset-0 flex items-center justify-center bg-cover bg-center bg-no-repeat"
+             style="background-image: url('/img/ui/slider22.png');">
+            <div class="text-center container mx-auto px-4">
+                <div class="flex flex-col items-center">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6">پوشش سراسری</h1>
+                    <p class="text-xl mb-8 text-green-100">شبکه گسترده نمایندگان در تمام استان‌های کشور</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button onclick="scrollToSection('branches')" class="bg-white text-green-600 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition-all">
+                            مشاهده شعب
+                        </button>
+                        <button onclick="openChat()" class="border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white hover:text-green-600 transition-all">
+                            تماس با ما
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3 (پوشش بیمه) -->
+        <div class="slide absolute inset-0 flex items-center justify-center bg-cover bg-center bg-no-repeat"
+             style="background-image: url('/img/ui/slider32.png');">
+            <div class="text-center container mx-auto px-4">
+                <div class="flex flex-col items-center">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6">پوشش بیمه کامل</h1>
+                    <p class="text-xl mb-8 text-yellow-100">تمامی مرسولات شما تحت پوشش بیمه قرار دارند</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button onclick="scrollToSection('insurance')" class="bg-white text-yellow-600 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition-all">
+                            جزئیات بیمه
+                        </button>
+                        <button onclick="openChat()" class="border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white hover:text-yellow-600 transition-all">
+                            مشاوره رایگان
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4 (ارسال بین‌الملل) -->
+        <div class="slide absolute inset-0 flex items-center justify-center bg-cover bg-center bg-no-repeat"
+             style="background-image: url('/img/ui/slider4.png');">
+            <div class="text-center container mx-auto px-4">
+                <div class="flex flex-col items-center">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6">ارسال بین‌الملل</h1>
+                    <p class="text-xl mb-8 text-blue-100">ارسال مطمئن مرسولات شما به سراسر جهان</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button onclick="scrollToSection('international')" class="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition-all">
+                            خدمات بین‌الملل
+                        </button>
+                        <button onclick="scrollToSection('tracking')" class="border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white hover:text-blue-600 transition-all">
+                            پیگیری جهانی
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slider Navigation Dots -->
+        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 space-x-reverse">
+            <button onclick="currentSlide(1)" class="slider-dot w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-100 transition-all"></button>
+            <button onclick="currentSlide(2)" class="slider-dot w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-100 transition-all"></button>
+            <button onclick="currentSlide(3)" class="slider-dot w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-100 transition-all"></button>
+            <button onclick="currentSlide(4)" class="slider-dot w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-100 transition-all"></button>
+        </div>
+
+        <!-- Slider Arrows -->
+        <button onclick="plusSlides(-1)" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 text-white p-3 rounded-full hover:bg-opacity-30 transition-all">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button onclick="plusSlides(1)" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 text-white p-3 rounded-full hover:bg-opacity-30 transition-all">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+    </div>
+</section>
+
+<!-- Main Section -->
+<section id="cost-calculator" class="py-16 bg-gradient-to-br from-blue-50 to-green-50">
+    <div class="container mx-auto px-4">
+        <!-- Cost Calculator Form -->
+        <div class="max-w-4xl mx-auto mb-16">
+            <div class="bg-white card-shadow p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">محاسبه هزینه ارسال</h2>
+                <form class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">مبدا</label>
+                            <select class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option>تهران</option>
+                                <option>اهواز</option>
+                                <option>اصفهان</option>
+                                <option>شیراز</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">مقصد</label>
+                            <select class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option>اصفهان</option>
+                                <option>تهران</option>
+                                <option>شیراز</option>
+                                <option>مشهد</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">نوع بسته</label>
+                        <select id="package-type" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="envelope">پاکت</option>
+                            <option value="regular">کالای عادی</option>
+                            <option value="electronic">کالای الکترونیکی</option>
+                        </select>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">طول (سانتی‌متر)</label>
+                            <input type="number" id="length" placeholder="20" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">عرض (سانتی‌متر)</label>
+                            <input type="number" id="width" placeholder="15" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">ارتفاع (سانتی‌متر)</label>
+                            <input type="number" id="height" placeholder="10" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">وزن واقعی (کیلوگرم)</label>
+                            <input type="number" id="actual-weight" placeholder="1.5" step="0.1" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                    </div>
+
+                  
+
+                    <button type="button" onclick="calculateCost()" class="w-full bg-gradient-to-r from-blue-600 to-green-600 text-white py-4 rounded-xl font-medium hover:shadow-lg transition-all">
+                        محاسبه هزینه
+                    </button>
+
+                    <div id="cost-result" class="hidden bg-green-50 border border-green-200 rounded-xl p-6">
+                        <div class="text-center mb-4">
+                            <div class="text-3xl font-bold text-green-600">124,000 تومان</div>
+                            <div class="text-gray-600">هزینه کل ارسال</div>
+                        </div>
+
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">هزینه پایه:</span>
+                                <span class="font-medium">85,000 تومان</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">هزینه وزن اضافی:</span>
+                                <span class="font-medium">25,000 تومان</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">بیمه:</span>
+                                <span class="font-medium">14,000 تومان</span>
+                            </div>
+                            <div class="border-t border-green-200 pt-2 flex justify-between font-bold">
+                                <span>مجموع:</span>
+                                <span class="text-green-600">124,000 تومان</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Shipping Steps -->
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-800 text-center mb-12">مراحل ارسال مرسوله</h2>
+
+            <!-- Progress Bar -->
+            <div class="relative mb-8">
+                <div class="absolute top-8 right-8 left-8 h-1 bg-gray-200 rounded-full">
+                    <div class="h-full bg-gradient-to-r from-blue-500 to-green-500 rounded-full progress-bar" style="width: 0%"></div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Step 1: Acceptance -->
+                    <div class="shipping-step text-center group" data-step="1" onclick="animateProgress(1)">
+                        <div class="relative">
+                            <div class="bg-blue-100 text-blue-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-200 transition-all duration-300 step-icon">
+                                <i class="fas fa-clipboard-check text-2xl"></i>
+                            </div>
+                            <div class="step-tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-gray-800 text-white text-xs rounded-lg px-3 py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-10 hidden md:block">
+                                دریافت و ثبت مرسوله در سیستم
+                                <div class="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-800"></div>
+                            </div>
+                        </div>
+                        <h3 class="font-semibold text-gray-800 mb-2 text-lg">1-پذیرش</h3>
+                        <p class="text-gray-600 text-sm">ثبت و بررسی مرسوله</p>
+                    </div>
+
+                    <!-- Step 2: Preparation -->
+                    <div class="shipping-step text-center group" data-step="2" onclick="animateProgress(2)">
+                        <div class="relative">
+                            <div class="bg-green-100 text-green-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-green-200 transition-all duration-300 step-icon">
+                                <i class="fas fa-box text-2xl"></i>
+                            </div>
+                            <div class="step-tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-gray-800 text-white text-xs rounded-lg px-3 py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-10 hidden md:block">
+                                بسته‌بندی و آماده‌سازی برای ارسال
+                                <div class="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-800"></div>
+                            </div>
+                        </div>
+                        <h3 class="font-semibold text-gray-800 mb-2 text-lg">2-آماده سازی</h3>
+                        <p class="text-gray-600 text-sm">بسته‌بندی و برچسب‌گذاری</p>
+                    </div>
+
+                    <!-- Step 3: Dispatch -->
+                    <div class="shipping-step text-center group" data-step="3" onclick="animateProgress(3)">
+                        <div class="relative">
+                            <div class="bg-yellow-100 text-yellow-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-yellow-200 transition-all duration-300 step-icon">
+                                <i class="fas fa-shipping-fast text-2xl"></i>
+                            </div>
+                            <div class="step-tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-gray-800 text-white text-xs rounded-lg px-3 py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-10 hidden md:block">
+                                حمل و نقل به مقصد
+                                <div class="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-800"></div>
+                            </div>
+                        </div>
+                        <h3 class="font-semibold text-gray-800 mb-2 text-lg">3-رهسپاری</h3>
+                        <p class="text-gray-600 text-sm">انتقال به مقصد</p>
+                    </div>
+
+                    <!-- Step 4: Delivery -->
+                    <div class="shipping-step text-center group" data-step="4" onclick="animateProgress(4)">
+                        <div class="relative">
+                            <div class="bg-purple-100 text-purple-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-200 transition-all duration-300 step-icon">
+                                <i class="fas fa-handshake text-2xl"></i>
+                            </div>
+                            <div class="step-tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-gray-800 text-white text-xs rounded-lg px-3 py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-10 hidden md:block">
+                                تحویل نهایی به گیرنده
+                                <div class="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-800"></div>
+                            </div>
+                        </div>
+                        <h3 class="font-semibold text-gray-800 mb-2 text-lg">4-تحویل</h3>
+                        <p class="text-gray-600 text-sm">تحویل به گیرنده</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Tracking Section -->
+<section id="tracking" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">پیگیری مرسوله</h2>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <!-- Domestic Tracking -->
+                <div class="bg-blue-50 border border-blue-200 card-shadow rounded-xl p-8 flex flex-col">
+                    <div class="text-center mb-6">
+                        <div class="bg-blue-600 text-white p-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-map-marker-alt text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-blue-800 mb-2">پیگیری داخلی</h3>
+                        <p class="text-blue-600">مرسولات داخل کشور</p>
+                    </div>
+
+                    <div class="space-y-4 mb-6">
+                        <div>
+                            <label class="block text-blue-700 font-medium mb-2">کد رهگیری داخلی</label>
+                            <div class="flex space-x-3 space-x-reverse">
+                                <input type="text" id="domestic-tracking-code" placeholder="IR-2024-123456"
+                                       class="flex-1 p-4 border border-blue-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <button onclick="trackDomesticShipment()"
+                                        class="bg-blue-600 text-white px-6 py-4 rounded-xl hover:bg-blue-700 transition-colors flex items-center justify-center min-h-[60px]">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Features Box -->
+                    <div class="mt-auto bg-white border border-blue-200 rounded-lg p-4">
+                        <h4 class="font-semibold text-blue-800 mb-2">ویژگی‌های پیگیری داخلی:</h4>
+                        <ul class="text-sm text-blue-700 space-y-1">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 ml-2"></i>
+                                <span>پیگیری لحظه‌ای</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 ml-2"></i>
+                                <span>اطلاع‌رسانی پیامکی</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 ml-2"></i>
+                                <span>نمایش مسیر حرکت</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- International Tracking -->
+                <div class="bg-green-50 border border-green-200 card-shadow rounded-xl p-8 flex flex-col">
+                    <div class="text-center mb-6">
+                        <div class="bg-green-600 text-white p-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-globe text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-green-800 mb-2">پیگیری بین‌المللی</h3>
+                        <p class="text-green-600">مرسولات خارج از کشور</p>
+                    </div>
+
+                   
+                    <div class="space-y-4 mb-6">
+                        <div>
+                            <label class="block text-green-700 font-medium mb-2">پیگیری جهانی</label>
+                            <div class="flex">
+                                <a href="@Url.Action("KpInternationalTracking", "Home")"
+                                   class="w-full bg-green-600 text-white px-6 py-4 rounded-xl hover:bg-green-700 transition-colors flex items-center justify-center text-center min-h-[60px]">
+                                    <span>پیگیری در سایت‌های پست جهانی</span>
+                                    <i class="fas fa-external-link-alt mr-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Features Box -->
+                    <div class="mt-auto bg-white border border-green-200 rounded-lg p-4">
+                        <h4 class="font-semibold text-green-800 mb-2">ویژگی‌های پیگیری بین‌المللی:</h4>
+                        <ul class="text-sm text-green-700 space-y-1">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 ml-2"></i>
+                                <span>پیگیری جهانی</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 ml-2"></i>
+                                <span>وضعیت گمرک</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 ml-2"></i>
+                                <span>تحویل بین‌المللی</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shipment Details  -->
+            <div id="shipment-details" class="hidden bg-white card-shadow p-8">
+                <div class="border-b border-gray-200 pb-6 mb-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-2xl font-bold text-gray-800">جزئیات مرسوله</h3>
+                        <span class="bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium">
+                            <i class="fas fa-check-circle ml-1"></i>
+                            تحویل داده شده
+                        </span>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-4">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">کد رهگیری:</span>
+                                <span class="font-medium">IR-2024-123456</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">تاریخ ارسال:</span>
+                                <span class="font-medium">1403/09/15</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">تاریخ تحویل:</span>
+                                <span class="font-medium">1403/09/17</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">نوع سرویس:</span>
+                                <span class="font-medium">اکسپرس</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">مبدا:</span>
+                                <span class="font-medium">تهران</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">مقصد:</span>
+                                <span class="font-medium">اصفهان</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">وزن:</span>
+                                <span class="font-medium">2.5 کیلوگرم</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">گیرنده:</span>
+                                <span class="font-medium">علی احمدی</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tracking Timeline -->
+                <div>
+                    <h4 class="text-lg font-semibold text-gray-800 mb-6">تاریخچه حرکت مرسوله</h4>
+
+                    <div class="relative">
+                        <!-- Timeline Line -->
+                        <div class="absolute right-6 top-0 bottom-0 w-0.5 bg-gray-200"></div>
+
+                        <div class="space-y-6">
+                            <!-- Timeline Item 1 -->
+                            <div class="relative flex items-start">
+                                <div class="absolute right-4 w-4 h-4 bg-green-500 rounded-full border-4 border-white shadow"></div>
+                                <div class="mr-12">
+                                    <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <h5 class="font-semibold text-green-800">تحویل داده شد</h5>
+                                            <span class="text-sm text-green-600">1403/09/17 - 14:30</span>
+                                        </div>
+                                        <p class="text-green-700 text-sm">مرسوله با موفقیت به آقای علی احمدی تحویل داده شد</p>
+                                        <p class="text-green-600 text-xs mt-1">محل: اصفهان - شعبه کیانپارس</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Timeline Item 2 -->
+                            <div class="relative flex items-start">
+                                <div class="absolute right-4 w-4 h-4 bg-blue-500 rounded-full border-4 border-white shadow"></div>
+                                <div class="mr-12">
+                                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <h5 class="font-semibold text-blue-800">در حال تحویل</h5>
+                                            <span class="text-sm text-blue-600">1403/09/17 - 09:15</span>
+                                        </div>
+                                        <p class="text-blue-700 text-sm">مرسوله توسط پیک تحویل در حال انتقال به آدرس مقصد</p>
+                                        <p class="text-blue-600 text-xs mt-1">پیک: محمد رضایی - تلفن: 09123456789</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Timeline Item 3 -->
+                            <div class="relative flex items-start">
+                                <div class="absolute right-4 w-4 h-4 bg-yellow-500 rounded-full border-4 border-white shadow"></div>
+                                <div class="mr-12">
+                                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <h5 class="font-semibold text-yellow-800">رسیده به مقصد</h5>
+                                            <span class="text-sm text-yellow-600">1403/09/16 - 16:45</span>
+                                        </div>
+                                        <p class="text-yellow-700 text-sm">مرسوله به شعبه مقصد در اصفهان رسیده است</p>
+                                        <p class="text-yellow-600 text-xs mt-1">محل: اصفهان - مرکز توزیع کیانپارس</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Timeline Item 4 -->
+                            <div class="relative flex items-start">
+                                <div class="absolute right-4 w-4 h-4 bg-purple-500 rounded-full border-4 border-white shadow"></div>
+                                <div class="mr-12">
+                                    <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <h5 class="font-semibold text-purple-800">در حال انتقال</h5>
+                                            <span class="text-sm text-purple-600">1403/09/15 - 20:30</span>
+                                        </div>
+                                        <p class="text-purple-700 text-sm">مرسوله از تهران به مقصد ارسال شده است</p>
+                                        <p class="text-purple-600 text-xs mt-1">وسیله نقل: کامیون - شماره پلاک: 12ط345-14</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Timeline Item 5 -->
+                            <div class="relative flex items-start">
+                                <div class="absolute right-4 w-4 h-4 bg-gray-500 rounded-full border-4 border-white shadow"></div>
+                                <div class="mr-12">
+                                    <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <h5 class="font-semibold text-gray-800">دریافت شده</h5>
+                                            <span class="text-sm text-gray-600">1403/09/15 - 10:15</span>
+                                        </div>
+                                        <p class="text-gray-700 text-sm">مرسوله در شعبه تهران دریافت و ثبت شده است</p>
+                                        <p class="text-gray-600 text-xs mt-1">محل: تهران - شعبه مرکزی ولیعصر</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="printReceipt()" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                        <i class="fas fa-print ml-2"></i>
+                        چاپ رسید
+                    </button>
+                    <button onclick="downloadPDF()" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors">
+                        <i class="fas fa-download ml-2"></i>
+                        دانلود PDF
+                    </button>
+                    <button onclick="shareTracking()" class="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors">
+                        <i class="fas fa-share-alt ml-2"></i>
+                        اشتراک‌گذاری
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Call-to-Action Section -->
+<section class="py-16 bg-gradient-to-r from-blue-600  to-green-600 text-white relative overflow-hidden">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-10 left-10 w-20 h-20 border-2 border-white rounded-full"></div>
+        <div class="absolute top-32 right-20 w-16 h-16 border-2 border-white rounded-full"></div>
+        <div class="absolute bottom-20 left-32 w-12 h-12 border-2 border-white rounded-full"></div>
+        <div class="absolute bottom-10 right-10 w-24 h-24 border-2 border-white rounded-full"></div>
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-4xl mx-auto text-center">
+            <!-- Main CTA Content -->
+            <div class="mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                    آماده ارسال مرسوله خود هستید؟
+                </h2>
+
+                <p class="text-xl md:text-2xl mb-8 opacity-90 leading-relaxed text-x">
+                    با چند کلیک ساده، مرسوله خود را ثبت کنید و از سرعت و امنیت خدمات ما بهره‌مند شوید
+                </p>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
+                <a asp-controller="Home" asp-action="KPOrder"
+                   class="group bg-white text-blue-600 px-10 py-5 rounded-2xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center cursor-pointer">
+                    <i class="fas fa-shipping-fast text-2xl ml-4 group-hover:animate-pulse"></i>
+                    <div class="text-right">
+                        <div class="text-xl font-bold">ثبت سفارش آنلاین</div>
+                        <div class="text-sm text-gray-600 font-normal">سریع و آسان</div>
+                    </div>
+                </a>
+
+                <button onclick="openQuickOrder()"
+                        class="group bg-white text-blue-600 px-10 py-5 rounded-2xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center">
+                    <i class="fas fa-phone text-2xl ml-4 group-hover:animate-bounce"></i>
+                    <div class="text-right">
+                        <div class="text-xl font-bold">سفارش تلفنی</div>
+                        <div class="text-sm opacity-75 font-normal">061-32921023</div>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-6 hover:bg-opacity-20 transition-all duration-300">
+                    <div class="backdrop-blur-sm bg-white/10 rounded-full p-4 w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-clock text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">ثبت با 3 کلیک</h3>
+                    <p class="opacity-90">فرم ساده و سریع برای ثبت اطلاعات مرسوله</p>
+                </div>
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-6 hover:bg-opacity-20 transition-all duration-300">
+                    <div class="backdrop-blur-sm bg-white/10 rounded-full p-4 w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-bolt  text-2xl text-white"></i>
+                       
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">ارسال سریع</h3>
+                    <p class="opacity-90">در کوتاه ترین زمان مرسوله به مقصد می رسد</p>
+                </div>
+
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-6 hover:bg-opacity-20 transition-all duration-300">
+                    <div class="backdrop-blur-sm bg-white/10 rounded-full p-4 w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-mobile-alt text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">پیگیری لحظه‌ای</h3>
+                    <p class="opacity-90">کد رهگیری فوری و اطلاع‌رسانی مستمر</p>
+                </div>
+            </div>
+
+           
+
+            <!-- Urgency Element -->
+            <div class="mt-8 bg-yellow-400 bg-opacity-20 border border-yellow-300 border-opacity-30 rounded-xl p-4 inline-block">
+                <div class="flex items-center text-yellow-100">
+                    <i class="fas fa-fire text-yellow-300 ml-3 animate-pulse"></i>
+                    <span class="font-semibold">تخفیف ویژه: 15% تخفیف برای اولین سفارش آنلاین!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Services Introduction Section -->
+<section id="services" class="py-16 bg-gradient-to-br from-blue-50 to-green-50">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">خدمات ما</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto text-lg">مجموعه کاملی از خدمات پستی و حمل و نقل برای تمام نیازهای شما</p>
+        </div>
+
+        <!-- Domestic Services -->
+        <div class="mb-16">
+            <h3 class="text-2xl font-bold text-gray-700 mb-6 border-b-2 border-blue-600 inline-block pb-2">خدمات داخلی</h3>
+            <div class="flex gap-6 overflow-x-auto scrollbar-hide pb-4" style="scroll-behavior: smooth;">
+
+                <!-- پست اکسپرس -->
+                <div class="bg-white card-shadow rounded-xl overflow-hidden hover-scale group min-w-80 flex-shrink-0">
+                    <div class="h-50 flex items-center justify-center bg-cover bg-center" style="background-image: url('/img/ui/background.jpg');">
+                        <img src="~/img/ui/11.png" alt="پست اکسپرس" class="w-100 h-60 object-contain ml-2" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">پست اکسپرس</h3>
+                        <p class="text-gray-600 mb-4 text-sm">ارسال سریع به 290 نقطه جهان با تحویل 7 تا 12 روزه</p>
+                         <a asp-controller="Home" asp-action="KpOurService"
+           class="w-full block text-center bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm">
+            اطلاعات بیشتر
+        </a>
+                    </div>
+                </div>
+
+                <!-- پست اقتصادی -->
+                <div class="bg-white card-shadow rounded-xl overflow-hidden hover-scale group min-w-80 flex-shrink-0">
+                    <div class="h-50 flex items-center justify-center bg-cover bg-center" style="background-image: url('/img/ui/background.jpg');">
+                        <img src="~/img/ui/33.png" alt="پست اقتصادی" class="w-100 h-60 object-contain ml-2" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">پست اقتصادی</h3>
+                        <p class="text-gray-600 mb-4 text-sm">حمل‌ونقل ارزان با تحویل سریع و پرداخت در مقصد</p>
+                        <a asp-controller="Home" asp-action="KpOurService"
+           class="w-full block text-center bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm">
+            اطلاعات بیشتر
+        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- International Services -->
+        <div>
+            <h3 id="international" class=" text-2xl font-bold text-gray-700 mb-6 border-b-2 border-green-600 inline-block pb-2">خدمات بین المللی</h3>
+            <div class="flex gap-6 overflow-x-auto scrollbar-hide pb-4" style="scroll-behavior: smooth;">
+
+                <!-- فریت بار -->
+                <div class="bg-white card-shadow rounded-xl overflow-hidden hover-scale group min-w-80 flex-shrink-0">
+                    <div class="h-50 flex items-center justify-center bg-cover bg-center" style="background-image: url('/img/ui/background.jpg');">
+                        <img src="~/img/ui/22.png" alt="فریت بار" class="w-100 h-60 object-contain ml-2" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">فریت بار</h3>
+                        <p class="text-gray-600 mb-4 text-sm">ارسال ایمن و ارزان برای مسافران و جلوگیری از اضافه‌بار</p>
+                       <a asp-controller="Home" asp-action="KpOurService"
+           class="w-full block text-center bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm">
+            اطلاعات بیشتر
+        </a>
+                    </div>
+                </div>
+
+                <!-- صادرات -->
+                <div class="bg-white card-shadow rounded-xl overflow-hidden hover-scale group min-w-80 flex-shrink-0">
+                    <div class="h-50 flex items-center justify-center bg-cover bg-center" style="background-image: url('/img/ui/background.jpg');">
+                        <img src="~/img/ui/1.png" alt="صادرات" class="w-100 h-60 object-contain ml-2" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">صادرات</h3>
+                        <p class="text-gray-600 mb-4 text-sm">خدمات کامل صادرات کالا با سرعت و اطمینان</p>
+                        <a asp-controller="Home" asp-action="KpOurService"
+           class="w-full block text-center bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm">
+            اطلاعات بیشتر
+        </a>
+                    </div>
+                </div>
+
+                <!-- واردات -->
+                <div class="bg-white card-shadow rounded-xl overflow-hidden hover-scale group min-w-80 flex-shrink-0">
+                    <div class="h-50 flex items-center justify-center bg-cover bg-center" style="background-image: url('/img/ui/background.jpg');">
+                        <img src="~/img/ui/2.png" alt="واردات" class="w-100 h-60 object-contain ml-2" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">واردات</h3>
+                        <p class="text-gray-600 mb-4 text-sm">ترخیص و واردات کالا از سراسر دنیا با کمترین هزینه</p>
+                         <a asp-controller="Home" asp-action="KpOurService"
+           class="w-full block text-center bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm">
+            اطلاعات بیشتر
+        </a>
+                    </div>
+                </div>
+
+                <!-- پست سریع هوایی-بین المللی -->
+                <div class="bg-white card-shadow rounded-xl overflow-hidden hover-scale group min-w-80 flex-shrink-0">
+                    <div class="h-50 flex items-center justify-center bg-cover bg-center" style="background-image: url('/img/ui/background.jpg');">
+                        <img src="~/img/ui/44.png" alt="پست سریع هوایی" class="w-100 h-60 object-contain ml-2" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">پست سریع هوایی-بین المللی</h3>
+                        <p class="text-gray-600 mb-4 text-sm">ارسال بین‌المللی سریع با اولویت تحویل و پیگیری لحظه‌ای</p>
+                        <button asp-controller="Home" asp-action="KpOurService" 
+        class="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm">
+    اطلاعات بیشتر
+</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Why Us Section -->
+
+<section class="py-16 bg-gradient-to-br from-blue-50 to-green-50">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">چرا ما را انتخاب کنید؟</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+            <div class="bg-white rounded-xl p-6 text-center card-shadow hover-scale transition-all duration-300 hover:transform hover:scale-105">
+                <div class="bg-blue-100 text-blue-600 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-headset text-lg"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-800 mb-3">پشتیبانی آنلاین 24 ساعته</h3>
+                <p class="text-gray-600 text-sm">پاسخگویی مستمر و فوری در تمام ساعات شبانه‌روز</p>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 text-center card-shadow hover-scale transition-all duration-300 hover:transform hover:scale-105">
+                <div class="bg-green-100 text-green-600 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-laptop text-lg"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-800 mb-3">فناوری آنلاین</h3>
+                <p class="text-gray-600 text-sm">استفاده از پلتفرم‌های روز دنیا برای خدمات هوشمند</p>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 text-center card-shadow hover-scale transition-all duration-300 hover:transform hover:scale-105">
+                <div class="bg-purple-100 text-purple-600 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-box text-lg"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-800 mb-3">بسته‌بندی تخصصی</h3>
+                <p class="text-gray-600 text-sm">خدمات بسته‌بندی حرفه‌ای برای تمامی کالاها</p>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 text-center card-shadow hover-scale transition-all duration-300 hover:transform hover:scale-105">
+                <div class="bg-teal-100 text-teal-600 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-truck text-lg"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-800 mb-3">تنوع خدمات</h3>
+                <p class="text-gray-600 text-sm">طیف گسترده‌ای از خدمات پستی و لجستیکی</p>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 text-center card-shadow hover-scale transition-all duration-300 hover:transform hover:scale-105">
+                <div class="bg-indigo-100 text-indigo-600 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-code text-lg"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-800 mb-3">همکاری از طریق API</h3>
+                <p class="text-gray-600 text-sm">اتصال آسان و یکپارچه‌سازی سریع</p>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 text-center card-shadow hover-scale transition-all duration-300 hover:transform hover:scale-105">
+                <div class="bg-blue-100 text-blue-600 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-bolt text-lg"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-800 mb-3">سرعت بالا</h3>
+                <p class="text-gray-600 text-sm">ارسال سریع و به‌موقع مرسولات</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Clients Section -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">مشتریان ما</h2>
+        <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">افتخار همکاری با برندهای معتبر و شرکت‌های بزرگ کشور را داریم</p>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center">
+            <!-- Client 1 -->
+            <div class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover-scale">
+                <div class="text-center">
+                    <div class=" text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3 transform scale-125">
+                        <img src="~/img/ui/mokhaberat.png" alt="مخابرات خوزستان" class="object-contain" />
+                    </div>
+                    <h4 class="font-semibold text-gray-800 text-sm">مخابرات خوزستان</h4>
+                </div>
+            </div>
+
+            <!-- Client 2 -->
+            <div class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover-scale">
+                <div class="text-center">
+                    <div class=" text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <img src="~/img/ui/kasrapars.png" alt="کسری پارس" class="object-contain" />
+                    </div>
+                    <h4 class="font-semibold text-gray-800 text-sm">کسری پارس</h4>
+                </div>
+            </div>
+
+            <!-- Client 3 -->
+            <div class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover-scale">
+                <div class="text-center">
+                    <div class=" text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <img src="~/img/ui/lianhamrah.png" alt="لیان همراه" class="object-contain" />
+                    </div>
+                    <h4 class="font-semibold text-gray-800 text-sm">لیان همراه</h4>
+                </div>
+            </div>
+
+            <!-- Client 4 -->
+            <div class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover-scale">
+                <div class="text-center">
+                    <div class=" text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <img src="~/img/ui/folafOxin.png" alt="فولاد اکسین خوزستان" class="object-contain" />
+                    </div>
+                    <h4 class="font-semibold text-gray-800 text-sm">فولاد اکسین </h4>
+                </div>
+            </div>
+
+            <!-- Client 5 -->
+            <div class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover-scale">
+                <div class="text-center">
+                    <div class=" text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <img src="~/img/ui/petrosadr.png" alt="پترو صدر" class="object-contain" />
+                    </div>
+                    <h4 class="font-semibold text-gray-800 text-sm">پترو صدر</h4>
+                </div>
+            </div>
+
+            <!-- Client 6 -->
+            <div class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover-scale">
+                <div class="text-center">
+                    <div class=" text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <img src="~/img/ui/omranTel.png" alt="عمران تل" class="object-contain" />
+                    </div>
+                    <h4 class="font-semibold text-gray-800 text-sm">عمران تل</h4>
+                </div>
+            </div>
+        </div>
+
+       
+    </div>
+</section>
+
+<!-- Customer Reviews -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">نظرات مشتریان ما</h2>
+        <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">بیش از ۲ میلیون مرسوله با رضایت کامل ارسال شده است. اینها نظرات واقعی مشتریانمان هستند.</p>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Review 1 -->
+            <div class="bg-gray-50 rounded-xl p-8 card-shadow hover-scale transition-all duration-300">
+                <div class="flex items-start mb-6">
+                    <div class="bg-blue-100 text-blue-600 w-14 h-14 rounded-full flex items-center justify-center mr-4 shrink-0">
+                        <i class="fas fa-user-circle text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-800">آقای محمد رضایی</h4>
+                        <p class="text-sm text-gray-500">مشتری خصوصی - تهران</p>
+                    </div>
+                </div>
+                <p class="text-gray-700 leading-relaxed italic mb-6">
+                    "برای اولین بار یک شرکت پستی پیدا کردم که مرسوله‌ام رو بدون هیچ تأخیر و حتی قبل از موعد تعیین شده تحویل داد. پیگیری لحظه‌ای و پشتیبانی 24/7 !"
+                </p>
+                <div class="border-t border-gray-200 pt-4 mt-6">
+                    <span class="text-xs text-gray-500">ارسال شده در: اردیبهشت 1403</span>
+                </div>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="bg-gray-50 rounded-xl p-8 card-shadow hover-scale transition-all duration-300">
+                <div class="flex items-start mb-6">
+                    <div class="bg-green-100 text-green-600 w-14 h-14 rounded-full flex items-center justify-center mr-4 shrink-0">
+                        <i class="fas fa-user-circle text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-800">خانم فاطمه احمدی</h4>
+                        <p class="text-sm text-gray-500">فروشنده آنلاین - اصفهان</p>
+                    </div>
+                </div>
+                <p class="text-gray-700 leading-relaxed italic mb-6">
+                    "من به عنوان یک فروشنده آنلاین، هزاران مرسوله ارسال کردم. کیهان‌پست تنها شرکتی است که هرگز مرسوله‌ام را از دست نداده و همیشه با سرعت و دقت عمل کرده. از تیم حرفه‌ای شما قدردانی می‌کنم."
+                </p>
+                <div class="border-t border-gray-200 pt-4 mt-6">
+                    <span class="text-xs text-gray-500">ارسال شده در: خرداد 1403</span>
+                </div>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="bg-gray-50 rounded-xl p-8 card-shadow hover-scale transition-all duration-300">
+                <div class="flex items-start mb-6">
+                    <div class="bg-purple-100 text-purple-600 w-14 h-14 rounded-full flex items-center justify-center mr-4 shrink-0">
+                        <i class="fas fa-user-circle text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-800">شرکت لیان همراه</h4>
+                        <p class="text-sm text-gray-500">همکار تجاری - تهران</p>
+                    </div>
+                </div>
+                <p class="text-gray-700 leading-relaxed italic mb-6">
+                    "با کیهان‌پست به عنوان شرکت لجستیکی خود همکاری می‌کنیم. پوشش سراسری، سیستم پیگیری پیشرفته و تیم پشتیبانی حرفه‌ای، تمام نیازهای ما را پاسخگو هستند. توصیه می‌کنیم."
+                </p>
+                <div class="border-t border-gray-200 pt-4 mt-6">
+                    <span class="text-xs text-gray-500">همکاری از: مرداد 1402</span>
+                </div>
+            </div>
+        </div>
+
+       
+    </div>
+</section>
+<!-- Visitor Stats -->
+<section class="py-16 gradient-bgw-full bg-gradient-to-r from-blue-600 to-green-600 text-white py-4 rounded-xl font-medium hover:shadow-lg transition-allcontainer mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">آمار بازدیدکنندگان</h2>
+
+        <div class="grid md:grid-cols-4 gap-8 text-center">
+            <div class="stats-counter">
+                <div class="text-4xl font-bold mb-2">125,847</div>
+                <div class="text-green-200">کل بازدیدکنندگان</div>
+            </div>
+
+            <div class="stats-counter">
+                <div class="text-4xl font-bold mb-2">45,231</div>
+                <div class="text-green-200">مرسولات ارسالی</div>
+            </div>
+
+            <div class="stats-counter">
+                <div class="text-4xl font-bold mb-2">98.5%</div>
+                <div class="text-green-200">رضایت مشتریان</div>
+            </div>
+
+            <div class="stats-counter">
+                <div class="text-4xl font-bold mb-2">24/7</div>
+                <div class="text-green-200">پشتیبانی آنلاین</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Branches & Representatives -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">شعب و نمایندگان</h2>
+
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-gray-50 rounded-2xl p-8 card-shadow">
+                <div class="text-center mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">نقشه پوشش سراسری</h3>
+                    <p class="text-gray-600">استان‌های قرمز: فعال | استان‌های خاکستری: به‌زودی</p>
+                </div>
+
+                <!-- Simplified Iran Map -->
+                <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+                    <div class="container py-3">
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                @* <h3 class="branchsection-title">@branch.Subtitle</h3>
+
+                                @if (!string.IsNullOrEmpty(branch.Text1))
+                                {
+                                    <p class="branchsection-text">@Html.Raw(branch.Text1.Replace("\n", "</br>"))</p>
+                                }
+                                @if (!string.IsNullOrEmpty(branch.FooterText))
+                                {
+                                    <p class="branchsection-footer">@Html.Raw(branch.FooterText.Replace("\n", "</br>"))</p>
+                                } *@
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="iranMap-container">
+                                    @Html.Partial("_IranMap.cshtml")
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="branch-list-container">
+                                    <ul class="branch-list">
+                                       @*  @if (branch.listItems.Count > 0)
+                                        {
+                                            foreach (var x in branch.listItems.OrderBy(n => n.Title).ToList())
+                                            {
+                                                <li class="item" name="@x.FooterText">
+                                                    <div class="item-header">
+                                                        <h4 class="title">@x.Title</h4>
+                                                        <h5 class="subTitle">@x.Subtitle</h5>
+                                                    </div>
+
+                                                    <div class="address-container"><p>@x.Text</p></div>
+                                                    <div class="phone-container">
+                                                        @if (!string.IsNullOrEmpty(x.link1_Title))
+                                                        {
+                                                            <a href="tel:@x.link1_Address">
+                                                                <i class="fa fa-phone-alt"></i>
+                                                                <span>@x.link1_Title</span>
+                                                            </a>
+                                                        }
+                                                        @if (!string.IsNullOrEmpty(x.link2_Title))
+                                                        {
+                                                            <a href="tel:@x.link2_Address">
+                                                                <i class="fa fa-phone-alt"></i>
+                                                                <span>@x.link2_Title</span>
+                                                            </a>
+                                                        }
+                                                        @if (!string.IsNullOrEmpty(x.link3_Title))
+                                                        {
+                                                            <a href="tel:@x.link3_Address">
+                                                                <i class="fa fa-phone-alt"></i>
+                                                                <span>@x.link3_Title</span>
+                                                            </a>
+                                                        }
+                                                    </div>
+                                                </li>
+                                            }
+                                        } *@
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Contract Section -->
+                <div class="mt-8 bg-white rounded-xl p-6 border border-gray-200">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-4">تایید قرارداد الکترونیکی</h4>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">کد ملی</label>
+                            <input type="text" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">شماره موبایل</label>
+                            <input type="text" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        </div>
+                    </div>
+                    <button onclick="verifyContract()" class="mt-4 bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors">
+                        احراز هویت و دریافت کد اعتباری
+                    </button>
+                    <button onclick="openRepresentativePage()" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                        <i class="fas fa-handshake ml-2"></i>
+                        درخواست نمایندگی
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Blog Section -->
+<section id="blog" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">وبلاگ و اخبار</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">آخرین اخبار، راهنماها و نکات مفید در زمینه حمل و نقل و خدمات پستی</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Blog Post 1 -->
+            <article class="bg-gray-50 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 hover-scale">
+                <div class="bg-gradient-to-br from-blue-500 to-blue-600 h-48 flex items-center justify-center">
+                    <i class="fas fa-shipping-fast text-6xl text-white opacity-50"></i>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center text-sm text-gray-500 mb-3">
+                        <i class="fas fa-calendar-alt ml-2"></i>
+                        <span>15 آذر 1403</span>
+                        <span class="mx-2">•</span>
+                        <i class="fas fa-user ml-2"></i>
+                        <span>مدیر محتوا</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3 hover:text-blue-600 transition-colors">
+                        <a href="#" onclick="openBlogPost(1)">نحوه محاسبه هزینه ارسال بین‌المللی</a>
+                    </h3>
+                    <p class="text-gray-600 mb-4 line-clamp-3">راهنمای کامل برای محاسبه هزینه ارسال مرسولات به خارج از کشور و عوامل مؤثر بر قیمت‌گذاری...</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-4 space-x-reverse text-sm text-gray-500">
+                            <span class="flex items-center">
+                                <i class="fas fa-eye ml-1"></i>
+                                1,234
+                            </span>
+                            <span class="flex items-center">
+                                <i class="fas fa-comment ml-1"></i>
+                                23
+                            </span>
+                        </div>
+                        <a href="#" onclick="openBlogPost(1)" class="text-blue-600 hover:text-blue-700 font-medium">
+                            ادامه مطلب
+                            <i class="fas fa-arrow-left mr-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Blog Post 2 -->
+            <article class="bg-gray-50 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 hover-scale">
+                <div class="bg-gradient-to-br from-green-500 to-green-600 h-48 flex items-center justify-center">
+                    <i class="fas fa-box-open text-6xl text-white opacity-50"></i>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center text-sm text-gray-500 mb-3">
+                        <i class="fas fa-calendar-alt ml-2"></i>
+                        <span>12 آذر 1403</span>
+                        <span class="mx-2">•</span>
+                        <i class="fas fa-user ml-2"></i>
+                        <span>کارشناس فنی</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3 hover:text-blue-600 transition-colors">
+                        <a href="#" onclick="openBlogPost(2)">راهنمای بسته‌بندی صحیح کالاها</a>
+                    </h3>
+                    <p class="text-gray-600 mb-4 line-clamp-3">نکات مهم برای بسته‌بندی انواع کالاها جهت جلوگیری از آسیب در حین حمل و نقل و تضمین تحویل سالم...</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-4 space-x-reverse text-sm text-gray-500">
+                            <span class="flex items-center">
+                                <i class="fas fa-eye ml-1"></i>
+                                987
+                            </span>
+                            <span class="flex items-center">
+                                <i class="fas fa-comment ml-1"></i>
+                                15
+                            </span>
+                        </div>
+                        <a href="#" onclick="openBlogPost(2)" class="text-blue-600 hover:text-blue-700 font-medium">
+                            ادامه مطلب
+                            <i class="fas fa-arrow-left mr-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Blog Post 3 -->
+            <article class="bg-gray-50 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 hover-scale">
+                <div class="bg-gradient-to-br from-purple-500 to-purple-600 h-48 flex items-center justify-center">
+                    <i class="fas fa-chart-line text-6xl text-white opacity-50"></i>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center text-sm text-gray-500 mb-3">
+                        <i class="fas fa-calendar-alt ml-2"></i>
+                        <span>10 آذر 1403</span>
+                        <span class="mx-2">•</span>
+                        <i class="fas fa-user ml-2"></i>
+                        <span>تیم تحلیل</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3 hover:text-blue-600 transition-colors">
+                        <a href="#" onclick="openBlogPost(3)">آمار و روند رشد صنعت پست در ایران</a>
+                    </h3>
+                    <p class="text-gray-600 mb-4 line-clamp-3">بررسی آمار و ارقام صنعت پست و حمل و نقل در ایران و پیش‌بینی روند رشد این صنعت در سال‌های آینده...</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-4 space-x-reverse text-sm text-gray-500">
+                            <span class="flex items-center">
+                                <i class="fas fa-eye ml-1"></i>
+                                756
+                            </span>
+                            <span class="flex items-center">
+                                <i class="fas fa-comment ml-1"></i>
+                                8
+                            </span>
+                        </div>
+                        <a href="#" onclick="openBlogPost(3)" class="text-blue-600 hover:text-blue-700 font-medium">
+                            ادامه مطلب
+                            <i class="fas fa-arrow-left mr-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <!-- Blog Categories -->
+        <div class="mt-12 text-center">
+            <h3 class="text-xl font-semibold text-gray-800 mb-6">دسته‌بندی مطالب</h3>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button onclick="filterBlog('all')" class="blog-filter active bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition-colors">
+                    همه مطالب
+                </button>
+                <button onclick="filterBlog('guides')" class="blog-filter bg-gray-200 text-gray-700 px-6 py-3 rounded-full hover:bg-gray-300 transition-colors">
+                    راهنماها
+                </button>
+                <button onclick="filterBlog('news')" class="blog-filter bg-gray-200 text-gray-700 px-6 py-3 rounded-full hover:bg-gray-300 transition-colors">
+                    اخبار
+                </button>
+                <button onclick="filterBlog('tips')" class="blog-filter bg-gray-200 text-gray-700 px-6 py-3 rounded-full hover:bg-gray-300 transition-colors">
+                    نکات مفید
+                </button>
+                <button onclick="filterBlog('analysis')" class="blog-filter bg-gray-200 text-gray-700 px-6 py-3 rounded-full hover:bg-gray-300 transition-colors">
+                    تحلیل و بررسی
+                </button>
+            </div>
+        </div>
+
+      
+    </div>
+</section>
+
+<!-- Messaging System -->
+<section class="py-16 bg-gradient-to-br from-blue-50 to-green-50">
+    <div class="container mx-auto px-4">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">ارسال پیام</h2>
+            <div class="bg-white rounded-2xl p-8 card-shadow">
+                <form class="space-y-6">
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">بخش مربوطه</label>
+                        <select class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500">
+                            <option>پشتیبانی فنی</option>
+                            <option>فروش و بازاریابی</option>
+                            <option>حسابداری</option>
+                            <option>شکایات</option>
+                            <option>پیشنهادات</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">نام و نام خانوادگی</label>
+                        <input type="text" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">ایمیل</label>
+                        <input type="email" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">متن پیام</label>
+                        <textarea rows="5" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500"></textarea>
+                    </div>
+                    <button type="button" onclick="sendMessage()" class="w-full bg-gradient-to-r from-blue-600 to-green-600 text-white py-4 rounded-xl font-medium hover:shadow-lg transition-all">
+                        ارسال پیام
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">سوالات متداول</h2>
+
+            <div class="space-y-6">
+                <!-- FAQ Item 1 -->
+                <div class="border border-gray-200 rounded-xl overflow-hidden">
+                    <button class="w-full p-6 text-right flex justify-between items-center bg-gray-50 hover:bg-gray-100 transition-colors">
+                        <span class="text-lg font-semibold text-gray-800">هزینه ارسال مرسوله چگونه محاسبه می‌شود؟</span>
+                        <i class="fas fa-chevron-down text-gray-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="p-6 bg-white border-t border-gray-200 hidden">
+                        <p class="text-gray-600 leading-relaxed">
+                            هزینه ارسال مرسوله بر اساس عوامل مختلفی از جمله وزن، ابعاد، مسافت بین مبدا و مقصد، نوع سرویس (عادی یا اکسپرس) و ارزش کالا برای بیمه محاسبه می‌شود.
+                            شما می‌توانید با استفاده از بخش "محاسبه هزینه" در سایت، هزینه دقیق ارسال خود را به صورت آنلاین محاسبه کنید.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="border border-gray-200 rounded-xl overflow-hidden">
+                    <button class="w-full p-6 text-right flex justify-between items-center bg-gray-50 hover:bg-gray-100 transition-colors">
+                        <span class="text-lg font-semibold text-gray-800">زمان تحویل مرسوله چقدر است؟</span>
+                        <i class="fas fa-chevron-down text-gray-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="p-6 bg-white border-t border-gray-200 hidden">
+                        <p class="text-gray-600 leading-relaxed">
+                            زمان تحویل مرسوله بسته به نوع سرویس انتخابی و مسافت بین مبدا و مقصد متفاوت است:
+                        </p>
+                        <ul class="text-gray-600 mt-3 space-y-2 pr-5">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 ml-3 mt-1"></i>
+                                <span><strong>سرویس عادی:</strong>24 الی 48 ساعت</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 ml-3 mt-1"></i>
+                                <span><strong>سرویس اکسپرس:</strong>24 ساعت</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 ml-3 mt-1"></i>
+                                <span><strong>ارسال بین‌المللی:</strong> بین 7 الی 11 روز کاری</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="border border-gray-200 rounded-xl overflow-hidden">
+                    <button class="w-full p-6 text-right flex justify-between items-center bg-gray-50 hover:bg-gray-100 transition-colors">
+                        <span class="text-lg font-semibold text-gray-800">چگونه می‌توانم مرسوله خود را پیگیری کنم؟</span>
+                        <i class="fas fa-chevron-down text-gray-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="p-6 bg-white border-t border-gray-200 hidden">
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            شما می‌توانید مرسوله خود را از طریق دو روش زیر پیگیری کنید:
+                        </p>
+                        <ol class="text-gray-600 space-y-3 pr-5">
+                            <li class="flex items-start">
+                                <span class="bg-blue-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm ml-3 mt-0.5">1</span>
+                                <span>ورود به بخش "پیگیری مرسوله" در سایت و وارد کردن کد رهگیری مرسوله</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-blue-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm ml-3 mt-0.5">2</span>
+                                <span>تماس با مرکز پشتیبانی با شماره 8200-66128100-021 و ارائه کد رهگیری</span>
+                            </li>
+                        </ol>
+                        <p class="text-gray-600 mt-4">
+                            همچنین می‌توانید از طریق پیامک‌های اطلاع‌رسانی که به شماره تماس شما ارسال می‌شود، وضعیت مرسوله خود را دنبال کنید.
+                        </p>
+                    </div>
+                </div>
+                   <!-- FAQ Item 4 -->
+                <div class="border border-gray-200 rounded-xl overflow-hidden">
+                    <button class="w-full p-6 text-right flex justify-between items-center bg-gray-50 hover:bg-gray-100 transition-colors">
+                        <span class="text-lg font-semibold text-gray-800">آیا امکان لغو یا تغییر سفارش بعد از ثبت وجود دارد؟</span>
+                        <i class="fas fa-chevron-down text-gray-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="p-6 bg-white border-t border-gray-200 hidden">
+                        <p class="text-gray-600 leading-relaxed">
+                           در صورتی که نیاز به تغییر یا لغو سفارش خود دارید، لطفاً در سریع‌ترین زمان ممکن با پشتیبانی از طریق
+ 32921023-061 تماس بگیرید تا بررسی و هماهنگی‌های لازم انجام شود.
+
+                        </p>
+                    </div>
+                </div>
+              <!-- FAQ Item 4 -->
+<div class="border border-gray-200 rounded-xl overflow-hidden">
+    <button class="w-full p-6 text-right flex justify-between items-center bg-gray-50 hover:bg-gray-100 transition-colors">
+        <span class="text-lg font-semibold text-gray-800">آیا برای ارسال بسته پستی امکان مراجعه حضوری وجود دارد؟</span>
+        <i class="fas fa-chevron-down text-gray-500 transition-transform duration-300"></i>
+    </button>
+    <div class="p-6 bg-white border-t border-gray-200 hidden">
+        <p class="text-gray-600 leading-relaxed">
+            بله، شما می‌توانید جهت ارسال مرسولات خود به صورت حضوری به شعبات کیهان‌پست مراجعه کرده و نسبت به ارسال کالا اقدام نمایید. 
+            تمامی شعبات ما از ساعت 8 صبح تا 6 عصر فعال هستند و خدمات ارسال داخلی و بین‌المللی را به صورت تخصصی ارائه می‌دهند.
+        </p>
+    </div>
+</div>
+
+<!-- FAQ Item 5 -->
+<div class="border border-gray-200 rounded-xl overflow-hidden">
+    <button class="w-full p-6 text-right flex justify-between items-center bg-gray-50 hover:bg-gray-100 transition-colors">
+        <span class="text-lg font-semibold text-gray-800">چه کالاهایی قابل ارسال نیستند؟</span>
+        <i class="fas fa-chevron-down text-gray-500 transition-transform duration-300"></i>
+    </button>
+    <div class="p-6 bg-white border-t border-gray-200 hidden">
+        <p class="text-gray-600 leading-relaxed mb-4">
+            ارسال کالاهای زیر از طریق کیهان‌پست ممنوع است:
+        </p>
+        <ul class="text-gray-600 space-y-2 pr-5">
+            <li class="flex items-start">
+                <i class="fas fa-times-circle text-red-500 ml-3 mt-1"></i>
+                <span><strong>کالاهای قاچاق:</strong> شامل کالاهای غیرمجاز و بدون گواهی واردات</span>
+            </li>
+            <li class="flex items-start">
+                <i class="fas fa-times-circle text-red-500 ml-3 mt-1"></i>
+                <span><strong>کالاهای خطرناک:</strong> مواد منفجره، مواد شیمیایی خطرناک، گازهای فشرده و...</span>
+            </li>
+            <li class="flex items-start">
+                <i class="fas fa-times-circle text-red-500 ml-3 mt-1"></i>
+                <span><strong>موارد غیرمجاز:</strong> اسناد ارزشمند بدون بیمه، حیوانات زنده، مواد مخدر و...</span>
+            </li>
+        </ul>
+        <p class="text-gray-600 mt-4 text-sm">
+            برای اطلاعات بیشتر، لطفاً به بخش "قوانین ارسال" در سایت مراجعه کنید.
+        </p>
+    </div>
+</div>
+
+<!-- FAQ Item 6 -->
+<div class="border border-gray-200 rounded-xl overflow-hidden">
+    <button class="w-full p-6 text-right flex justify-between items-center bg-gray-50 hover:bg-gray-100 transition-colors">
+        <span class="text-lg font-semibold text-gray-800">شرایط بیمه مرسوله چیست؟</span>
+        <i class="fas fa-chevron-down text-gray-500 transition-transform duration-300"></i>
+    </button>
+    <div class="p-6 bg-white border-t border-gray-200 hidden">
+        <p class="text-gray-600 leading-relaxed">
+            شما می‌توانید با پرداخت مبلغی معادل <strong>دو در هزار (0.2%) ارزش کالا</strong>، مرسوله خود را به‌صورت کاملاً حرفه‌ای بیمه کنید. 
+            در صورت از دست رفتن یا آسیب دیدن کالا در طول فرآیند ارسال، ارزش کالا پس از بررسی و تأیید مدارک مربوطه جبران خواهد شد.
+        </p>
+        <p class="text-gray-600 leading-relaxed mt-3">
+            بیمه گزینه‌ای اختیاری اما توصیه‌شده است، به‌ویژه برای کالاهای با ارزش بالا.
+        </p>
+    </div>
+</div>
+
+        </div>
+    </div>
+</section>
+
+
+

@@ -1,0 +1,85 @@
+﻿@model VmProductAndServiceImages
+
+@{
+    ViewData["Title"] = "ویرایش تصویر محصول";
+    Layout = "~/Views/Shared/_adminPanelLayout.cshtml";
+}
+
+<div class="row pt-2">
+    <div class="col-12">
+        <form asp-action="UpdateProductImage" asp-controller="ContentManager" asp-area="CMS" method="post" enctype="multipart/form-data">
+            <div class="card card-white">
+                <div class="card-header">
+                    افزودن تصویر برای محصول <span>@Model.ProductName</span>
+                    <p>@Model.CategoryName</p>
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <input type="hidden" asp-for="ProductID" value="@Model.ProductID" />
+                    <input type="hidden" asp-for="Id" value="@Model.Id" />
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="row">
+
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <label asp-for="name"></label>
+                                        <input type="text" asp-for="name" class="form-control" />
+                                        <span asp-validation-for="name" class="text-danger mr-3"></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label asp-for="Description"></label>
+                                        <textarea rows="3" type="text" asp-for="Description" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label asp-for="Priority"></label>
+                                        <input type="number" min="0" asp-for="Priority" value="0" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label asp-for="ImageFile"></label>
+                                        <input type="file" min="0" asp-for="ImageFile" accept=".png,.PNG,.jpg,.JPG,.JPEG" class="form-control" />
+                                        <span asp-validation-for="ImageFile" class="text-danger mr-3"></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox ml-3">
+                                            <input asp-for="IsMainImage" class="custom-control-input" type="checkbox" checked="">
+                                            <label asp-for="IsMainImage" class="custom-control-label"></label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox ml-3">
+                                            <input asp-for="AllowToShow" class="custom-control-input" type="checkbox" checked="">
+                                            <label asp-for="AllowToShow" class="custom-control-label"></label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-md-3"><input type="submit" data-toggle="saveData" class="btn btn-block btn-success" value="ثبت اطلاعات" /></div>
+                        <div class="col-md-2"><input type="reset" class="btn btn-block btn-warning" value="انصراف" /></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+

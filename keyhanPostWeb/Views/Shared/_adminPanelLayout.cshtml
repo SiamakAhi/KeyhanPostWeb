@@ -1,0 +1,337 @@
+﻿@using keyhanPostWeb.GeneralService
+<!DOCTYPE html>
+@inject IApplicationUserManager _userManager;
+@{
+    var user = _userManager.UserInfo(User.Identity.Name);
+    var userAvatar = string.IsNullOrEmpty(user.Image) ? (user.Gender == 1 ? "1.png" : "2.png") : user.Image;
+}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>پنل مدیریت محتوا</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
+    @* <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> *@
+    @* <link rel="stylesheet" href="~/lib/AdminLte/plugins/icheck-bootstrap/icheck-bootstrap.min.css"> *@
+    <link rel="stylesheet" href="~/lib/AdminLte/plugins/jqvmap/jqvmap.min.css">
+    <link rel="stylesheet" href="~/lib/AdminLte/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="~/lib/select2/select2.css">
+    <link rel="stylesheet" href="~/lib/AdminLte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <link rel="stylesheet" href="~/lib/sweetalert2/sweetalert2.css">
+    <link rel="stylesheet" href="~/lib/AdminLte/dist/css/custom.css">
+    <link rel="stylesheet" href="~/lib/flatpickr/flatpickr.css" />
+    <link rel="stylesheet" href="~/css/bootstrap-Jurnal.rtl.min.css">
+    <link href="~/css/font.css" rel="stylesheet" />
+    <link href="~/css/admincustom.css" rel="stylesheet" asp-append-version="true" />
+
+
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div id="loader" class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+    <div class="wrapper">
+        <nav class="main-header navbar navbar-expand bg-dark">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link text-white" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a asp-action="Index" asp-controller="Home" asp-area="" class="nav-link text-white">خانه</a>
+                </li>
+            </ul>
+        </nav>
+        <aside class="main-sidebar bg-dark elevation-4">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="user-panel">
+                    <img src="~/img/avatars/@userAvatar" class="img-circle elevation-2" alt="QuineFit">
+                    <a href="#" class="d-block">
+                            <h5>@user.FirstName @user.LastName</h5>
+                        </a>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2 pb-5">
+                    <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">
+                        @if (User.IsInRole("Customer"))
+                        {
+                                <li class="nav-item">
+                                    <a asp-action="ClientOrders" asp-controller="Club" asp-area="" class="nav-link ">
+                                        <i class="fas fa-circle-thin nav-icon"></i>
+                                        <p>سفارش های جاری</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-action="ClientOrdersArchive" asp-controller="Club" asp-area="" class="nav-link ">
+                                        <i class="fas fa-circle-thin nav-icon"></i>
+                                        <p>آرشیو سفارشات</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item has-treeview">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-bar"></i>
+                                        <p>
+                                            ارزیابی
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                        <a asp-action="AssessmentSlideBar" asp-controller="Club" asp-area="" class="nav-link">
+                                                <i class="far fa-circle-thin nav-icon"></i>
+                                                <p>فرم ارزیابی فیزیکی</p>
+                                            </a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                        <a asp-action="NutritionSlideBar" asp-controller="Club" asp-area="" class="nav-link">
+                                                <i class="far fa-circle-thin nav-icon"></i>
+                                                <p>فرم ارزیابی تغذیه</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a asp-action="PARQ" asp-controller="Club" asp-area="" class="nav-link">
+                                                <i class="far fa-circle-thin nav-icon"></i>
+                                                <p>فرم ارزیابی سلامت</p>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link ">
+                                        <i class="fas fa-circle-thin nav-icon"></i>
+                                        <p>تراکنش های مالی</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link ">
+                                        <i class="fas fa-circle-thin nav-icon"></i>
+                                        <p>اطلاعات حساب</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link ">
+                                        <i class="fas fa-circle-thin nav-icon"></i>
+                                        <p>مرکز پیام</p>
+                                    </a>
+                                </li>
+                        }
+
+                        @if (User.IsInRole("Manager") || User.IsInRole("Admin"))
+                        {
+                                <li class="nav-item has-treeview">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-home"></i>
+                                        <p>
+                                            مدیریت محتوا
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a asp-action="Index" asp-controller="ContentManager" asp-area="CMS" class="nav-link ">
+                                                <i class="fas fa-circle-thin nav-icon"></i>
+                                                <p>صفحه اصلی (خانه)</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a asp-action="CompanyInfo" asp-controller="ContentManager" asp-area="CMS" class="nav-link">
+                                                <i class="far fa-circle-thin nav-icon"></i>
+                                                <p>مشخصات شرکت</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item has-treeview">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-newspaper"></i>
+                                        <p>
+                                            بلاگ
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a asp-action="BlogsCategory" asp-controller="ContentManager" asp-area="CMS" class="nav-link">
+                                                <i class="fas fa-circle-thin nav-icon"></i>
+                                                <p>دسته بندی بلاگ</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a asp-action="BlogsManager" asp-controller="ContentManager" asp-area="CMS" class="nav-link">
+                                                <i class="fas fa-circle-thin nav-icon"></i>
+                                                <p>مطالب ثبت شده</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a asp-action="AddNews" asp-controller="ContentManager" asp-area="CMS" class="nav-link">
+                                                <i class="fas fa-circle-thin nav-icon"></i>
+                                                <p>افزودن مطلب</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a asp-action="BlogCommentManagement" asp-controller="ContentManager" asp-area="CMS" class="nav-link">
+                                                <i class="fas fa-circle-thin nav-icon"></i>
+                                                <p>مدیریت دیدگاه ها</p>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                
+                            @* <li class="nav-item has-treeview menu-open">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                    مدیریت بازدیدکنندگان
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a asp-action="BlogsCategory" asp-controller="ContentManager" asp-area="CMS" class="nav-link">
+                                        <i class="fas fa-circle-thin nav-icon"></i>
+                                        <p>آمار بازدید</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-action="BlogsManager" asp-controller="ContentManager" asp-area="CMS" class="nav-link">
+                                        <i class="fas fa-circle-o nav-icon"></i>
+                                        <p>درخواست ارتباط</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li> *@
+                        }
+                        <li class="nav-item">
+                            <a asp-action="UserProfile" asp-controller="Account" asp-area=""
+                                class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
+                             حساب کاربری
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-action="SignOut" asp-controller="Account" asp-area=""
+                                class="nav-link">
+                                <i class="nav-icon fa fa-sign-out"></i>
+                              خروح
+                            </a>
+                        </li>
+
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+
+        <div class="content-wrapper">
+
+
+            <section class="content">
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+            </section>
+
+        </div>
+        <footer class="main-footer">
+            <strong>گروه نرم افزاری گارنت <a href="http://ahi.siamak@gmail.com">Ahi.Siamak@gmail.Com</a></strong>
+
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 1.0.0
+            </div>
+        </footer>
+
+        <div id="messageBox-Holder" class="day-alert-box">
+        </div>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+
+    <!-- Model -->
+    <div class="modal fade" id="model-general-larg" tabindex="-1" style="display: none;" aria-hidden="true">
+    </div>
+
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/popper/popper.min.js"></script>
+    <script>$.widget.bridge('uibutton', $.ui.button)</script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/AdminLte/plugins/moment/moment.min.js"></script>
+    <script src="~/lib/AdminLte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="~/lib/AdminLte/plugins/summernote/summernote-bs4.min.js"></script>
+    <script src="~/lib/AdminLte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <script src="~/lib/AdminLte/dist/js/adminlte.js"></script>
+    <script src="~/lib/sweetalert2/sweetalert2.js"></script>
+    <script src="~/lib/jdate/jdate.js"></script>
+    <script src="~/lib/flatpickr/flatpickr-jdate.js"></script>
+    <script src="~/lib/flatpickr/l10n/fa-jdate.js"></script>
+    <script src="~/lib/select2/select2.js"></script>
+    <script src="~/js/quine.js"></script>
+
+    <script src="~/js/forms-pickers.js"></script>
+    <script src="~/js/forms-selects.js"></script>
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+    <script type="text/javascript">
+        var FormPlace = $("#formPlaceHolder");
+        var FormPlaceProduct = $("#formProductAction");
+
+        $("input:checkbox").change(function () {
+            if ($(this).prop('checked') == true)
+                $(this).val("true");
+            else
+                $(this).val("false");
+        });
+
+        $('.btn-tool,[data-toggle="callForm"]').click(function () {
+            var actionUrl = $(this).data('url');
+
+            $.get(actionUrl).done(function (data) {
+                FormPlace.html(data);
+                FormPlace.slideDown(350);
+            });
+        });
+
+
+        $("td >a[data-toggle='edit']").click(function () {
+            var acctionUrl = $(this).data('url');
+            $.get(acctionUrl).done(function (data) {
+                FormPlace.html(data);
+                FormPlace.slideDown(350);
+            });
+        });
+
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // محاسبه موقعیت عنصر هدف با احتساب فاصله
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - 100;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>

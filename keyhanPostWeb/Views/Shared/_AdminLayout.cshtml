@@ -1,0 +1,83 @@
+﻿@using keyhanPostWeb.GeneralService
+@inject IApplicationUserManager _userManager
+@{
+    var user = _userManager.UserInfo(User.Identity.Name);
+    var userAvatar = string.IsNullOrEmpty(user.Image) ? (user.Gender == 1 ? "1.png" : "2.png") : user.Image;
+}
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - پنل مدیریت</title>
+
+    <link rel="stylesheet" href="~/css/bootstrap-Jurnal.rtl.min.css" />
+    <link rel="stylesheet" href="~/lib/fontawesome/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" asp-area="" asp-controller="Home" asp-action="Index">داشبورد</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Club" asp-action="ClientOrders">سفارش‌های جاری</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Club" asp-action="ClientOrdersArchive">آرشیو سفارشات</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Club" asp-action="PARQ">فرم سلامت</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="ContentManager" asp-action="Index" asp-area="CMS">مدیریت سایت</a>
+                    </li>
+
+                </ul>
+
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">
+                            <img src="~/img/avatars/@userAvatar" class="rounded-circle me-2" style="width:35px; height:35px;" />
+                            <span>@user.FirstName @user.LastName</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" asp-controller="Account" asp-action="UserProfile">پروفایل من</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" asp-controller="Account" asp-action="SignOut">خروج</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <main class="container-fluid py-4 px-3">
+        @RenderBody()
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-light text-center py-3 border-top mt-auto">
+        <small class="text-muted">
+            گروه نرم‌افزاری گارنت - نسخه 1.0.0 -
+            <a href="mailto:ahi.siamak@gmail.com">ahi.siamak@gmail.com</a>
+        </small>
+    </footer>
+
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

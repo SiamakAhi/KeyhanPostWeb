@@ -1,0 +1,111 @@
+﻿@model VmBlogForEdit
+@{
+    ViewData["Title"] = "ویرایش خبر";
+    Layout = "~/Views/Shared/_adminPanelLayout.cshtml";
+}
+
+<h3 class="p-2">ویرایش خبر</h3>
+<div style="background-color:#fff;">
+    <form asp-action="EditNews" asp-controller="ContentManager" asp-area="CMS" method="post" enctype="multipart/form-data">
+        <div class="container-fluid">
+
+            <div asp-validation-summary="ModelOnly"></div>
+            <input type="hidden" asp-for="Id" value="@Model.Id" />
+            <div class="row news-for-date-box">
+                <div class="">
+                    <p><label asp-for="PostDate"></label><span>@DateTime.Now.mdToLongPersianDate()</span></p>
+                    <p><label asp-for="Sender"></label><span>مدیر سایت</span></p>
+                </div>
+            </div>
+            <div class="form-row">
+                <label class="col-md-2" asp-for="Category"></label>
+                <div class="col-md-4">
+                    <select asp-for="Category" asp-items="ViewBag.Categories" class="form-control">
+                        <option>انتخاب کنید</option>
+                    </select>
+                    <span asp-validation-for="Category" class="text-danger mr-2"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <label class="col-md-2" asp-for="Title"></label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" asp-for="Title" placeholder="عنوان خبر" />
+                    <span asp-validation-for="Title" class="text-danger mr-2"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <label class="col-md-2" asp-for="HeaderText"></label>
+                <div class="col-md-7">
+                    <input type="text" class="form-control" asp-for="HeaderText" placeholder="تیتر" />
+                    <span asp-validation-for="HeaderText" class="text-danger mr-2"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <label class="col-md-2" asp-for="MainText"></label>
+                <div class="col-md-9">
+                    <textarea rows="4" class="form-control" asp-for="MainText" placeholder="متن اصلی"></textarea>
+                    <span asp-validation-for="MainText" class="text-danger mr-2"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <label class="col-md-2" asp-for="Text2"></label>
+                <div class="col-md-9">
+                    <textarea rows="3" class="form-control" asp-for="Text2" placeholder="پاراگراف دوم"></textarea>
+                    <span asp-validation-for="Text2" class="text-danger mr-2"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <label class="col-md-2" asp-for="Text3"></label>
+                <div class="col-md-9">
+                    <textarea rows="4" class="form-control" asp-for="Text3" placeholder="پاراگراف سوم"></textarea>
+                    <span asp-validation-for="Text3" class="text-danger mr-2"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <label class="col-md-2" asp-for="FooterText"></label>
+                <div class="col-md-9">
+                    <textarea rows="3" class="form-control" asp-for="FooterText" placeholder="پی نوشت"></textarea>
+                    <span asp-validation-for="FooterText" class="text-danger mr-2"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <label class="col-md-2" asp-for="ImageFile"></label>
+                <div class="col-md-9">
+                    <input type="file" accept="image/*" class="form-control" asp-for="ImageFile" style="overflow:hidden;" placeholder="تصویر اصلی" />
+                    <span asp-validation-for="ImageFile" class="text-danger mr-2"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <label class="col-md-2" asp-for="Image1File"></label>
+                <div class="col-md-9">
+                    <input type="file" accept="image/*" class="form-control" asp-for="Image1File" style="overflow:hidden;" placeholder="تصویر اصلی" />
+                    <span asp-validation-for="Image1File" class="text-danger mr-2"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <label class="col-md-2" asp-for="Image2File"></label>
+                <div class="col-md-9">
+                    <input type="file" accept="image/*" class="form-control" asp-for="Image2File" style="overflow:hidden;" placeholder="تصویر اصلی" />
+                    <span asp-validation-for="Image2File" class="text-danger mr-2"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-2"></div>
+                <div class="custom-control custom-checkbox ml-3">
+                    <input asp-for="Approve" class="custom-control-input" type="checkbox" checked="">
+                    <label asp-for="Approve" class="custom-control-label"></label>
+                </div>
+            </div>
+
+            <hr />
+            <div class="row">
+
+                <div class="col-md-3"><input type="submit" data-toggle="saveData" class="btn btn-block btn-success" value="ثبت اطلاعات" /></div>
+                <div class="col-md-2"><a asp-action="BlogsManager" asp-controller="ContentManager" asp-area="CMS" class="btn btn-block btn-warning">انصراف</a></div>
+            </div>
+
+        </div>
+        <hr />
+    </form>
+</div>
+

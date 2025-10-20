@@ -1,0 +1,80 @@
+﻿@model Vm_BlogPagination
+@{
+    ViewData["Title"] = "اخبار و مقالات";
+    Layout = "~/Views/Shared/_adminPanelLayout.cshtml";
+}
+
+
+<div class="container-fluid">
+    <h3 class="text-center text-white p-4">اخبار و مقالات</h3>
+    <a class=" btn btn-danger mt-2 mb-3" asp-action="AddNews" asp-controller="contentmanager" asp-area="CMS">افزودن مطلب جدید</a>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped blog-list">
+            <thead class="table-light">
+                <tr>
+                    <th>ردیف</th>
+                    <th>تصویر اصلی</th>
+                    <th>تاریخ انتشار</th>
+                    <th>عنوان</th>
+                    <th>تیتر</th>
+                    <th>عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Blogs.Any())
+                {
+                    int row = 1;
+                    foreach (var x in Model.Blogs)
+                    {
+                        <tr>
+                            <td class="text-center">@row</td>
+                            <td class="td-img-thumb"><img src="~/img/blog/@x.Image" /></td>
+                            <td>@x.PostDate.LatinToPersian()</td>
+                            <td>@x.Title</td>
+                            <td>@x.HeaderText</td>
+                            <td class="tr-tools">
+                                <div class="action-buttons">
+                                    <!-- ویرایش -->
+                                    <a class="btn-action edit"
+                                       asp-action="EditNews"
+                                       asp-controller="ContentManager"
+                                       asp-area="CMS"
+                                       asp-route-blogID="@x.Id"
+                                       aria-label="ویرایش خبر">
+                                        <i class="fas fa-pen-to-square" aria-hidden="true"></i>
+                                        <span class="btn-text">ویرایش</span>
+                                    </a>
+
+                                    <!-- وضعیت انتشار -->
+                                    <a class="btn-action approve @(x.Approve ? "active" : "")"
+                                       asp-action="ChangeApprove"
+                                       asp-controller="ContentManager"
+                                       asp-area="CMS"
+                                       asp-route-blogID="@x.Id"
+                                       aria-label="تغییر وضعیت انتشار">
+                                        <i class="fas @(x.Approve ? "fa-eye-slash" : "fa-eye")" aria-hidden="true"></i>
+                                        <span class="btn-text">@(x.Approve ? "عدم نمایش" : "انتشار")</span>
+                                    </a>
+
+                                    <!-- حذف -->
+                                    <a class="btn-action delete"
+                                       asp-action="DeleteNews"
+                                       asp-controller="ContentManager"
+                                       asp-area="CMS"
+                                       asp-route-blogID="@x.Id"
+                                       aria-label="حذف خبر">
+                                        <i class="fas fa-trash-can" aria-hidden="true"></i>
+                                        <span class="btn-text">حذف</span>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,100 @@
+﻿@model ProjectVm
+
+@{
+    Layout = "~/Views/Shared/_adminPanelLayout.cshtml";
+}
+
+
+<div class="row mt-2">
+
+    <div class="col-md-12">
+        <div class="card card-light">
+            <div class="card-header">
+                <strong> افرودن عکس جدید</strong>
+                <ul>
+                    <li>
+                        <span class="li-caption"> عنوان پروژه :</span>
+                        @Model.ProjectInfo.Title
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <form asp-action="AddProjectImage" asp-controller="ContentManager" asp-area="CMS" method="post" enctype="multipart/form-data">
+                    <input type="hidden" asp-for="ProjectImage.ProjectId" value="@Model.ProjectInfo.projectID" />
+                    <input type="hidden" asp-for="ProjectImage.IsMainImage" value="false" />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="ProjectImage.name"></label>
+                                <input type="text" asp-for="ProjectImage.name" class="form-control form-control-sm" />
+                                <span asp-validation-for="ProjectImage.name" class="text-danger mr-3"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="ProjectImage.Description"></label>
+                                <input type="text" asp-for="ProjectImage.Description" class="form-control form-control-sm" />
+                                <span asp-validation-for="ProjectImage.Description" class="text-danger mr-3"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label asp-for="ProjectImage.Priority"></label>
+                                <input type="number" min="0" asp-for="ProjectImage.Priority" value="0" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                      
+                        <div class="col-md-9">
+                            <div class="form-group">
+                                <label asp-for="ProjectImage.ImageFile"></label>
+                                <input type="file" min="0" asp-for="ProjectImage.ImageFile" accept=".png,.PNG,.jpg,.JPG,.JPEG" class="form-control" />
+                                <span asp-validation-for="ProjectImage.ImageFile" class="text-danger mr-3"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="custom-control custom-checkbox ml-3">
+                                <input asp-for="ProjectImage.AllowToShow" class="custom-control-input" type="checkbox" checked="">
+                                <label asp-for="ProjectImage.AllowToShow" class="custom-control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-md-3"><input type="submit" data-toggle="saveData" class="btn btn-block btn-success" value="ثبت اطلاعات" /></div>
+                        <div class="col-md-2"><input type="reset" class="btn btn-block btn-warning" value="انصراف" /></div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row mt-2">
+    <div class="col-md-12">
+        <div class="card card-warning">
+            <div class="card-header">
+                <strong>گالری</strong>
+            </div>
+            <div class="card-body">
+                <div class="gallery-container">
+                    @if (Model.ProjectInfo.Galleries.Count > 0)
+                    {
+                        foreach (var item in Model.ProjectInfo.Galleries)
+                        {
+                            <div class="gallery-item">
+                                <img src="~/img/ContentImages/@item.Image" alt="@item.name" />
+                                <div class="gallery-item-toolbar">
+                                    <a href="~/img/ContentImages/@item.Image" target="_blank" class=" gallery-item-tool"><span class="fa fa-eye"></span></a>
+                                    <a asp-action="DeleteProjectImage" asp-controller="ContentManager" asp-area="CMS" asp-route-id="@item.Id" asp-route-pid="@item.projectId" class="gallery-item-tool"> <span class="fa fa-trash"></span></a>
+                                    <span class="gallery-item-imageName">@item.name</span>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

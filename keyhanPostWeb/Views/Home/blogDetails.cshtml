@@ -1,0 +1,183 @@
+﻿@using keyhanPostWeb.Areas.CMS.Dtos
+@model VmSiteContent
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var blog = Model.AllSection.Where(n => n.SectionID == 9).FirstOrDefault();
+    var sideBox1 = Model.AllSection.Where(n => n.SectionID == 1006).FirstOrDefault();
+    var companyInfo = Model.CompanyInfo;
+    ViewData["Title"] = Model.BlogDetails.Title;
+    var category = Model.NewsCategories.Where(n => n.name == @Model.BlogDetails.Category).FirstOrDefault();
+}
+
+
+<!-- Page Title -->
+<section class="page-title" style="background-image:url(../lib/gymfit/images/background/page-title.jpg)">
+    <div class="auto-container">
+        <h1>بلاگ</h1>
+        <ul class="bread-crumb clearfix">
+            <li><a asp-action="Index" asp-controller="Home" asp-area="">صفحه اصلی</a></li>
+            <li><a asp-action="blog" asp-controller="Home" asp-area="">اخبار و مقالات</a></li>
+            <li>@Model.BlogDetails.Title</li>
+        </ul>
+    </div>
+</section>
+<!-- End Page Title -->
+<!-- Sidebar Page Container -->
+<div class="sidebar-page-container">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <!-- Sidebar Side -->
+            <div class="sidebar-side col-lg-4 col-md-12 col-sm-12">
+                <aside class="sidebar sticky-top">
+
+                    <!-- Sidebar Widget -->
+                    <div class="sidebar-widget search-box">
+                        <div class="widget-content">
+                            <form method="post" action="https://google.com">
+                                <div class="form-group">
+                                    <input type="search" name="search-field" value="" placeholder="جستجو" required>
+                                    <button type="submit"><span class="icon fa fa-search"></span></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Category Widget -->
+                    <div class="sidebar-widget category-widget">
+                        <div class="widget-content">
+                            <!-- Sidebar Title -->
+                            <div class="sidebar-title">
+                                <h4>دسته بندی مطالب</h4>
+                            </div>
+                            <ul class="category-list">
+                                @if (Model.NewsCategories.Any())
+                                {
+                                    foreach (var c in Model.NewsCategories)
+                                    {
+                                        <li><a asp-action="blog" asp-controller="Home" asp-area="" asp-route-pageID="1" asp-route-category="@c.name">@c.name <span>@c.PostQty</span></a></li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Post Widget -->
+                    <div class="sidebar-widget post-widget">
+                        <div class="widget-content">
+                            <!-- Sidebar Title -->
+                            <div class="sidebar-title">
+                                <h4>جدیدترین مطالب</h4>
+                            </div>
+                            <div class="content">
+                                @if (Model.LastNews.Any())
+                                {
+                                    foreach (var item in Model.LastNews)
+                                    {
+                                        <!-- Post -->
+                                        <div class="post">
+                                            <div class="thumb"><a href="blog-detail.html"><img src="~/img/blog/@item.Image" alt="@item.Title"></a></div>
+                                            <h6><a href="blog-detail.html">@item.Title</a></h6>
+                                            <div class="post-date">@item.PostDate.LatinToPersian()</div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Help Widget -->
+                    <div class="sidebar-widget">
+                        <div class="help-widget" style="background-image:url(../img/ContentImages/@sideBox1?.image)">
+                            <h3 class="help-widget_heading">@sideBox1?.Title</h3>
+                            <div class="help-widget_text">@sideBox1?.Subtitle</div>
+                            <a class="help-widget_number" href="#">@sideBox1?.Text1</a>
+                            <a class="help-widget_email" href="mailto:info@gymfitness.com">@sideBox1?.Text2</a>
+                        </div>
+                    </div>
+
+                </aside>
+            </div>
+
+            <!-- Content Side -->
+            <div class="content-side col-lg-8 col-md-12 col-sm-12">
+                <div class="blog-detail">
+                    <div class="blog-detail_inner">
+                        <div class="blog-detail_image">
+                            <img src="~/img/blog/@Model.BlogDetails.Image" alt="@Model.BlogDetails.Title" />
+                        </div>
+                        <div class="blog-detail_content">
+                            <div class="blog-detail_title">@Model.BlogDetails.Sender <span>@Model.BlogDetails.PostDate.mdToLongPersianDate()</span></div>
+                            <h4 class="blog-detail_heading">@Model.BlogDetails.Title</h4>
+                            <ul class="blog-detail_meta">
+                                <li>@Model.BlogDetails.CommentQty بازخورد</li>
+                            </ul>
+                            @if (!string.IsNullOrEmpty(Model.BlogDetails.HeaderText))
+                            {
+                                <h4>@Html.Raw(Model.BlogDetails.HeaderText.Replace("\n", "<br>"))</h4>
+
+                            }
+                            @if (!string.IsNullOrEmpty(Model.BlogDetails.MainText))
+                            {
+                                <p>@Html.Raw(Model.BlogDetails.MainText.Replace("\n", "<br>"))</p>
+                            }
+                            @if (!string.IsNullOrEmpty(Model.BlogDetails.Text2))
+                            {
+                                <p>@Html.Raw(Model.BlogDetails.Text2.Replace("\n", "<br>"))</p>
+                            }
+                            <blockquote>
+                                <div class="quote-icon flaticon-quote"></div>
+                                <div class="blockquote_author">@Model.BlogDetails.Category <span></span></div>
+                                <div class="blockquote_text">
+                                    <h5>
+                                        @if (!string.IsNullOrEmpty(category.Description))
+                                        {
+                                            Html.Raw(category.Description.Replace("\n", "<br>"));
+                                        }
+                                    </h5>
+                                    <a asp-action="blog" asp-controller="Home" asp-area="" asp-route-pageID="1" asp-route-category="@category?.name" class="theme-btn btn-style-three">
+                                        <span class="btn-wrap">
+                                            <span class="text-one">مشاهده پست ها <i class="fa-solid fa-plus fa-fw"></i></span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </blockquote>
+
+                            @if (!string.IsNullOrEmpty(Model.BlogDetails.Text3))
+                            {
+                                <p>@Html.Raw(Model.BlogDetails.Text3.Replace("\n", "<br>"))</p>
+                            }
+
+                            <div class="blog-detail_gallery">
+                                <div class="row clearfix">
+                                    <div class="column col-lg-6 col-md-6 col-sm-6">
+                                        <div class="blog-detail_image-two">
+                                            @if (!string.IsNullOrEmpty(Model.BlogDetails.Image2))
+                                            {
+                                                <img src="~/img/blog/@Model.BlogDetails.Image1" alt="@Model.BlogDetails.Title" />
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="column col-lg-6 col-md-6 col-sm-6">
+                                        <div class="blog-detail_image-two">
+                                            @if (!string.IsNullOrEmpty(Model.BlogDetails.Image2))
+                                            {
+                                                <img src="~/img/blog/@Model.BlogDetails.Image2" alt="@Model.BlogDetails.HeaderText" />
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @if (!string.IsNullOrEmpty(Model.BlogDetails.FooterText))
+                            {
+                                <p>@Html.Raw(Model.BlogDetails.FooterText.Replace("\n", "<br>"))</p>
+                            }
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

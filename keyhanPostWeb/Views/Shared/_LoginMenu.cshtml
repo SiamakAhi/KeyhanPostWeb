@@ -1,0 +1,55 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using keyhanPostWeb.GeneralService
+@using keyhanPostWeb.GeneralViewModels.Identity
+@using keyhanPostWeb.Models.Entities.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject IApplicationUserManager _usermanager
+
+
+<div class="login-inmenu">
+
+    @if (SignInManager.IsSignedIn(User))
+    {
+        UsersViewModel user = _usermanager.UserInfo(User.Identity.Name);
+        string userName = user.FirstName + " " + user.LastName;
+
+        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton10" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="icon fa-regular fa-user fa-fw"></span> @userName &nbsp;<span class="fa-solid fa-angle-down fa-fw"></span>
+        </button>
+        <ul class="dropdown-menu">
+        if (User.IsInRole("User") || User.IsInRole("Customer"))
+            {
+                <li>
+                    <a class="dropdown-item" asp-action="ClientOrders" asp-controller="Club" asp-area="">
+                        <i class="fa-solid fa-solar-panel ms-2"></i>
+                        پنل کاربری
+                    </a>
+                </li>
+            }
+
+            <li>
+                <a class="dropdown-item" asp-action="SignOut" asp-controller="Account" asp-area="">
+                    <i class="fa fa-sign-out ms-2"></i>
+                    خروج
+                </a>
+            </li>
+        </ul>
+
+    }
+    else
+    {
+        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton10" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="icon fa-regular fa-user fa-fw"></span> ورود / ثبت نام &nbsp;<span class="fa-solid fa-angle-down fa-fw"></span>
+        </button>
+        <ul class="dropdown-menu">
+            @* <li><a class="dropdown-item callform" href="javascript:void(0)" data-url="@Url.Action("loginOrRejister", "Home", new { Area = "" })"><i class="fa fa-sign-in ms-2"></i> ورود</a></li> *@
+            <li><a class="dropdown-item callform" href="javascript:void(0)" data-url="@Url.Action("SignIn", "Account", new { Area = "" })"><i class="fa fa-sign-in ms-2"></i> ورود</a></li>
+            <li><a class="dropdown-item callform" href="javascript:void(0)" data-url="@Url.Action("SignUp", "Account", new { Area = "" })"><i class="fa fa-sign-out ms-2"></i> ثبت نام</a></li>
+        </ul>
+    }
+
+</div>
+
+
+

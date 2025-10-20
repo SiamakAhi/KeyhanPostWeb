@@ -1,0 +1,373 @@
+﻿@using keyhanPostWeb.Areas.CMS.Dtos
+@model VmSiteContent
+@{
+    ViewData["Title"] = "کیهان پست";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    //.....
+    var hero = Model?.AllSection?.FirstOrDefault(n => n != null && n.SectionID == 1) ?? new VmSectionContent();
+    var productHeader = Model?.AllSection?.FirstOrDefault(n => n != null && n.SectionID == 2006) ?? new VmSectionContent();
+    var SectionTow = Model?.AllSection?.FirstOrDefault(n => n != null && n.SectionID == 2) ?? new VmSectionContent();
+    var services = Model?.AllSection?.FirstOrDefault(n => n != null && n.SectionID == 3) ?? new VmSectionContent();
+    var AboutUs = Model?.AllSection?.FirstOrDefault(n => n != null && n.SectionID == 4) ?? new VmSectionContent();
+    var GalleryOne = Model?.AllSection?.FirstOrDefault(n => n != null && n.SectionID == 5) ?? new VmSectionContent();
+    var Counter = Model?.AllSection?.FirstOrDefault(n => n != null && n.SectionID == 6) ?? new VmSectionContent();
+    var clients = Model?.AllSection?.FirstOrDefault(n => n != null && n.SectionID == 9) ?? new VmSectionContent();
+    var blogHeader = Model?.AllSection?.FirstOrDefault(n => n != null && n.SectionID == 10) ?? new VmSectionContent();
+    var lastBlogs = Model?.LastNews;
+}
+
+<section class="slider-two">
+    <div class="main-slider swiper-container">
+        <div class="swiper-wrapper">
+
+            @if (hero?.listItems != null && hero.listItems.Any())
+            {
+                foreach (var item in hero.listItems)
+                {
+                    <!-- Slide -->
+                    <div class="swiper-slide">
+                      
+                        @if (!string.IsNullOrEmpty(item.Image) && item.Image.EndsWith(".mp4"))
+                        {
+                            <video autoplay="" loop="" muted="" width="100%" height="100%">
+                                <source type="video/mp4" src="/img/ContentImages/@item.Image">
+                            </video>
+                        }
+                        else
+                        {
+                            <img src="/img/ContentImages/@item.Image" alt="@item.Title" />
+                        }
+
+
+                        <div class="slider-two-video-color_layer"></div>
+                        <div class="auto-container">
+                            <!-- Content Column -->
+                            <div class="slider-two_content d-flex justify-content-center">
+                                <div class="slider-two_content-inner text-center">
+                                    <div class="slider-two_title">@item.Subtitle</div>
+                                    <h1 class="slider-two_heading">@item.Title</h1>
+                                    <div class="slider-two_button d-flex align-items-center flex-wrap justify-content-center">
+                                        @if (item.link1_Address != null)
+                                        {
+                                            <a href="@item.link1_Address" class="theme-btn btn-style-two">
+                                                <span class="btn-wrap">
+                                                    <span class="text-one">@item.link1_Title <i class="fa-solid fa-plus fa-fw"></i></span>
+                                                    <span class="text-two">@item.link1_Title <i class="fa-solid fa-plus fa-fw"></i></span>
+                                                </span>
+                                            </a>
+                                        }
+                                        @if (item.link2_Address != null)
+                                        {
+                                            <div class="slider-two_video text-left">
+                                                <a href="@item.link2_Address" class="lightbox-video play-box"><span class="fa fa-play"></span><i>@item.link2_Title</i></a>
+                                            </div>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+        <!-- Slider Two Arrows -->
+        <div class="slider-two-arrow">
+            <!-- If we need navigation buttons -->
+            <div class="main-slider-prev fas fa-arrow-left fa-fw"></div>
+            <div class="main-slider-next fas fa-arrow-right fa-fw"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing Section -->
+<section class="pakagegroup-section " id="section2">
+    <div class="auto-container">
+        <div class="sec-title light centered">
+            <div class="sec-title_title">@productHeader.Title</div>
+            <div class="sec-title_big-title">محصولات</div>
+            <h4 class="sec-title_heading">@productHeader.Subtitle</h4>
+        </div>
+
+        
+    </div>
+</section>
+<!-- End Pricing Section -->
+
+<!-- Services Two -->
+<section class="services-two" id="section3">
+    <div class="outer-container">
+        <div class="four-item_carousel swiper-container">
+            <div class="swiper-wrapper">
+
+                @if ( services?.listItems != null && services.listItems.Any())
+                {
+                    foreach (var item in services.listItems )
+                    {
+                        <!-- Slide -->
+                        <div class="swiper-slide">
+                            <!-- Service Block Three -->
+                            <div class="service-block_three">
+                                <div class="inner-box">
+                                    <div class="image">
+                                        <a href="body-builder.html" class="overlay-link"></a>
+                                        <img src="~/img/ContentImages/@item.Image" alt="" />
+                                        <!-- Overlay Box -->
+                                        <div class="overlay-box">
+                                            <div class="overlay-inner">
+                                                <div class="content">
+                                                    <h4>@item.Title</h4>
+                                                    <h5>@item.Subtitle</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Services Section -->
+<!-- We Are Section -->
+<section class="we-are-section" id="section4">
+    <div class="auto-container">
+        <div class="sec-title centered">
+            <div class="sec-title_title">@AboutUs.Subtitle</div>
+            <div class="sec-title_big-title">about</div>
+            <h2 class="sec-title_heading">@AboutUs.Title</h2>
+        </div>
+
+        <!--Video Box-->
+        <div class="video-box">
+            <figure class="video-image">
+                <video autoplay="" loop="" muted="" width="100%" height="100%" poster="~/img/ContentImages/@AboutUs.image">
+                    <source type="video/mp4" src="~/img/ContentImages/@AboutUs.image">
+                </video>
+                @* <img src="~/img/ContentImages/@AboutUs.image" alt="فریده شمال زاده"> *@
+            </figure>
+            <a href="~/img/ContentImages/@AboutUs.image" class="lightbox-video overlay-box"><span class="flaticon-play-1"><i class="ripple"></i></span></a>
+        </div>
+@* 
+        <!-- Button Box -->
+        <div class="button-box text-center">
+         
+            <a href="about.html" class="theme-btn btn-style-three">
+                <span class="btn-wrap">
+                    <span class="text-one">دریافت مشاوره رایگان <i class="fa-solid fa-plus fa-fw"></i></span>
+                    <span class="text-two">دریافت مشاوره رایگان<i class="fa-solid fa-plus fa-fw"></i></span>
+                </span>
+            </a>
+        </div> *@
+
+    </div>
+</section>
+<!-- End We Are Section -->
+
+<!-- Two -->
+<section class="testimonial-two" id="section5">
+    <div class="auto-container">
+        <div class="inner-container">
+            <div class="single-item_carousel swiper-container">
+                <div class="swiper-wrapper">
+                    @if (SectionTow?.listItems != null && SectionTow.listItems.Any()  )
+                    {
+                        foreach (var item in SectionTow.listItems)
+                        {
+                            <!-- Slide -->
+                            <div class="swiper-slide">
+                                <!-- Testimonial Block -->
+                                <div class="testimonial-block_two">
+                                    <div class="testimonial-block_two-inner">
+                                        <span class="testimonial-two_quote-left flaticon-left-quote"></span>
+                                        <div class="testimonial-block_two-text">@item.Text</div>
+                                        <span class="testimonial-two_quote-right flaticon-right-quote"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- End Testimonial Two -->
+
+<!-- Gallery One -->
+<section class="gallery-one" d="section6">
+    <div class="outer-container">
+        <div class="row clearfix">
+            @if (GalleryOne?.listItems != null && GalleryOne.listItems.Any())
+            {
+                foreach (var item in GalleryOne.listItems)
+                {
+                    <!-- Gallery Block -->
+                    <div class="gallery-block">
+                        <div class="inner-box">
+                            <div class="image">
+                                <img src="~/img/ContentImages/@item.Image" alt="@item.Title" />
+                                <a class="overlay-link lightbox-image" href="~/img/ContentImages/@item.Image" data-fancybox="images" data-caption=""></a>
+                                <!-- Overlay Box -->
+                                <div class="overlay-box">
+                                    <div class="overlay-inner">
+                                        <div class="content">
+                                            <a class="plus" href="~/img/ContentImages/@item.Image" data-fancybox="images" data-caption=""></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+</section>
+<!-- End Gallery One -->
+
+<!-- Counter One -->
+<section class="counter-one" d="section7">
+    <div class="auto-container">
+        <div class="row clearfix">
+
+            @if (Counter?.listItems != null && Counter.listItems.Any())
+            {
+                foreach (var item in Counter.listItems)
+                {
+                    <!-- Counter Block One -->
+                    <div class="counter-block_one col-xl-3 col-lg-6 col-md-6 col-6">
+                        <div class="counter-block_one-inner">
+                            <div class="counter-block_one-count"><span class="odometer" data-count="@item.Subtitle"></span><i>@item.Text1</i></div>
+                            <div class="counter-block_one-text">@item.Title</div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
+<!-- End Counter One -->
+
+
+<!-- End Calculate Section -->
+
+<!-- Testimonial One -->
+<section class="testimonial-one" style="background-image:url(/lib/gymfit/images/background/testimonial-1.jpg)" d="section9">
+    <div class="testimonial-one_arrow" style="background-image:url(/lib/gymfit/images/icons/arrow.png)"></div>
+    <div class="auto-container">
+        <div class="inner-container">
+            <div class="sec-title light">
+                <div class="sec-title_title">پیام مشتریان</div>
+                <div class="sec-title_big-title">For members</div>
+                <h2 class="sec-title_heading">@clients.Title</h2>
+            </div>
+
+            <div class="single-item_carousel swiper-container">
+                <div class="swiper-wrapper">
+                    @if (clients?.listItems != null && clients.listItems.Any())
+                    {
+                        foreach (var item in clients.listItems)
+                        {
+                            <!-- Slide -->
+                            <div class="swiper-slide">
+                                <!-- Testimonial Block One -->
+                                <div class="testimonial-block_one">
+                                    <div class="testimonial-block_one-inner">
+                                        <div class="row clearfix">
+                                            <!-- Image Column -->
+                                            <div class="image-column col-lg-3 col-md-4 col-sm-12">
+                                                <div class="testimonial-block_one-image">
+                                                    <img src="~/img/ContentImages/@item.Image" alt="" />
+                                                </div>
+                                            </div>
+                                            <!-- Content Column -->
+                                            <div class="content-column col-lg-9 col-md-8 col-sm-12">
+                                                <div class="testimonial-block_one-content">
+                                                    <div class="testimonial-block_one-rating">
+                                                        <span class="fa fa-star"></span>
+                                                        <span class="fa fa-star"></span>
+                                                        <span class="fa fa-star"></span>
+                                                        <span class="fa fa-star"></span>
+                                                        <span class="fa fa-star"></span>
+                                                    </div>
+                                                    <div class="testimonial-block_one-text">@item.Text</div>
+                                                    <div class="testimonial-block_one-author">@item.Title  <span> -  @item.Subtitle</span></div>
+                                                    <div class="testimonial-block_one-quote">
+                                                        <i class="flaticon-right-quote"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                </div>
+            </div>
+            <!-- Testimonial One Arrows -->
+            <div class="testimonial-one-arrows">
+                <!-- If we need navigation buttons -->
+                <div class="single-item_carousel-prev fas fa-angle-left fa-fw"></div>
+                <div class="single-item_carousel-next fas fa-angle-right fa-fw"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Testimonial One -->
+
+<!-- News One -->
+<section class="news-one">
+    <div class="auto-container">
+        <!-- Sec Title -->
+        <div class="sec-title centered">
+            <div class="sec-title_title">آخرین مطالب</div>
+            <div class="sec-title_big-title">@blogHeader.Subtitle</div>
+            <h2 class="sec-title_heading">@blogHeader.Title
+        </div>
+        <div class="row clearfix">
+
+            @if (lastBlogs != null && lastBlogs.Any())
+            {
+                foreach (var blog in lastBlogs)
+                {
+                    <!-- News Block One -->
+                    <div class="column col-lg-6 col-md-12 col-sm-12">
+                        <div class="news-block_one">
+                            <div class="news-block_one-inner">
+                                <div class="news-block_one-image">
+                                    <img src="~/img/blog/@blog.Image" alt="@blog.Title" />
+                                    <div class="news-block_one-content">
+                                        <div class="news-block_one-title">@blog.Sender <span>@blog.PostDate.LatinToPersian()</span></div>
+                                        <h3 class="news-block_one-heading"><a asp-action="blogDetails" asp-controller="Home" asp-area="" asp-route-BlogID="@blog.Id">@blog.Title</a></h3>
+                                        <div class="news-block_one-text">@blog.HeaderText</div>
+                                        <div class="news-block_one-lower d-flex justify-content-between align-items-center flex-wrap">
+                                            <a class="news-block_one-moe" asp-action="blogDetails" asp-controller="Home" asp-area="" asp-route-BlogID="@blog.Id">مطالعه</a>
+                                            <ul class="news-block_one-meta">
+                                                <li><a href="javascript:void(0)">@blog.CommentQty بازخورد</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
+
+<!-- End News One -->
+<!-- -------------------------------------------------------------- اسکریپت محاسبه BMI --------------------------->
+
+

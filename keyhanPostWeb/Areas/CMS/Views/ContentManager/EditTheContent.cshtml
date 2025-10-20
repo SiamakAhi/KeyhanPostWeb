@@ -1,0 +1,160 @@
+﻿@model VmSectionContent
+@{
+    ViewData["Title"] = "مدیریت محتوای سایت";
+    Layout = "~/Views/Shared/_adminPanelLayout.cshtml";
+}
+
+
+<div class="container">
+    <form class="p-4" role="form" asp-action="EditTheContent" asp-controller="ContentManager" asp-area="CMS" method="post" enctype="multipart/form-data">
+
+        <div class="card">
+            <h3 class="card-header p-3 text-light">@ViewData["SectionTitle"]</h3>
+
+            <div class="card-body">
+                <input type="hidden" asp-for="SectionID" value="@ViewBag.SectionID" />
+                <input type="hidden" asp-for="Id" value="@Model.Id" />
+                <div class="row">
+                    <div class="col-sm-6">
+                        <!-- text input -->
+                        <div class="form-group">
+                            <label asp-for="Title"></label>
+                            <input asp-for="Title" type="text" class="form-control" placeholder="تیتر یا عنوان مطلب ...">
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <!-- text input -->
+                        <div class="form-group">
+                            <label asp-for="Subtitle"></label>
+                            <input asp-for="Subtitle" type="text" class="form-control" placeholder="عنوان کامل">
+                            <span asp-validation-for="Subtitle" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- textarea -->
+                        <div class="form-group">
+                            <label asp-for="Text1"></label>
+                            <textarea asp-for="Text1" class="form-control" rows="5" placeholder="پاراگراف اول"></textarea>
+                            <span asp-validation-for="Text1" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <!-- textarea -->
+                        <div class="form-group">
+                            <label asp-for="Text2"></label>
+                            <textarea asp-for="Text2" class="form-control" rows="5" placeholder="پاراگراف دوم "></textarea>
+                            <span asp-validation-for="Text2" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- textarea -->
+                        <div class="form-group">
+                            <label asp-for="FooterText"></label>
+                            <textarea asp-for="FooterText" class="form-control" rows="3" placeholder="نوشته ی انتهای مطلب"></textarea>
+                            <span asp-validation-for="FooterText" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="imageFile"></label>
+                            <input type="file" asp-for="imageFile" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-md-3 col-6 p-2">
+                        <button type="submit" class="btn btn-light w-100 ml-2">ثبت اطلاعات</button>
+                    </div>
+                    <div class="col-md-3 col-6 p-2">
+                        <a href="/Admin/Contentmanager/Index" class="btn btn-danger text-white w-100">انصراف</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </form>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">آیتم ها</h3>
+        <div class="card-tools">
+            @*<button type="button" class="btn btn-tool" ><i class="fas fa-trash"></i></button>
+                    <button type="button" class="btn btn-tool" ><i class="fas fa-edit"></i></button>*@
+            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("CreateAnItem","ContentManager", new {Area="CMS", SectionID=@Model.SectionID })'">افزودن آیتم جدید</button>
+        </div>
+    </div>
+    <!-- /.card-header -->
+    <div class="table-responsive p-4 mt-3">
+        <table class="table table-striped">
+            <thead class="bg-success">
+                <tr>
+                    <th style="width: 10px">#</th>
+                    <th style="width: 70px">تصویر</th>
+                    <th style="width: 35px">الویت</th>
+                    <th style="text-align:center">عنوان</th>
+                    <th style="text-align:center">زیر عنوان</th>
+                    <th style="text-align:center">متن اول</th>
+                    <th style="width: 100px">عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int rowCount = 1;
+                    if (Model.listItems.Count > 0)
+                    {
+                        foreach (var item in Model.listItems)
+                        {
+                            <tr>
+                                <td>@rowCount</td>
+                                <td>
+                                    @{
+                                        if (item.Image != "" && item.Image != null)
+                                        {
+                                            <img style="width:100%" src="~/img/ContentImages/@item.Image" alt="بدون تصویر" />
+                                        }
+                                    }
+                                </td>
+                                <td>@item.Priority</td>
+                                <td>@item.Title</td>
+                                <td>@item.Subtitle</td>
+                                <td>@item.Text</td>
+                                <td>
+                                    <a class="actionlink" asp-action="EditAnItem" asp-controller="ContentManager" asp-area="CMS" asp-route-ItemID="@item.Id">ویرایش</a> |
+                                    <a class="actionlink text-danger" asp-action="DeleteItem" asp-controller="ContentManager" asp-area="CMS" asp-route-ItemID="@item.Id" asp-route-sectionID="@item.SectionID">حذف</a>
+                                </td>
+                            </tr>
+
+                            rowCount++;
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="7">آیتمی برای این مطلب ایجاد نشده است</td>
+                        </tr>
+                    }
+
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+
+
+

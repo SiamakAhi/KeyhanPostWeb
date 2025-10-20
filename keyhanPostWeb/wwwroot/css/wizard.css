@@ -1,0 +1,317 @@
+﻿/* Main Variables (Solar Theme) */
+:root {
+    --primary: #dc322f; /*  */
+    --secondary: #073642; /* Dark Gray */
+    --success: #859900; /* Green */
+    --warning: #ad4013; /* Orange (Main Accent) */
+    --danger: #dc322f; /* Red */
+    --light: #fdf6e3; /* Light Background */
+    --dark: #002b36; /* Dark Background */
+    --text-light: #eee8d5; /* Light Text */
+    --text-muted: #93a1a1; /* Muted Text */
+}
+
+/* Base Container */
+.assessment-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 43, 54, 0.3);
+    border-radius: 0.5rem;
+    overflow: hidden;
+ 
+    border: 1px solid var(--dark);
+}
+
+/* Header */
+.assessment-header {
+ 
+    padding: 1.5rem;
+    text-align: center;
+    border-bottom: 2px solid var(--secondary);
+}
+
+/* Progress Bar */
+.assessment-progress {
+    height: 6px;
+    
+    margin-top: 1rem;
+    border-radius: 3px;
+}
+
+.assessment-progress-bar {
+    height: 100%;
+   
+    transition: width 0.4s ease;
+}
+
+/* Form Steps */
+.form-step {
+    display: none; /* مهم: همه استپ‌ها ابتدا مخفی هستند */
+    animation: fadeIn 0.5s ease;
+}
+
+    .form-step.active {
+        display: block; /* فقط استپ فعال نمایش داده می‌شود */
+    }
+
+/* Form Body */
+.assessment-body {
+    padding: 2rem;
+    
+}
+
+/* Form Sections */
+.form-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+
+    border-right: 4px solid var(--primary);
+   
+}
+
+    .form-section h5 {
+        
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+        border-bottom: 1px solid var(--primary);
+        padding-bottom: 0.5rem;
+    }
+
+/* Form Elements */
+.form-label {
+
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.form-control, .form-select {
+ 
+    border: 1px solid #586e75;
+
+    border-radius: 0.35rem;
+    padding: 0.6rem 0.75rem;
+    transition: all 0.3s;
+}
+
+    .form-control:focus, .form-select:focus {
+        border-color: var(--warning);
+        box-shadow: 0 0 0 0.2rem rgba(181, 137, 0, 0.25);
+      
+        color: #000;
+    }
+
+select.form-select {
+ 
+  
+}
+
+.form-text {
+    font-size: 0.85rem;
+    color: var(--dark); 
+ 
+}
+
+.form-check-label {
+    margin-right: 1.5rem;
+}
+/* Buttons */
+.btn {
+    font-weight: 600;
+    border-radius: 0.35rem;
+    padding: 0.5rem 1.5rem;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+   
+    border-color: var(--primary);
+}
+
+.btn-warning {
+ 
+    border-color: var(--warning);
+  
+}
+
+.btn-outline-secondary {
+    border-color: var(--text-muted);
+  
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+/* File Upload */
+.file-upload-container {
+    border: 2px dashed var(--text-muted);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    text-align: center;
+  
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+    .file-upload-container:hover {
+        border-color: var(--secondary);
+  
+    }
+
+.file-upload-icon {
+   
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.upload-preview-item {
+    position: relative;
+}
+
+    .upload-preview-item > img {
+        max-width: 100%;
+    }
+
+    .upload-preview-item .remove-btn {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        border: none;
+    }
+
+.file-upload-text {
+    
+    margin-bottom: 0.5rem;
+}
+
+.file-upload-hint {
+   
+    font-size: 0.85rem;
+}
+
+/* Validation */
+.text-danger {
+    
+}
+
+.is-invalid {
+    border-color: var(--danger) !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .assessment-body {
+        padding: 1rem;
+    }
+
+    .form-section {
+        padding: 1rem;
+    }
+
+    .assessment-header h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.Sport {
+    display: none;
+}
+
+/*----------------------------*/
+.assessment-view-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 43, 54, 0.3);
+    border-radius: 0.5rem;
+    overflow: hidden;
+
+    border: 1px solid var(--secondary);
+}
+
+.assessment-view-header {
+   
+  
+    padding: 1.5rem;
+    text-align: center;
+    border-bottom: 2px solid var(--light);
+}
+
+.view-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    
+    border-right: 4px solid var(--primary);
+    
+}
+
+    .view-section h5 {
+        
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+        border-bottom: 1px solid var(--light);
+        padding-bottom: 0.5rem;
+    }
+
+.info-row {
+    display: flex;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--secondary);
+}
+
+.info-label {
+    flex: 0 0 30%;
+    font-weight: 600;
+    color: #222;
+}
+
+.info-value {
+    flex: 1;
+    color:black;
+}
+
+.photo-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.photo-preview-item {
+    width: 150px;
+    height: 200px;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #b58900;
+}
+
+    .photo-preview-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.no-data {
+    
+    font-style: italic;
+}
