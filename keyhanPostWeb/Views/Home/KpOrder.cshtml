@@ -1,6 +1,10 @@
-﻿@{
+﻿@using keyhanPostWeb.GeneralViewModels.Order
+@model OrderCreateViewModel
+@{
+    ViewData["Title"] = "ثبت سفارش جدید";
     Layout = "_Layout";
 }
+
 
   
 <!-- Hero Section -->
@@ -17,10 +21,12 @@
             <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">ثبت سفارش آنلاین</h1>
             <p class="text-xl mb-8 opacity-90 leading-relaxed">در کمتر از 5 دقیقه، مرسوله خود را ثبت کنید</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button onclick="openOrderModal()" class="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition-all flex items-center">
+                <a asp-controller="Orders" asp-action="KpCreateOrder" asp-area=""
+                   class="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition-all flex items-center">
                     <i class="fas fa-plus-circle ml-3 text-2xl"></i>
                     شروع ثبت سفارش
-                </button>
+                </a>
+
                 <button onclick="scrollToSection('guide')" class="border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white hover:text-blue-600 transition-all">
                     راهنمای ثبت سفارش
                 </button>
@@ -71,61 +77,59 @@
             <div class="form-step active" id="step1">
                 <h3 class="text-xl font-bold text-gray-800 mb-4">نوع بسته خود را انتخاب کنید</h3>
                 <div class="grid md:grid-cols-3 gap-4 mb-6">
+
                     <!-- Regular Package -->
-                    <div class="bg-white rounded-lg p-4 card-shadow package-type-card cursor-pointer"
-                         onclick="selectPackageType('regular', this)">
+                    <label class="bg-white rounded-lg p-4 card-shadow package-type-card cursor-pointer block" onclick="selectPackageType(this)">
+                        <input type="radio" name="packageType" value="regular" class="hidden">
                         <div class="card-icon bg-blue-100 text-blue-600">
                             <i class="fas fa-box text-xl"></i>
                         </div>
                         <h4 class="text-base font-bold text-center text-gray-800 mb-2">کالای عادی</h4>
                         <p class="text-gray-600 text-center text-xs mb-3">برای کالاهای غیرحساس و با بسته‌بندی مناسب</p>
-                        <ul class="text-xs text-gray-600 space-y-1">
-                            <li class="flex items-center"><i class="fas fa-check text-green-500 ml-1 text-xs"></i> بیمه رایگان</li>
-                            <li class="flex items-center"><i class="fas fa-check text-green-500 ml-1 text-xs"></i> تحویل 24-72 ساعت</li>
-                            <li class="flex items-center"><i class="fas fa-check text-green-500 ml-1 text-xs"></i> پیگیری آنلاین</li>
-                        </ul>
-                    </div>
+                    </label>
 
                     <!-- Electronic Package -->
-                    <div class="bg-white rounded-lg p-4 card-shadow package-type-card cursor-pointer"
-                         onclick="selectPackageType('electronic', this)">
+                    <label class="bg-white rounded-lg p-4 card-shadow package-type-card cursor-pointer block" onclick="selectPackageType(this)">
+                        <input type="radio" name="packageType" value="electronic" class="hidden">
                         <div class="card-icon bg-green-100 text-green-600">
                             <i class="fas fa-laptop text-xl"></i>
                         </div>
                         <h4 class="text-base font-bold text-center text-gray-800 mb-2">کالای الکترونیکی</h4>
                         <p class="text-gray-600 text-center text-xs mb-3">برای دستگاه‌های الکترونیکی و حساس</p>
-                        <ul class="text-xs text-gray-600 space-y-1">
-                            <li class="flex items-center"><i class="fas fa-check text-green-500 ml-1 text-xs"></i> بیمه تخصصی</li>
-                            <li class="flex items-center"><i class="fas fa-check text-green-500 ml-1 text-xs"></i> بسته‌بندی ویژه</li>
-                            <li class="flex items-center"><i class="fas fa-check text-green-500 ml-1 text-xs"></i> تحویل اولویت دار</li>
-                        </ul>
-                    </div>
+                    </label>
 
                     <!-- Envelope -->
-                    <div class="bg-white rounded-lg p-4 card-shadow package-type-card cursor-pointer"
-                         onclick="selectPackageType('envelope', this)">
+                    <label class="bg-white rounded-lg p-4 card-shadow package-type-card cursor-pointer block" onclick="selectPackageType(this)">
+                        <input type="radio" name="packageType" value="envelope" class="hidden">
                         <div class="card-icon bg-purple-100 text-purple-600">
                             <i class="fas fa-envelope text-xl"></i>
                         </div>
                         <h4 class="text-base font-bold text-center text-gray-800 mb-2">پاکت</h4>
                         <p class="text-gray-600 text-center text-xs mb-3">برای اسناد و مدارک مهم</p>
-                        <ul class="text-xs text-gray-600 space-y-1">
-                            <li class="flex items-center"><i class="fas fa-check text-green-500 ml-1 text-xs"></i> تحویل همان روز</li>
-                            <li class="flex items-center"><i class="fas fa-check text-green-500 ml-1 text-xs"></i> رهگیری لحظه‌ای</li>
-                            <li class="flex items-center"><i class="fas fa-check text-green-500 ml-1 text-xs"></i> امضا گیرنده</li>
-                        </ul>
-                    </div>
+                    </label>
                 </div>
 
+                <!-- Perishable Package -->
+                <label class="bg-white rounded-lg p-4 card-shadow package-type-card cursor-pointer block" onclick="selectPackageType(this)">
+                    <input type="radio" name="packageType" value="perishable" class="hidden">
+                    <div class="card-icon bg-yellow-100 text-yellow-600">
+                        <i class="fas fa-apple-alt text-xl"></i>
+                    </div>
+                    <h4 class="text-base font-bold text-center text-gray-800 mb-2">کالای فاسد شدنی</h4>
+                    <p class="text-gray-600 text-center text-xs mb-3">برای مواد غذایی و کالاهای حساس به دما</p>
+                </label>
+
                 <div class="flex justify-end">
-                    <button type="button" onclick="nextStep()"
+                    <button type="button" onclick="nextStep()" id="nextBtn1"
                             class="bg-blue-600 text-white px-5 py-2 text-sm rounded-lg font-medium hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                            id="nextBtn1" disabled>
+                            disabled>
                         ادامه
                         <i class="fas fa-arrow-left mr-1"></i>
                     </button>
                 </div>
             </div>
+       
+
 
             <!-- Step 2: Package Details -->
             <div class="form-step" id="step2">

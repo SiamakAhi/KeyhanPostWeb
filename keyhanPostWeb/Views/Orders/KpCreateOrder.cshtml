@@ -1,0 +1,294 @@
+﻿@using keyhanPostWeb.Areas.CMS.Dtos
+@using keyhanPostWeb.GeneralViewModels.Order
+@model VmSiteContent
+
+@{
+    Layout = "_Layout";
+}
+
+<style>
+    .page-container {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 0 16px;
+    }
+
+    .form-input, .form-textarea {
+        background-color: #fff;
+        border: 1px solid #e5e7eb;
+        padding: 10px 12px;
+        border-radius: 8px;
+        width: 100%;
+        color: #111827;
+    }
+
+    .form-input:focus, .form-textarea:focus {
+        outline: none;
+        border-color: #3b82f6;
+        box-shadow: 0 4px 10px rgba(59,130,246,0.08);
+    }
+
+    .package-type-card {
+        user-select: none;
+        transition: all 0.25s ease;
+    }
+
+    .package-type-card.selected {
+        border: 2px solid #3b82f6;
+        box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+        background-color: #f0f8ff;
+    }
+
+    .package-type-card[data-value="electronic"].selected { border-color: #16a34a; }
+    .package-type-card[data-value="envelope"].selected { border-color: #9333ea; }
+    .package-type-card[data-value="perishable"].selected { border-color: #dc2626; }
+
+    .text-right-rtl {
+        direction: rtl;
+        text-align: right;
+    }
+</style>
+
+<div class="mt-header fade-in page-container">
+    <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">فرم ثبت سفارش</h2>
+
+    <form id="orderForm" asp-action="KpCreateOrder" asp-controller="Orders" method="post" class="space-y-8">
+
+        <!-- مرحله ۱ -->
+        <section class="form-step active card-shadow p-6 rounded-2xl bg-white" data-step="0">
+            <h3 class="text-lg font-bold mb-4 text-gray-700 text-center">نوع بسته</h3>
+
+            <div class="grid md:grid-cols-2 gap-5">
+                <label class="package-type-card p-3 rounded-xl text-center border border-gray-200 cursor-pointer" data-value="1" tabindex="0">
+                    <input type="radio" asp-for="OrderCreate.PackageTypeId" value="1" class="hidden" />
+                    <div class="card-icon bg-blue-100 text-blue-600 w-12 h-12 mx-auto flex items-center justify-center rounded-full">
+                        <i class="fas fa-box text-xl"></i>
+                    </div>
+                    <p class="mt-2 font-medium text-gray-700 text-sm">کالای عادی</p>
+                </label>
+
+                <label class="package-type-card p-3 rounded-xl text-center border border-gray-200 cursor-pointer" data-value="2" tabindex="0">
+                    <input type="radio" asp-for="OrderCreate.PackageTypeId" value="2" class="hidden" />
+                    <div class="card-icon bg-green-100 text-green-600 w-12 h-12 mx-auto flex items-center justify-center rounded-full">
+                        <i class="fas fa-laptop text-xl"></i>
+                    </div>
+                    <p class="mt-2 font-medium text-gray-700 text-sm">کالای الکترونیکی</p>
+                </label>
+
+                <label class="package-type-card p-3 rounded-xl text-center border border-gray-200 cursor-pointer" data-value="3" tabindex="0">
+                    <input type="radio" asp-for="OrderCreate.PackageTypeId" value="3" class="hidden" />
+                    <div class="card-icon bg-purple-100 text-purple-600 w-12 h-12 mx-auto flex items-center justify-center rounded-full">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </div>
+                    <p class="mt-2 font-medium text-gray-700 text-sm">پاکت</p>
+                </label>
+
+                <label class="package-type-card p-3 rounded-xl text-center border border-gray-200 cursor-pointer" data-value="4" tabindex="0">
+                    <input type="radio" asp-for="OrderCreate.PackageTypeId" value="4" class="hidden" />
+                    <div class="card-icon bg-red-100 text-red-600 w-12 h-12 mx-auto flex items-center justify-center rounded-full">
+                        <i class="fas fa-apple-alt text-xl"></i>
+                    </div>
+                    <p class="mt-2 font-medium text-gray-700 text-sm">کالای فاسدشدنی</p>
+                </label>
+            </div>
+
+            <div class="flex justify-end mt-6">
+                <button type="button" class="next-step bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">مرحله بعدی</button>
+            </div>
+        </section>
+
+        <!-- مرحله ۲ -->
+        <section class="form-step card-shadow p-6 rounded-2xl bg-white" data-step="1">
+            <h3 class="text-lg font-bold mb-3 text-gray-700">مشخصات بسته</h3>
+
+            <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block mb-1">شهر مبدا</label>
+                    <select asp-for="OrderCreate.OriginCityId" asp-items="Model.OrderCreate.Cities" class="form-input">
+                        <option value="">-- انتخاب کنید --</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block mb-1">شهر مقصد</label>
+                    <select asp-for="OrderCreate.DestinationCityId" asp-items="Model.OrderCreate.Cities" class="form-input">
+                        <option value="">-- انتخاب کنید --</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-4 mt-4">
+                <div>
+                    <label class="block mb-1">طول (cm)</label>
+                    <input asp-for="OrderCreate.Length" type="number" class="form-input" />
+                </div>
+                <div>
+                    <label class="block mb-1">عرض (cm)</label>
+                    <input asp-for="OrderCreate.Width" type="number" class="form-input" />
+                </div>
+                <div>
+                    <label class="block mb-1">ارتفاع (cm)</label>
+                    <input asp-for="OrderCreate.Height" type="number" class="form-input" />
+                </div>
+                <div>
+                    <label class="block mb-1">وزن (kg)</label>
+                    <input asp-for="OrderCreate.ActualWeight" type="number" class="form-input" />
+                </div>
+            </div>
+
+            <div class="flex justify-between mt-6">
+                <button type="button" class="prev-step bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600">قبلی</button>
+                <button type="button" class="next-step bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">مرحله بعدی</button>
+            </div>
+        </section>
+
+        <!-- مرحله ۳ -->
+        <section class="form-step card-shadow p-6 rounded-2xl bg-white" data-step="2">
+            <h3 class="text-lg font-bold mb-3 text-gray-700">اطلاعات فرستنده</h3>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block mb-1">نام فرستنده</label>
+                    <input asp-for="OrderCreate.SenderName" class="form-input" />
+                </div>
+                <div>
+                    <label class="block mb-1">تلفن فرستنده</label>
+                    <input asp-for="OrderCreate.SenderPhone" class="form-input" />
+                </div>
+                <div>
+                    <label class="block mb-1">کدملی فرستنده</label>
+                    <input asp-for="OrderCreate.SenderNationalId" class="form-input" />
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block mb-1">آدرس</label>
+                    <textarea asp-for="OrderCreate.SenderAddress" class="form-textarea" rows="3"></textarea>
+                </div>
+
+            </div>
+
+            <div class="flex justify-between mt-6">
+                <button type="button" class="prev-step bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600">قبلی</button>
+                <button type="button" class="next-step bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">مرحله بعدی</button>
+            </div>
+        </section>
+
+        <!-- مرحله ۴ -->
+        <section class="form-step card-shadow p-6 rounded-2xl bg-white" data-step="3">
+            <h3 class="text-lg font-bold mb-3 text-gray-700">اطلاعات گیرنده</h3>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block mb-1">نام گیرنده</label>
+                    <input asp-for="OrderCreate.ReceiverName" class="form-input" />
+                </div>
+                <div>
+                    <label class="block mb-1">تلفن گیرنده</label>
+                    <input asp-for="OrderCreate.ReceiverPhone" class="form-input" />
+                </div>
+                <div>
+                    <label class="block mb-1">کدملی گیرنده</label>
+                    <input asp-for="OrderCreate.ReceiverNationalId" class="form-input" />
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block mb-1">آدرس</label>
+                    <textarea asp-for="OrderCreate.ReceiverAddress" class="form-textarea" rows="3"></textarea>
+                </div>
+            </div>
+
+            <div class="flex justify-between mt-6">
+                <button type="button" class="prev-step bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600">قبلی</button>
+                <button type="submit" class="bg-gradient-to-r from-blue-600 to-green-500 text-white px-6 py-2 rounded-lg font-semibold hover:scale-105 transition-all duration-300">ثبت سفارش</button>
+            </div>
+        </section>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        const steps = document.querySelectorAll(".form-step");
+        const nextBtns = document.querySelectorAll(".next-step");
+        const prevBtns = document.querySelectorAll(".prev-step");
+        const packageCards = document.querySelectorAll(".package-type-card");
+
+        let currentStep = 0;
+
+        function updateSteps() {
+            steps.forEach((s, i) => s.classList.toggle("active", i === currentStep));
+            window.scrollTo({ top: document.querySelector(".page-container").offsetTop - 20, behavior: "smooth" });
+        }
+
+        nextBtns.forEach(btn => btn.addEventListener("click", () => {
+            if (currentStep < steps.length - 1) currentStep++;
+            updateSteps();
+        }));
+
+        prevBtns.forEach(btn => btn.addEventListener("click", () => {
+            if (currentStep > 0) currentStep--;
+            updateSteps();
+        }));
+
+        // انتخاب نوع بسته
+        packageCards.forEach(card => {
+            card.addEventListener("click", () => {
+                document.querySelectorAll('.package-type-card').forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                card.querySelector('input[type="radio"]').checked = true;
+            });
+        });
+
+        function initPackageSelectionFromInputs() {
+            packageCards.forEach(card => {
+                const input = card.querySelector('input[type="radio"]');
+                if (input.checked) card.classList.add('selected');
+            });
+        }
+
+        initPackageSelectionFromInputs();
+        updateSteps();
+             
+        $(document).ready(function () {
+            $("#orderForm").on("submit", function (e) {
+                e.preventDefault(); // جلوگیری از رفرش معمولی فرم
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Orders/KpCreateOrder",
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        var result = response;
+
+                        if (result.success) {
+                            // ✅ نمایش پیام با SweetAlert
+                            Swal.fire({
+                                title: "موفقیت!",
+                                text: result.message,
+                                icon: "success",
+                                confirmButtonText: "باشه"
+                            }).then(() => {
+                                // ✅ هدایت به صفحه ثبت سفارش بعد از تایید
+                                window.location.href = result.returnUrl;
+                            });
+                        } else {
+                            // ❌ پیام خطا
+                            Swal.fire({
+                                title: "خطا!",
+                                text: result.message,
+                                icon: "error",
+                                confirmButtonText: "باشه"
+                            });
+                        }
+                    },
+                    error: function () {
+                        Swal.fire({
+                            title: "خطا!",
+                            text: "ارتباط با سرور برقرار نشد.",
+                            icon: "error",
+                            confirmButtonText: "باشه"
+                        });
+                    }
+                });
+            });
+        });
+  
+
+    </script>
+}

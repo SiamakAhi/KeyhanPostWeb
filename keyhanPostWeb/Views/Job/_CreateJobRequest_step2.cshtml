@@ -1,0 +1,103 @@
+﻿@using keyhanPostWeb.GeneralViewModels.RepDto
+@model VmRepresentativeRequest
+
+<div class="row">
+    <div class="col col-md-4 col-md-offset-1 col-md-5 jobrequest_right">
+        <div class="jobrequest_right-content">
+            <div class="section-title">
+                <h3>مشخصات متقاضی</h3>
+            </div>
+            <div class="details">
+                <ul>
+                    <li><label>شماره درخواست</label><span class="trackingCode">@Model.Details.TrackingNumber</span></li>
+                    <li><label>نام</label><span>@Model.Details.ApplicantName</span></li>
+                    <li><label>نوع</label><span>@Model.Details.EntityType</span></li>
+                    <li><label>شماره ملی</label><span>@Model.Details.NationalId</span></li>
+                    <li><label>شماره همراه</label><span>@Model.Details.MobileNumber</span></li>
+                    <li><label>پست الکترونیک</label><span>@Model.Details.Email</span></li>
+                    <li><label>میزان تحصیلات</label><span>@Model.Details.EducationDegree</span></li>
+                    <li><label>آدرس</label><span>@Model.Details.Address</span></li>
+                    <li><label>نحوه آشنایی با کیهان پست</label><span>@Model.Details.Introduction</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="col col-lg-6 col-lg-offset-1 col-md-7 jobrequest_left">
+        <div class="jobrequest_left-content">
+            <div class="section-title">
+                <h3>
+                    <strong>مرحله 2 :</strong>
+                    جزئیات درخواست
+                </h3>
+            </div>
+            <div class="contact-form-s1 form">
+
+                <form asp-action="CreateJobRequest_step2" method="post" class="wpcf7-form contact-validation-active">
+                    <input type="hidden" asp-for="dtoStep2.Id" value="@Model.Details.Id" />
+
+                    <div class="fullWidth">
+                        <label asp-for="dtoStep2.JobRequestId"></label>
+                        <select asp-for="dtoStep2.JobRequestId" asp-items="ViewBag.JobRequestType">
+                            <option value="">انتخاب کنید</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label asp-for="dtoStep2.CityId"></label>
+                        <select asp-for="dtoStep2.CityId" asp-items="ViewBag.Cities">
+                            <option value="">انتخاب کنید</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label asp-for="dtoStep2.AgencyTypeId"></label>
+                        <select asp-for="dtoStep2.AgencyTypeId" asp-items="ViewBag.AgencyTypes">
+                            <option value="">انتخاب کنید</option>
+                        </select>
+                    </div>
+                    <div class="fullWidth">
+                        <label asp-for="dtoStep2.BranchAddress"></label>
+                        <input type="text" asp-for="dtoStep2.BranchAddress" placeholder="محل نمایندگی" />
+
+                        
+                    </div>
+                    <div>
+                        <label asp-for="dtoStep2.ExperienceId"></label>
+                        <select asp-for="dtoStep2.ExperienceId" asp-items="ViewBag.Experiences">
+                            <option value="">انتخاب کنید</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label asp-for="dtoStep2.VehicleAvailabilityId"></label>
+                        <select asp-for="dtoStep2.VehicleAvailabilityId" asp-items="ViewBag.VehicleAvailabilities">
+                            <option value="">انتخاب کنید</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label asp-for="dtoStep2.VehicleTypeId"></label>
+                        <select asp-for="dtoStep2.VehicleTypeId" asp-items=" ViewBag.VehicleType">
+                            <option value="">انتخاب کنید</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label asp-for="dtoStep2.PropertyTypeId"></label>
+                        <select asp-for="dtoStep2.PropertyTypeId" asp-items="ViewBag.PropertyTypes">
+                            <option value="">انتخاب کنید</option>
+                        </select>
+                    </div>
+                    <div class="fullWidth textarea">
+                        <label asp-for="dtoStep2.AdditionalDesc"></label>
+                        <textarea rows="2" asp-for="dtoStep2.AdditionalDesc">
+                         
+                        </textarea>
+                    </div>
+                    <div class="fullWidth text-end">
+                        <button type="button" class="btn next-step accAjaxSubmit">مرحله بعد</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+      
+    </div>
+</div> <!-- end row -->

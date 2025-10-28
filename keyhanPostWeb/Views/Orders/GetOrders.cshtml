@@ -1,0 +1,59 @@
+﻿@using keyhanPostWeb.Areas.CMS.Dtos
+@model VmSiteContent
+@{
+    ViewData["Title"] = "لیست سفارش‌ها";
+    var cities = ViewBag.Cities as SelectList;
+}
+
+<h2 class="mb-4">لیست سفارش‌ها</h2>
+
+<form asp-action="GetOrders" asp-controller="Orders" method="post" method="get" class="mb-4 border p-3 rounded">
+    <div class="row">
+        <div class="col-md-3">
+            <label>نام فرستنده</label>
+            <input type="text" name="SenderName" class="form-control" />
+        </div>
+        <div class="col-md-3">
+            <label>نام گیرنده</label>
+            <input type="text" name="ReceiverName" class="form-control" />
+        </div>
+        
+       
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-3">
+            <label>از تاریخ</label>
+            <input type="date" name="FromDate" class="form-control" />
+        </div>
+        <div class="col-md-3">
+            <label>تا تاریخ</label>
+            <input type="date" name="ToDate" class="form-control" />
+        </div>
+        <div class="col-md-3 d-flex align-items-end">
+            <button type="submit" class="btn btn-primary w-100">جستجو</button>
+        </div>
+    </div>
+</form>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            
+            <th>نام فرستنده</th>
+            <th>شماره فرستنده</th>
+            <th>نام گیرنده</th>
+            <th>شماره گیرنده</th>
+            <th>وزن</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.OrderCreate.SenderPhone</td>
+            <td>@Model.OrderCreate.ReceiverName</td>
+            <td>@Model.OrderCreate.ReceiverPhone</td>
+            <td>@Model.OrderCreate.ActualWeight</td>
+        </tr>
+    </tbody>
+</table>

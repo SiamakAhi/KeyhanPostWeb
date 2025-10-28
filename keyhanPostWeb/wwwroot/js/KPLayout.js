@@ -1010,6 +1010,7 @@ function scrollServices(direction) {
         container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
 }
+
 // FAQ Toggle Functionality
 document.querySelectorAll('.bg-gray-50').forEach(button => {
     button.addEventListener('click', function () {

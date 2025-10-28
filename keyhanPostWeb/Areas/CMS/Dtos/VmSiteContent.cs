@@ -1,5 +1,9 @@
 ﻿
+using keyhanPostWeb.Areas.KP.Models.Entities.Representative;
 using keyhanPostWeb.GeneralViewModels.Identity;
+using keyhanPostWeb.GeneralViewModels.Order;
+using keyhanPostWeb.GeneralViewModels.RepDto;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace keyhanPostWeb.Areas.CMS.Dtos
 {
@@ -32,7 +36,13 @@ namespace keyhanPostWeb.Areas.CMS.Dtos
         //
         public SendEmailDto EmailDto { get; set; }
 
-        
+        // job
+        public VmRepresentativeRequest jobRequest { get; set; }
+
+        //order 
+        public OrderCreateViewModel OrderCreate { get; set; }
+
+  
 
     }
 }

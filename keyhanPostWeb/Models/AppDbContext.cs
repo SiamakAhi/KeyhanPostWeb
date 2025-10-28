@@ -6,6 +6,10 @@ using keyhanPostWeb.Areas.CMS.Models.ModelConfigs;
 using keyhanPostWeb.Models.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
 using keyhanPostWeb.Models.Entities.PersonEntities;
+using keyhanPostWeb.Areas.KP.Models.Entities.Representative;
+using keyhanPostWeb.Areas.KP.Models.Entities.Order;
+using keyhanPostWeb.Areas.KP.Models.ModelConfigs.RepresentativeMapp;
+using keyhanPostWeb.Areas.KP.Models.ModelConfigs.OrderMapp;
 
 
 namespace keyhanPostWeb.Models
@@ -56,10 +60,30 @@ namespace keyhanPostWeb.Models
             builder.ApplyConfiguration<ProjectImage>(new ProjectImageMap());
             builder.ApplyConfiguration<CRMEmailAddress>(new CRMEmailAddressMap());
 
+            // //================= CRN Configs ==============================================
+            builder.ApplyConfiguration<ProductCategory>(new ProductCategoryMap());
+            builder.ApplyConfiguration<Product>(new ProductMap());
 
-      
 
-            
+
+            // //================= Rep Configs ==============================================
+            builder.ApplyConfiguration(new RepApplicantMapp());
+            builder.ApplyConfiguration(new RepJobRequestMapp());
+            builder.ApplyConfiguration(new RepEntityTypeMapp());
+            builder.ApplyConfiguration(new RepAgencyTypeMapp());
+            builder.ApplyConfiguration(new RepRequestStatusMapp());
+            builder.ApplyConfiguration(new RepExperienceMapp());
+            builder.ApplyConfiguration(new RepVehicleAvailabilityMapp());
+            builder.ApplyConfiguration(new RepVehicleTypeMapp());
+            builder.ApplyConfiguration(new RepPropertyTypeMapp());
+            builder.ApplyConfiguration(new RepDocumentTypeMapp());
+            builder.ApplyConfiguration(new RepProvinceMapp());
+            builder.ApplyConfiguration(new RepCityMapp());
+            builder.ApplyConfiguration(new RepIntroductionMethodMap());
+            builder.ApplyConfiguration(new RepEducationDegreeMapp());
+
+            // //================= order Configs ==============================================
+            builder.ApplyConfiguration(new OrderStatusMapp());
         }
 
         //============================================================================
@@ -166,7 +190,31 @@ namespace keyhanPostWeb.Models
 
 
 
-        
+
+        //============================== KP ===================
+        // جداول اصلی
+        public DbSet<RepApplicant> RepApplicants { get; set; }
+        public DbSet<RepUploadedDocument> RepUploadedDocuments { get; set; }
+
+        // جداول پایه
+
+        public DbSet<RepIntroductionMethod> RepIntroductionMethods { get; set; }
+        public DbSet<RepProvince> Provinces { get; set; }
+        public DbSet<RepCity> Cities { get; set; }
+        public DbSet<RepJobRequest> RepJobRequests { get; set; }
+        public DbSet<RepEntityType> RepEntityTypes { get; set; }
+        public DbSet<RepAgencyType> RepAgencyTypes { get; set; }
+        public DbSet<RepRequestStatus> RepRequestStatuses { get; set; }
+        public DbSet<RepExperience> RepExperiences { get; set; }
+        public DbSet<RepVehicleAvailability> RepVehicleAvailabilities { get; set; }
+        public DbSet<RepVehicleType> RepVehicleTypes { get; set; }
+        public DbSet<RepPropertyType> RepPropertyTypes { get; set; }
+        public DbSet<RepDocumentType> RepDocumentTypes { get; set; }
+        public DbSet<RepEducationDegree> EducationDegrees { get; set; }
+
+        //============================== Order ===================
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderStatus> OrderStatus { get; set; }
 
     }
 }

@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using keyhanPostWeb.GeneralService;
 using keyhanPostWeb.GeneralInterfaces;
+using keyhanPostWeb.Areas.KP.KPInterfaces;
+using keyhanPostWeb.Areas.KP.KPServices;
+using keyhanPostWeb.Areas.KP.KPservices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,7 +46,8 @@ builder.Services.AddScoped<IApplicationRoleManager, ApplicationRoleManager>();
 builder.Services.AddScoped<SignInManager<ApplicationUser>>();
 builder.Services.AddScoped<PersianIdentityError>();
 builder.Services.AddScoped<IPersonService, PersonService>();
-
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IRepresentativeService, RepresentativeService>();
 // ======== AddScoped CMS Services==========================================
 builder.Services.AddScoped<IContentManager, ContentManagerService>();
 

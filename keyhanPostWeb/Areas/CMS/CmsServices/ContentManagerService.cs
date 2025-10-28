@@ -366,7 +366,7 @@ namespace keyhanPostWeb.Areas.CMS.CmsServices
         //دریافت اطلاعات شرکت
         public async Task<VmCompanyInfo> GetCompanyInfo()
         {
-            var n = await _db.CompanyInfo.SingleOrDefaultAsync() ?? new CompanyInfo(); 
+            var n = await _db.CompanyInfo.SingleOrDefaultAsync() ?? new CompanyInfo();
 
             return new VmCompanyInfo
             {

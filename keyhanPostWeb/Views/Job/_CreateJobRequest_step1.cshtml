@@ -1,0 +1,90 @@
+﻿@using keyhanPostWeb.GeneralViewModels.RepDto
+@model RepApplicantCreateDto_Step1
+   
+<div class="row">
+    <div class="col col-md-4 col-md-offset-1 col-md-5">
+        <div class="jobrequest_right-content">
+            <div class="section-title">
+                <h3>مراحل ثبت درخواست</h3>
+            </div>
+            <div class="details">
+                <ul class="requestSteps">
+                  <li>
+                      <span class="stepNumber">1</span>
+                       ثبت مشخصات فردی / شرکت
+                  </li>
+                    <li>
+                        <span class="stepNumber">2</span>
+                         تکمیل جزئیات درخواست
+                    </li>
+                    <li>
+                        <span class="stepNumber">3</span>
+                          بارگذاری مدارک هویتی
+                    </li>
+                    <li>
+                        <span class="stepNumber">4</span>
+                         پیگیری درخواست از وب سایت
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="col col-lg-6 col-lg-offset-1 col-md-7">
+        <div class="section-title">
+            <h2>ثبت نام درخواست همکاری</h2>
+        </div>
+
+        <div class="contact-form-s1 form">
+
+            <form asp-action="CreateJobRequest_step1" method="post" class="wpcf7-form contact-validation-active">
+                 <input type="hidden" asp-for="Id" value="@Guid.NewGuid()" />
+                <input type="hidden" asp-for="Username" value="@User.Identity.Name" />
+                <input type="hidden" asp-for="RequestDate" value="@DateTime.Now" />
+                <div>
+                    <label asp-for="ApplicantName">نام کامل</label>
+                    <input type="text" asp-for="ApplicantName" placeholder="نام و نام خانوادگی">
+                </div>
+                <div>
+                    <label asp-for="EntityTypeId">نوع شخصیت</label>
+                    <select asp-for="EntityTypeId" asp-items="ViewBag.EntityTypes">
+                        <option value="">انتخاب کنید</option>
+                    </select>
+                </div>
+                <div>
+                    <label asp-for="NationalId">کد ملی / شناسه ملی</label>
+                    <input type="text" asp-for="NationalId" placeholder="کد ملی خود را وارد کنید">
+                </div>
+                <div>
+                    <label asp-for="MobileNumber">شماره موبایل</label>
+                    <input type="text" asp-for="MobileNumber" placeholder="09123254954">
+                </div>
+
+                <div>
+                    <label asp-for="Email">ایمیل</label>
+                    <input type="email" asp-for="Email" placeholder="youremail@example.com">
+                </div>
+                <div>
+                    <label asp-for="EducationDegreeId">میزان تحصیلات</label>
+                    <select asp-for="EducationDegreeId" asp-items="ViewBag.Education">
+                        <option value="">انتخاب کنید</option>
+                    </select>
+                </div>
+                <div class="full-width">
+                    <label asp-for="Address">آدرس</label>
+                    <input type="text" asp-for="Address" placeholder="نشانی محل سکونت">
+                </div>
+                <div>
+                    <label asp-for="IntroDuctionId">نحوه آشنایی با کیهان پست</label>
+                    <select asp-for="IntroDuctionId" asp-items="ViewBag.Intro">
+                        <option value="">انتخاب کنید</option>
+                    </select>
+                </div>
+                <div class="fullWidth text-center">
+                    <button type="button" class="btn next-step accAjaxSubmit">مرحله بعد</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div> <!-- end row -->
