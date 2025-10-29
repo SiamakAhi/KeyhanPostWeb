@@ -7,6 +7,6 @@ namespace keyhanPostWeb.Areas.KP.KPInterfaces
     {
         Task<clsResult> CreateOrderAsync(OrderCreateViewModel Vm);
 
-        public Task<List<OrderCreateViewModel>> GetAllOrdersAsync(OrderFilterDto? filter = null);
+        public Task<List<getOrdersViewModel>> GetAllOrdersAsync(OrderFilterDto? filter = null);
     }
 }

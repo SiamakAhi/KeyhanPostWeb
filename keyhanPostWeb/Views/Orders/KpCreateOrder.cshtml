@@ -204,11 +204,10 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     <script>
-        const steps = document.querySelectorAll(".form-step");
+             const steps = document.querySelectorAll(".form-step");
         const nextBtns = document.querySelectorAll(".next-step");
         const prevBtns = document.querySelectorAll(".prev-step");
         const packageCards = document.querySelectorAll(".package-type-card");
-
         let currentStep = 0;
 
         function updateSteps() {
@@ -216,15 +215,81 @@
             window.scrollTo({ top: document.querySelector(".page-container").offsetTop - 20, behavior: "smooth" });
         }
 
-        nextBtns.forEach(btn => btn.addEventListener("click", () => {
-            if (currentStep < steps.length - 1) currentStep++;
-            updateSteps();
-        }));
+        // ✅ تابع اعتبارسنجی
+        function validateStep(step) {
+            let valid = true;
+            let message = "";
 
-        prevBtns.forEach(btn => btn.addEventListener("click", () => {
-            if (currentStep > 0) currentStep--;
-            updateSteps();
-        }));
+            if (step === 0) {
+                if (!$("input[name='OrderCreate.PackageTypeId']:checked").val()) {
+                    valid = false;
+                    message = "نوع بسته را انتخاب کنید";
+                }
+            }
+
+            if (step === 1) {
+                if ($("#OrderCreate_OriginCityId").val() === "" ||
+                    $("#OrderCreate_DestinationCityId").val() === "" ||
+                    $("#OrderCreate_Length").val() === "" ||
+                    $("#OrderCreate_Width").val() === "" ||
+                    $("#OrderCreate_Height").val() === "" ||
+                    $("#OrderCreate_ActualWeight").val() === "") {
+
+                    valid = false;
+                    message = "تمام فیلدهای مشخصات بسته باید کامل باشند";
+                }
+            }
+
+            if (step === 2) {
+                if ($("#OrderCreate_SenderName").val() === "" ||
+                    $("#OrderCreate_SenderPhone").val() === "" ||
+                    $("#OrderCreate_SenderNationalId").val() === "" ||
+                    $("#OrderCreate_SenderAddress").val() === "") {
+
+                    valid = false;
+                    message = "اطلاعات فرستنده کامل نیست";
+                }
+            }
+
+            if (step === 3) {
+                if ($("#OrderCreate_ReceiverName").val() === "" ||
+                    $("#OrderCreate_ReceiverPhone").val() === "" ||
+                    $("#OrderCreate_ReceiverNationalId").val() === "" ||
+                    $("#OrderCreate_ReceiverAddress").val() === "") {
+
+                    valid = false;
+                    message = "اطلاعات گیرنده کامل نیست";
+                }
+            }
+
+            if (!valid) {
+                Swal.fire({
+                    title: "خطا!",
+                    text: message,
+                    icon: "error",
+                    confirmButtonText: "باشه"
+                });
+            }
+
+            return valid;
+        }
+
+        // ✅ دکمه مرحله بعدی با اعتبارسنجی
+        nextBtns.forEach(btn =>
+            btn.addEventListener("click", () => {
+                if (validateStep(currentStep)) {
+                    currentStep++;
+                    updateSteps();
+                }
+            })
+        );
+
+        prevBtns.forEach(btn =>
+            btn.addEventListener("click", () => {
+                if (currentStep > 0) currentStep--;
+                updateSteps();
+            })
+        );
 
         // انتخاب نوع بسته
         packageCards.forEach(card => {
@@ -244,34 +309,33 @@
 
         initPackageSelectionFromInputs();
         updateSteps();
-             
+
+        // ✅ ارسال با AJAX (مرحله آخر)
         $(document).ready(function () {
             $("#orderForm").on("submit", function (e) {
-                e.preventDefault(); // جلوگیری از رفرش معمولی فرم
+                if (!validateStep(3)) {
+                    e.preventDefault();
+                    return;
+                }
+
+                e.preventDefault();
 
                 $.ajax({
                     type: "POST",
                     url: "/Orders/KpCreateOrder",
                     data: $(this).serialize(),
                     success: function (response) {
-                        var result = response;
-
-                        if (result.success) {
-                            // ✅ نمایش پیام با SweetAlert
+                        if (response.success) {
                             Swal.fire({
                                 title: "موفقیت!",
-                                text: result.message,
+                                text: response.message,
                                 icon: "success",
                                 confirmButtonText: "باشه"
-                            }).then(() => {
-                                // ✅ هدایت به صفحه ثبت سفارش بعد از تایید
-                                window.location.href = result.returnUrl;
-                            });
+                            }).then(() => window.location.href = response.returnUrl);
                         } else {
-                            // ❌ پیام خطا
                             Swal.fire({
                                 title: "خطا!",
-                                text: result.message,
+                                text: response.message,
                                 icon: "error",
                                 confirmButtonText: "باشه"
                             });
@@ -288,7 +352,6 @@
                 });
             });
         });
-  
 
     </script>
 }

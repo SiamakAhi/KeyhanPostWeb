@@ -77,19 +77,18 @@ namespace keyhanPostWeb.Controllers
             return View(model);
         }
         [HttpGet]
-        public async Task<IActionResult> GetOrders(OrderFilterDto? filter = null)
+        public async Task<IActionResult> GetOrders([FromQuery] OrderFilterDto? filter)
         {
-            // دریافت لیست سفارش‌ها با اعمال فیلتر
             var orders = await _orderService.GetAllOrdersAsync(filter);
 
-           
             var vm = new VmSiteContent
             {
-                OrderCreate = orders?.FirstOrDefault()
+                GetOrderVm = orders
             };
 
             return View(vm);
         }
+
 
     }
 }

@@ -41,8 +41,8 @@ namespace keyhanPostWeb.Areas.CMS.Dtos
 
         //order 
         public OrderCreateViewModel OrderCreate { get; set; }
+        public List<getOrdersViewModel> GetOrderVm { get; set; }
 
-  
 
     }
 }

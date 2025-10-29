@@ -1,38 +1,35 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using keyhanPostWeb.Areas.KP.Models.Entities.Order;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
-using keyhanPostWeb.Areas.KP.Models.Entities.Representative;
 
-namespace keyhanPostWeb.Areas.KP.Models.Entities.Order
+namespace keyhanPostWeb.GeneralViewModels.Order
 {
-    public class Order
+    public class getOrdersViewModel
     {
-        [Key]
-        [DisplayName("شناسه سفارش")]
-        public int Id { get; set; }
 
-       //عادی=1
-       //الکترونیکی=2
-       //پاکت=3
-       //فاسد شدنی=4
-        // --- نوع بسته ---
+      
+        //عادی=1
+        //الکترونیکی=2
+        //پاکت=3
+        //فاسد شدنی=4
         [DisplayName("نوع بسته")]
         [Required]
-        public short PackageTypeId { get; set; }
+        public string PackageTypeName { get; set; }
 
         // --- شهر مبدا ---
         [DisplayName("شهر مبدا")]
         [Required]
-        public int OriginCityId { get; set; }
+        public string OriginCityname { get; set; }
 
-       
+
 
         // --- شهر مقصد ---
         [DisplayName("شهر مقصد")]
         [Required]
-        public int DestinationCityId { get; set; }
+        public string DestinationCityname { get; set; }
 
-        
+
 
         // --- ابعاد و وزن ---
         [DisplayName("طول (سانتی‌متر)")]
@@ -86,14 +83,12 @@ namespace keyhanPostWeb.Areas.KP.Models.Entities.Order
         [Required]
         public int OrderStatusId { get; set; }
 
-        [ForeignKey(nameof(OrderStatusId))]
-        public OrderStatus OrderStatus { get; set; }
 
         // --- سایر اطلاعات ---
         [DisplayName("کد رهگیری")]
         public string TrackingCode { get; set; }
 
         [DisplayName("تاریخ ثبت سفارش")]
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public string CreatedAt { get; set; } 
     }
 }
