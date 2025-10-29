@@ -4,6 +4,7 @@ using keyhanPostWeb.Areas.KP.KPInterfaces;
 using keyhanPostWeb.Areas.KP.Models.Entities.Order;
 using keyhanPostWeb.GeneralViewModels.Order;
 using keyhanPostWeb.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
@@ -76,6 +77,7 @@ namespace keyhanPostWeb.Controllers
         {
             return View(model);
         }
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetOrders([FromQuery] OrderFilterDto? filter)
         {
@@ -88,7 +90,63 @@ namespace keyhanPostWeb.Controllers
 
             return View(vm);
         }
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> NewOrders()
+        {
+            var filter = new OrderFilterDto { StatusId = 1 };
+            var orders = await _orderService.GetAllOrdersAsync(filter);
 
+            var vm = new VmSiteContent
+            {
+                GetOrderVm = orders
+            };
 
+            return View( vm);
+        }
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> CurrentOrders()
+        {
+            var filter = new OrderFilterDto { StatusId = 2 };
+            var orders = await _orderService.GetAllOrdersAsync(filter);
+
+            var vm = new VmSiteContent
+            {
+                GetOrderVm = orders
+            };
+
+            return View( vm);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> ArchivedOrders()
+        {
+            var filter = new OrderFilterDto { StatusId = 3 };
+            var orders = await _orderService.GetAllOrdersAsync(filter);
+
+            var vm = new VmSiteContent
+            {
+                GetOrderVm = orders
+            };
+
+            return View( vm);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> CanceledOrders()
+        {
+            var filter = new OrderFilterDto { StatusId = 4 };
+            var orders = await _orderService.GetAllOrdersAsync(filter);
+
+            var vm = new VmSiteContent
+            {
+                GetOrderVm = orders
+            };
+
+            return View( vm);
+        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿@using keyhanPostWeb.Areas.CMS.Dtos
 @model VmSiteContent
 @{
-    ViewData["Title"] = "لیست سفارش‌ها";
+    ViewData["Title"] = "سفارش های جدید";
     var cities = ViewBag.Cities as SelectList;
 }
 <style>
@@ -62,12 +62,12 @@
 </style>
 
 <div class="orders-container fade-in">
-    <div class="orders-title">سفارشات</div>
+    <div class="orders-title">سفارشات جدید</div>
 
     <table class="custom-table">
         <thead>
             <tr>
-                
+
                 <th>ردیف</th>
                 <th>کد رهگیری</th>
                 <th>فرستنده</th>
