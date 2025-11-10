@@ -53,6 +53,7 @@ namespace keyhanPostWeb.Areas.KP.KPServices
                 await _context.SaveChangesAsync();
                 result.Success = true;
                 result.Message = "با موفقیت ثبت شد";
+                result.Data = order.TrackingCode;
             }
             catch (Exception ex)
             {

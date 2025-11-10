@@ -1,72 +1,48 @@
 ﻿@using keyhanPostWeb.GeneralViewModels.RepDto
 @model VmRepresentativeRequest
 
-<div class="job-container printarea">
-    <div class="row">
-        <div class="col-md-6 job-section-metadata">
-            <img src="~/img/ui/Logo Keyhan post fr.png" alt="کیهان پست" class="job-logo">
-            <ul class="job-info-list">
-                <li>شماره درخواست: <span class="trackingCode">@Model.Details.TrackingNumber</span></li>
-                <li>تاریخ ثبت: <span>@Model.Details.RequestDate.LatinToPersian()</span></li>
-                <li> <p>وضعیت درخواست : <span class="badge bg-info p-2">@Model.Details.RequestStatus</span></p></li>
-               
-              
-            </ul>
-        </div>
-        <div class="col-md-6 job-section-applicant">
-            <h3>جزئیات تقاضای همکاری</h3>
-            <div class="row">
-                <div class="col-md-6">
-                    <ul class="job-info-list">
-                        <li>نام : <span>@Model.Details.ApplicantName</span></li>
-                        <li>نام کاربری: <span>@Model.Details.Username</span></li>
-                        <li>شماره موبایل: <span>@Model.Details.MobileNumber</span></li>
-                        <li>آدرس: <span>@Model.Details.Address</span></li>
-                    </ul>
-                </div>
-                <div class="col-md-6">
-                    <ul class="job-info-list">
-                        <li>آدرس ایمیل: <span>@Model.Details.Email</span></li>
-                        <li>شناسه ملی: <span>@Model.Details.NationalId</span></li>
-                        <li>نحوه آشنایی با ما: <span>@Model.Details.Introduction</span></li>
-                    </ul>
-                </div>
-            </div>
-           
-        </div>
-    </div>
-    <!-- جزئیات درخواست در دو ستون -->
-    <div class="job-section-content job-section-detail">
-        <div class="row">
-            <div class="col-md-6">
-                <ul class="job-info-list">
-                    <li>نوع نمایندگی: <span>@Model.Details.AgencyType</span></li>
-                    <li>میزان تحصیلات: <span>@Model.Details.EducationDegree</span></li>
-                    <li>سابقه فعالیت: <span>@Model.Details.Experience</span></li>
-                    <li>نوع شخصیت: <span>@Model.Details.EntityType</span></li>
-                    <li>وضعیت وسیله نقلیه: <span>@Model.Details.VehicleAvailability</span></li>
-                    <li>نوع خودرو: <span>@Model.Details.VehicleType</span></li>
-                    <li>وضعیت مالکیت ملک: <span>@Model.Details.PropertyType</span></li>
-                </ul>
+<<div class="max-w-5xl mx-auto bg-white p-10 rounded-xl shadow-md">
+    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">
+        مرحله 3 - تایید نهایی
+    </h2>
 
-            </div>
-            <div class="col-md-6">
-                <ul class="job-info-list">
-                    <li>شهر محل فعالیت: <span>@Model.Details.CityName</span></li>
-                    <li>آدرس محل نمایندگی: <span>@Model.Details.BranchAddress</span></li>
-                    <li>سایر توضیحات متقاضی</li>
-                    <li><textarea rows="5" class="otherDesc">
-                        @Model.Details.OtherDesc
-                    </textarea></li>
-                </ul>
+    <div class="space-y-4">
+
+        <div class="flex items-center justify-between border-b pb-2 text-gray-700">
+            <span>شماره درخواست</span>
+            <span class="font-semibold">@Model.Details.TrackingNumber</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+            <div class="border p-4 rounded-lg">
+                <p><strong>نام: </strong>@Model.Details.ApplicantName</p>
+                <p><strong>نوع: </strong>@Model.Details.EntityType</p>
+                <p><strong>ایمیل: </strong>@Model.Details.Email</p>
+                <p><strong>شماره همراه: </strong>@Model.Details.MobileNumber</p>
             </div>
 
+            <div class="border p-4 rounded-lg">
+                <p><strong>شهر فعالیت: </strong>@Model.Details.CityName</p>
+                <p><strong>نوع نمایندگی: </strong>@Model.Details.AgencyType</p>
+                <p><strong>وضعیت وسیله نقلیه: </strong>@Model.Details.VehicleAvailability</p>
+                <p><strong>وضعیت ملک: </strong>@Model.Details.PropertyType</p>
+            </div>
         </div>
-    </div>
-    <div class="job-result-section">
-        <h3>نتیجه بررسی</h3>
-        <p>وضعیت درخواست شما: <span class="badge bg-success p-2">@Model.Details.RequestStatus</span></p>
-        <div class="job-score">امتیاز محاسبه شده: @Model.Details.TotalScore ---</div>
+
+        <div>
+            <label class="block text-gray-700 font-medium mb-2">سایر توضیحات</label>
+            <textarea disabled rows="3"
+                      class="w-full p-3 border border-gray-300 rounded-lg">@Model.Details.OtherDesc</textarea>
+        </div>
+
+        <form asp-action="CreateJobRequest_step3" method="post" class="pt-6 text-center">
+            <input type="hidden" asp-for="Details.Id" />
+            <button type="submit"
+                    class="btn btn-primary">
+                ثبت نهایی درخواست
+            </button>
+        </form>
     </div>
 </div>
 

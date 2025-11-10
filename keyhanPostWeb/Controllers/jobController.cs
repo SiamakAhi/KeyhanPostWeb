@@ -15,9 +15,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace keyhanPostWe.Controllers
+namespace keyhanPostWeb.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class JobController : Controller
     {
         private readonly IRepresentativeService _jobService;
@@ -188,8 +188,7 @@ namespace keyhanPostWe.Controllers
 
             return View(model);
         }
-
-
+   
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SubmitJobRequest(RepApplicantCreateDto dto)

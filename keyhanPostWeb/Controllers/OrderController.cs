@@ -57,7 +57,7 @@ namespace keyhanPostWeb.Controllers
 
                 if (result.Success)
                 {
-                    result.Message = "سفارش شما با موفقیت ثبت شد ✅";
+                    result.Message = $"سفارش شما با موفقیت ثبت شد ✅، شماره پیگیری: {result.Data}";
                     result.ShowMessage = true;
                     result.updateType = 1;
                     result.returnUrl = Url.Action("KPOrder", "Home"); // آدرس صفحه ثبت سفارش

@@ -1011,20 +1011,20 @@ function scrollServices(direction) {
     }
 }
 
-// FAQ Toggle Functionality
-document.querySelectorAll('.bg-gray-50').forEach(button => {
-    button.addEventListener('click', function () {
-        const icon = this.querySelector('i');
-        const content = this.nextElementSibling;
+//// FAQ Toggle Functionality
+//document.querySelectorAll('.bg-gray-50').forEach(button => {
+//    button.addEventListener('click', function () {
+//        const icon = this.querySelector('i');
+//        const content = this.nextElementSibling;
 
-        if (content.classList.contains('hidden')) {
-            content.classList.remove('hidden');
-            icon.classList.remove('fa-chevron-down');
-            icon.classList.add('fa-chevron-up');
-        } else {
-            content.classList.add('hidden');
-            icon.classList.remove('fa-chevron-up');
-            icon.classList.add('fa-chevron-down');
-        }
-    });
-});
+//        if (content.classList.contains('hidden')) {
+//            content.classList.remove('hidden');
+//            icon.classList.remove('fa-chevron-down');
+//            icon.classList.add('fa-chevron-up');
+//        } else {
+//            content.classList.add('hidden');
+//            icon.classList.remove('fa-chevron-up');
+//            icon.classList.add('fa-chevron-down');
+//        }
+//    });
+//});
