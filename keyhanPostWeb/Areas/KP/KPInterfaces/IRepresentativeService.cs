@@ -16,6 +16,7 @@ namespace keyhanPostWeb.Areas.KP.KPInterfaces
         Task<bool> UserHasRequerstAsync(string userName);
         Task<clsResult> UpdateRequestStatusAsync(RepApplicantStatusUpdateDto dto);
         Task<SelectList> SelectList_Cities();
+        SelectList SelectList_Countries();
         Task<SelectList> SelectList_Introductions();
         Task<SelectList> SelectList_EducationsAsync();
         Task<SelectList> GetEntityTypesAsync();

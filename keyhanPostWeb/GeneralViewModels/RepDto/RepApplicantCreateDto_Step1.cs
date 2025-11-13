@@ -17,7 +17,7 @@ namespace keyhanPostWeb.GeneralViewModels.RepDto
         [Display(Name = "نام متقاضی")]
         public string ApplicantName { get; set; }
 
-        //[Required(ErrorMessage = "نام کاربری الزامی است")]
+        [Required(ErrorMessage = "نام کاربری الزامی است")]
         [Display(Name = "نام کاربری")]
         public string Username { get; set; }
 

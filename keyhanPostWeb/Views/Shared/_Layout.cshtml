@@ -53,57 +53,99 @@
 <body class="bg-gray-50">
 
     <!-- Header -->
-    <header class="gradient-bg text-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-4">
-            <div class="flex justify-between items-center">
-                <!-- Logo -->
-                  <!-- Logo -->
-                <a href="@Url.Action("KPIndex", "Home")" class="flex items-center">
-                    <img src="~/img/ui/headerlogo.webp" alt="کیهان پست" class="w-auto h-auto object-contain border" style="border-radius:16px;" />
+ <header class="gradient-bg text-white shadow-lg sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-4">
+        <div class="flex justify-between items-center">
 
+            <!-- Logo Left -->
+            <a href="@Url.Action("KPIndex", "Home")" class="flex items-center order-2 md:order-1">
+                <img src="~/img/ui/headerlogo.webp" alt="کیهان پست" class="w-auto h-auto object-contain border" style="border-radius:16px;" />
+            </a>
+
+            <!-- Desktop Menu Right -->
+            <nav class="hidden md:flex space-x-8 space-x-reverse order-1 md:order-2">
+                <a asp-controller="Home" asp-action="KPIndex" class="hover:text-green-300 transition-colors py-2">
+                    خانه
                 </a>
 
-                <!-- Desktop Menu -->
-                <nav class="hidden md:flex space-x-8 space-x-reverse">
-                    <a href="#cost-calculator" class="hover:text-green-300 transition-colors py-2">محاسبه هزینه ارسال</a>
-                    <a href="#tracking" class="hover:text-green-300 transition-colors py-2">پیگیری مرسوله</a>
-                    <a asp-controller="Home" asp-action="Representative" class="hover:text-green-300 transition-colors py-2">شعب و نمایندگان</a>
-                    <a asp-controller="Home" asp-action="KPOrder" class="hover:text-green-300 transition-colors py-2">ثبت سفارش</a>
-                    <a asp-controller="Home" asp-action="KpCallUs" class="hover:text-green-300 transition-colors py-2">تماس با ما</a>
+                <!-- dropdown 1: cost calculator -->
+                <div class="relative group py-2 cursor-pointer">
+                    <span class="hover:text-green-300">محاسبه هزینه ارسال</span>
+                    <div class="absolute hidden group-hover:block bg-white text-black rounded shadow-lg mt-2 py-2 w-40 text-right">
+                        <a class="block px-4 py-2 hover:bg-gray-100" asp-controller="Home" asp-action="InternationalCost">هزینه بین‌الملل</a>
+                        <a class="block px-4 py-2 hover:bg-gray-100" asp-controller="Home" asp-action="InternalCost">هزینه داخل</a>
+                    </div>
+                </div>
+
+                <a href="#tracking" class="hover:text-green-300 transition-colors py-2">رهگیری مرسولات</a>
+
+                <a asp-controller="Home" asp-action="Representative" class="hover:text-green-300 transition-colors py-2">شعب و نمایندگی ها</a>
+
+                <!-- dropdown 2: orders -->
+                <div class="relative group py-2 cursor-pointer">
+                    <span class="hover:text-green-300">ثبت سفارش</span>
+                    <div class="absolute hidden group-hover:block bg-white text-black rounded shadow-lg mt-2 py-2 w-40 text-right">
+                            <a class="block px-4 py-2 hover:bg-gray-100" asp-controller="Orders" asp-action="KpCreateOrder">سفارش داخلی</a>
+                            <a class="block px-4 py-2 hover:bg-gray-100" asp-controller="Orders" asp-action="KpCreateInternationalOrder">سفارش بین‌الملل</a>
+                    </div>
+                </div>
                     <a asp-controller="Home" asp-action="KpOurService" class="hover:text-green-300 transition-colors py-2">خدمات</a>
                     <a asp-controller="Home" asp-action="KpAboutUs" class="hover:text-green-300 transition-colors py-2">درباره ما</a>
-                </nav>
-
-                <!-- Login DropDown -->
-                <div class="login-dropdown">
-                    @await Html.PartialAsync("_Login")
-                </div>
-
-                <!-- Mobile Button -->
-                <button id="mobile-menu-btn" class="md:hidden text-white">
-                    <i class="fas fa-bars text-xl"></i>
-                </button >
-            </div>
-        </div>
-
-        <!-- Mobile Menu (hidden by default) -->
-        <div id="mobile-menu" class="hidden md:hidden gradient-bg text-white px-4 pb-4">
-            <nav class="flex flex-col space-y-2">
-                <a href="#cost-calculator" class="hover:text-green-300 transition-colors py-2">محاسبه هزینه ارسال</a>
-                <a href="#tracking" class="hover:text-green-300 transition-colors py-2">پیگیری مرسوله</a>
-                <a asp-controller="Home" asp-action="Representative" class="hover:text-green-300 transition-colors py-2">شعب و نمایندگان</a>
-                <a asp-controller="Home" asp-action="KPOrder" class="hover:text-green-300 transition-colors py-2">ثبت سفارش</a>
                 <a asp-controller="Home" asp-action="KpCallUs" class="hover:text-green-300 transition-colors py-2">تماس با ما</a>
-                <a asp-controller="Home" asp-action="KPOrder" class="hover:text-green-300 transition-colors py-2">خدمات</a>
-                <a asp-controller="Home" asp-action="KpAboutUs" class="hover:text-green-300 transition-colors py-2">درباره ما</a>
-                <div class="border-t border-green-400 pt-2">
-                    @await Html.PartialAsync("_Login")
-                </div>
+
             </nav>
+
+            <!-- Login -->
+            <div class="login-dropdown order-3">
+                @await Html.PartialAsync("_Login")
+            </div>
+
+            <!-- Mobile button -->
+            <button id="mobile-menu-btn" class="md:hidden text-white">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+
         </div>
-    </header>
+    </div>
 
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden gradient-bg text-white px-4 pb-4">
+        <nav class="flex flex-col space-y-2">
 
+            <a asp-controller="Home" asp-action="KPIndex" class="hover:text-green-300 transition-colors py-2">خانه</a>
+
+            <!-- Mobile dropdowns as simple links -->
+            <details>
+                <summary class="py-2 hover:text-green-300 cursor-pointer">محاسبه هزینه ارسال</summary>
+                <div class="flex flex-col pr-4 space-y-1">
+                    <a asp-controller="Home" asp-action="InternationalCost">هزینه بین‌الملل</a>
+                    <a asp-controller="Home" asp-action="InternalCost">هزینه داخلی</a>
+                </div>
+            </details>
+
+            <a href="#tracking" class="hover:text-green-300 transition-colors py-2">پیگیری مرسوله</a>
+
+            <a asp-controller="Home" asp-action="Representative" class="hover:text-green-300 transition-colors py-2">شعب و نمایندگان</a>
+
+            <details>
+                <summary class="py-2 hover:text-green-300 cursor-pointer">ثبت سفارش</summary>
+                <div class="flex flex-col pr-4 space-y-1">
+                    <a asp-controller="Home" asp-action="KpCreateOrder">سفارش داخلی</a>
+                        <a asp-controller="Home" asp-action="KpCreateInternationalOrder">سفارش بین‌المللی</a>
+                </div>
+            </details>
+
+            <a asp-controller="Home" asp-action="KpCallUs" class="hover:text-green-300 transition-colors py-2">تماس با ما</a>
+            <a asp-controller="Home" asp-action="KpOurService" class="hover:text-green-300 transition-colors py-2">خدمات</a>
+            <a asp-controller="Home" asp-action="KpAboutUs" class="hover:text-green-300 transition-colors py-2">درباره ما</a>
+
+            <div class="border-t border-green-400 pt-2">
+                @await Html.PartialAsync("_Login")
+            </div>
+
+        </nav>
+    </div>
+</header>
 
     <div>
         @RenderBody()

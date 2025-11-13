@@ -12,17 +12,26 @@ namespace keyhanPostWeb.GeneralViewModels.Order
 
      
         [Required(ErrorMessage = "لطفاً شهر مبدا را انتخاب کنید.")]
-        [Display(Name = "مبدا")]
-        public int OriginCityId { get; set; }
+        [Display(Name = "شهر مبدا")]
+        public int? OriginCityId { get; set; }
+
+        [Required(ErrorMessage = "لطفاً کشور مبدا را انتخاب کنید.")]
+        [Display(Name = "کشور مبدا")]
+        public string? OriginCountryName { get; set; }
 
         [Required(ErrorMessage = "لطفاً شهر مقصد را انتخاب کنید.")]
-        [Display(Name = "مقصد")]
-        public int DestinationCityId { get; set; }
+        [Display(Name = "شهر مقصد")]
+        public int? DestinationCityId { get; set; }
 
-       
+        [Required(ErrorMessage = "لطفاً کشور مقصد را انتخاب کنید.")]
+        [Display(Name = "کشور مقصد")]
+        public string? DestinationCountryName { get; set; }
+
+
         public IEnumerable<SelectListItem>? Cities { get; set; }
+        public IEnumerable<SelectListItem>? contries { get; set; }
 
- 
+
         [Range(1, 500, ErrorMessage = "طول باید بین ۱ تا ۵۰۰ سانتی‌متر باشد.")]
         [Display(Name = "طول (cm)")]
         public double Length { get; set; }

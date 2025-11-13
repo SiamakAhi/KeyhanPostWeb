@@ -1,6 +1,14 @@
-﻿@{
+﻿@using keyhanPostWeb.Areas.CMS.Dtos
+@model VmSiteContent
+<link href="~/css/iranmap.css" rel="stylesheet" />
+@{
+
+    var branch = Model.AllSection.Where(n => n.SectionID == 10).FirstOrDefault();
+    var companyInfo = Model.CompanyInfo;
+    ViewData["Title"] = branch.Title;
     Layout = "_Layout";
 }
+
 <!-- Hero Section -->
 
 <section class="gradient-bg text-white py-16">
@@ -86,104 +94,62 @@
             </div>
         </div>
 
-        <div class="max-w-6xl mx-auto">
-            <div class="bg-white card-shadow p-8 mb-8">
-                <div class="text-center mb-8">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">نقشه پوشش سراسری</h3>
-                    <p class="text-gray-600">استان‌های قرمز: فعال | استان‌های خاکستری: به‌زودی</p>
-                </div>
+        <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+            <div class="container py-3">
 
-                <!-- Iran Map -->
-                <div class="relative bg-blue-50 rounded-xl p-8 min-h-96">
-                    <svg viewBox="0 0 400 300" class="w-full h-full">
-                        <!-- Active Provinces (Red) -->
-                        <circle cx="100" cy="80" r="15" class="province active-province" data-province="تهران" data-rep="محمد احمدی" data-phone="021-12345678" data-address="تهران، خیابان ولیعصر"></circle>
-                        <circle cx="80" cy="200" r="15" class="province active-province" data-province="خوزستان" data-rep="علی رضایی" data-phone="061-33445566" data-address="اهواز، خیابان کیانپارس"></circle>
-                        <circle cx="200" cy="150" r="15" class="province active-province" data-province="اصفهان" data-rep="فاطمه محمدی" data-phone="031-12345678" data-address="اصفهان، میدان نقش جهان"></circle>
-                        <circle cx="250" cy="200" r="15" class="province active-province" data-province="فارس" data-rep="حسن کریمی" data-phone="071-12345678" data-address="شیراز، بلوار چمران"></circle>
-                        <circle cx="320" cy="100" r="15" class="province active-province" data-province="خراسان رضوی" data-rep="مریم صادقی" data-phone="051-12345678" data-address="مشهد، ابوقریب"></circle>
-                        <circle cx="150" cy="50" r="15" class="province active-province" data-province="قزوین" data-rep="رضا حسینی" data-phone="028-12345678" data-address="قزوین، میدان تختی"></circle>
-                        <circle cx="300" cy="150" r="15" class="province active-province" data-province="یزد" data-rep="نگین کریمی" data-phone="035-12345678" data-address="یزد، کوچه صدیق"></circle>
-
-                        <!-- Inactive Provinces (Gray) -->
-                        <circle cx="150" cy="100" r="15" class="province inactive-province" data-province="قم" data-rep="به‌زودی"></circle>
-                        <circle cx="180" cy="80" r="15" class="province inactive-province" data-province="سمنان" data-rep="به‌زودی"></circle>
-                        <circle cx="120" cy="120" r="15" class="province inactive-province" data-province="مرکزی" data-rep="به‌زودی"></circle>
-                        <circle cx="50" cy="120" r="15" class="province inactive-province" data-province="کرمانشاه" data-rep="به‌زودی"></circle>
-                        <circle cx="200" cy="250" r="15" class="province inactive-province" data-province="سیستان و بلوچستان" data-rep="به‌زودی"></circle>
-                    </svg>
-
-                    <!-- Tooltip -->
-                    <div id="province-tooltip" class="absolute bg-gray-800 text-white px-4 py-3 rounded-lg text-sm hidden pointer-events-none z-10 max-w-xs">
-                        <div class="font-semibold mb-1" id="province-name"></div>
-                        <div class="text-gray-300 text-xs mb-1" id="province-rep"></div>
-                        <div class="text-gray-300 text-xs mb-1" id="province-address"></div>
-                        <div class="text-gray-300 text-xs" id="province-phone"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Branch Details Section -->
-            <div id="branch-details" class="bg-white card-shadow p-8 mb-8 hidden">
-                <h3 class="text-2xl font-bold text-gray-800 mb-6">جزئیات شعبه</h3>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div>
-                        <h4 class="text-lg font-semibold text-gray-800 mb-4">اطلاعات تماس</h4>
-                        <div class="space-y-3">
-                            <div class="flex items-start">
-                                <div class="bg-blue-100 text-blue-600 p-2 rounded-full ml-3 mt-1">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                                <div>
-                                    <div class="font-medium text-gray-800">آدرس</div>
-                                    <div class="text-gray-600" id="detail-address">تهران، خیابان ولیعصر، پست سریع ایران</div>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="bg-green-100 text-green-600 p-2 rounded-full ml-3 mt-1">
-                                    <i class="fas fa-phone"></i>
-                                </div>
-                                <div>
-                                    <div class="font-medium text-gray-800">تلفن</div>
-                                    <div class="text-gray-600" id="detail-phone">021-12345678</div>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="bg-purple-100 text-purple-600 p-2 rounded-full ml-3 mt-1">
-                                    <i class="fas fa-user"></i>
-                                </div>
-                                <div>
-                                    <div class="font-medium text-gray-800">نماینده</div>
-                                    <div class="text-gray-600" id="detail-rep">محمد احمدی</div>
-                                </div>
-                            </div>
+                <div class="row">
+                 
+                    <div class="col-lg-6">
+                        <div class="iranMap-container">
+                            @Html.Partial("_IranMap.cshtml")
                         </div>
                     </div>
-                    <div>
-                        <h4 class="text-lg font-semibold text-gray-800 mb-4">ساعات کاری</h4>
-                        <div class="space-y-2">
-                            <div class="flex justify-between p-2 bg-gray-50 rounded-lg">
-                                <span>شنبه - چهارشنبه</span>
-                                <span class="font-medium">08:00 - 20:00</span>
-                            </div>
-                            <div class="flex justify-between p-2 bg-gray-50 rounded-lg">
-                                <span>پنجشنبه</span>
-                                <span class="font-medium">08:00 - 14:00</span>
-                            </div>
-                            <div class="flex justify-between p-2 bg-gray-50 rounded-lg">
-                                <span>جمعه</span>
-                                <span class="font-medium">تعطیل</span>
-                            </div>
-                        </div>
-                        <div class="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                            <div class="flex items-center">
-                                <i class="fas fa-info-circle text-blue-600 ml-2"></i>
-                                <span class="text-blue-800 text-sm">خدمات اکسپرس تا ساعت 18:00 پذیرفته می‌شود</span>
-                            </div>
+
+                    <div class="col-md-12">
+                        <div class="branch-list-container">
+                            <ul class="branch-list">
+                                @if (branch.listItems.Count > 0)
+                                {
+                                    foreach (var x in branch.listItems.OrderBy(n => n.Title).ToList())
+                                    {
+                                        <li class="item" name="@x.FooterText">
+                                            <div class="item-header">
+                                                <h4 class="title">@x.Title</h4>
+                                                <h5 class="subTitle">@x.Subtitle</h5>
+                                            </div>
+
+                                            <div class="address-container"><p>@x.Text</p></div>
+                                            <div class="phone-container">
+                                                @if (!string.IsNullOrEmpty(x.link1_Title))
+                                                {
+                                                    <a href="tel:@x.link1_Address">
+                                                        <i class="fa fa-phone-alt"></i>
+                                                        <span>@x.link1_Title</span>
+                                                    </a>
+                                                }
+                                                @if (!string.IsNullOrEmpty(x.link2_Title))
+                                                {
+                                                    <a href="tel:@x.link2_Address">
+                                                        <i class="fa fa-phone-alt"></i>
+                                                        <span>@x.link2_Title</span>
+                                                    </a>
+                                                }
+                                                @if (!string.IsNullOrEmpty(x.link3_Title))
+                                                {
+                                                    <a href="tel:@x.link3_Address">
+                                                        <i class="fa fa-phone-alt"></i>
+                                                        <span>@x.link3_Title</span>
+                                                    </a>
+                                                }
+                                            </div>
+                                        </li>
+                                    }
+                                }
+                            </ul>
                         </div>
                     </div>
                 </div>
-            </div>
+
 
             <!-- Contract Section -->
             <div class="bg-white card-shadow p-8">
@@ -249,3 +215,6 @@
         </div>
     </div>
 </section>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/branch.js"></script>
+<script type="text/javascript"></script>

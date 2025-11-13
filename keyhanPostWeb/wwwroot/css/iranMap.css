@@ -1,0 +1,24 @@
+﻿.path-city {
+    stroke: #fff;
+}
+
+    .path-city:hover {
+        fill: whitesmoke;
+    }
+
+.path-city-g1 {
+    fill: #abafb2;
+}
+
+.path-city-g2 {
+    fill: #003B91 ;
+}
+
+.path-city-g3 {
+    fill: #06A3DA;
+}
+
+.path-city-g4 {
+    fill: #6AC200;
+}
+

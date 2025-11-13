@@ -386,6 +386,46 @@ namespace keyhanPostWeb.Areas.KP.KPservices
             }
             return new SelectList(items, "Value", "Text", "Group.Name", "Group.Name");
         }
+       public SelectList SelectList_Countries()
+{
+    var items = new List<SelectListItem>
+    {
+        new SelectListItem { Value = "1", Text = "تهران - فرودگاه امام خمینی" },
+        new SelectListItem { Value = "2", Text = "چین" },
+        new SelectListItem { Value = "3", Text = "امارات" },
+        new SelectListItem { Value = "4", Text = "ترکیه" },
+        new SelectListItem { Value = "5", Text = "آلمان" },
+        new SelectListItem { Value = "6", Text = "فرانسه" },
+        new SelectListItem { Value = "7", Text = "ایتالیا" },
+        new SelectListItem { Value = "8", Text = "انگلیس" },
+        new SelectListItem { Value = "9", Text = "هلند" },
+        new SelectListItem { Value = "10", Text = "بلژیک" },
+        new SelectListItem { Value = "11", Text = "اتریش" },
+        new SelectListItem { Value = "12", Text = "سوئیس" },
+        new SelectListItem { Value = "13", Text = "کانادا" },
+        new SelectListItem { Value = "14", Text = "آمریکا" },
+        new SelectListItem { Value = "15", Text = "روسیه" },
+        new SelectListItem { Value = "16", Text = "هند" },
+        new SelectListItem { Value = "17", Text = "ژاپن" },
+        new SelectListItem { Value = "18", Text = "کره جنوبی" },
+        new SelectListItem { Value = "19", Text = "عراق" },
+        new SelectListItem { Value = "20", Text = "قطر" },
+        new SelectListItem { Value = "21", Text = "عربستان" },
+        new SelectListItem { Value = "22", Text = "کویت" },
+        new SelectListItem { Value = "23", Text = "بحرین" },
+        new SelectListItem { Value = "24", Text = "عمان" },
+        new SelectListItem { Value = "25", Text = "سوئد" },
+        new SelectListItem { Value = "26", Text = "نروژ" },
+        new SelectListItem { Value = "27", Text = "دانمارک" },
+        new SelectListItem { Value = "28", Text = "اسپانیا" },
+        new SelectListItem { Value = "29", Text = "استرالیا" }
+    };
+
+    return new SelectList(items, "Value", "Text");
+}
+
+
+    
         public async Task<SelectList> SelectList_Introductions()
         {
             var cities = await _db.RepIntroductionMethods.Select(n => new { id = n.Id, name = n.Title }).ToListAsync();

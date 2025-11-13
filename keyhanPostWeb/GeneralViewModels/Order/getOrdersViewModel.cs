@@ -29,7 +29,13 @@ namespace keyhanPostWeb.GeneralViewModels.Order
         [Required]
         public string DestinationCityname { get; set; }
 
+        [Required(ErrorMessage = "لطفاً کشور مبدا را انتخاب کنید.")]
+        [Display(Name = "کشور میدا")]
+        public string? OriginCountryName { get; set; }
 
+        [Required(ErrorMessage = "لطفاً کشور مقصد را انتخاب کنید.")]
+        [Display(Name = "کشور مقصد")]
+        public string? DestinationCountryName { get; set; }
 
         // --- ابعاد و وزن ---
         [DisplayName("طول (سانتی‌متر)")]

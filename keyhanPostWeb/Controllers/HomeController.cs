@@ -346,6 +346,15 @@ namespace KeyhanPost.WebSite.Controllers
 
             return View();
         }
+        public IActionResult KpDomesticServices()
+        {
+            return View();
+        }
+
+        public IActionResult KpInternationalServices()
+        {
+            return View();
+        }
         public IActionResult KpBlog()
         {
 

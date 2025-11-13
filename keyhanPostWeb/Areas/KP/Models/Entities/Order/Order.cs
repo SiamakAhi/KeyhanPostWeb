@@ -15,6 +15,8 @@ namespace keyhanPostWeb.Areas.KP.Models.Entities.Order
        //الکترونیکی=2
        //پاکت=3
        //فاسد شدنی=4
+       //5=کالبد متوفی
+       //6=حیوان خانگی
         // --- نوع بسته ---
         [DisplayName("نوع بسته")]
         [Required]
@@ -22,17 +24,27 @@ namespace keyhanPostWeb.Areas.KP.Models.Entities.Order
 
         // --- شهر مبدا ---
         [DisplayName("شهر مبدا")]
-        [Required]
-        public int OriginCityId { get; set; }
+        
+        public int? OriginCityId { get; set; }
 
        
 
         // --- شهر مقصد ---
         [DisplayName("شهر مقصد")]
-        [Required]
-        public int DestinationCityId { get; set; }
-
         
+        public int? DestinationCityId { get; set; }
+
+        // 1 داخلی
+        //2 بین المللی
+        [DisplayName("نوع سفارش")]
+        [Required]
+        public int OrderType { get; set; }
+
+        [Required(ErrorMessage = "لطفاً کشور مبدا را انتخاب کنید.")]
+        public string? OriginCountryName { get; set; }
+
+        [Required(ErrorMessage = "لطفاً کشور مقصد را انتخاب کنید.")]
+        public string? DestinationCountryName { get; set; }
 
         // --- ابعاد و وزن ---
         [DisplayName("طول (سانتی‌متر)")]
@@ -58,11 +70,11 @@ namespace keyhanPostWeb.Areas.KP.Models.Entities.Order
 
         [DisplayName("کد ملی فرستنده")]
         [StringLength(10)]
-        public string SenderNationalId { get; set; }
+        public string? SenderNationalId { get; set; }
 
         [DisplayName("آدرس فرستنده")]
-        [Required, MaxLength(500)]
-        public string SenderAddress { get; set; }
+        [ MaxLength(500)]
+        public string? SenderAddress { get; set; }
 
         // --- اطلاعات گیرنده ---
         [DisplayName("نام و نام خانوادگی گیرنده")]
@@ -75,11 +87,11 @@ namespace keyhanPostWeb.Areas.KP.Models.Entities.Order
 
         [DisplayName("کد ملی گیرنده")]
         [StringLength(10)]
-        public string ReceiverNationalId { get; set; }
+        public string? ReceiverNationalId { get; set; }
 
         [DisplayName("آدرس گیرنده")]
-        [Required, MaxLength(500)]
-        public string ReceiverAddress { get; set; }
+        [MaxLength(500)]
+        public string? ReceiverAddress { get; set; }
 
         // --- وضعیت سفارش ---
         [DisplayName("وضعیت سفارش")]

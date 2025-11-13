@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using keyhanPostWeb.Models;
 
@@ -11,9 +12,11 @@ using keyhanPostWeb.Models;
 namespace keyhanPostWeb.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251113091412_InternationalOrders")]
+    partial class InternationalOrders
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1316,7 +1319,7 @@ namespace keyhanPostWeb.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("DestinationCityId")
+                    b.Property<int>("DestinationCityId")
                         .HasColumnType("int");
 
                     b.Property<string>("DestinationCountryName")
@@ -1335,7 +1338,7 @@ namespace keyhanPostWeb.Migrations
                     b.Property<int>("OrderType")
                         .HasColumnType("int");
 
-                    b.Property<int?>("OriginCityId")
+                    b.Property<int>("OriginCityId")
                         .HasColumnType("int");
 
                     b.Property<string>("OriginCountryName")
@@ -1346,6 +1349,7 @@ namespace keyhanPostWeb.Migrations
                         .HasColumnType("smallint");
 
                     b.Property<string>("ReceiverAddress")
+                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
@@ -1355,6 +1359,7 @@ namespace keyhanPostWeb.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("ReceiverNationalId")
+                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
@@ -1364,6 +1369,7 @@ namespace keyhanPostWeb.Migrations
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("SenderAddress")
+                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
@@ -1373,6 +1379,7 @@ namespace keyhanPostWeb.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("SenderNationalId")
+                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
