@@ -1,5 +1,7 @@
 ﻿
-
+.modal-backdrop.show{
+    z-index:-1;
+}
 .hover-scale {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
