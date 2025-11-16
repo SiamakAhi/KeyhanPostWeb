@@ -1,28 +1,27 @@
 ﻿@using keyhanPostWeb.GeneralViewModels.RepDto
 @model VmRepresentativeRequest
 
-<div class="row">
-    <div class="col col-md-4 col-md-offset-1 col-md-5 jobrequest_right">
-        <div class="jobrequest_right-content">
-            <div class="section-title">
-                <h3>مشخصات متقاضی</h3>
-            </div>
-            <div class="details">
-                <ul>
-                    <li><label>شماره درخواست</label><span class="trackingCode">@Model.Details.TrackingNumber</span></li>
-                    <li><label>نام</label><span>@Model.Details.ApplicantName</span></li>
-                    <li><label>نوع</label><span>@Model.Details.EntityType</span></li>
-                    <li><label>شماره ملی</label><span>@Model.Details.NationalId</span></li>
-                    <li><label>شماره همراه</label><span>@Model.Details.MobileNumber</span></li>
-                    <li><label>پست الکترونیک</label><span>@Model.Details.Email</span></li>
-                    <li><label>میزان تحصیلات</label><span>@Model.Details.EducationDegree</span></li>
-                    <li><label>آدرس</label><span>@Model.Details.Address</span></li>
-                    <li><label>نحوه آشنایی با کیهان پست</label><span>@Model.Details.Introduction</span></li>
-                </ul>
-            </div>
+
+<div class="col col-md-4 col-md-offset-1 col-md-5 jobrequest_right">
+    <div class="jobrequest_right-content">
+        <div class="section-title">
+            <h3>مشخصات متقاضی</h3>
+        </div>
+        <div class="details">
+            <ul>
+                <li><label>شماره درخواست</label><span class="trackingCode">@Model.Details.TrackingNumber</span></li>
+                <li><label>نام</label><span>@Model.Details.ApplicantName</span></li>
+                <li><label>نوع</label><span>@Model.Details.EntityType</span></li>
+                <li><label>شماره ملی</label><span>@Model.Details.NationalId</span></li>
+                <li><label>شماره همراه</label><span>@Model.Details.MobileNumber</span></li>
+                <li><label>پست الکترونیک</label><span>@Model.Details.Email</span></li>
+                <li><label>میزان تحصیلات</label><span>@Model.Details.EducationDegree</span></li>
+                <li><label>آدرس</label><span>@Model.Details.Address</span></li>
+                <li><label>نحوه آشنایی با کیهان پست</label><span>@Model.Details.Introduction</span></li>
+            </ul>
         </div>
     </div>
-
+</div>
     <div class="max-w-5xl mx-auto bg-white p-10 rounded-xl shadow-md">
         <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">
             مرحله 2 - جزئیات درخواست
@@ -103,12 +102,10 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary">مرحله بعد</button>
+        <button type="submit" class="btn btn-primary accAjaxSubmit">مرحله بعد</button>
         </form>
     </div>
 
 
-
-      
-    </div>
-</div> <!-- end row -->
+<script src="~/js/quine.js"></script>
+<script src="~/js/branch.js"></script>

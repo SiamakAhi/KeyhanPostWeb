@@ -242,6 +242,7 @@ namespace keyhanPostWeb.Areas.KP.KPServices
                     o.PackageTypeId,
                     o.CreatedAt,
                     o.TrackingCode,
+                    
                 })
                 .ToListAsync();
 
@@ -253,7 +254,8 @@ namespace keyhanPostWeb.Areas.KP.KPServices
                 ReceiverPhone = o.ReceiverPhone,
                 ActualWeight = o.ActualWeight,
                 TrackingCode = o.TrackingCode,
-
+                OriginCountryName= o.OriginCountryName,
+                DestinationCountryName= o.DestinationCountryName,
                
 
                 // 🔹 تبدیل تاریخ میلادی به شمسی

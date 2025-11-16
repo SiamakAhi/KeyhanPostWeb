@@ -39,7 +39,7 @@
                     <a class="nav-link text-white" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a asp-action="Index" asp-controller="Home" asp-area="" class="nav-link text-white">خانه</a>
+                    <a asp-action="KPIndex" asp-controller="Home" asp-area="" class="nav-link text-white">خانه</a>
                 </li>
             </ul>
         </nav>
@@ -58,7 +58,7 @@
                     <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">
                         @if (User.IsInRole("Customer"))
                         {
-                                <li class="nav-item">
+                               @*  <li class="nav-item">
                                     <a asp-action="ClientOrders" asp-controller="Club" asp-area="" class="nav-link ">
                                         <i class="fas fa-circle-thin nav-icon"></i>
                                         <p>سفارش های جاری</p>
@@ -69,56 +69,9 @@
                                         <i class="fas fa-circle-thin nav-icon"></i>
                                         <p>آرشیو سفارشات</p>
                                     </a>
-                                </li>
-                                <li class="nav-item has-treeview">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-bar"></i>
-                                        <p>
-                                            ارزیابی
-                                            <i class="right fas fa-angle-left"></i>
-                                        </p>
-                                    </a>
-                                    <ul class="nav nav-treeview">
-                                        <li class="nav-item">
-                                        <a asp-action="AssessmentSlideBar" asp-controller="Club" asp-area="" class="nav-link">
-                                                <i class="far fa-circle-thin nav-icon"></i>
-                                                <p>فرم ارزیابی فیزیکی</p>
-                                            </a>
-                                        </li>
-
-                                        <li class="nav-item">
-                                        <a asp-action="NutritionSlideBar" asp-controller="Club" asp-area="" class="nav-link">
-                                                <i class="far fa-circle-thin nav-icon"></i>
-                                                <p>فرم ارزیابی تغذیه</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a asp-action="PARQ" asp-controller="Club" asp-area="" class="nav-link">
-                                                <i class="far fa-circle-thin nav-icon"></i>
-                                                <p>فرم ارزیابی سلامت</p>
-                                            </a>
-                                        </li>
-
-                                    </ul>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link ">
-                                        <i class="fas fa-circle-thin nav-icon"></i>
-                                        <p>تراکنش های مالی</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link ">
-                                        <i class="fas fa-circle-thin nav-icon"></i>
-                                        <p>اطلاعات حساب</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link ">
-                                        <i class="fas fa-circle-thin nav-icon"></i>
-                                        <p>مرکز پیام</p>
-                                    </a>
-                                </li>
+                                </li> *@
+                               
+                           
                         }
 
                         @if (User.IsInRole("Manager") || User.IsInRole("Admin"))
@@ -138,12 +91,7 @@
                                                 <p>صفحه اصلی (خانه)</p>
                                             </a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a asp-action="CompanyInfo" asp-controller="ContentManager" asp-area="CMS" class="nav-link">
-                                                <i class="far fa-circle-thin nav-icon"></i>
-                                                <p>مشخصات شرکت</p>
-                                            </a>
-                                        </li>
+                                        
                                     </ul>
                                 </li>
                                 <li class="nav-item has-treeview">
@@ -182,6 +130,31 @@
 
                                     </ul>
                                 </li>
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-newspaper"></i>
+                                    <p>
+                                        سفارشات
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a asp-action="GetOrders" asp-controller="Orders" asp-area="" class="nav-link">
+                                            <i class="fas fa-circle-thin nav-icon"></i>
+                                            <p>سفارشات داخلی</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-action="GetAllInternationalOrders" asp-controller="Orders" asp-area="" class="nav-link">
+                                            <i class="fas fa-circle-thin nav-icon"></i>
+                                            <p>سفارشات بین المللی</p>
+                                        </a>
+                                    </li>
+                                  
+
+                                </ul>
+                            </li>
                                 
                             @* <li class="nav-item has-treeview menu-open">
                             <a href="#" class="nav-link">

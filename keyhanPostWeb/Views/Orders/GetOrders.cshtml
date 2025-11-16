@@ -3,6 +3,8 @@
 @{
     ViewData["Title"] = "لیست سفارش های داخلی";
     var cities = ViewBag.Cities as SelectList;
+    Layout = "_adminPanelLayout";
+
 }
 <style>
     .orders-container {
@@ -62,7 +64,7 @@
 </style>
 
 <div class="orders-container fade-in">
-    <div class="orders-title">سفارشات</div>
+    <div class="orders-title">لیست سفارش های داخلی</div>
 
     <table class="custom-table">
         <thead>

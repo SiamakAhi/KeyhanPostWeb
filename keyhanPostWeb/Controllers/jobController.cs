@@ -63,8 +63,8 @@ namespace keyhanPostWeb.Controllers
                     result.returnUrl = Request.Headers["Referer"].ToString();
                     result.updateType = 1;
 
-                    string jsonResult = JsonConvert.SerializeObject(result);
-                    return Json(jsonResult);
+                   
+                    return Json(result);
                 }
 
             }
@@ -79,9 +79,10 @@ namespace keyhanPostWeb.Controllers
 
             result.Success = false;
             result.ShowMessage = true;
+            
 
-            string json_Result = JsonConvert.SerializeObject(result);
-            return Json(json_Result);
+           
+            return Json(result);
 
         }
 

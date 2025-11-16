@@ -120,13 +120,14 @@ namespace keyhanPostWeb.Controllers
           
             return Json(result);
         }
-
+        [Authorize]
         public IActionResult OrderSummary(OrderCreateViewModel model)
         {
             return View(model);
         }
        
         [HttpGet]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<IActionResult> GetOrders([FromQuery] OrderFilterDto? filter)
         {
             var orders = await _orderService.GetAllOrdersAsync(filter);
@@ -140,6 +141,7 @@ namespace keyhanPostWeb.Controllers
         }
         
         [HttpGet]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<IActionResult> GetAllInternationalOrders([FromQuery] OrderFilterDto? filter)
         {
             var orders = await _orderService.GetAllInternationalOrders(filter);
@@ -152,7 +154,7 @@ namespace keyhanPostWeb.Controllers
             return View(vm);
         }
         [Authorize]
-        [HttpGet]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<IActionResult> NewOrders()
         {
             var filter = new OrderFilterDto { StatusId = 1 };
@@ -166,7 +168,7 @@ namespace keyhanPostWeb.Controllers
             return View( vm);
         }
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<IActionResult> CurrentOrders()
         {
             var filter = new OrderFilterDto { StatusId = 2 };
@@ -181,7 +183,7 @@ namespace keyhanPostWeb.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<IActionResult> ArchivedOrders()
         {
             var filter = new OrderFilterDto { StatusId = 3 };
@@ -196,7 +198,7 @@ namespace keyhanPostWeb.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<IActionResult> CanceledOrders()
         {
             var filter = new OrderFilterDto { StatusId = 4 };

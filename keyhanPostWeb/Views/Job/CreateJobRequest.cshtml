@@ -7,16 +7,7 @@
      Layout = "_Layout";
 }
 
-<div class="container-fluid bg-primary py-5" >
-    <div class="row py-5">
-        <div class="col-12 pt-lg-5 mt-lg-5 text-center">
-            <h1 class="display-4 text-white animated zoomIn">همکاری با کیهان پست</h1>
-            <a asp-action="KPIndex" asp-controller="Home" class="h5 text-white">صفحه اصلی</a>
-            <i class="far fa-circle text-white px-2"></i>
-            <span class="h5 text-white">ثبت درخواست نمایندگی</span>
-        </div>
-    </div>
-</div>
+
 
 <section class="job-section section-padding parallax">
     <div class="container">
@@ -41,103 +32,5 @@
     </div> <!-- end container -->
 
 </section>
-<script>
-    function ShowLoading() {
-        $("#loading").show();
-    }
-
-    function HideLoading() {
-        $("#loading").hide();
-    }
-
-    // --- Step 1 ---
-    $(document).on("submit", "#frmStep1", function (e) {
-        e.preventDefault();
-        ShowLoading();
-
-        $.ajax({
-            url: "/Job/CreateJobRequest_step1",
-            method: "POST",
-            data: new FormData(this),
-            processData: false,
-            contentType: false,
-            success: function (res) {
-                var result = JSON.parse(res);
-
-                if (result.Success) {
-                    LoadStep2();
-                } else {
-                    Swal.fire("خطا", result.Message, "error");
-                }
-            },
-            error: function () {
-                Swal.fire("خطا", "اشکال در ارسال اطلاعات", "error");
-            },
-            complete: HideLoading
-        });
-    });
-
-    function LoadStep2() {
-        $.get("/Job/CreateJobRequest_step2", function (data) {
-            $("#requestContainer").html(data);
-        });
-    }
-
-
-    // --- Step 2 ---
-    $(document).on("submit", "#frmStep2", function (e) {
-        e.preventDefault();
-        ShowLoading();
-
-        $.ajax({
-            url: "/Job/CreateJobRequest_step2",
-            method: "POST",
-            data: new FormData(this),
-            processData: false,
-            contentType: false,
-            success: function (res) {
-                var result = JSON.parse(res);
-
-                if (result.Success) {
-                    LoadStep3();
-                } else {
-                    Swal.fire("خطا", result.Message, "error");
-                }
-            },
-            error: function () {
-                Swal.fire("خطا", "اشکال در ارسال اطلاعات", "error");
-            },
-            complete: HideLoading
-        });
-    });
-
-    function LoadStep3() {
-        $.get("/Job/CreateJobRequest_step3", function (data) {
-            $("#requestContainer").html(data);
-        });
-    }
-
-
-    // --- Step 3 (ارسال نهایی یا پایان) ---
-    $(document).on("submit", "#frmStep3", function (e) {
-        e.preventDefault();
-        ShowLoading();
-
-        $.ajax({
-            url: "/Job/SubmitJobRequest",
-            method: "POST",
-            data: new FormData(this),
-            processData: false,
-            contentType: false,
-            success: function (res) {
-                Swal.fire("موفق", "اطلاعات با موفقیت ثبت شد", "success");
-                location.reload();
-            },
-            error: function () {
-                Swal.fire("خطا", "اشکال در ارسال اطلاعات", "error");
-            },
-            complete: HideLoading
-        });
-    });
-</script>
-
+<script src="~/js/quine.js"></script>
+<script src="~/js/branch.js"></script>

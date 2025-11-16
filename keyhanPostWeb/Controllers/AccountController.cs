@@ -170,7 +170,7 @@ namespace QuineWebApp.Controllers
             }
 
             await _signIn.SignOutAsync();
-            return RedirectToAction("Index", "Home", new { Area = "" });
+            return RedirectToAction("KPIndex", "Home", new { Area = "" });
         }
 
         [HttpGet]
