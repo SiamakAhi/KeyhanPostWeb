@@ -1,0 +1,60 @@
+﻿@using keyhanPostWeb.GeneralViewModels.RepDto
+@model List<RepApplicantLiteDto>
+
+@{
+    ViewData["Title"] = "درخواست های نمایندگی";
+    Layout = "_adminPanelLayout";
+}
+
+<link rel="stylesheet" href="~/css/list.css" />
+
+<div class="orders-container fade-in">
+    <div class="orders-title">درخواست های نمایندگی</div>
+
+    <table class="custom-table">
+        <thead>
+            <tr>
+                <th>ردیف</th>
+                <th>کد پیگیری</th>
+                <th>نام متقاضی</th>
+                <th>شماره همراه</th>
+                <th>شهر</th>
+                <th>نوع نمایندگی</th>
+                <th>وضعیت</th>
+                <th>تاریخ ثبت</th>
+                
+                <th>جزئیات</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @{
+                int rowNumber = 1;
+            }
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@rowNumber</td>
+                     <td>@item.TrackingCode</td>
+                    <td>@item.ApplicantName</td>
+                    <td>@item.MobileNumber</td>
+                    <td>@item.City</td>
+                    <td>@item.AgencyType</td>
+                    <td>@item.RequestStatus</td>
+                    <td>@item.RequestDate</td>
+                    <td>
+                        <a asp-action="GetJobDetailRequest"
+                           asp-controller="job"
+                           asp-route-username="@item.username"
+                           class="btn btn-primary btn-sm">
+                            مشاهده
+                        </a>
+                    </td>
+                </tr>
+
+                rowNumber++;
+            }
+        </tbody>
+    </table>
+</div>

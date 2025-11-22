@@ -1,4 +1,5 @@
 ﻿@using keyhanPostWeb.Areas.CMS.Dtos
+@using keyhanPostWeb.GeneralService
 @model VmSiteContent
 @{
 	var blog = Model.AllSection.Where(n => n.SectionID == 9).FirstOrDefault();

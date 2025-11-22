@@ -2,12 +2,15 @@
 using keyhanPostWeb;
 using keyhanPostWeb.Areas.CMS.CmsInterfaces;
 using keyhanPostWeb.Areas.CMS.Dtos;
+using keyhanPostWeb.Areas.KP.Dto;
 using keyhanPostWeb.Areas.KP.KPInterfaces;
 using keyhanPostWeb.Areas.KP.KPservices;
+using keyhanPostWeb.Areas.KP.KPServices;
 using keyhanPostWeb.GeneralService;
 using keyhanPostWeb.GeneralViewModels.RepDto;
 using keyhanPostWeb.Models.Entities.Identity;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -63,8 +66,8 @@ namespace keyhanPostWeb.Controllers
                     result.returnUrl = Request.Headers["Referer"].ToString();
                     result.updateType = 1;
 
-                   
-                    return Json(result);
+                    string jsonResult = JsonConvert.SerializeObject(result);
+                    return Json(jsonResult);
                 }
 
             }
@@ -79,17 +82,26 @@ namespace keyhanPostWeb.Controllers
 
             result.Success = false;
             result.ShowMessage = true;
-            
 
-           
-            return Json(result);
+            string json_Result = JsonConvert.SerializeObject(result);
+            return Json(json_Result);
+
 
         }
 
         [HttpGet]
         public async Task<IActionResult> CreateJobRequest_step2()
         {
+            ViewBag.JobRequestType = await _jobService.GetJobRequestType();
+            ViewBag.Cities = await _jobService.SelectList_Cities();
+            ViewBag.AgencyTypes = await _jobService.GetAgencyTypesAsync();
+            ViewBag.Experiences = await _jobService.GetExperiencesAsync();
+            ViewBag.VehicleAvailabilities = await _jobService.GetVehicleTypesAsync();
+            ViewBag.VehicleType = await _jobService.GetVehicleTypesAsync();
+            ViewBag.PropertyTypes = await _jobService.GetPropertyTypesAsync();
+
             var model = new VmRepresentativeRequest();
+
             model.Details = await _jobService.GetRequestDetailsByUserAsync(User.Identity.Name);
             return PartialView("_CreateJobRequest_step2", model);
         }
@@ -109,8 +121,8 @@ namespace keyhanPostWeb.Controllers
                     {
                         var requestData = await _jobService.GetRequestDetailsByUserAsync(User.Identity.Name);
                         List<string> cc = new List<string>();
-                        cc.Add("keyhanpost50@gmail.com");
-                        await EmailService.SendRepApplicantDetails(requestData, "vazinkia@gmail.com", cc);
+                        //cc.Add("keyhanpost50@gmail.com");
+                        //await EmailService.SendRepApplicantDetails(requestData, "vazinkia@gmail.com", cc);
                     }
                     catch (System.Exception x)
                     {
@@ -151,6 +163,7 @@ namespace keyhanPostWeb.Controllers
 
         [HttpGet]
         public async Task<IActionResult> CreateJobRequest()
+
         {
 
             VmSiteContent model = new VmSiteContent();
@@ -189,7 +202,7 @@ namespace keyhanPostWeb.Controllers
 
             return View(model);
         }
-   
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SubmitJobRequest(RepApplicantCreateDto dto)
@@ -253,6 +266,39 @@ namespace keyhanPostWeb.Controllers
 
             TempData["SuccessMessage"] = result.Message;
             return RedirectToAction("GetJobRequestDetails", new { applicantId = dto.ApplicantId });
+        }
+        [HttpGet]
+        [Authorize(Roles = "Admin,Manager")]
+        public async Task<IActionResult> GetAllJobRequest()
+        {
+            var model = await _jobService.GetAllRequestsAsync();
+            return View(model);
+        }
+        [HttpGet]
+        [Authorize(Roles = "Admin,Manager")]
+        public async Task<IActionResult> GetJobDetailRequest(string username)
+        {
+            ViewBag.RequestStatus = await _jobService.GetRequestStatusesAsync();
+           
+            var model = await _jobService.GetRequestDetailsByUserAsync(username);
+            return View(model);
+        }
+        [HttpPost]
+        [Authorize(Roles = "Admin,Manager")]
+        public async Task<IActionResult> UpdateRequestStatus(RepApplicantStatusUpdateDto dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json(new { success = false, message = "داده‌های ورودی نامعتبر است." });
+            }
+
+            var result = await _jobService.UpdateRequestStatusAsync(dto);
+
+            return Json(new
+            {
+                success = result.Success,
+                message = result.Message
+            });
         }
     }
 }

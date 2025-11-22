@@ -1,0 +1,265 @@
+﻿@using keyhanPostWeb.GeneralService
+@using keyhanPostWeb.GeneralViewModels.RepDto
+@model RepApplicantDetailDto
+
+@{
+    ViewData["Title"] = "جزییات درخواست نمایندگی";
+    Layout = "_adminPanelLayout";
+}
+
+<style>
+
+    .rtl {
+        direction: rtl;
+        text-align: right;
+      
+    }
+
+    .applicant-container {
+        max-width: 1200px;
+        margin: 40px auto;
+        background: #fff;
+        padding: 30px 40px;
+        border-radius: 18px;
+        box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+    }
+
+    .section-title {
+        font-size: 22px;
+        font-weight: bold;
+        color: #003d7a;
+        margin: 25px 0 15px;
+        border-right: 4px solid #003d7a;
+        padding-right: 12px;
+    }
+
+    /* GRID 3 COLUMN */
+    .grid-box {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px 25px;
+        margin-top: 20px;
+    }
+
+    .item {
+        background: #f8f9fc;
+        border: 1px solid #e5e6eb;
+        padding: 14px 18px;
+        border-radius: 12px;
+        transition: 0.2s ease;
+    }
+
+    .item:hover {
+        background: #eef3ff;
+        border-color: #c8d8ff;
+    }
+
+    .item label {
+        font-size: 14px;
+        font-weight: 600;
+        color: #666;
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    .item span {
+        font-size: 16px;
+        font-weight: 700;
+        color: #222;
+    }
+
+    .item.wide {
+        grid-column: span 3;
+    }
+
+    /* BUTTON */
+    .btn-change-status {
+        background: #0066d4;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 10px;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 30px;
+        transition: .2s;
+    }
+
+    .btn-change-status:hover {
+        background: #004fa4;
+    }
+
+    /* MODAL */
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,.5);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+
+    .modal-box {
+        background: white;
+        padding: 25px;
+        width: 420px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,.2);
+    }
+
+    .modal-input,
+    .modal-textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+    }
+
+    .modal-actions {
+        text-align: left;
+    }
+
+    .btn-save {
+        background: #008131;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-cancel {
+        background: #999;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        margin-left: 5px;
+    }
+
+    /* RESPONSIVE */
+    media (max-width: 900px) {
+        .grid-box {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    media (max-width: 600px) {
+        .grid-box {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+
+<div class="applicant-container rtl">
+
+    <h2 class="section-title">مشخصات متقاضی</h2>
+
+    <div class="grid-box">
+
+        <div class="item"><label>کد پیگیری</label><span>@Model.TrackingNumber</span></div>
+        <div class="item"><label>نام متقاضی</label><span>@Model.ApplicantName</span></div>
+        <div class="item"><label>نام کاربری</label><span>@Model.Username</span></div>
+        <div class="item"><label>شماره موبایل</label><span>@Model.MobileNumber</span></div>
+        <div class="item"><label>ایمیل</label><span>@Model.Email</span></div>
+        <div class="item"><label>شناسه ملی</label><span>@Model.NationalId</span></div>
+        <div class="item"><label>تحصیلات</label><span>@Model.EducationDegree</span></div>
+        <div class="item"><label>نوع شخصیت</label><span>@Model.EntityType</span></div>
+        <div class="item"><label>نحوه آشنایی</label><span>@Model.Introduction</span></div>
+        <div class="item"><label>نوع نمایندگی</label><span>@Model.AgencyType</span></div>
+        <div class="item"><label>وضعیت درخواست</label><span>@Model.RequestStatus</span></div>
+        <div class="item"><label>سابقه فعالیت</label><span>@Model.Experience</span></div>
+        <div class="item"><label>وضعیت وسیله نقلیه</label><span>@Model.VehicleAvailability</span></div>
+        <div class="item"><label>نوع خودرو</label><span>@Model.VehicleType</span></div>
+        <div class="item"><label>شهر</label><span>@Model.CityName</span></div>
+
+        <div class="item wide"><label>آدرس محل نمایندگی</label><span>@Model.BranchAddress</span></div>
+        <div class="item wide"><label>سایر توضیحات</label><span>@Model.OtherDesc</span></div>
+
+    </div>
+    <button class="btn-change-status" onclick="openStatusModal()">
+    تغییر وضعیت درخواست
+    </button>
+   <div class="modal-overlay" id="statusModal">
+    <div class="modal-box rtl">
+
+        <h3 style="margin-bottom: 15px;">تغییر وضعیت درخواست</h3>
+
+        <label>وضعیت جدید</label>
+        <select id="NewStatus" class="modal-input">
+            <option value="">انتخاب کنید...</option>
+            @foreach (var item in (IEnumerable<SelectListItem>)ViewBag.RequestStatus)
+            {
+                <option value="@item.Value">@item.Text</option>
+            }
+        </select>
+
+        <label>یادداشت</label>
+        <textarea id="EvaluationNote" class="modal-textarea" rows="4"></textarea>
+
+        <div class="modal-actions">
+            <button class="btn-save" onclick="saveStatus()">ذخیره</button>
+            <button class="btn-cancel" onclick="closeStatusModal()">انصراف</button>
+        </div>
+    </div>
+</div>
+
+
+</div>
+<script>
+
+    function openStatusModal() {
+        document.getElementById("statusModal").style.display = "flex";
+    }
+
+    function closeStatusModal() {
+        document.getElementById("statusModal").style.display = "none";
+    }
+
+    function saveStatus() {
+
+    var dto = {
+        ApplicantId: "@Model.Id",
+        NewStatusId: $("#NewStatus").val(),
+        EvaluationNote: $("#EvaluationNote").val().trim()
+    };
+
+    if (!dto.NewStatusId) {
+        alert("لطفاً وضعیت جدید را انتخاب کنید.");
+        return;
+    }
+
+    if (dto.EvaluationNote === "") {
+        alert("لطفاً یادداشت را وارد کنید.");
+        return;
+    }
+
+    $.ajax({
+        url: '/Job/UpdateRequestStatus',
+        type: 'POST',
+        data: dto,
+        success: function (res) {
+            if (res.success) {
+                alert(res.message);
+                location.reload();
+            } else {
+                alert(res.message);
+            }
+        },
+        error: function () {
+            alert("خطا در ارسال اطلاعات");
+        }
+    });
+    }
+
+</script>
+
+
+

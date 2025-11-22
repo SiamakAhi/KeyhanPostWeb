@@ -29,11 +29,14 @@ namespace keyhanPostWeb.Controllers
         [HttpGet]
         public async  Task< IActionResult> KpCreateOrder()
         {
-            var cities = await _representativeService.SelectList_Cities();
+            var allowedCityIds = new List<int> { 25, 57, 65, 89 };
+            var originCities = await _representativeService.SelectList_Cities_FilteredByIds(allowedCityIds);
 
-            // ساخت ViewModel
+            var cities = await _representativeService.SelectList_Cities();
+     
             var order = new OrderCreateViewModel
             {
+                OriginCities= originCities,
                 Cities = cities
             };
 
@@ -51,10 +54,12 @@ namespace keyhanPostWeb.Controllers
         {
             var contries =  _representativeService.SelectList_Countries();
 
+            var cities = await _representativeService.SelectList_Cities();
             // ساخت ViewModel
             var order = new OrderCreateViewModel
             {
-                contries = contries
+                contries = contries,
+                Cities=cities
             };
 
             // مدل کلی صفحه (VmSiteContent)
@@ -97,6 +102,9 @@ namespace keyhanPostWeb.Controllers
         public async Task<IActionResult> KpCreateInternationalOrder(VmSiteContent model)
         {
             clsResult result = new clsResult();
+            model.OrderCreate.ReceiverName = "گیرنده نامشخص";
+            model.OrderCreate.ReceiverPhone = model.OrderCreate.SenderPhone;
+
             var ordervm = model.OrderCreate;
 
             try

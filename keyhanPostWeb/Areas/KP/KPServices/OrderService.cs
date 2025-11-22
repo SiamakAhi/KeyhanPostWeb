@@ -6,6 +6,7 @@ using keyhanPostWeb.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace keyhanPostWeb.Areas.KP.KPServices
 {
     public class OrderService : IOrderService
@@ -180,7 +181,7 @@ namespace keyhanPostWeb.Areas.KP.KPServices
                 : "نامشخص",
 
                 // 🔹 تبدیل تاریخ میلادی به شمسی
-                CreatedAt = ConvertToPersianDate(o.CreatedAt),
+                CreatedAt = keyhanPostWeb.GeneralService.Extension.LatinToPersian(o.CreatedAt),
 
                 // 🔹 نمایش نوع پکیج با متن فارسی
                 PackageTypeName = o.PackageTypeId switch
@@ -256,10 +257,12 @@ namespace keyhanPostWeb.Areas.KP.KPServices
                 TrackingCode = o.TrackingCode,
                 OriginCountryName= o.OriginCountryName,
                 DestinationCountryName= o.DestinationCountryName,
-               
+
 
                 // 🔹 تبدیل تاریخ میلادی به شمسی
-                CreatedAt = ConvertToPersianDate(o.CreatedAt),
+                CreatedAt = o.CreatedAt == null
+                ? "ثبت نشده"
+                : (keyhanPostWeb.GeneralService.Extension.LatinToPersian(o.CreatedAt)).ToString(),
 
                 // 🔹 نمایش نوع پکیج با متن فارسی
                 PackageTypeName = o.PackageTypeId switch
@@ -276,11 +279,7 @@ namespace keyhanPostWeb.Areas.KP.KPServices
 
             return result;
         }
-        private string ConvertToPersianDate(DateTime date)
-        {
-            var pc = new System.Globalization.PersianCalendar();
-            return $"{pc.GetYear(date):0000}/{pc.GetMonth(date):00}/{pc.GetDayOfMonth(date):00}";
-        }
+       
     }
 }
 

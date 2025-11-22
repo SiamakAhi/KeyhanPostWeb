@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using keyhanPostWeb.Areas.KP.KPServices;
 
 namespace keyhanPostWeb.Areas.KP.KPservices
 {
@@ -386,11 +387,39 @@ namespace keyhanPostWeb.Areas.KP.KPservices
             }
             return new SelectList(items, "Value", "Text", "Group.Name", "Group.Name");
         }
-       public SelectList SelectList_Countries()
+        public async Task<SelectList> SelectList_Cities_FilteredByIds(List<int> cityIds)
+        {
+            var cities = await _db.Cities
+                .Include(n => n.Province)
+                .Where(n => cityIds.Contains(n.Id))  // فیلتر بر اساس آیدی
+                .Select(n => new { id = n.Id, cityName = n.CityName, provinceName = n.Province.ProvinceName })
+                .ToListAsync();
+
+            var groupedCities = cities.GroupBy(n => n.provinceName)
+                .Select(group => new SelectListGroup() { Name = group.Key })
+                .ToList();
+
+            List<SelectListItem> items = new List<SelectListItem>();
+            foreach (var group in groupedCities)
+            {
+                var groupItems = cities.Where(c => c.provinceName == group.Name)
+                    .Select(c => new SelectListItem()
+                    {
+                        Text = c.cityName,
+                        Value = c.id.ToString(),
+                        Group = group
+                    })
+                    .ToList();
+                items.AddRange(groupItems);
+            }
+            return new SelectList(items, "Value", "Text", "Group.Name", "Group.Name");
+        }
+
+        public SelectList SelectList_Countries()
 {
             var items = new List<SelectListItem>
 {
-    new SelectListItem { Value = "تهران - فرودگاه امام خمینی", Text = "تهران - فرودگاه امام خمینی" },
+    new SelectListItem { Value = "ایران-تهران", Text = "ایران-تهران" },
     new SelectListItem { Value = "چین", Text = "چین" },
     new SelectListItem { Value = "امارات", Text = "امارات" },
     new SelectListItem { Value = "ترکیه", Text = "ترکیه" },
@@ -513,5 +542,30 @@ namespace keyhanPostWeb.Areas.KP.KPservices
             return new string(Enumerable.Repeat(chars, 6)
                 .Select(s => s[random.Next(s.Length)]).ToArray());
         }
+        public async Task<List<RepApplicantLiteDto>> GetAllRequestsAsync()
+        {
+            return await _db.RepApplicants
+        .OrderByDescending(a => a.RequestDate)
+        .Select(a => new RepApplicantLiteDto
+        {
+            ApplicantName = a.ApplicantName,
+            MobileNumber = a.MobileNumber,
+            username=a.Username,
+            TrackingCode=a.TrackingCode,
+            City = a.City.Province.ProvinceName + " - " + a.City.CityName,
+
+            AgencyType = a.AgencyType.AgencyTitle,
+
+            RequestStatus = a.RequestStatus.StatusTitle,
+
+            RequestDate = a.RequestDate == null
+                ? "ثبت نشده"
+                : (keyhanPostWeb.GeneralService.Extension.LatinToPersian(a.RequestDate.Value)).ToString(),
+
+
+        })
+        .ToListAsync();
+        }
+
     }
 }

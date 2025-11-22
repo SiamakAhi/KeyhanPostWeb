@@ -1,51 +1,102 @@
-﻿@using keyhanPostWeb.GeneralViewModels.RepDto
+﻿@using keyhanPostWeb.GeneralService
+@using keyhanPostWeb.GeneralViewModels.RepDto
 @model VmRepresentativeRequest
 
-<<div class="max-w-5xl mx-auto bg-white p-10 rounded-xl shadow-md">
-    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">
-        مرحله 3 - تایید نهایی
-    </h2>
+<div class="max-w-5xl mx-auto bg-white p-8 md:p-10 rounded-xl shadow-lg space-y-10">
 
-    <div class="space-y-4">
+   
+    <!-- کارت اطلاعات کلّی درخواست -->
+    <div class="border rounded-xl p-6 shadow-sm bg-gray-50">
+        <h3 class="text-xl font-semibold text-gray-700 mb-4">اطلاعات درخواست</h3>
 
-        <div class="flex items-center justify-between border-b pb-2 text-gray-700">
-            <span>شماره درخواست</span>
-            <span class="font-semibold">@Model.Details.TrackingNumber</span>
-        </div>
+        <div class="space-y-3">
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
-            <div class="border p-4 rounded-lg">
-                <p><strong>نام: </strong>@Model.Details.ApplicantName</p>
-                <p><strong>نوع: </strong>@Model.Details.EntityType</p>
-                <p><strong>ایمیل: </strong>@Model.Details.Email</p>
-                <p><strong>شماره همراه: </strong>@Model.Details.MobileNumber</p>
+            <div class="flex justify-between text-gray-700 border-b pb-2">
+                <span>شماره درخواست:</span>
+                <span class="font-semibold">@Model.Details.TrackingNumber</span>
             </div>
 
-            <div class="border p-4 rounded-lg">
-                <p><strong>شهر فعالیت: </strong>@Model.Details.CityName</p>
-                <p><strong>نوع نمایندگی: </strong>@Model.Details.AgencyType</p>
-                <p><strong>وضعیت وسیله نقلیه: </strong>@Model.Details.VehicleAvailability</p>
-                <p><strong>وضعیت ملک: </strong>@Model.Details.PropertyType</p>
+            <div class="flex justify-between text-gray-700 border-b pb-2">
+                <span>تاریخ ثبت:</span>
+                <span>@Model.Details.RequestDate.LatinToPersian()</span>
             </div>
-        </div>
 
-        <div>
-            <label class="block text-gray-700 font-medium mb-2">سایر توضیحات</label>
-            <textarea disabled rows="3"
-                      class="w-full p-3 border border-gray-300 rounded-lg">@Model.Details.OtherDesc</textarea>
-        </div>
+            <div class="flex justify-between text-gray-700">
+                <span>وضعیت فعلی درخواست:</span>
+                <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-lg">
+                    @Model.Details.RequestStatus
+                </span>
+            </div>
 
-        <form asp-action="CreateJobRequest_step3" method="post" class="pt-6 text-center">
-            <input type="hidden" asp-for="Details.Id" />
-            <button type="submit"
-                    class="btn btn-primary accAjaxSubmit">
-                ثبت نهایی درخواست
-            </button>
-        </form>
+        </div>
     </div>
+
+    <!-- اطلاعات متقاضی + اطلاعات نمایندگی -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- کارت اطلاعات متقاضی -->
+        <div class="border rounded-xl p-6 shadow-sm bg-gray-50">
+            <h3 class="text-lg font-semibold text-gray-700 mb-4">اطلاعات متقاضی</h3>
+
+            <ul class="space-y-2 text-gray-700">
+                <li><strong>نام: </strong>@Model.Details.ApplicantName</li>
+                <li><strong>نوع شخصیت: </strong>@Model.Details.EntityType</li>
+                <li><strong>ایمیل: </strong>@Model.Details.Email</li>
+                <li><strong>شماره همراه: </strong>@Model.Details.MobileNumber</li>
+            </ul>
+        </div>
+
+        <!-- کارت اطلاعات نمایندگی -->
+        <div class="border rounded-xl p-6 shadow-sm bg-gray-50">
+            <h3 class="text-lg font-semibold text-gray-700 mb-4">جزئیات درخواست نمایندگی</h3>
+
+            <ul class="space-y-2 text-gray-700">
+                <li><strong>شهر فعالیت: </strong>@Model.Details.CityName</li>
+                <li><strong>نوع نمایندگی: </strong>@Model.Details.AgencyType</li>
+                <li><strong>وسیله نقلیه: </strong>@Model.Details.VehicleAvailability</li>
+                <li><strong>وضعیت ملک: </strong>@Model.Details.PropertyType</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- بخش توضیحات -->
+    <div>
+        <label class="block text-gray-700 font-medium mb-2">سایر توضیحات</label>
+        <textarea disabled rows="3"
+                  class="w-full p-3 border border-gray-300 rounded-lg bg-gray-100">
+            @Model.Details.OtherDesc
+        </textarea>
+    </div>
+
+    <!-- فرم ثبت نهایی -->
+    @* <form id="frmStep3" asp-action="CreateJobRequest_step3" method="post" class="pt-2 text-center space-y-4">
+        <input type="hidden" asp-for="Details.Id" />
+        <div id="formMessage"></div>
+
+        <button type="submit"
+                class="accAjaxSubmit bg-blue-600 hover:bg-blue-700 transition text-white px-6 py-3 rounded-xl shadow-md">
+            ثبت نهایی درخواست
+        </button>
+    </form> *@
+
+    @* <div class="border rounded-xl p-6 shadow-sm bg-green-50 mt-10">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">نتیجه بررسی</h3>
+
+        <p class="text-gray-700 mb-3">
+            وضعیت درخواست شما:
+            <span class="px-3 py-1 bg-green-600 text-white rounded-lg">
+                @Model.Details.RequestStatus
+            </span>
+        </p>
+
+        <div class="text-gray-800 font-medium text-lg">
+            امتیاز محاسبه شده:
+            <span class="font-bold">@Model.Details.TotalScore</span>
+        </div>
+    </div> *@
+
 </div>
+
 <script src="~/js/branch.js"></script>
-
 <script src="~/js/quine.js"></script>
-

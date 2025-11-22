@@ -16,6 +16,7 @@ namespace keyhanPostWeb.Areas.KP.KPInterfaces
         Task<bool> UserHasRequerstAsync(string userName);
         Task<clsResult> UpdateRequestStatusAsync(RepApplicantStatusUpdateDto dto);
         Task<SelectList> SelectList_Cities();
+        Task<SelectList> SelectList_Cities_FilteredByIds(List<int> cityIds);
         SelectList SelectList_Countries();
         Task<SelectList> SelectList_Introductions();
         Task<SelectList> SelectList_EducationsAsync();
@@ -28,5 +29,6 @@ namespace keyhanPostWeb.Areas.KP.KPInterfaces
         Task<SelectList> GetVehicleTypesAsync();
         Task<SelectList> GetPropertyTypesAsync();
         Task<SelectList> GetDocumentTypesAsync();
+        Task<List<RepApplicantLiteDto>> GetAllRequestsAsync();
     }
 }

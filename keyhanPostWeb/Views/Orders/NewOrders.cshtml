@@ -4,62 +4,7 @@
     ViewData["Title"] = "سفارش های جدید";
     var cities = ViewBag.Cities as SelectList;
 }
-<style>
-    .orders-container {
-        max-width: 1200px;
-        margin: 50px auto;
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        direction: rtl;
-        text-align: center;
-    }
-
-    .orders-title {
-        font-size: 28px;
-        font-weight: bold;
-        color: #333;
-        margin-bottom: 25px;
-        border-bottom: 3px solid #3498db;
-        display: inline-block;
-        padding-bottom: 8px;
-    }
-
-    table.custom-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-        text-align: center;
-        font-family: Vazirmatn, sans-serif;
-    }
-
-        table.custom-table th,
-        table.custom-table td {
-            border: 1px solid #ddd;
-            padding: 10px 8px;
-        }
-
-        table.custom-table th {
-            background-color: #f3f4f6;
-            font-weight: bold;
-            color: #333;
-        }
-
-        table.custom-table tr:nth-child(even) {
-            background-color: #fafafa;
-        }
-
-        table.custom-table tr:hover {
-            background-color: #e9f7ef;
-            transition: 0.2s;
-        }
-
-    .row-number {
-        color: #555;
-        font-weight: bold;
-    }
-</style>
+<link rel="stylesheet" href="~/css/list.css" />
 
 <div class="orders-container fade-in">
     <div class="orders-title">سفارشات جدید</div>

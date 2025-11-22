@@ -7,7 +7,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 
 
-
+namespace keyhanPostWeb.GeneralService;
 public static class Extension
 {
 

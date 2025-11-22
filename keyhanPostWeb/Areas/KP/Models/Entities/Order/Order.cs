@@ -60,9 +60,11 @@ namespace keyhanPostWeb.Areas.KP.Models.Entities.Order
         public double ActualWeight { get; set; }
 
         // --- اطلاعات فرستنده ---
-        [DisplayName("نام و نام خانوادگی فرستنده")]
+        [DisplayName("نام فرستنده")]
         [Required, MaxLength(100)]
         public string SenderName { get; set; }
+
+      
 
         [DisplayName("شماره تماس فرستنده")]
         [Required, MaxLength(20)]

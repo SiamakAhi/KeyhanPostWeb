@@ -35,12 +35,16 @@ function HideLoading() {
 }
 
 // --- Step 1 ---
-$(document).on('submit', '#frmStep1', function (e) {
+
+   $(document).on('submit', '#frmStep1', function (e) {
     e.preventDefault();
     ShowLoading();
 
     let frm = $(this);
-    let submitBtn = frm.find('.accAjaxSubmit');
+    let submitBtn = frm.find('button[type="submit"]');
+    let msgDiv = $('#formMessage');
+
+    msgDiv.html(""); // پاک کردن پیام قبلی
     submitBtn.prop('disabled', true).text('در حال ارسال...');
 
     $.ajax({
@@ -51,49 +55,64 @@ $(document).on('submit', '#frmStep1', function (e) {
         processData: false,
         dataType: 'json',
         success: function (result) {
-            if (result.Success) {
-                Swal.fire({
-                    title: 'موفق',
-                    html: `<p>درخواست با موفقیت ثبت شد</p>
-                               <button id="btnContinueStep1" class="btn btn-primary mt-3">ادامه</button>`,
-                    icon: 'success',
-                    showConfirmButton: false,
-                    didOpen: () => {
-                        const btn = Swal.getPopup().querySelector('#btnContinueStep1');
-                        btn.addEventListener('click', () => {
-                            Swal.close();
-                            LoadStep2();
-                        });
-                    }
+         let jresult =  JSON.parse(result);
+          /*  alert(jresult['Message']);*/
+
+            if (jresult.Success===true) {
+                msgDiv.html(`
+                    <div class="p-4 bg-green-100 text-green-700 rounded-lg">
+                        درخواست با موفقیت ثبت شد.  
+                        <button id="btnContinueStep1" class="bg-blue-600 text-white px-4 py-2 rounded-lg ml-3">
+                            ادامه
+                        </button>
+                    </div>
+                `);
+
+                $('#btnContinueStep1').on('click', function () {
+                    LoadStep2();
                 });
+
             } else {
-                Swal.fire('خطا', result.Message, 'error');
+               
+                msgDiv.html(`
+                    <div class="p-4 bg-red-100 text-red-600 rounded-lg">
+                       ${jresult['Message']}
+                    </div>
+                `);
             }
         },
         error: function () {
-            Swal.fire('خطا', 'خطایی در ارسال رخ داد', 'error');
+            msgDiv.html(`
+                <div class="p-4 bg-red-100 text-red-600 rounded-lg">
+                    خطایی در ارسال رخ داد
+                </div>
+            `);
         },
         complete: function () {
             submitBtn.prop('disabled', false).text('مرحله بعد');
             HideLoading();
         }
     });
-});
+  });
+
+
 
 function LoadStep2() {
     ShowLoading();
-    $.get("/Job/CreateJobRequest_step2", function (data) {
-        $("#requestContainer").html(data);
+    $.get("/Job/CreateJobRequest", function (data) {
+        $(document).find("#requestContainer").html(data);
     }).always(HideLoading);
 }
 
-// --- Step 2 ---
 $(document).on('submit', '#frmStep2', function (e) {
     e.preventDefault();
     ShowLoading();
 
     let frm = $(this);
-    let submitBtn = frm.find('.accAjaxSubmit');
+    let submitBtn = frm.find('button[type="submit"]');
+    let msgDiv = $('#formMessage');
+
+    msgDiv.html(""); // پاک کردن پیام قبلی
     submitBtn.prop('disabled', true).text('در حال ارسال...');
 
     $.ajax({
@@ -104,27 +123,36 @@ $(document).on('submit', '#frmStep2', function (e) {
         processData: false,
         dataType: 'json',
         success: function (result) {
-            if (result.Success) {
-                Swal.fire({
-                    title: 'موفق',
-                    html: `<p>درخواست با موفقیت ثبت شد</p>
-                               <button id="btnContinueStep2" class="btn btn-primary mt-3">ادامه</button>`,
-                    icon: 'success',
-                    showConfirmButton: false,
-                    didOpen: () => {
-                        const btn = Swal.getPopup().querySelector('#btnContinueStep2');
-                        btn.addEventListener('click', () => {
-                            Swal.close();
-                            LoadStep3();
-                        });
-                    }
+            let jresult = JSON.parse(result);
+            if (jresult.Success === true) {
+                msgDiv.html(`
+                    <div class="p-4 bg-green-100 text-green-700 rounded-lg">
+                        درخواست با موفقیت ثبت شد.  
+                        <button id="btnContinueStep2" class="bg-blue-600 text-white px-4 py-2 rounded-lg ml-3">
+                            ادامه
+                        </button>
+                    </div>
+                `);
+
+                $('#btnContinueStep2').on('click', function () {
+                    LoadStep3();
                 });
+
             } else {
-                Swal.fire('خطا', result.Message, 'error');
+
+                msgDiv.html(`
+                    <div class="p-4 bg-red-100 text-red-600 rounded-lg">
+                       ${jresult['Message']}
+                    </div>
+                `);
             }
         },
         error: function () {
-            Swal.fire('خطا', 'خطایی در ارسال رخ داد', 'error');
+            msgDiv.html(`
+                <div class="p-4 bg-red-100 text-red-600 rounded-lg">
+                    خطایی در ارسال رخ داد
+                </div>
+            `);
         },
         complete: function () {
             submitBtn.prop('disabled', false).text('مرحله بعد');
@@ -132,10 +160,9 @@ $(document).on('submit', '#frmStep2', function (e) {
         }
     });
 });
-
 function LoadStep3() {
     ShowLoading();
-    $.get("/Job/CreateJobRequest_step3", function (data) {
+    $.get("/Job/CreateJobRequest", function (data) {
         $("#requestContainer").html(data);
     }).always(HideLoading);
 }
@@ -157,10 +184,11 @@ $(document).on('submit', '#frmStep3', function (e) {
         processData: false,
         dataType: 'json',
         success: function (result) {
-            if (result.Success) {
+            let jresult = JSON.parse(result);
+            if (jresult.Success) {
                 Swal.fire({
                     title: 'موفق',
-                    html: `<p>${result.Message || 'اطلاعات با موفقیت ثبت شد'}</p>
+                    html: `<p>${jresult['Message'] || 'اطلاعات با موفقیت ثبت شد'}</p>
                                <button id="btnContinueStep3" class="btn btn-primary mt-3">ادامه</button>`,
                     icon: 'success',
                     showConfirmButton: false,
@@ -173,7 +201,7 @@ $(document).on('submit', '#frmStep3', function (e) {
                     }
                 });
             } else {
-                Swal.fire('خطا', result.Message, 'error');
+                Swal.fire('خطا', jresult['Message'], 'error');
             }
         },
         error: function () {

@@ -29,6 +29,7 @@ namespace keyhanPostWeb.GeneralViewModels.Order
 
 
         public IEnumerable<SelectListItem>? Cities { get; set; }
+        public IEnumerable<SelectListItem>? OriginCities { get; set; }
         public IEnumerable<SelectListItem>? contries { get; set; }
 
 

@@ -1,33 +1,92 @@
 ﻿@using keyhanPostWeb.GeneralViewModels.RepDto
 @model VmRepresentativeRequest
+<div class="max-w-5xl mx-auto bg-white p-10 rounded-xl shadow-md rtl">
 
-
-<div class="col col-md-4 col-md-offset-1 col-md-5 jobrequest_right">
     <div class="jobrequest_right-content">
-        <div class="section-title">
-            <h3>مشخصات متقاضی</h3>
+
+        <div class="sec-title">
+            <h3 class="sec-title_title text-dark-blue">مشخصات متقاضی</h3>
         </div>
+
         <div class="details">
-            <ul>
-                <li><label>شماره درخواست</label><span class="trackingCode">@Model.Details.TrackingNumber</span></li>
-                <li><label>نام</label><span>@Model.Details.ApplicantName</span></li>
-                <li><label>نوع</label><span>@Model.Details.EntityType</span></li>
-                <li><label>شماره ملی</label><span>@Model.Details.NationalId</span></li>
-                <li><label>شماره همراه</label><span>@Model.Details.MobileNumber</span></li>
-                <li><label>پست الکترونیک</label><span>@Model.Details.Email</span></li>
-                <li><label>میزان تحصیلات</label><span>@Model.Details.EducationDegree</span></li>
-                <li><label>آدرس</label><span>@Model.Details.Address</span></li>
-                <li><label>نحوه آشنایی با کیهان پست</label><span>@Model.Details.Introduction</span></li>
+            <ul class="style-list_two-column">
+                
+                <li class="feature-block-four">
+                    <div class="feature-block-four_content">
+                        <label>شماره درخواست</label>
+                        <span class="trackingCode text-primary">@Model.Details.TrackingNumber</span>
+                    </div>
+                </li>
+
+                <li class="feature-block-four">
+                    <div class="feature-block-four_content">
+                        <label>نام</label>
+                        <span>@Model.Details.ApplicantName</span>
+                    </div>
+                </li>
+
+                <li class="feature-block-four">
+                    <div class="feature-block-four_content">
+                        <label>نوع</label>
+                        <span>@Model.Details.EntityType</span>
+                    </div>
+                </li>
+
+                <li class="feature-block-four">
+                    <div class="feature-block-four_content">
+                        <label>شماره ملی</label>
+                        <span>@Model.Details.NationalId</span>
+                    </div>
+                </li>
+
+                <li class="feature-block-four">
+                    <div class="feature-block-four_content">
+                        <label>شماره همراه</label>
+                        <span>@Model.Details.MobileNumber</span>
+                    </div>
+                </li>
+
+                <li class="feature-block-four">
+                    <div class="feature-block-four_content">
+                        <label>پست الکترونیک</label>
+                        <span>@Model.Details.Email</span>
+                    </div>
+                </li>
+
+                <li class="feature-block-four">
+                    <div class="feature-block-four_content">
+                        <label>میزان تحصیلات</label>
+                        <span>@Model.Details.EducationDegree</span>
+                    </div>
+                </li>
+
+                <li class="feature-block-four">
+                    <div class="feature-block-four_content">
+                        <label>آدرس</label>
+                        <span>@Model.Details.Address</span>
+                    </div>
+                </li>
+
+                <li class="feature-block-four">
+                    <div class="feature-block-four_content">
+                        <label>نحوه آشنایی با کیهان پست</label>
+                        <span>@Model.Details.Introduction</span>
+                    </div>
+                </li>
+
             </ul>
         </div>
+
     </div>
+
 </div>
+
     <div class="max-w-5xl mx-auto bg-white p-10 rounded-xl shadow-md">
         <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">
             مرحله 2 - جزئیات درخواست
         </h2>
 
-        <form asp-action="CreateJobRequest_step2" method="post" class="space-y-6">
+    <form id="frmStep2" asp-action="CreateJobRequest_step2" method="post" class="space-y-6">
             <input type="hidden" asp-for="dtoStep2.Id" value="@Model.Details.Id" />
 
             <div>
@@ -101,7 +160,7 @@
                               class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
                 </div>
             </div>
-
+        <div id="formMessage" class="mt-4"></div>
         <button type="submit" class="btn btn-primary accAjaxSubmit">مرحله بعد</button>
         </form>
     </div>
