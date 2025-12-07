@@ -18,5 +18,6 @@ namespace keyhanPostWeb.Areas.KP.Models.Entities.Order
 
         // Navigation
         public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<InternationalOrder> InternationalOrders { get; set; }
     }
 }

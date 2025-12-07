@@ -1,4 +1,6 @@
-﻿
+﻿.enamad {
+    padding: 15px;
+}
 .modal-backdrop.show{
     z-index:-1;
 }
@@ -13,10 +15,12 @@
 
 .form-step {
     display: none;
+    margin: 50px;
 }
 
     .form-step.active {
         display: block;
+        margin: 50px;
     }
 
 .step-indicator {

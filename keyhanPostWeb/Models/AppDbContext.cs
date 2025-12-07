@@ -84,6 +84,11 @@ namespace keyhanPostWeb.Models
 
             // //================= order Configs ==============================================
             builder.ApplyConfiguration(new OrderStatusMapp());
+            builder.ApplyConfiguration(new OrderMapp());
+            builder.ApplyConfiguration(new InternationalOrderMapp());
+            builder.ApplyConfiguration(new WaybillStatusHistoryMapp());
+            builder.ApplyConfiguration(new WaybillStatusMapp());
+            builder.ApplyConfiguration(new InternationalWaybillMapp());
         }
 
         //============================================================================
@@ -215,6 +220,9 @@ namespace keyhanPostWeb.Models
         //============================== Order ===================
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderStatus> OrderStatus { get; set; }
-
+        public DbSet<InternationalOrder> InternationalOrders { get; set; }
+        public DbSet<InternationalWaybill> InternationalWaybill { get; set; }
+        public DbSet<WaybillStatusHistory> WaybillStatusHistory { get; set; }
+        public DbSet<WaybillStatus> WaybillStatus { get; set; }
     }
 }

@@ -9,12 +9,21 @@ namespace keyhanPostWeb.Areas.KP.Models.ModelConfigs.OrderMapp
         public void Configure(EntityTypeBuilder<Order> builder)
         {
             builder.HasKey(o => o.Id);
-            // وضعیت سفارش (یک به چند)
+            
             builder.HasOne(o => o.OrderStatus)
                    .WithMany(s => s.Orders)
                    .HasForeignKey(o => o.OrderStatusId)
                  .OnDelete(DeleteBehavior.NoAction);
 
+            builder.HasOne(o => o.SenderEntityType)
+                   .WithMany(s => s.OrdersAsSenderType)
+                   .HasForeignKey(o => o.SenderEntityTypeId)
+                 .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasOne(o => o.ReceiverEntityType)
+                   .WithMany(s => s.OrdersAsReceiverType)
+                   .HasForeignKey(o => o.ReceiverEntityTypeId)
+                 .OnDelete(DeleteBehavior.NoAction);
 
         }
     }

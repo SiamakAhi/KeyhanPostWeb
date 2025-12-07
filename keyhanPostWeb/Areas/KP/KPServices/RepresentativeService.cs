@@ -416,46 +416,45 @@ namespace keyhanPostWeb.Areas.KP.KPservices
         }
 
         public SelectList SelectList_Countries()
-{
+        {
             var items = new List<SelectListItem>
-{
-    new SelectListItem { Value = "ایران-تهران", Text = "ایران-تهران" },
-    new SelectListItem { Value = "چین", Text = "چین" },
-    new SelectListItem { Value = "امارات", Text = "امارات" },
-    new SelectListItem { Value = "ترکیه", Text = "ترکیه" },
-    new SelectListItem { Value = "آلمان", Text = "آلمان" },
-    new SelectListItem { Value = "فرانسه", Text = "فرانسه" },
-    new SelectListItem { Value = "ایتالیا", Text = "ایتالیا" },
-    new SelectListItem { Value = "انگلیس", Text = "انگلیس" },
-    new SelectListItem { Value = "هلند", Text = "هلند" },
-    new SelectListItem { Value = "بلژیک", Text = "بلژیک" },
-    new SelectListItem { Value = "اتریش", Text = "اتریش" },
-    new SelectListItem { Value = "سوئیس", Text = "سوئیس" },
-    new SelectListItem { Value = "کانادا", Text = "کانادا" },
-    new SelectListItem { Value = "آمریکا", Text = "آمریکا" },
-    new SelectListItem { Value = "روسیه", Text = "روسیه" },
-    new SelectListItem { Value = "هند", Text = "هند" },
-    new SelectListItem { Value = "ژاپن", Text = "ژاپن" },
-    new SelectListItem { Value = "کره جنوبی", Text = "کره جنوبی" },
-    new SelectListItem { Value = "عراق", Text = "عراق" },
-    new SelectListItem { Value = "قطر", Text = "قطر" },
-    new SelectListItem { Value = "عربستان", Text = "عربستان" },
-    new SelectListItem { Value = "کویت", Text = "کویت" },
-    new SelectListItem { Value = "بحرین", Text = "بحرین" },
-    new SelectListItem { Value = "عمان", Text = "عمان" },
-    new SelectListItem { Value = "سوئد", Text = "سوئد" },
-    new SelectListItem { Value = "نروژ", Text = "نروژ" },
-    new SelectListItem { Value = "دانمارک", Text = "دانمارک" },
-    new SelectListItem { Value = "اسپانیا", Text = "اسپانیا" },
-    new SelectListItem { Value = "استرالیا", Text = "استرالیا" }
-};
-
+    {
+        new SelectListItem { Value = "ایران - تهران", Text = "ایران - تهران" },
+        new SelectListItem { Value = "چین", Text = "چین" },
+        new SelectListItem { Value = "امارات", Text = "امارات" },
+        new SelectListItem { Value = "ترکیه", Text = "ترکیه" },
+        new SelectListItem { Value = "آلمان", Text = "آلمان" },
+        new SelectListItem { Value = "فرانسه", Text = "فرانسه" },
+        new SelectListItem { Value = "ایتالیا", Text = "ایتالیا" },
+        new SelectListItem { Value = "انگلیس", Text = "انگلیس" },
+        new SelectListItem { Value = "هلند", Text = "هلند" },
+        new SelectListItem { Value = "بلژیک", Text = "بلژیک" },
+        new SelectListItem { Value = "اتریش", Text = "اتریش" },
+        new SelectListItem { Value = "سوئیس", Text = "سوئیس" },
+        new SelectListItem { Value = "کانادا", Text = "کانادا" },
+        new SelectListItem { Value = "آمریکا", Text = "آمریکا" },
+        new SelectListItem { Value = "روسیه", Text = "روسیه" },
+        new SelectListItem { Value = "هند", Text = "هند" },
+        new SelectListItem { Value = "ژاپن", Text = "ژاپن" },
+        new SelectListItem { Value = "کره جنوبی", Text = "کره جنوبی" },
+        new SelectListItem { Value = "عراق", Text = "عراق" },
+        new SelectListItem { Value = "قطر", Text = "قطر" },
+        new SelectListItem { Value = "عربستان", Text = "عربستان" },
+        new SelectListItem { Value = "کویت", Text = "کویت" },
+        new SelectListItem { Value = "بحرین", Text = "بحرین" },
+        new SelectListItem { Value = "عمان", Text = "عمان" },
+        new SelectListItem { Value = "سوئد", Text = "سوئد" },
+        new SelectListItem { Value = "نروژ", Text = "نروژ" },
+        new SelectListItem { Value = "دانمارک", Text = "دانمارک" },
+        new SelectListItem { Value = "اسپانیا", Text = "اسپانیا" },
+        new SelectListItem { Value = "استرالیا", Text = "استرالیا" }
+    };
 
             return new SelectList(items, "Value", "Text");
-}
+        }
 
 
-    
+
         public async Task<SelectList> SelectList_Introductions()
         {
             var cities = await _db.RepIntroductionMethods.Select(n => new { id = n.Id, name = n.Title }).ToListAsync();

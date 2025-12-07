@@ -49,93 +49,145 @@
                 <div class="user-panel">
                     <img src="~/img/avatars/@userAvatar" class="img-circle elevation-2" alt="QuineFit">
                     <a href="#" class="d-block">
-                            <h5>@user.FirstName @user.LastName</h5>
-                        </a>
+                        <h5>@user.FirstName @user.LastName</h5>
+                    </a>
                 </div>
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2 pb-5">
                     <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">
-                        @if (User.IsInRole("Customer"))
+                     @*    @if (User.IsInRole("Customer"))
                         {
-                               @*  <li class="nav-item">
-                                    <a asp-action="ClientOrders" asp-controller="Club" asp-area="" class="nav-link ">
-                                        <i class="fas fa-circle-thin nav-icon"></i>
-                                        <p>سفارش های جاری</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a asp-action="ClientOrdersArchive" asp-controller="Club" asp-area="" class="nav-link ">
-                                        <i class="fas fa-circle-thin nav-icon"></i>
-                                        <p>آرشیو سفارشات</p>
-                                    </a>
-                                </li> *@
-                               
-                           
-                        }
+                            <li class="nav-item">
+                                <a asp-action="ClientOrders" asp-controller="Club" asp-area="" class="nav-link ">
+                                    <i class="fas fa-circle-thin nav-icon"></i>
+                                    <p>سفارش های جاری</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-action="ClientOrdersArchive" asp-controller="Club" asp-area="" class="nav-link ">
+                                    <i class="fas fa-circle-thin nav-icon"></i>
+                                    <p>آرشیو سفارشات</p>
+                                </a>
+                            </li>
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-bar"></i>
+                                    <p>
+                                        ارزیابی
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a asp-action="AssessmentSlideBar" asp-controller="Club" asp-area="" class="nav-link">
+                                            <i class="far fa-circle-thin nav-icon"></i>
+                                            <p>فرم ارزیابی فیزیکی</p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a asp-action="NutritionSlideBar" asp-controller="Club" asp-area="" class="nav-link">
+                                            <i class="far fa-circle-thin nav-icon"></i>
+                                            <p>فرم ارزیابی تغذیه</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-action="PARQ" asp-controller="Club" asp-area="" class="nav-link">
+                                            <i class="far fa-circle-thin nav-icon"></i>
+                                            <p>فرم ارزیابی سلامت</p>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link ">
+                                    <i class="fas fa-circle-thin nav-icon"></i>
+                                    <p>تراکنش های مالی</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link ">
+                                    <i class="fas fa-circle-thin nav-icon"></i>
+                                    <p>اطلاعات حساب</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link ">
+                                    <i class="fas fa-circle-thin nav-icon"></i>
+                                    <p>مرکز پیام</p>
+                                </a>
+                            </li>
+                        } *@
 
                         @if (User.IsInRole("Manager") || User.IsInRole("Admin"))
                         {
-                                <li class="nav-item has-treeview">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-home"></i>
-                                        <p>
-                                            مدیریت محتوا
-                                            <i class="right fas fa-angle-left"></i>
-                                        </p>
-                                    </a>
-                                    <ul class="nav nav-treeview">
-                                        <li class="nav-item">
-                                            <a asp-action="Index" asp-controller="ContentManager" asp-area="CMS" class="nav-link ">
-                                                <i class="fas fa-circle-thin nav-icon"></i>
-                                                <p>صفحه اصلی (خانه)</p>
-                                            </a>
-                                        </li>
-                                        
-                                    </ul>
-                                </li>
-                                <li class="nav-item has-treeview">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-newspaper"></i>
-                                        <p>
-                                            بلاگ
-                                            <i class="right fas fa-angle-left"></i>
-                                        </p>
-                                    </a>
-                                    <ul class="nav nav-treeview">
-                                        <li class="nav-item">
-                                            <a asp-action="BlogsCategory" asp-controller="ContentManager" asp-area="CMS" class="nav-link">
-                                                <i class="fas fa-circle-thin nav-icon"></i>
-                                                <p>دسته بندی بلاگ</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a asp-action="BlogsManager" asp-controller="ContentManager" asp-area="CMS" class="nav-link">
-                                                <i class="fas fa-circle-thin nav-icon"></i>
-                                                <p>مطالب ثبت شده</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a asp-action="AddNews" asp-controller="ContentManager" asp-area="CMS" class="nav-link">
-                                                <i class="fas fa-circle-thin nav-icon"></i>
-                                                <p>افزودن مطلب</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a asp-action="BlogCommentManagement" asp-controller="ContentManager" asp-area="CMS" class="nav-link">
-                                                <i class="fas fa-circle-thin nav-icon"></i>
-                                                <p>مدیریت دیدگاه ها</p>
-                                            </a>
-                                        </li>
-
-                                    </ul>
-                                </li>
                             <li class="nav-item has-treeview">
                                 <a href="#" class="nav-link">
-                                    <i class="far fa-folder-open nav-icon"></i>
+                                    <i class="nav-icon fas fa-home"></i>
+                                    <p>
+                                        مدیریت محتوا
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a asp-action="Index" asp-controller="ContentManager" asp-area="CMS" class="nav-link ">
+                                            <i class="fas fa-circle-thin nav-icon"></i>
+                                            <p>صفحه اصلی (خانه)</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-action="CompanyInfo" asp-controller="ContentManager" asp-area="CMS" class="nav-link">
+                                            <i class="far fa-circle-thin nav-icon"></i>
+                                            <p>مشخصات شرکت</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-newspaper"></i>
+                                    <p>
+                                        بلاگ
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a asp-action="BlogsCategory" asp-controller="ContentManager" asp-area="CMS" class="nav-link">
+                                            <i class="fas fa-circle-thin nav-icon"></i>
+                                            <p>دسته بندی بلاگ</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-action="BlogsManager" asp-controller="ContentManager" asp-area="CMS" class="nav-link">
+                                            <i class="fas fa-circle-thin nav-icon"></i>
+                                            <p>مطالب ثبت شده</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-action="AddNews" asp-controller="ContentManager" asp-area="CMS" class="nav-link">
+                                            <i class="fas fa-circle-thin nav-icon"></i>
+                                            <p>افزودن مطلب</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-action="BlogCommentManagement" asp-controller="ContentManager" asp-area="CMS" class="nav-link">
+                                            <i class="fas fa-circle-thin nav-icon"></i>
+                                            <p>مدیریت دیدگاه ها</p>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-newspaper"></i>
                                     <p>
                                         سفارشات
-                                       
+                                        <i class="right fas fa-angle-left"></i>
                                     </p>
                                 </a>
                                 <ul class="nav nav-treeview">
@@ -146,24 +198,47 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a asp-action="GetAllInternationalOrders" asp-controller="Orders" asp-area="" class="nav-link">
+                                        <a asp-action="GetInOrders" asp-controller="Orders" asp-area="" class="nav-link">
                                             <i class="fas fa-circle-thin nav-icon"></i>
                                             <p>سفارشات بین المللی</p>
                                         </a>
                                     </li>
-                                  
+                                   
 
                                 </ul>
                             </li>
-                             <li class="nav-item">
-                            <a asp-action="GetAllJobRequest" asp-controller="job" asp-area=""
-                                class="nav-link">
-                              <i class="far fa-folder-open nav-icon"></i>
-                            درخواست های نمایندگی
-                            </a>
-                        </li>
-                           
-                                
+                            <li class="nav-item">
+                                <a asp-action="GetAllJobRequest" asp-controller="job" asp-area=""
+                                   class="nav-link">
+                                    <i class="nav-icon fas fa-user"></i>
+                                   درخواست های نمایندگی
+                                </a>
+                            </li>
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-newspaper"></i>
+                                    <p>
+                                     بارنامه های بین المللی
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a asp-action="GetCurrentWayBills" asp-controller="Orders" asp-area="" class="nav-link">
+                                            <i class="fas fa-circle-thin nav-icon"></i>
+                                            <p>بارنامه های جاری</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-action="GetAllWaybill" asp-controller="Orders" asp-area="" class="nav-link">
+                                            <i class="fas fa-circle-thin nav-icon"></i>
+                                            <p>آرشیو بارنامه ها</p>
+                                        </a>
+                                    </li>
+
+
+                                </ul>
+                            </li>
                             @* <li class="nav-item has-treeview menu-open">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-user"></i>
@@ -190,16 +265,16 @@
                         }
                         <li class="nav-item">
                             <a asp-action="UserProfile" asp-controller="Account" asp-area=""
-                                class="nav-link">
+                               class="nav-link">
                                 <i class="nav-icon fas fa-user"></i>
-                             حساب کاربری
+                                حساب کاربری
                             </a>
                         </li>
                         <li class="nav-item">
                             <a asp-action="SignOut" asp-controller="Account" asp-area=""
-                                class="nav-link">
+                               class="nav-link">
                                 <i class="nav-icon fa fa-sign-out"></i>
-                              خروح
+                                خروح
                             </a>
                         </li>
 

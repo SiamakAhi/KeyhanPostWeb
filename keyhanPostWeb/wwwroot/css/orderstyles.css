@@ -188,6 +188,113 @@
         grid-template-columns: 1fr;
     }
 }
+.hidden-field {
+    display: none;
+}
+
+label.required:after {
+    content: " *";
+    color: red;
+    font-weight: bold;
+}
+
+
+.page-container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.form-input, .form-textarea {
+    background-color: #fff;
+    border: 1px solid #e5e7eb;
+    padding: 10px 12px;
+    border-radius: 8px;
+    width: 100%;
+    color: #111827;
+}
+
+    .form-input:focus, .form-textarea:focus {
+        outline: none;
+        border-color: #3b82f6;
+        box-shadow: 0 4px 10px rgba(59,130,246,0.08);
+    }
+
+.page-container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.form-input, .form-textarea {
+    background-color: #fff;
+    border: 1px solid #e5e7eb;
+    padding: 10px 12px;
+    border-radius: 8px;
+    width: 100%;
+    color: #111827;
+}
+
+    .form-input:focus, .form-textarea:focus {
+        outline: none;
+        border-color: #3b82f6;
+        box-shadow: 0 4px 10px rgba(59,130,246,0.08);
+    }
+
+.package-type-card {
+    user-select: none;
+    transition: all 0.25s ease;
+}
+
+    .package-type-card.selected {
+        border: 2px solid #3b82f6;
+        box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+        background-color: #f0f8ff;
+    }
+
+.text-right-rtl {
+    direction: rtl;
+    text-align: right;
+}
+
+.text-right-rtl {
+    direction: rtl;
+    text-align: right;
+}
+
+.tick-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 8px;
+    margin-bottom: 10px;
+    user-select: none;
+}
+
+    .tick-option input[type="radio"] {
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #888;
+        border-radius: 4px;
+        display: grid;
+        place-content: center;
+        cursor: pointer;
+    }
+
+        .tick-option input[type="radio"]::before {
+            content: "";
+            width: 12px;
+            height: 12px;
+            transform: scale(0);
+            transition: 0.15s ease-in-out;
+            background-color: #28a745; /* رنگ تیک سبز */
+            border-radius: 2px;
+        }
+
+        .tick-option input[type="radio"]:checked::before {
+            transform: scale(1);
+        }
 
 @media (max-width: 576px) {
     .header-content {

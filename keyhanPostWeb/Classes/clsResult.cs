@@ -10,7 +10,7 @@
         public bool ShowMessage { get; set; } = true;
         public Guid? Id { get; set; }
         public string? Data { get; set; }
-        public Guid? OrderId { get; set; }
+        public int? OrderId { get; set; }
 
     }
 }

@@ -1,5 +1,6 @@
-﻿
+﻿@using keyhanPostWeb.GeneralService
 @using keyhanPostWeb.GeneralViewModels.Identity
+
 @model VmUpdateProfile
 
 
@@ -31,7 +32,7 @@
     </div>
     <div class="col-lg-6">
         <label asp-for="StrBirthDate" class="form-label">تاریخ تولد</label>
-        <input type="text" asp-for="StrBirthDate" class="form-control flatpickr-input" placeholder="YYYY/MM/DD" value="@Model.BirthDate?.ToShortDateString()" id="flatpickr-date">
+        <input type="text" asp-for="StrBirthDate" class="form-control flatpickr-input" placeholder="YYYY/MM/DD" value="@Model.BirthDate?.LatinToPersian()" id="flatpickr-date">
     </div>
     <div class="col-12">
         <label asp-for="ImageFile"></label>

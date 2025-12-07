@@ -1,0 +1,150 @@
+﻿@using keyhanPostWeb.Areas.CMS.Dtos
+@using keyhanPostWeb.Areas.KP.Dto
+@using keyhanPostWeb.GeneralService
+@model List<GetAllInternationalWaybilDto>
+
+@{
+    ViewData["Title"] = "لیست بارنامه های بین المللی";
+  Layout = "_adminPanelLayout";
+
+    var Countries = ViewBag.Countries as SelectList;
+ 
+}
+
+<link rel="stylesheet" href="~/css/list.css" />
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+<div class="orders-container fade-in">
+
+    <div class="orders-title mb-3">آرشیو بارنامه های بین المللی</div>
+
+    <!-- Start Filter Form -->
+    <form method="get" class="filter-form fade-in">
+        <div class="filter-row">
+
+            <div class="filter-item">
+                <label>شماره بارنامه</label>
+                <input type="text" name="WaybillNumber" value="@Context.Request.Query["WaybillNumber"]" />
+            </div>
+
+            <div class="filter-item">
+                <label>نام فرستنده</label>
+                <input type="text" name="SenderName" value="@Context.Request.Query["SenderName"]" />
+            </div>
+
+            <div class="filter-item">
+                <label>نام گیرنده</label>
+                <input type="text" name="ReceiverName" value="@Context.Request.Query["ReceiverName"]" />
+            </div>
+
+            <div class="filter-item">
+                <label>کشور مبدا</label>
+                <select name="OriginCountryName" class="select2" style="width:100%">
+                    <option value="">همه</option>
+                    @foreach (var c in Countries)
+                    {
+                        <option value="@c.Text" selected="@(Context.Request.Query["OriginCountryName"] == c.Text ? "selected" : null)">
+                            @c.Text
+                        </option>
+                    }
+                </select>
+            </div>
+
+            <div class="filter-item">
+                <label>کشور مقصد</label>
+                <select name="DestinationCountryName" class="select2" style="width:100%">
+                    <option value="">همه</option>
+                    @foreach (var c in Countries)
+                    {
+                        <option value="@c.Text" selected="@(Context.Request.Query["DestinationCountryName"] == c.Text ? "selected" : null)">
+                            @c.Text
+                        </option>
+                    }
+                </select>
+            </div>
+
+           
+
+            <div class="filter-buttons">
+                <button type="submit" class="btn btn-primary">جستجو</button>
+
+                <a asp-controller="Orders" asp-action="GetAllWaybills" class="btn btn-secondary">حذف فیلتر</a>
+            </div>
+
+        </div>
+    </form>
+    <!-- End Filter Form -->
+
+    <div class="d-flex justify-content-end mb-3 mt-3">
+        <a href="javascript:void(0)"
+           class="btn btn-success callform"
+           data-url="@Url.Action("CreateWayBill", "Orders")">
+            ثبت بارنامه جدید
+        </a>
+    </div>
+
+    <table class="custom-table">
+        <thead>
+            <tr>
+                <th>ردیف</th>
+                <th>شماره بارنامه</th>
+                <th>تعداد بسته</th>
+                <th>وزن</th>
+                <th>مبدا</th>
+                <th>مقصد</th>
+                <th>فرستنده</th>
+                <th>گیرنده</th>
+                <th>وضعیت</th>
+                <th>تاریخ ثبت</th>
+                <th>ویرایش وضعیت</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @{
+                int rowNumber = 1;
+            }
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@rowNumber</td>
+                    <td>@item.WaybillNumber</td>
+                    <td>@item.PackageCount</td>
+                    <td>@item.PackageWeight</td>
+                    <td>@item.OriginCountryName</td>
+                    <td>@item.DestinationCountryName</td>
+                    <td>@item.SenderName</td>
+                    <td>@item.ReceiverName</td>
+                    <td>@item.CurrentStatus</td>
+                    <td>@item.CreateAt.LatinToPersian()</td>
+
+                    <td>
+                        <a href="javascript:void(0)"
+                           class="btn btn-primary callform"
+                           data-url="@Url.Action("ChangeStatus", "Orders", new { waybillId = item.Id })">
+                            به روز رسانی
+                        </a>
+                    </td>
+                </tr>
+
+                rowNumber++;
+            }
+        </tbody>
+    </table>
+</div>
+ <script src="~/js/forms-pickers.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="~/js/quine.js"></script>
+<script src="~/js/jquery.js"></script>
+    <script src="~/js/forms-pickers.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.select2').select2({
+            placeholder: "انتخاب...",
+            allowClear: true,
+            width: 'resolve'
+        });
+    });
+</script>

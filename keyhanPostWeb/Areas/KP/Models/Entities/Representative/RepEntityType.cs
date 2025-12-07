@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using keyhanPostWeb.Areas.KP.Models.Entities.Order;
 
 namespace keyhanPostWeb.Areas.KP.Models.Entities.Representative
 {
@@ -17,5 +18,8 @@ namespace keyhanPostWeb.Areas.KP.Models.Entities.Representative
         [Display(Name = "امتیاز")]
         public int Score { get; set; } // امتیاز شخصیت
         public virtual ICollection<RepApplicant> RepApplications { get; set; }
+        // Navigation برای سفارش‌ها
+        public virtual ICollection<keyhanPostWeb.Areas.KP.Models.Entities.Order.Order> OrdersAsSenderType { get; set; }
+        public virtual ICollection<keyhanPostWeb.Areas.KP.Models.Entities.Order.Order> OrdersAsReceiverType { get; set; }
     }
 }

@@ -1,0 +1,69 @@
+﻿@using keyhanPostWeb.Areas.KP.Dto
+@model ChangeWaybillStatusDto
+<style>
+    .flatpickr-calendar {
+        z-index: 999999 !important;
+    }
+</style>
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header p-3 ">
+            <h5 class="modal-title">ویرایش وضعیت بارنامه</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+            <form role="form"
+                  asp-action="ChangeStatus"
+                  asp-controller="Orders"
+                  method="post">
+
+                @Html.AntiForgeryToken()
+
+                <input type="hidden" asp-for="WaybillId" />
+
+                <div class="card-body p-4">
+
+                    <div class="form-group mb-3">
+                        <label asp-for="NewStatusId"></label>
+                        <select class="form-control" asp-for="NewStatusId" asp-items="ViewBag.Statuses">
+                            <option value="">انتخاب کنید</option>
+                        </select>
+                        <span class="text-danger" asp-validation-for="NewStatusId"></span>
+                    </div>
+                  
+                      <div class="col-md-6 mb-3">
+                            <label asp-for="StrChangedAt"></label>
+                            <input type="text"
+                                   asp-for="StrChangedAt"
+                                   class="form-control flatpickr-input"
+                                   placeholder="YYYY/MM/DD"
+                                   id="flatpickr-date">
+                            <span class="text-danger" asp-validation-for="StrChangedAt"></span>
+                        </div>
+                </div>
+
+                <div class="card-footer d-grid p-3">
+                    <button type="button" class="btn btn-danger accAjaxSubmit">
+                        ثبت
+                    </button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+<!-- اسکریپت لازم -->
+<script src="~/js/forms-pickers.js"></script>
+<script src="~/js/jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        flatpickr("#flatpickr-date", {
+            dateFormat: "Y/m/d",
+            locale: "fa"
+        });
+    });
+</script>

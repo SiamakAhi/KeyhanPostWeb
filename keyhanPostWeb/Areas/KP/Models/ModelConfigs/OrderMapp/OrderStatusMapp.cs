@@ -12,9 +12,9 @@ namespace keyhanPostWeb.Areas.KP.Models.ModelConfigs.OrderMapp
 
             // --- Seed Data ---
             builder.HasData(
-                new OrderStatus { Id = 1, Title = "ارسال شده", Description = "سفارش ثبت شده و در صف بررسی قرار دارد." },
-                new OrderStatus { Id = 2, Title = "در حال بررسی", Description = "سفارش در حال پیگیری توسط کارشناس." },
-                new OrderStatus { Id = 3, Title = "بررسی شده", Description = "سفارش ثبت شده." },
+                new OrderStatus { Id = 1, Title = "در حال تکمیل", Description = "درخواست کننده در حال ثبت اطلاعات است." },
+                new OrderStatus { Id = 2, Title = "تکمیل شده", Description = "اطلاعات سفارش تکمیل است." },
+                new OrderStatus { Id = 3, Title = "بررسی شده", Description = "سفارش بررسی شده." },
                 new OrderStatus { Id = 4, Title = "لغو شده", Description = "سفارش لغو شده است." }
             );
 

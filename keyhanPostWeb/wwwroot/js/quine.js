@@ -89,12 +89,12 @@ $(document).on('click', '.submitCustomAction', function () {
 });
 
 $(document).on('click', '.accAjaxSubmit', function () {
-    //loder.style.display = "block";
+
     let frm = $(this).closest('form');
 
-    /*let frm = $(this).parents('form');*/
     let actionUrl = frm.attr('action');
     let dataToSend = new FormData(frm.get(0));
+
     $.ajax({
         url: actionUrl,
         type: 'post',
@@ -153,6 +153,6 @@ $(document).on('click', '.accAjaxSubmit', function () {
 
 
     }).always(function () {
-       // loder.style.display = "none";
+        /*  loder.style.display = "none";*/
     });
 });

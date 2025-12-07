@@ -25,4 +25,8 @@
     <Folder Include="wwwroot\img\products\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="GeneralViewModels\Order\GetOrdersVm.cs" />
+  </ItemGroup>
+
 </Project>

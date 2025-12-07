@@ -1,0 +1,56 @@
+﻿@using keyhanPostWeb.Areas.CMS.Dtos
+@using Microsoft.AspNetCore.Http
+@using keyhanPostWeb.GeneralService
+@using keyhanPostWeb.GeneralViewModels.Order
+
+@model GetInOrderDetailVm
+
+@{
+    Layout = "_adminPanelLayout";
+}
+
+<link rel="stylesheet" href="~/css/list.css" />
+
+<div class="applicant-container rtl">
+
+    <h5>اطلاعات سفارش</h5>
+
+    <div class="grid-box">
+        <div class="item"><label>کد رهگیری</label><span>@Model.TrackingCode</span></div>
+        <div class="item"><label>شماره همراه ثبت‌کننده</label><span>@Model.MobileForOtp</span></div>
+        <div class="item"><label>تاریخ ثبت</label><span>@Model.CreatedAt.LatinToPersian()</span></div>
+        <div class="item"><label>وضعیت سفارش</label><span>@Model.OrderStatus</span></div>
+    </div>
+
+    <h5>اطلاعات بسته</h5>
+
+    <div class="grid-box">
+        <div class="item"><label>نوع بسته</label><span>@Model.PackageTypeName</span></div>
+
+        <div class="item">
+            <label>وزن واقعی (کیلوگرم)</label>
+            <span>@Model.ActualWeight</span>
+        </div>
+
+        <div class="item"><label>طول (سانتی‌متر)</label><span>@Model.Length</span></div>
+        <div class="item"><label>عرض (سانتی‌متر)</label><span>@Model.Width</span></div>
+        <div class="item"><label>ارتفاع (سانتی‌متر)</label><span>@Model.Height</span></div>
+    </div>
+
+    <h5>مبدا و مقصد</h5>
+
+    <div class="grid-box">
+        <div class="item"><label>کشور مبدا</label><span>@Model.OriginCountryName</span></div>
+        <div class="item"><label>کشور مقصد</label><span>@Model.DestinationCountryName</span></div>
+    </div>
+
+    <h5>اطلاعات درخواست‌کننده</h5>
+
+    <div class="grid-box">
+        <div class="item"><label>نام درخواست‌کننده</label><span>@Model.RequesterName</span></div>
+        <div class="item"><label>شماره همراه</label><span>@Model.RequesterMobile</span></div>
+        <div class="item"><label>شماره ثابت</label><span>@Model.RequesterPhone</span></div>
+        <div class="item"><label>شهر درخواست‌کننده</label><span>@Model.RequesterCityName</span></div>
+    </div>
+
+</div>

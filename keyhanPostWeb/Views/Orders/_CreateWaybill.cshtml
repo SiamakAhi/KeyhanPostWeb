@@ -1,0 +1,115 @@
+﻿@using keyhanPostWeb.GeneralService
+@model keyhanPostWeb.Areas.KP.Dto.CreateWaybillDto
+
+<!-- رفع مشکل تقویم زیر مودال -->
+<style>
+    .flatpickr-calendar {
+        z-index: 999999 !important;
+    }
+</style>
+
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header p-3">
+            <h5 class="modal-title">ثبت بارنامه جدید</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+
+            <form asp-action="CreateWayBill" asp-controller="Orders" method="post">
+                <div class="card-body p-3">
+
+                    <!-- ردیف 1: مبدا + مقصد -->
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="OriginCountryName"></label>
+                            <select class="form-control" asp-for="OriginCountryName" asp-items="ViewBag.Countries">
+                                <option value="">انتخاب کنید</option>
+                            </select>
+                            <span class="text-danger" asp-validation-for="OriginCountryName"></span>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="DestinationCountryName"></label>
+                            <select class="form-control" asp-for="DestinationCountryName" asp-items="ViewBag.Countries">
+                                <option value="">انتخاب کنید</option>
+                            </select>
+                            <span class="text-danger" asp-validation-for="DestinationCountryName"></span>
+                        </div>
+                    </div>
+
+                    <!-- ردیف 2: فرستنده + گیرنده -->
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="SenderName"></label>
+                            <input class="form-control" asp-for="SenderName" placeholder="نام فرستنده">
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="ReceiverName"></label>
+                            <input class="form-control" asp-for="ReceiverName" placeholder="نام گیرنده">
+                        </div>
+                    </div>
+
+                    <!-- ردیف 3: تعداد بسته + وزن -->
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="PackageCount"></label>
+                            <input class="form-control" asp-for="PackageCount" placeholder="تعداد بسته">
+                            <span class="text-danger" asp-validation-for="PackageCount"></span>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="PackageWeight"></label>
+                            <input class="form-control" asp-for="PackageWeight" step="0.1" placeholder="وزن">
+                            <span class="text-danger" asp-validation-for="PackageWeight"></span>
+                        </div>
+                    </div>
+
+                    <!-- ردیف 4: وضعیت + تاریخ -->
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="StatusId"></label>
+                            <select class="form-control" asp-for="StatusId" asp-items="ViewBag.Statuses">
+                                <option value="">انتخاب کنید</option>
+                            </select>
+                            <span class="text-danger" asp-validation-for="StatusId"></span>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="StrCreateAt"></label>
+                            <input type="text"
+                                   asp-for="StrCreateAt"
+                                   class="form-control flatpickr-input"
+                                   placeholder="YYYY/MM/DD"
+                                   id="flatpickr-date">
+                            <span class="text-danger" asp-validation-for="StrCreateAt"></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="card-footer p-3 d-grid">
+                    <button type="button" class="btn btn-danger accAjaxSubmit">ثبت</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<!-- اسکریپت لازم -->
+<script src="~/js/forms-pickers.js"></script>
+<script src="~/js/jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        flatpickr("#flatpickr-date", {
+            dateFormat: "Y/m/d",
+            locale: "fa"
+        });
+    });
+</script>

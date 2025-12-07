@@ -9,9 +9,7 @@
 @{
     var company = await _data.GetCompanyInfo();
     var sections = await _data.GetAllSection();
-  
 }
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -139,7 +137,8 @@
                 <a asp-controller="Home" asp-action="KpAboutUs" class="hover:text-green-300 transition-colors py-2">درباره ما</a>
                 <a asp-controller="Home" asp-action="KpCallUs" class="hover:text-green-300 transition-colors py-2">تماس با ما</a>
 
-                <div class="border-t border-green-400 pt-2">
+               
+                <div class="login-dropdown">
                     @await Html.PartialAsync("_Login")
                 </div>
             </nav>
@@ -154,26 +153,28 @@
     <footer class="bg-gray-800 text-white py-12">
         <div class="container mx-auto px-4">
             <div class="grid md:grid-cols-4 gap-8">
+
+                <!-- لوگو و توضیح -->
                 <div>
                     <div class="flex items-center space-x-4 space-x-reverse mb-6">
-                        <div class=" text-blue-600 ">
-                            <img src="~/img/ui/KPlogo.webp" alt="کیهان پست" class=" object-contain" />
+                        <div class="text-blue-600">
+                            <img src="~/img/ui/KPlogo.webp" alt="کیهان پست" class="object-contain" />
                         </div>
-                     
                     </div>
                     <p class="text-gray-400">ارائه‌دهنده خدمات پستی و حمل و نقل در سراسر کشور</p>
                 </div>
 
+                <!-- دفتر مرکزی -->
                 <div>
                     <h4 class="text-lg font-semibold mb-4">دفتر مرکزی</h4>
                     <div class="space-y-2 text-gray-400">
                         <div class="flex items-center space-x-2 space-x-reverse">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span> دفتر مرکزی:اهواز، خیابان شمخانی نبش خوانساری</span>
+                            <span>دفتر مرکزی: اهواز، خیابان شمخانی نبش خوانساری</span>
                         </div>
                         <div class="flex items-center space-x-2 space-x-reverse">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span> آدرس: تهران، میدان فاطمی ، خیابان جویبار ، کوچه میرهادی شرقی ، پلاک 19، طبقه همکف</span>
+                            <span>تهران، میدان فاطمی، خیابان جویبار، کوچه میرهادی شرقی، پلاک 19</span>
                         </div>
                         <div class="flex items-center space-x-2 space-x-reverse">
                             <i class="fas fa-phone"></i>
@@ -186,6 +187,7 @@
                     </div>
                 </div>
 
+                <!-- خدمات -->
                 <div>
                     <h4 class="text-lg font-semibold mb-4">خدمات</h4>
                     <ul class="space-y-2 text-gray-400">
@@ -196,14 +198,15 @@
                     </ul>
                 </div>
 
+                <!-- شبکه‌های اجتماعی + اینماد -->
                 <div>
                     <h4 class="text-lg font-semibold mb-4">شبکه‌های اجتماعی</h4>
-                    <div class="flex space-x-4 space-x-reverse">
+
+                    <div class="flex space-x-4 space-x-reverse mb-6">
                         <!-- ایتا -->
                         <a href="https://eitaa.com/09106814604" target="_blank"
                            class="bg-white p-3 rounded-full hover:bg-gray-100 transition-colors border">
-                            <img src="~/img/ui/Eitaa.webp"
-                                 alt="Eitaa" class="w-5 h-5">
+                            <img src="~/img/ui/Eitaa.webp" alt="Eitaa" class="w-5 h-5">
                         </a>
 
                         <!-- اینستاگرام -->
@@ -218,6 +221,19 @@
                             <i class="fab fa-whatsapp"></i>
                         </a>
                     </div>
+
+                    <!-- اینماد -->
+                    <div class="mt-4">
+                        <a referrerpolicy="origin" target="_blank"
+                           href="https://trustseal.enamad.ir/?id=800307&Code=vMuAp4W2kjGniBDhynlFref0yeRxc4ls">
+                            <img referrerpolicy="origin"
+                                 src="https://trustseal.enamad.ir/logo.aspx?id=800307&Code=vMuAp4W2kjGniBDhynlFref0yeRxc4ls"
+                                 alt="پیام کیهان پارس"
+                                 class="mx-auto bg-white p-2 rounded-lg"
+                                 style="cursor:pointer"
+                                 code="vMuAp4W2kjGniBDhynlFref0yeRxc4ls">
+                        </a>
+                    </div>
                 </div>
 
             </div>
@@ -227,6 +243,7 @@
             </div>
         </div>
     </footer>
+
   
 
     <muchat-chatbox-standard style="width: 100%; height: 650px"></muchat-chatbox-standard>
@@ -361,6 +378,8 @@
     <script src="~/lib/gymfit/js/script.js"></script>
     <script src="~/lib/sweetalert2/sweetalert2.js"></script>
     <script src="~/js/quine.js"></script>
+    
+
     @RenderSection("Scripts", required: false)
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>

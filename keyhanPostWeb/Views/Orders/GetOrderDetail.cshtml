@@ -1,0 +1,84 @@
+﻿@using keyhanPostWeb.Areas.CMS.Dtos
+@using Microsoft.AspNetCore.Http
+@using keyhanPostWeb.GeneralService
+@using keyhanPostWeb.GeneralViewModels.Order
+
+@model GetOrderDetailVm
+
+@{
+    Layout = "_adminPanelLayout";
+}
+
+<link rel="stylesheet" href="~/css/list.css" />
+
+<div class="applicant-container rtl">
+
+    <h5>اطلاعات سفارش</h5>
+
+    <div class="grid-box">
+        <div class="item"><label>کد پیگیری</label><span>@Model.TrackingCode</span></div>
+      
+        <div class="item"><label>شماره همراه ثبت‌کننده</label><span>@Model.MobileForOtp</span></div>
+        <div class="item"><label>تاریخ ثبت</label><span>@Model.CreatedAt</span></div>
+        <div class="item"><label>وضعیت سفارش</label><span>@Model.OrderStatus</span></div>
+    </div>
+
+    <h5>اطلاعات بسته</h5>
+
+    <div class="grid-box">
+        <div class="item"><label>نوع بسته</label><span>@Model.PackageTypeName</span></div>
+        <div class="item"><label>نوع حمل</label><span>@Model.DeliveryVehicleType</span></div>
+        <div class="item">
+            <label>وزن واقعی <span style="font-size: 0.7em;">(کیلوگرم)</span></label>
+            <span>@Model.ActualWeight</span>
+        </div>
+
+        <div class="item"><label>طول</label><span>@Model.Length</span></div>
+        <div class="item"><label>عرض</label><span>@Model.Width</span></div>
+        <div class="item"><label>ارتفاع</label><span>@Model.Height</span></div>
+    </div>
+
+    <h5>مبدا و مقصد</h5>
+
+    <div class="grid-box">
+        <div class="item"><label>شهر مبدا</label><span>@Model.OriginCityName</span></div>
+        <div class="item"><label>شهر مقصد</label><span>@Model.DestinationCityName</span></div>
+    </div>
+
+    <h5>اطلاعات فرستنده</h2>
+
+    <div class="grid-box">
+        <div class="item"><label>نوع شخصیت</label><span>@Model.SenderEntityType</span></div>
+        <div class="item"><label>نام</label><span>@Model.SenderFirstName</span></div>
+        <div class="item"><label>نام خانوادگی</label><span>@Model.SenderLastName</span></div>
+        <div class="item"><label>کد ملی</label><span>@Model.SenderNationalId</span></div>
+        <div class="item"><label>شماره همراه</label><span>@Model.SenderMobile</span></div>
+        <div class="item"><label>شماره ثابت</label><span>@Model.SenderPhone</span></div>
+        <div class="item"><label>آدرس</label><span>@Model.SenderAddress</span></div>
+
+        @if (!string.IsNullOrEmpty(Model.SenderCompanyName))
+        {
+            <div class="item"><label>نام شرکت</label><span>@Model.SenderCompanyName</span></div>
+            <div class="item"><label>شناسه ملی شرکت</label><span>@Model.SenderCompanyNationalId</span></div>
+        }
+    </div>
+
+    <h5>اطلاعات گیرنده</h5>
+
+    <div class="grid-box">
+        <div class="item"><label>نوع شخصیت</label><span>@Model.ReceiverEntityType</span></div>
+        <div class="item"><label>نام</label><span>@Model.ReceiverFirstName</span></div>
+        <div class="item"><label>نام خانوادگی</label><span>@Model.ReceiverLastName</span></div>
+        <div class="item"><label>کد ملی</label><span>@Model.ReceiverNationalId</span></div>
+        <div class="item"><label>شماره همراه</label><span>@Model.ReceiverMobile</span></div>
+        <div class="item"><label>شماره ثابت</label><span>@Model.ReceiverPhone</span></div>
+        <div class="item"><label>آدرس</label><span>@Model.ReceiverAddress</span></div>
+
+        @if (!string.IsNullOrEmpty(Model.ReceiverCompanyName))
+        {
+            <div class="item"><label>نام شرکت</label><span>@Model.ReceiverCompanyName</span></div>
+            <div class="item"><label>شناسه ملی شرکت</label><span>@Model.ReceiverCompanyNationalId</span></div>
+        }
+    </div>
+
+</div>

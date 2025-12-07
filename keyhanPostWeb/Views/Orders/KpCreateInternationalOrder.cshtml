@@ -5,200 +5,274 @@
 @{
     Layout = "_Layout";
 }
+<link rel="stylesheet" href="~/css/orderstyles.css" />
+@{
+    int currentStep = Model.InOrderCreate.Step;
+}
+<div class="container mx-auto max-w-5xl" style="margin: 100px 0;">
 
-<style>
-    .page-container {
-        max-width: 980px;
-        margin: 0 auto;
-        padding: 0 16px;
+
+    <!-- =======================
+    STEP 0 - MOBILE FORM
+    =======================-->
+    @if (currentStep == 0)
+    {
+        <form id="form-step-0" asp-action="KpCreateInOrderStep0" asp-controller="Orders" asp-area="" method="post">
+            <section class="form-step @(currentStep == 0 ? "active" : "") card-shadow p-6 rounded-2xl bg-white" data-step="0">
+
+                <h2 class="text-xl font-bold mb-4 text-center">شماره موبایل خود را وارد کنید</h2>
+
+                <div class="mb-4">
+                    <label asp-for="InOrderCreate.InStep0Vm.Mobile"></label>
+                    <input asp-for="InOrderCreate.InStep0Vm.Mobile" class="form-control" />
+                    <span asp-validation-for="InOrderCreate.InStep0Vm.Mobile" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary ">مرحله بعد</button>
+
+
+            </section>
+        </form>
     }
-
-    .form-input, .form-textarea {
-        background-color: #fff;
-        border: 1px solid #e5e7eb;
-        padding: 10px 12px;
-        border-radius: 8px;
-        width: 100%;
-        color: #111827;
-    }
-
-        .form-input:focus, .form-textarea:focus {
-            outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 4px 10px rgba(59,130,246,0.08);
-        }
-
-    .package-type-card {
-        user-select: none;
-        transition: all 0.25s ease;
-    }
-
-        .package-type-card.selected {
-            border: 2px solid #3b82f6;
-            box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
-            background-color: #f0f8ff;
-        }
-
-    .text-right-rtl {
-        direction: rtl;
-        text-align: right;
-    }
-</style>
-
-<div class="mt-header fade-in page-container">
-    <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">فرم ثبت سفارش بین‌المللی</h2>
-
-    <form id="orderForm" asp-action="KpCreateInternationalOrder" asp-controller="Orders" method="post" class="space-y-8">
-
+    <!-- =======================
+    STEP 1 - PACKAGE TYPE
+    =======================-->
+    @if (currentStep == 1)
+    {
         <!-- مرحله ۱: نوع بسته -->
-        <section class="form-step active card-shadow p-6 rounded-2xl bg-white" data-step="0">
-            <h3 class="text-lg font-bold mb-4 text-gray-700 text-center">نوع بسته</h3>
+        <form id="form-step-1" asp-action="KpCreateInOrderStep1" asp-controller="Orders" asp-area="" method="post">
+            <section class=" form-step @(currentStep == 1 ? "active" : "") card-shadow p-6 rounded-2xl bg-white" data-step="1">
+                <h3 class="text-lg font-bold mb-4 text-gray-700 text-center">نوع بسته</h3>
+                <input type="hidden" name="InOrderCreate.InStep1Vm.OrderId" value="@(ViewBag.orderId ?? 0)" />
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
 
-                <!-- کالای عادی -->
-                <label class="package-type-card p-3 rounded-xl text-center border border-gray-200 cursor-pointer" data-value="1">
-                    <input type="radio" asp-for="OrderCreate.PackageTypeId" value="1" class="hidden" />
-                    <div class="card-icon bg-blue-100 text-blue-600 w-12 h-12 mx-auto flex items-center justify-center rounded-full">
-                        <i class="fas fa-box text-xl"></i>
+                    <!-- کالای عادی -->
+                    <label class="package-type-card p-3 rounded-xl text-center border border-gray-200 cursor-pointer" data-value="1">
+                        <input type="radio" asp-for="InOrderCreate.InStep1Vm.PackageTypeId" value="1" class="hidden" />
+                        <div class="card-icon bg-blue-100 text-blue-600 w-12 h-12 mx-auto flex items-center justify-center rounded-full">
+                            <i class="fas fa-box text-xl"></i>
+                        </div>
+                        <p class="mt-2 font-medium text-gray-700 text-sm">کالای عادی</p>
+                    </label>
+
+                    <!-- کالای الکترونیکی -->
+                    <label class="package-type-card p-3 rounded-xl text-center border border-gray-200 cursor-pointer" data-value="2">
+                        <input type="radio" asp-for="InOrderCreate.InStep1Vm.PackageTypeId" value="2" class="hidden" />
+                        <div class="card-icon bg-green-100 text-green-600 w-12 h-12 mx-auto flex items-center justify-center rounded-full">
+                            <i class="fas fa-laptop text-xl"></i>
+                        </div>
+                        <p class="mt-2 font-medium text-gray-700 text-sm">کالای الکترونیکی</p>
+                    </label>
+
+                    <!-- اسناد -->
+                    <label class="package-type-card p-3 rounded-xl text-center border border-gray-200 cursor-pointer data-value="3">
+                        <input type="radio" asp-for="InOrderCreate.InStep1Vm.PackageTypeId" value="3" class="hidden" />
+                        <div class="card-icon bg-purple-100 text-purple-600 w-12 h-12 mx-auto flex items-center justify-center rounded-full">
+                            <i class="fas fa-envelope text-xl"></i>
+                        </div>
+                        <p class="mt-2 font-medium text-gray-700 text-sm">اسناد</p>
+                    </label>
+                    <!-- کالای فاسدشدنی (غیرفعال) -->
+                    <label class="package-type-card p-3 rounded-xl text-center border border-gray-200 cursor-not-allowed opacity-50" data-value="4">
+                        <input type="radio" asp-for="InOrderCreate.InStep1Vm.PackageTypeId" value="4" class="hidden" disabled />
+                        <div class="card-icon bg-gray-100  text-red-600 w-12 h-12 mx-auto flex items-center justify-center rounded-full">
+                            <i class="fas fa-dove text-xl"></i>
+                        </div>
+                        <p class="mt-2 font-medium text-gray-700 text-sm">کالای فاسدشدنی (غیرفعال)</p>
+                    </label>
+                    <!-- کالبد متوفی (غیرفعال) -->
+                       <label class="package-type-card p-3 rounded-xl text-center border border-gray-200 cursor-not-allowed opacity-50" data-value="5">
+                        <input type="radio" asp-for="InOrderCreate.InStep1Vm.PackageTypeId" value="5" class="hidden" disabled />
+                        <div class="card-icon bg-gray-100 text-red-600 w-12 h-12 mx-auto flex items-center justify-center rounded-full">
+                            <i class="fas fa-apple-alt text-xl"></i>
+                        </div>
+                        <p class="mt-2 font-medium text-gray-700 text-sm">کالبد متوفی (غیرفعال)</p>
+                    </label>
+
+                    <!-- حیوان خانگی (غیرفعال) -->
+                    <label class="package-type-card p-3 rounded-xl text-center border border-gray-200 cursor-not-allowed opacity-50" data-value="6">
+                        <input type="radio" asp-for="InOrderCreate.InStep1Vm.PackageTypeId" value="6" class="hidden" disabled />
+                        <div class="card-icon  bg-orange-100 text-red-600 w-12 h-12 mx-auto flex items-center justify-center rounded-full">
+                          <i class="fas fa-paw text-xl"></i>
+                        </div>
+                        <p class="mt-2 font-medium text-gray-700 text-sm">حیوان خانگی (غیرفعال)</p>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary">ثبت و ادامه</button>
+            </section>
+        </form>
+    }
+
+    <!-- =======================
+    STEP 2 - PACKAGE INFO
+    =======================-->
+    @if (currentStep == 2)
+    {
+        <form id="form-step-2" asp-action="KpCreateInOrderStep2" method="post">
+            <section class="form-step @(currentStep == 2 ? "active" : "") card-shadow p-6 rounded-2xl bg-white" data-step="2">
+
+                <input type="hidden" name="InOrderCreate.InStep2Vm.OrderId" value="@(ViewBag.orderId ?? 0)" />
+
+                <h2 class="text-xl font-bold mb-4 text-center">مرحله ۲: اطلاعات مرسوله</h2>
+
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 150px;">
+                        <label asp-for="InOrderCreate.InStep2Vm.OriginCountryName" class="required"></label>
+                        <select asp-for="InOrderCreate.InStep2Vm.OriginCountryName"
+                                asp-items="Model.InOrderCreate.contries"
+                                class="form-control">
+                            <option value="">انتخاب کنید</option>
+                        </select>
+                        <span asp-validation-for="InOrderCreate.InStep2Vm.OriginCountryName" class="text-danger"></span>
                     </div>
-                    <p class="mt-2 font-medium text-gray-700 text-sm">کالای عادی</p>
-                </label>
 
-                <!-- کالای الکترونیکی -->
-                <label class="package-type-card p-3 rounded-xl text-center border border-gray-200 cursor-pointer" data-value="2">
-                    <input type="radio" asp-for="OrderCreate.PackageTypeId" value="2" class="hidden" />
-                    <div class="card-icon bg-green-100 text-green-600 w-12 h-12 mx-auto flex items-center justify-center rounded-full">
-                        <i class="fas fa-laptop text-xl"></i>
+                    <div style="flex: 1; min-width: 150px;">
+                        <label asp-for="InOrderCreate.InStep2Vm.DestinationCountryName" class="required"></label>
+                        <select asp-for="InOrderCreate.InStep2Vm.DestinationCountryName"
+                                asp-items="Model.InOrderCreate.contries"
+                                class="form-control">
+                            <option value="">انتخاب کنید</option>
+                        </select>
+                        <span asp-validation-for="InOrderCreate.InStep2Vm.DestinationCountryName" class="text-danger"></span>
                     </div>
-                    <p class="mt-2 font-medium text-gray-700 text-sm">کالای الکترونیکی</p>
-                </label>
+                </div>
 
-                <!-- اسناد -->
-                <label class="package-type-card p-3 rounded-xl text-center border border-gray-200 cursor-pointer" data-value="3">
-                    <input type="radio" asp-for="OrderCreate.PackageTypeId" value="3" class="hidden" />
-                    <div class="card-icon bg-purple-100 text-purple-600 w-12 h-12 mx-auto flex items-center justify-center rounded-full">
-                        <i class="fas fa-envelope text-xl"></i>
+                <div class="mt-4" style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: flex-end;">
+                    <div style="flex: 1; min-width: 120px;">
+                        <label asp-for="InOrderCreate.InStep2Vm.ActualWeight" class="required"></label>
+                        <input asp-for="InOrderCreate.InStep2Vm.ActualWeight" class="form-control" />
+                        <span asp-validation-for="InOrderCreate.InStep2Vm.ActualWeight" class="text-danger"></span>
                     </div>
-                    <p class="mt-2 font-medium text-gray-700 text-sm">اسناد</p>
-                </label>
 
-                <!-- کالای فاسدشدنی (غیرفعال) -->
-                <label class="package-type-card p-3 rounded-xl text-center border border-gray-200 cursor-not-allowed opacity-50">
-                    <input type="radio" value="4" class="hidden" disabled />
-                    <div class="card-icon bg-red-100 text-red-600 w-12 h-12 mx-auto flex items-center justify-center rounded-full">
-                        <i class="fas fa-apple-alt text-xl"></i>
+                    <div style="flex: 1; min-width: 120px;">
+                        <label asp-for="InOrderCreate.InStep2Vm.Length"></label>
+                        <input asp-for="InOrderCreate.InStep2Vm.Length" class="form-control" />
                     </div>
-                    <p class="mt-2 font-medium text-gray-700 text-sm">کالای فاسدشدنی (غیرفعال)</p>
-                </label>
 
-                <!-- کالبد متوفی (غیرفعال) -->
-                <label class="package-type-card p-3 rounded-xl text-center border border-gray-200 cursor-not-allowed opacity-50">
-                    <input type="radio" value="5" class="hidden" disabled />
-                    <div class="card-icon bg-gray-100 text-gray-700 w-12 h-12 mx-auto flex items-center justify-center rounded-full">
-                        <i class="fas fa-dove text-xl"></i>
+                    <div style="flex: 1; min-width: 120px;">
+                        <label asp-for="InOrderCreate.InStep2Vm.Width"></label>
+                        <input asp-for="InOrderCreate.InStep2Vm.Width" class="form-control" />
                     </div>
-                    <p class="mt-2 font-medium text-gray-700 text-sm">کالبد متوفی (غیرفعال)</p>
-                </label>
 
-                <!-- حیوان خانگی (غیرفعال) -->
-                <label class="package-type-card p-3 rounded-xl text-center border border-gray-200 cursor-not-allowed opacity-50">
-                    <input type="radio" value="6" class="hidden" disabled />
-                    <div class="card-icon bg-orange-100 text-orange-600 w-12 h-12 mx-auto flex items-center justify-center rounded-full">
-                        <i class="fas fa-paw text-xl"></i>
+                    <div style="flex: 1; min-width: 120px;">
+                        <label asp-for="InOrderCreate.InStep2Vm.Height"></label>
+                        <input asp-for="InOrderCreate.InStep2Vm.Height" class="form-control" />
                     </div>
-                    <p class="mt-2 font-medium text-gray-700 text-sm">حیوان خانگی (غیرفعال)</p>
-                </label>
+                   
 
+                </div>
+
+                <button type="submit" class="btn btn-primary ">ثبت و ادامه</button>
+
+            </section>
+        </form>
+    }
+
+
+    <!-- =======================
+    STEP 3 - Requester INFO
+    =======================-->
+    @if (currentStep == 3)
+    {
+        <form id="form-step-3" asp-action="KpCreateInOrderStep3" method="post">
+            <section class="form-step @(currentStep == 3 ? "active" : "") card-shadow p-6 rounded-2xl bg-white" data-step="3">
+
+                <input type="hidden" name="InOrderCreate.InStep3Vm.OrderId" value="@(ViewBag.orderId ?? 0)" />
+
+                <h2 class="text-xl font-bold mb-4 text-center">مرحله ۳: مشخصات درخواست کننده</h2>
+
+                <!-- نام و نام خانوادگی -->
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 150px;">
+                        <label asp-for="InOrderCreate.InStep3Vm.RequesterFirstName"></label>
+                        <input asp-for="InOrderCreate.InStep3Vm.RequesterFirstName" class="form-control" />
+                        <span asp-validation-for="InOrderCreate.InStep3Vm.RequesterFirstName" class="text-danger"></span>
+                    </div>
+
+                    <div style="flex: 1; min-width: 150px;">
+                        <label asp-for="InOrderCreate.InStep3Vm.RequesterLastName"></label>
+                        <input asp-for="InOrderCreate.InStep3Vm.RequesterLastName" class="form-control" />
+                        <span asp-validation-for="InOrderCreate.InStep3Vm.RequesterLastName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!-- موبایل - تلفن - شهر -->
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+                    <div style="flex: 1; min-width: 150px;">
+                        <label asp-for="InOrderCreate.InStep3Vm.RequesterMobile" class="required"></label>
+                        <input asp-for="InOrderCreate.InStep3Vm.RequesterMobile" class="form-control" />
+                        <span asp-validation-for="InOrderCreate.InStep3Vm.RequesterMobile" class="text-danger"></span>
+                    </div>
+
+                    <div style="flex: 1; min-width: 150px;">
+                        <label asp-for="InOrderCreate.InStep3Vm.RequesterPhone"></label>
+                        <input asp-for="InOrderCreate.InStep3Vm.RequesterPhone" class="form-control" placeholder="مثال: 02112345678" />
+                        <span asp-validation-for="InOrderCreate.InStep3Vm.RequesterPhone" class="text-danger"></span>
+                    </div>
+
+                    <div style="flex: 1; min-width: 150px;">
+                        <label asp-for="InOrderCreate.InStep3Vm.RequesterCityId" class="required"></label>
+                        <select asp-for="InOrderCreate.InStep3Vm.RequesterCityId"
+                                asp-items="Model.InOrderCreate.Cities"
+                                class="form-control">
+                            <option value="">انتخاب کنید</option>
+                        </select>
+                        <span asp-validation-for="InOrderCreate.InStep3Vm.RequesterCityId" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary mt-4">ثبت و ادامه</button>
+
+            </section>
+        </form>
+
+    }
+    <!-- =======================
+    STEP 4 - Final
+    =======================-->
+    @if (currentStep == 4)
+    {
+        <section class="card-shadow p-6 rounded-2xl bg-white text-center mt-10" data-step="99">
+
+            <h2 class="text-2xl font-bold text-green-600 mb-4">سفارش شما با موفقیت ثبت شد</h2>
+
+            <p class="text-lg mb-2">کد رهگیری:</p>
+            <div class="text-3xl font-extrabold text-blue-600 mb-6">
+                @ViewBag.TrackingCode
             </div>
 
-            <div class="flex justify-end mt-6">
-                <button type="button" class="next-step bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">مرحله بعدی</button>
-            </div>
+            <a href="@Url.Action("KpCreateInternationalOrder", "Orders")"
+               class="btn btn-primary ">
+                ثبت سفارش جدید
+            </a>
         </section>
-
-        <!-- مرحله ۲: مشخصات بسته -->
-        <section class="form-step card-shadow p-6 rounded-2xl bg-white" data-step="1">
-            <h3 class="text-lg font-bold mb-3 text-gray-700">مشخصات بسته</h3>
-
-            <div class="grid md:grid-cols-2 gap-4">
-                <div>
-                    <label>کشور مبدا</label>
-                    <select asp-for="OrderCreate.OriginCountryName" asp-items="Model.OrderCreate.contries" class="form-input">
-                        <option value="">-- انتخاب کنید --</option>
-                    </select>
-                </div>
-                <div>
-                    <label>کشور مقصد</label>
-                    <select asp-for="OrderCreate.DestinationCountryName" asp-items="Model.OrderCreate.contries" class="form-input">
-                        <option value="">-- انتخاب کنید --</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="grid md:grid-cols-4 gap-4 mt-4">
-                <div>
-                    <label>طول (cm)</label>
-                    <input asp-for="OrderCreate.Length" type="number" class="form-input" />
-                </div>
-                <div>
-                    <label>عرض (cm)</label>
-                    <input asp-for="OrderCreate.Width" type="number" class="form-input" />
-                </div>
-                <div>
-                    <label>ارتفاع (cm)</label>
-                    <input asp-for="OrderCreate.Height" type="number" class="form-input" />
-                </div>
-                <div>
-                    <label>وزن (kg) <span style="color:red">*</span></label>
-                    <input asp-for="OrderCreate.ActualWeight" type="number" class="form-input" />
-                </div>
-            </div>
-
-            <div class="flex justify-between mt-6">
-                <button type="button" class="prev-step bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600">قبلی</button>
-                <button type="button" class="next-step bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">مرحله بعدی</button>
-            </div>
-        </section>
-
-        <!-- مرحله ۳: مشخصات درخواست‌کننده -->
-        <section class="form-step card-shadow p-6 rounded-2xl bg-white" data-step="2">
-            <h3 class="text-lg font-bold mb-3 text-gray-700">مشخصات درخواست کننده</h3>
-
-            <div class="grid md:grid-cols-2 gap-6">
-
-                <div>
-                    <h4 class="font-semibold text-gray-600 mb-2">فرستنده</h4>
-
-                    <label>نام فرستنده</label>
-                    <input asp-for="OrderCreate.SenderName" class="form-input mb-2" />
-
-                    <label>تلفن فرستنده (موبایل)</label>
-                    <input asp-for="OrderCreate.SenderPhone" class="form-input mb-2" />
-
-                    <label>تلفن ثابت (اختیاری)</label>
-                    <input asp-for="OrderCreate.SenderPhone" id="OrderCreate_SenderTel" class="form-input mb-2" />
-
-                    <label>شهر درخواست‌کننده <span style="color:red">*</span></label>
-                    <select asp-for="OrderCreate.OriginCityId" asp-items="Model.OrderCreate.Cities " class="form-input">
-                        <option value="">-- انتخاب کنید --</option>
-                    </select>
-                </div>
-
-            </div>
-
-            <div class="flex justify-between mt-6">
-                <button type="button" class="prev-step bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600">قبلی</button>
-                <button type="submit" class="bg-gradient-to-r from-blue-600 to-green-500 text-white px-6 py-2 rounded-lg font-semibold hover:scale-105 transition-all duration-300">ثبت سفارش</button>
-            </div>
-        </section>
-    </form>
+    }
 </div>
-
+@if (TempData["ValidationErrors"] != null)
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let errors = "@Html.Raw(TempData["ValidationErrors"])";
+            alert(errors.replace(/<br>/g, "\n"));
+        });
+         packageCards.forEach(card => {
+            if (!card.querySelector("input")?.disabled) {
+                card.addEventListener("click", () => {
+                    packageCards.forEach(c => c.classList.remove("selected"));
+                    card.classList.add("selected");
+                    card.querySelector("input").checked = true;
+                });
+            }
+        });
+    </script>
+}
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     <script>
 
+       
         const steps = document.querySelectorAll(".form-step");
         const nextBtns = document.querySelectorAll(".next-step");
         const prevBtns = document.querySelectorAll(".prev-step");
@@ -220,54 +294,74 @@
             return /^0\d{2,3}\d{7,8}$/.test(t);
         }
 
-        function validateStep(step) {
-            let valid = true, message = "";
+                function validateStep(step) {
+            let mobileRegex = /^09\d{9}$/;
+            let telRegex = /^0\d{2,3}\d{7,8}$/;
 
-            if (step === 0 && !$("input[name='OrderCreate.PackageTypeId']:checked").val()) {
-                valid = false;
-                message = "نوع بسته را انتخاب کنید";
-            }
-
-            if (step === 1) {
-                if (
-                    $("#OrderCreate_OriginCountryName").val() === "" ||
-                    $("#OrderCreate_DestinationCountryName").val() === "" ||
-                    $("#OrderCreate_Length").val() === "" ||
-                    $("#OrderCreate_Width").val() === "" ||
-                    $("#OrderCreate_Height").val() === "" ||
-                    $("#OrderCreate_ActualWeight").val() === ""
-                ) {
-                    valid = false;
-                    message = "تمام فیلدهای مشخصات بسته باید کامل باشند";
+            // مرحله اول تغییر نمی‌کند
+            if (step === 0) {
+                let pkg = $("input[name='OrderCreate.PackageTypeId']:checked").val();
+                if (!pkg) {
+                    Swal.fire({ title: "خطا!", text: "نوع بسته را انتخاب کنید", icon: "error" });
+                    return false;
                 }
+                return true;
             }
 
+            // مرحله دوم – فقط ۳ فیلد الزامی
+            if (step === 1) {
+
+                if ($("#OrderCreate_OriginCountryName").val() === "") {
+                    Swal.fire({ title: "خطا!", text: "کشور فرستنده را انتخاب کنید", icon: "error" });
+                    return false;
+                }
+
+                if ($("#OrderCreate_DestinationCountryName").val() === "") {
+                    Swal.fire({ title: "خطا!", text: "کشور گیرنده را انتخاب کنید", icon: "error" });
+                    return false;
+                }
+
+                if ($("#OrderCreate_ActualWeight").val() === "") {
+                    Swal.fire({ title: "خطا!", text: "وزن بسته باید وارد شود", icon: "error" });
+                    return false;
+                }
+
+                return true;
+            }
+
+            // مرحله سوم – همه الزامی بجز تلفن ثابت
             if (step === 2) {
 
-                if ($("#RequestCity").val().trim() === "") {
-                    Swal.fire({ title: "خطا!", text: "شهر درخواست‌کننده را وارد کنید", icon: "error" });
+                if ($("#OrderCreate_SenderName").val().trim() === "") {
+                    Swal.fire({ title: "خطا!", text: "نام فرستنده را وارد کنید", icon: "error" });
                     return false;
                 }
 
-                let mobile = $("#OrderCreate_SenderPhone").val();
-                if (!isValidMobile(mobile)) {
-                    Swal.fire({ title: "خطا!", text: "شماره موبایل وارد شده صحیح نیست", icon: "error" });
+                let mobile = $("#OrderCreate_SenderPhone").val().trim();
+                if (!mobileRegex.test(mobile)) {
+                    Swal.fire({ title: "خطا!", text: "شماره موبایل صحیح نیست", icon: "error" });
                     return false;
                 }
 
-                let landline = $("#OrderCreate_SenderTel").val();
-                if (landline && !isValidLandline(landline)) {
-                    Swal.fire({ title: "خطا!", text: "تلفن ثابت وارد شده معتبر نیست", icon: "error" });
+                let city = $("#OrderCreate_OriginCityId").val();
+                if (!city) {
+                    Swal.fire({ title: "خطا!", text: "شهر درخواست‌کننده باید انتخاب شود", icon: "error" });
                     return false;
                 }
+
+                // تلفن ثابت اختیاری ولی اگر پر شد باید معتبر باشد
+                let tel = $("#OrderCreate_SenderTel").val().trim();
+                if (tel !== "" && !telRegex.test(tel)) {
+                    Swal.fire({ title: "خطا!", text: "تلفن ثابت وارد شده صحیح نیست", icon: "error" });
+                    return false;
+                }
+
+                return true;
             }
 
-            if (!valid) {
-                Swal.fire({ title: "خطا!", text: message, icon: "error" });
-            }
-
-            return valid;
+            return true;
         }
+
 
         nextBtns.forEach(btn => btn.addEventListener("click", () => {
             if (validateStep(currentStep)) {
@@ -320,4 +414,33 @@
         updateSteps();
 
     </script>
+    <script>
+        
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const packageCards = document.querySelectorAll(".package-type-card");
+
+            packageCards.forEach(card => {
+                card.addEventListener("click", function() {
+                    // حذف کلاس selected از همه کارت‌ها
+                    packageCards.forEach(c => c.classList.remove("selected"));
+                    // اضافه کردن کلاس selected به کارت کلیک شده
+                    this.classList.add("selected");
+                    // انتخاب کردن رادیو مربوطه داخل کارت
+                    const radioInput = this.querySelector("input[type='radio']");
+                    if (radioInput) {
+                        radioInput.checked = true;
+                    }
+                });
+            });
+
+            // اگر رادیویی از قبل انتخاب شده بود، به کارت مربوطه کلاس selected بده
+            const checkedInput = document.querySelector(".package-type-card input[type='radio']:checked");
+            if (checkedInput) {
+                checkedInput.closest(".package-type-card").classList.add("selected");
+            }
+        });
+
+    </script>
+
 }

@@ -1302,6 +1302,130 @@ namespace keyhanPostWeb.Migrations
                     b.ToTable("Pakeges");
                 });
 
+            modelBuilder.Entity("keyhanPostWeb.Areas.KP.Models.Entities.Order.InternationalOrder", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<double?>("ActualWeight")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<short>("CurrentStep")
+                        .HasColumnType("smallint");
+
+                    b.Property<string>("DestinationCountryName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("Height")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("Length")
+                        .HasColumnType("float");
+
+                    b.Property<string>("MobileForOtp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("OrderStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("OriginCountryName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OtpCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("OtpExpireAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<short?>("PackageTypeId")
+                        .HasColumnType("smallint");
+
+                    b.Property<int?>("RequesterCityId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RequesterFirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RequesterLastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RequesterMobile")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RequesterPhone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TrackingCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("Width")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderStatusId");
+
+                    b.ToTable("InternationalOrders");
+                });
+
+            modelBuilder.Entity("keyhanPostWeb.Areas.KP.Models.Entities.Order.InternationalWaybill", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreateAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CurrentStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CurrentStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DestinationCountryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OriginCountryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PackageCount")
+                        .HasColumnType("int");
+
+                    b.Property<double>("PackageWeight")
+                        .HasColumnType("float");
+
+                    b.Property<string>("ReceiverName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SenderName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("WaybillCounter")
+                        .HasColumnType("int");
+
+                    b.Property<string>("WaybillNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("InternationalWaybill");
+                });
+
             modelBuilder.Entity("keyhanPostWeb.Areas.KP.Models.Entities.Order.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -1310,87 +1434,112 @@ namespace keyhanPostWeb.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<double>("ActualWeight")
+                    b.Property<double?>("ActualWeight")
                         .HasColumnType("float");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<short>("CurrentStep")
+                        .HasColumnType("smallint");
+
+                    b.Property<short?>("DeliveryVehicleType")
+                        .HasColumnType("smallint");
+
                     b.Property<int?>("DestinationCityId")
                         .HasColumnType("int");
 
-                    b.Property<string>("DestinationCountryName")
-                        .IsRequired()
+                    b.Property<double?>("Height")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("Length")
+                        .HasColumnType("float");
+
+                    b.Property<string>("MobileForOtp")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Height")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Length")
-                        .HasColumnType("float");
-
                     b.Property<int>("OrderStatusId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrderType")
                         .HasColumnType("int");
 
                     b.Property<int?>("OriginCityId")
                         .HasColumnType("int");
 
-                    b.Property<string>("OriginCountryName")
-                        .IsRequired()
+                    b.Property<string>("OtpCode")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<short>("PackageTypeId")
+                    b.Property<DateTime?>("OtpExpireAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<short?>("PackageTypeId")
                         .HasColumnType("smallint");
 
                     b.Property<string>("ReceiverAddress")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<string>("ReceiverName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("ReceiverNationalId")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<string>("ReceiverPhone")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("SenderAddress")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<string>("SenderName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("SenderNationalId")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<string>("SenderPhone")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("TrackingCode")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Width")
+                    b.Property<string>("ReceiverCompanyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReceiverCompanyNationalId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ReceiverEntityTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ReceiverFirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReceiverLastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReceiverMobile")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReceiverNationalId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReceiverPhone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SenderAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SenderCompanyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SenderCompanyNationalId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("SenderEntityTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SenderFirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SenderLastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SenderMobile")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SenderNationalId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SenderPhone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TrackingCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("Width")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
 
                     b.HasIndex("OrderStatusId");
+
+                    b.HasIndex("ReceiverEntityTypeId");
+
+                    b.HasIndex("SenderEntityTypeId");
 
                     b.ToTable("Orders");
                 });
@@ -1421,19 +1570,19 @@ namespace keyhanPostWeb.Migrations
                         new
                         {
                             Id = 1,
-                            Description = "سفارش ثبت شده و در صف بررسی قرار دارد.",
-                            Title = "ارسال شده"
+                            Description = "درخواست کننده در حال ثبت اطلاعات است.",
+                            Title = "در حال تکمیل"
                         },
                         new
                         {
                             Id = 2,
-                            Description = "سفارش در حال پیگیری توسط کارشناس.",
-                            Title = "در حال بررسی"
+                            Description = "اطلاعات سفارش تکمیل است.",
+                            Title = "تکمیل شده"
                         },
                         new
                         {
                             Id = 3,
-                            Description = "سفارش ثبت شده.",
+                            Description = "سفارش بررسی شده.",
                             Title = "بررسی شده"
                         },
                         new
@@ -1442,6 +1591,136 @@ namespace keyhanPostWeb.Migrations
                             Description = "سفارش لغو شده است.",
                             Title = "لغو شده"
                         });
+                });
+
+            modelBuilder.Entity("keyhanPostWeb.Areas.KP.Models.Entities.Order.WaybillStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TitleEn")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WaybillStatus");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "در حال تماس و هماهنگی اولیه با فرستنده مرسوله.",
+                            Title = "ارتباط با فرستنده",
+                            TitleEn = "Communication with the sender"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "بسته از فرستنده تحویل گرفته شد و فرآیند ارسال آغاز گردید.",
+                            Title = "دريافت مرسوله",
+                            TitleEn = "Received shipment"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "مرسوله وارد مرکز پردازش مبدا شد و در حال بررسی و ثبت است.",
+                            Title = "ورود مرسوله به هاب مبدا",
+                            TitleEn = "Shipment entered the origin hub"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "مرسوله از مرکز پردازش مبدا خارج و به سمت فرودگاه ارسال شد.",
+                            Title = "خروج از هاب به فرودگاه",
+                            TitleEn = "Departed from the hub to the airport"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "مرسوله کشور مبدا را ترک کرد و در مسیر پرواز قرار گرفت.",
+                            Title = "خروج از فرودگاه",
+                            TitleEn = "Departed from the airport"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Description = "مرسوله وارد فرودگاه کشور مقصد شد.",
+                            Title = "ورود به فرودگاه مقصد",
+                            TitleEn = "Arrived at the destination airport"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Description = "مرسوله در حال بررسی و ارزیابی توسط کارشناسان گمرک مقصد است.",
+                            Title = "در حال ارزیابی گمرک",
+                            TitleEn = "Under customs assessment"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Description = "مرسوله از گمرک مقصد ترخیص شد.",
+                            Title = "خروج از گمرک",
+                            TitleEn = "Departed from customs"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Description = "مرسوله وارد مرکز پردازش مقصد شد و آماده ارسال نهایی است.",
+                            Title = "ورود به هاب مقصد",
+                            TitleEn = "Arrived at the destination hub"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Description = "مرسوله توسط سفیر در حال تحویل به گیرنده است.",
+                            Title = "در حال تحويل دادن",
+                            TitleEn = "Delivering"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Description = "مرسوله با موفقیت به گیرنده نهایی تحویل داده شد.",
+                            Title = "تحويل داده شد",
+                            TitleEn = "Delivered"
+                        });
+                });
+
+            modelBuilder.Entity("keyhanPostWeb.Areas.KP.Models.Entities.Order.WaybillStatusHistory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("ChangedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WaybillId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StatusId");
+
+                    b.HasIndex("WaybillId");
+
+                    b.ToTable("WaybillStatusHistory");
                 });
 
             modelBuilder.Entity("keyhanPostWeb.Areas.KP.Models.Entities.Representative.RepAgencyType", b =>
@@ -4262,15 +4541,58 @@ namespace keyhanPostWeb.Migrations
                     b.Navigation("ForSection");
                 });
 
+            modelBuilder.Entity("keyhanPostWeb.Areas.KP.Models.Entities.Order.InternationalOrder", b =>
+                {
+                    b.HasOne("keyhanPostWeb.Areas.KP.Models.Entities.Order.OrderStatus", "OrderStatus")
+                        .WithMany("InternationalOrders")
+                        .HasForeignKey("OrderStatusId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.Navigation("OrderStatus");
+                });
+
             modelBuilder.Entity("keyhanPostWeb.Areas.KP.Models.Entities.Order.Order", b =>
                 {
                     b.HasOne("keyhanPostWeb.Areas.KP.Models.Entities.Order.OrderStatus", "OrderStatus")
                         .WithMany("Orders")
                         .HasForeignKey("OrderStatusId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
+                    b.HasOne("keyhanPostWeb.Areas.KP.Models.Entities.Representative.RepEntityType", "ReceiverEntityType")
+                        .WithMany("OrdersAsReceiverType")
+                        .HasForeignKey("ReceiverEntityTypeId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.HasOne("keyhanPostWeb.Areas.KP.Models.Entities.Representative.RepEntityType", "SenderEntityType")
+                        .WithMany("OrdersAsSenderType")
+                        .HasForeignKey("SenderEntityTypeId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
                     b.Navigation("OrderStatus");
+
+                    b.Navigation("ReceiverEntityType");
+
+                    b.Navigation("SenderEntityType");
+                });
+
+            modelBuilder.Entity("keyhanPostWeb.Areas.KP.Models.Entities.Order.WaybillStatusHistory", b =>
+                {
+                    b.HasOne("keyhanPostWeb.Areas.KP.Models.Entities.Order.WaybillStatus", "Status")
+                        .WithMany("WaybillStatusHistory")
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("keyhanPostWeb.Areas.KP.Models.Entities.Order.InternationalWaybill", "Waybill")
+                        .WithMany("WaybillStatusHistory")
+                        .HasForeignKey("WaybillId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Status");
+
+                    b.Navigation("Waybill");
                 });
 
             modelBuilder.Entity("keyhanPostWeb.Areas.KP.Models.Entities.Representative.RepApplicant", b =>
@@ -4435,9 +4757,21 @@ namespace keyhanPostWeb.Migrations
                     b.Navigation("ProductInPakges");
                 });
 
+            modelBuilder.Entity("keyhanPostWeb.Areas.KP.Models.Entities.Order.InternationalWaybill", b =>
+                {
+                    b.Navigation("WaybillStatusHistory");
+                });
+
             modelBuilder.Entity("keyhanPostWeb.Areas.KP.Models.Entities.Order.OrderStatus", b =>
                 {
+                    b.Navigation("InternationalOrders");
+
                     b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("keyhanPostWeb.Areas.KP.Models.Entities.Order.WaybillStatus", b =>
+                {
+                    b.Navigation("WaybillStatusHistory");
                 });
 
             modelBuilder.Entity("keyhanPostWeb.Areas.KP.Models.Entities.Representative.RepAgencyType", b =>
@@ -4462,6 +4796,10 @@ namespace keyhanPostWeb.Migrations
 
             modelBuilder.Entity("keyhanPostWeb.Areas.KP.Models.Entities.Representative.RepEntityType", b =>
                 {
+                    b.Navigation("OrdersAsReceiverType");
+
+                    b.Navigation("OrdersAsSenderType");
+
                     b.Navigation("RepApplications");
                 });
 

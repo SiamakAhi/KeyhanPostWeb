@@ -1,13 +1,74 @@
 ﻿@using keyhanPostWeb.Areas.CMS.Dtos
+@using keyhanPostWeb.GeneralService
 @model VmSiteContent
 @{
     ViewData["Title"] = "سفارش های جدید";
     var cities = ViewBag.Cities as SelectList;
+    Layout = "_adminPanelLayout";
 }
 <link rel="stylesheet" href="~/css/list.css" />
 
 <div class="orders-container fade-in">
-    <div class="orders-title">سفارشات جدید</div>
+    <div class="orders-title">لیست سفارش های داخلی</div>
+    <form method="get" class="filter-form fade-in">
+        <div class="filter-row">
+
+            <div class="filter-item">
+                <label>نام فرستنده</label>
+                <input type="text" name="SenderName" value="@Context.Request.Query["SenderName"]" />
+
+            </div>
+
+            <div class="filter-item">
+                <label>نام گیرنده</label>
+                <input type="text" name="ReceiverName" value="@Context.Request.Query["ReceiverName"]" />
+            </div>
+
+            <div class="filter-item">
+                <label>شهر مبدا</label>
+                <select name="OriginCityId">
+                    <option value="">همه</option>
+                    @foreach (var c in ViewBag.Cities)
+                    {
+                        <option value="@c.Value" selected="@(Context.Request.Query["OriginCityId"] == c.Value ? "selected" : null)">
+                            @c.Text
+                        </option>
+                    }
+                </select>
+            </div>
+
+            <div class="filter-item">
+                <label>شهر مقصد</label>
+                <select name="DestinationCityId">
+                    <option value="">همه</option>
+                    @foreach (var c in ViewBag.Cities)
+                    {
+                        <option value="@c.Value" selected="@(Context.Request.Query["DestinationCityId"] == c.Value ? "selected" : null)">
+                            @c.Text
+                        </option>
+                    }
+                </select>
+            </div>
+
+           
+
+            <div class="filter-item">
+                <label>از تاریخ</label>
+                <input type="date" name="FromDate" value="@Context.Request.Query["FromDate"]" />
+            </div>
+
+            <div class="filter-item">
+                <label>تا تاریخ</label>
+                <input type="date" name="ToDate" value="@Context.Request.Query["ToDate"]" />
+            </div>
+
+            <div class="filter-buttons">
+                <button type="submit" class="btn btn-primary">جستجو</button>
+                <a asp-controller="Orders" asp-action="GetOrders" class="btn btn-secondary">حذف فیلتر</a>
+            </div>
+
+        </div>
+    </form>
 
     <table class="custom-table">
         <thead>
@@ -15,14 +76,15 @@
 
                 <th>ردیف</th>
                 <th>کد رهگیری</th>
-                <th>فرستنده</th>
-                <th>گیرنده</th>
-                <th>تلفن فرستنده</th>
-                <th>تلفن گیرنده</th>
+                <th>تاریخ</th>
+                <th>نام فرستنده</th>
+                <th>موبایل فرستنده</th>
+                <th>نام گیرنده</th>
+                <th>موبایل گیرنده</th>
                 <th>مبدأ</th>
                 <th>مقصد</th>
                 <th>نوع بسته</th>
-                <th>تاریخ </th>
+                <th>وزن واقعی </th>
             </tr>
         </thead>
         <tbody>
@@ -34,14 +96,15 @@
                 <tr>
                     <td class="row-number">@rowNumber</td>
                     <td>@order.TrackingCode</td>
+                    <td>@order.CreatedAt.LatinToPersian()</td>
                     <td>@order.SenderName</td>
+                    <td>@order.SenderMobile</td>
                     <td>@order.ReceiverName</td>
-                    <td>@order.SenderPhone</td>
-                    <td>@order.ReceiverPhone</td>
-                    <td>@order.OriginCityname</td>
-                    <td>@order.DestinationCityname</td>
+                    <td>@order.ReceiverMobile</td>
+                    <td>@order.OriginCityName</td>
+                    <td>@order.DestinationCityName</td>
                     <td>@order.PackageTypeName</td>
-                    <td>@order.CreatedAt</td>
+                    <td>@order.ActualWeight</td>
                 </tr>
                 rowNumber++;
             }

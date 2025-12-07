@@ -1,4 +1,5 @@
 ﻿
+using keyhanPostWeb.Areas.KP.Dto;
 using keyhanPostWeb.Areas.KP.Models.Entities.Representative;
 using keyhanPostWeb.GeneralViewModels.Identity;
 using keyhanPostWeb.GeneralViewModels.Order;
@@ -40,9 +41,11 @@ namespace keyhanPostWeb.Areas.CMS.Dtos
         public VmRepresentativeRequest jobRequest { get; set; }
 
         //order 
-        public OrderCreateViewModel OrderCreate { get; set; }
-        public List<getOrdersViewModel> GetOrderVm { get; set; }
-
+        public CreateOrderVm OrderCreate { get; set; }
+        public CreateInOrderVm InOrderCreate { get; set; }
+        public List<GetOrdersVM> GetOrderVm { get; set; }
+        public GetOrderDetailVm GetOrderDetailVm { get; set; }
+        public WaybillHistoryDto WaybillHistory { get; set; }
 
     }
 }
