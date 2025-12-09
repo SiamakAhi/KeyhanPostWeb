@@ -18,8 +18,8 @@
             }
             else if (Model.jobRequest.CurrentStep == 1)
             {
-               
-                @await Html.PartialAsync("_CreateJobRequest_step2.cshtml", Model.jobRequest)
+
+                @await Html.PartialAsync("_CreateJobRequest_step2", Model.jobRequest)
             }
              else if (Model.jobRequest.CurrentStep == 2)
             {

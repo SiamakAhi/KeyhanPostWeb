@@ -1,85 +1,29 @@
 ﻿@using keyhanPostWeb.GeneralViewModels.RepDto
 @model VmRepresentativeRequest
+@{
+    Layout = null;
+}
 <div class="max-w-5xl mx-auto bg-white p-10 rounded-xl shadow-md rtl">
 
-    @* <div class="jobrequest_right-content">
+    <div class="max-w-5xl mx-auto bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 rtl mb-4">
 
-        <div class="sec-title">
-            <h3 class="sec-title_title text-dark-blue">مشخصات متقاضی</h3>
-        </div>
+        <div class="flex flex-wrap items-center justify-between gap-3 text-sm">
 
-        <div class="details">
-            <ul class="style-list_two-column">
-                
-                <li class="feature-block-four">
-                    <div class="feature-block-four_content">
-                        <label>شماره درخواست</label>
-                        <span class="trackingCode text-primary">@Model.Details.TrackingNumber</span>
-                    </div>
-                </li>
+            <div class="flex items-center gap-1">
+                <span class="text-gray-500">کد:</span>
+                <span class="font-bold text-blue-700">@Model.Details.TrackingNumber</span>
+            </div>
 
-                <li class="feature-block-four">
-                    <div class="feature-block-four_content">
-                        <label>نام</label>
-                        <span>@Model.Details.ApplicantName</span>
-                    </div>
-                </li>
+            <div><span class="text-gray-500">نام:</span> @Model.Details.ApplicantName</div>
+            <div><span class="text-gray-500">نوع:</span> @Model.Details.EntityType</div>
+            <div><span class="text-gray-500">کدملی:</span> @Model.Details.NationalId</div>
+            <div><span class="text-gray-500">موبایل:</span> @Model.Details.MobileNumber</div>
+            <div><span class="text-gray-500">تحصیلات:</span> @Model.Details.EducationDegree</div>
 
-                <li class="feature-block-four">
-                    <div class="feature-block-four_content">
-                        <label>نوع</label>
-                        <span>@Model.Details.EntityType</span>
-                    </div>
-                </li>
-
-                <li class="feature-block-four">
-                    <div class="feature-block-four_content">
-                        <label>شماره ملی</label>
-                        <span>@Model.Details.NationalId</span>
-                    </div>
-                </li>
-
-                <li class="feature-block-four">
-                    <div class="feature-block-four_content">
-                        <label>شماره همراه</label>
-                        <span>@Model.Details.MobileNumber</span>
-                    </div>
-                </li>
-
-                <li class="feature-block-four">
-                    <div class="feature-block-four_content">
-                        <label>پست الکترونیک</label>
-                        <span>@Model.Details.Email</span>
-                    </div>
-                </li>
-
-                <li class="feature-block-four">
-                    <div class="feature-block-four_content">
-                        <label>میزان تحصیلات</label>
-                        <span>@Model.Details.EducationDegree</span>
-                    </div>
-                </li>
-
-                <li class="feature-block-four">
-                    <div class="feature-block-four_content">
-                        <label>آدرس</label>
-                        <span>@Model.Details.Address</span>
-                    </div>
-                </li>
-
-                <li class="feature-block-four">
-                    <div class="feature-block-four_content">
-                        <label>نحوه آشنایی با کیهان پست</label>
-                        <span>@Model.Details.Introduction</span>
-                    </div>
-                </li>
-
-            </ul>
         </div>
 
     </div>
 
-</div> *@
 
     <div class="max-w-5xl mx-auto bg-white p-10 rounded-xl shadow-md">
         <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">
@@ -165,6 +109,7 @@
         </form>
     </div>
 
+</div>
 
 <script src="~/js/quine.js"></script>
 <script src="~/js/branch.js"></script>

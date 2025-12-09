@@ -34,13 +34,13 @@
                   
                       <div class="col-md-6 mb-3">
                             <label asp-for="StrChangedAt"></label>
-                            <input type="text"
-                                   asp-for="StrChangedAt"
-                                   class="form-control flatpickr-input"
-                                   placeholder="YYYY/MM/DD"
-                                   id="flatpickr-date">
-                            <span class="text-danger" asp-validation-for="StrChangedAt"></span>
-                        </div>
+                        <input type="text"
+                               asp-for="StrChangedAt"
+                               class="form-control flatpickr-input flatpickr-date"
+                               placeholder="YYYY/MM/DD">
+                        <span class="text-danger" asp-validation-for="StrChangedAt"></span>
+                      </div>
+                   
                 </div>
 
                 <div class="card-footer d-grid p-3">
@@ -55,15 +55,26 @@
     </div>
 </div>
 <!-- اسکریپت لازم -->
-<script src="~/js/forms-pickers.js"></script>
-<script src="~/js/jquery.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="~/lib/jdate/jdate.js"></script>
+<script src="~/lib/flatpickr/flatpickr.js"></script>
+<script src="~/lib/flatpickr/flatpickr-jdate.js"></script>
+<script src="~/lib/flatpickr/l10n/fa-jdate.js"></script>
 <script>
+    flatpickr(".flatpickr-date", {
+        locale: "fa",
+        dateFormat: "Y/m/d"
+    });
+</script>
+@* <script>
     document.addEventListener("DOMContentLoaded", function () {
         flatpickr("#flatpickr-date", {
             dateFormat: "Y/m/d",
             locale: "fa"
         });
     });
-</script>
+</script> *@

@@ -35,8 +35,8 @@
         var b = int.Parse(hex.Substring(4, 2), NumberStyles.HexNumber);
         return $"rgba({r},{g},{b},{alpha.ToString(CultureInfo.InvariantCulture)})";
     }
-
     bool hasHistory = Model?.WaybillHistory != null;
+
 }
 <!-- Hero Slider Section -->
 <section class="relative overflow-hidden text-white mt-1">
@@ -435,6 +435,7 @@
                         <p class="text-gray-600">هیچ بارنامه‌ای نمایش داده نشده است. برای مشاهده، یک بارنامه جستجو کنید.</p>
                     </div>
                 }
+               
                 else
                 {
                     var w = Model.WaybillHistory;
@@ -509,16 +510,34 @@
                                         <div class="absolute right-4 w-4 h-4 rounded-full border-4 border-white shadow"
                                              style="background-color:@dotBg"></div>
                                         <div class="mr-12">
-                                            <div class="rounded-lg p-4" style="background-color:@cardBg; border:1px solid @borderColor">
-                                                <div class="flex items-center justify-between mb-2">
-                                                    <h5 class="font-semibold" style="color:@hex">@item.Title</h5>
-                                                    <span class="text-xs" style="color:@hex">@item.TitleEn</span>
-                                                    <span class="text-sm" style="color:@hex">@item.ChangedAt.LatinToPersian()</span>
+                                            <div class="mr-12">
+                                                <div class="rounded-lg p-4" style="background-color:@cardBg; border:1px solid @borderColor; width:260px;">
+
+                                                    <!-- ردیف اول: تیتر فارسی + تاریخ فارسی -->
+                                                    <div class="flex items-center justify-between mb-2 gap-4">
+                                                        <h5 class="font-semibold" style="color:@hex">
+                                                            @item.Title
+                                                        </h5>
+
+                                                        <span class="text-sm" style="color:@hex">
+                                                            @item.ChangedAt.LatinToPersian()
+                                                        </span>
+                                                    </div>
+
+                                                    <!-- ردیف دوم: تیتر انگلیسی + تاریخ میلادی -->
+                                                    <div class="flex items-center justify-between gap-4">
+                                                        <span class="text-xs" style="color:@hex">
+                                                            @item.TitleEn
+                                                        </span>
+
+                                                        <span class="text-xs" style="color:@hex">
+                                                            @item.ChangedAt.ToString("yyyy/MM/dd")
+                                                        </span>
+                                                    </div>
+
                                                 </div>
-                                                <p class="text-sm" style="color:rgba(0,0,0,0.7)">@item.Description</p>
-                                                @* اگر آیتم‌های اضافی (مثلاً Location) دارید اینجا نمایش دهید *@
-                                                @* <p class="text-xs mt-1 text-gray-600">@item.Location</p> *@
                                             </div>
+
                                         </div>
                                     </div>
                                 }

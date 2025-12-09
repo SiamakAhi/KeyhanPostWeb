@@ -886,6 +886,17 @@ namespace keyhanPostWeb.Areas.KP.KPServices
 
             try
             {
+                // ✅ جلوگیری از ثبت تکراری وضعیت برای این بارنامه
+                bool isDuplicate = await _context.WaybillStatusHistory
+                    .AnyAsync(x => x.WaybillId == dto.WaybillId
+                                && x.StatusId == dto.NewStatusId);
+
+                if (isDuplicate)
+                {
+                    result.Success = false;
+                    result.Message = "این وضعیت قبلاً برای این بارنامه ثبت شده است.";
+                    return result;
+                }
                 // تغییر وضعیت جاری بارنامه
                 waybill.CurrentStatus = status.Title;
                 waybill.CurrentStatusId = status.Id;
@@ -926,8 +937,8 @@ namespace keyhanPostWeb.Areas.KP.KPServices
                 .FirstOrDefaultAsync(x => x.WaybillNumber == waybillNumber);
 
             if (waybill == null)
-                throw new Exception("بارنامه یافت نشد");
-            
+                return null;
+
             var history = await _context.WaybillStatusHistory
                 .Where(x => x.WaybillId == waybill.Id)
                 .Include(x => x.Status)

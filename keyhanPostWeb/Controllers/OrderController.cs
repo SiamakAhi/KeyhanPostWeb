@@ -591,7 +591,7 @@ namespace keyhanPostWeb.Controllers
         {
             var countries = _representativeService.SelectList_Countries();
             var statuses = _orderService.SelectList_WaybillStatuses().Result;
-
+           
             ViewBag.Statuses = statuses;
             ViewBag.Countries = countries;
 
@@ -661,18 +661,16 @@ namespace keyhanPostWeb.Controllers
         [HttpGet]
         public async Task<IActionResult> GetWaybillHistory(string wayBillNumber)
         {
-           
-            var vm = new VmSiteContent();
-            vm.WaybillHistory = await _orderService.GetWaybillHistoryAsync(wayBillNumber);
-            return View("KPIndex", vm);
-
+                var vm = new VmSiteContent();
+                vm.WaybillHistory = await _orderService.GetWaybillHistoryAsync(wayBillNumber);
+                return View("KPIndex", vm);
         }
         [HttpGet]
         [Authorize(Roles = "Admin,Manager")]
         public IActionResult ChangeStatus(int waybillId)
         {
             var statuses = _orderService.SelectList_WaybillStatuses().Result;
-
+         
             ViewBag.Statuses = statuses;
 
             return PartialView("_ChangeStatus", new ChangeWaybillStatusDto

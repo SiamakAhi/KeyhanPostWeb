@@ -39,7 +39,7 @@ namespace keyhanPostWeb.Areas.KP.Dto
 
         [Required(ErrorMessage = "لطفاً تاریخ را انتخاب کنید")]
         [DisplayName("تاریخ")]
-        public string? StrCreateAt { get; set; }
+        public string StrCreateAt { get; set; }
 
     }
 }
