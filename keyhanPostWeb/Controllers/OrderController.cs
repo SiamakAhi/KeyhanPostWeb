@@ -78,6 +78,7 @@ namespace keyhanPostWeb.Controllers
             return View(vm);
 
         }
+
         [HttpPost]
         public async Task<IActionResult> KpCreateOrderStep0(VmSiteContent model)
         {
@@ -85,36 +86,42 @@ namespace keyhanPostWeb.Controllers
             ModelState.Clear();
             TryValidateModel(model.OrderCreate.Step0Vm, "OrderCreate.Step0Vm");
 
-            if (!ModelState.IsValid)
+            clsResult result = new clsResult();
+            if (ModelState.IsValid)
             {
-                // اگر ورودی اشتباه بود، دوباره همان View را با مدل فعلی برگردان
-                return View("KpCreateOrder", model);
-            }
-
-            try
-            {
+              
                 var ordervm = model.OrderCreate.Step0Vm;
-                var result = await _orderService.CreateStep0Async(ordervm);
+                result = await _orderService.CreateStep0Async(ordervm);
 
                 if (result.Success)
                 {
-                    TempData["ValidationErrors"] = string.Join("<br>",
-                   ModelState.Values
-                  .SelectMany(v => v.Errors)
-                  .Select(e => e.ErrorMessage));
-                    return RedirectToAction("KpCreateOrder", new { orderId = result.OrderId });
+                    result.ShowMessage = false;
+                    result.returnUrl = Url.Action(
+                "KpCreateOrder",
+                "Orders",
+                new { orderId = result.OrderId }
+);
+                    result.updateType = 1;
+
+                    string jsonResult = JsonConvert.SerializeObject(result);
+                    return Json(jsonResult);
                 }
-                else
-                {
-                    ModelState.AddModelError("", result.Message);
-                    return View("KpCreateOrder", model);
-                }
+
             }
-            catch (Exception ex)
+            else
             {
-                ModelState.AddModelError("", "خطایی رخ داده است: " + ex.Message);
-                return View("KpCreateOrder", model);
+                var errors = ModelState.Values.SelectMany(n => n.Errors).ToList();
+                foreach (var er in errors)
+                {
+                    result.Message += $"\n {er.ErrorMessage}";
+                }
             }
+
+            result.Success = false;
+            result.ShowMessage = true;
+
+            string json_Result = JsonConvert.SerializeObject(result);
+            return Json(json_Result);
         }
 
         [HttpPost]
@@ -406,36 +413,42 @@ namespace keyhanPostWeb.Controllers
             ModelState.Clear();
             TryValidateModel(model.InOrderCreate.InStep0Vm, "InOrderCreate.InStep0Vm");
 
-            if (!ModelState.IsValid)
+            clsResult result = new clsResult();
+            if (ModelState.IsValid)
             {
-                // اگر ورودی اشتباه بود، دوباره همان View را با مدل فعلی برگردان
-                return View("KpCreateInternationalOrder", model);
-            }
 
-            try
-            {
                 var ordervm = model.InOrderCreate.InStep0Vm;
-                var result = await _orderService.In_CreateStep0Async(ordervm);
+                result = await _orderService.In_CreateStep0Async(ordervm);
 
                 if (result.Success)
                 {
-                    TempData["ValidationErrors"] = string.Join("<br>",
-                   ModelState.Values
-                  .SelectMany(v => v.Errors)
-                  .Select(e => e.ErrorMessage));
-                    return RedirectToAction("KpCreateInternationalOrder", new { orderId = result.OrderId });
+                    result.ShowMessage = false;
+                    result.returnUrl = Url.Action(
+                "KpCreateInternationalOrder",
+                "Orders",
+                new { orderId = result.OrderId }
+);
+                    result.updateType = 1;
+
+                    string jsonResult = JsonConvert.SerializeObject(result);
+                    return Json(jsonResult);
                 }
-                else
-                {
-                    ModelState.AddModelError("", result.Message);
-                    return View("KpCreateInternationalOrder", model);
-                }
+
             }
-            catch (Exception ex)
+            else
             {
-                ModelState.AddModelError("", "خطایی رخ داده است: " + ex.Message);
-                return View("KpCreateInternationalOrder", model);
+                var errors = ModelState.Values.SelectMany(n => n.Errors).ToList();
+                foreach (var er in errors)
+                {
+                    result.Message += $"\n {er.ErrorMessage}";
+                }
             }
+
+            result.Success = false;
+            result.ShowMessage = true;
+
+            string json_Result = JsonConvert.SerializeObject(result);
+            return Json(json_Result);
         }
         [HttpPost]
         public async Task<IActionResult> KpCreateInOrderStep1(VmSiteContent model)

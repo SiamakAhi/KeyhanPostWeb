@@ -3,7 +3,7 @@
 @{
     Layout = null;
 }
-<div class="max-w-5xl mx-auto bg-white p-10 rounded-xl shadow-md rtl">
+<div class="max-w-5xl mx-auto bg-white p-10 rounded-xl shadow-md rtl" style="margin: 50px 0">
 
     <div class="max-w-5xl mx-auto bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 rtl mb-4">
 
@@ -25,7 +25,7 @@
     </div>
 
 
-    <div class="max-w-5xl mx-auto bg-white p-10 rounded-xl shadow-md">
+  
         <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">
             مرحله 2 - جزئیات درخواست
         </h2>
@@ -33,83 +33,100 @@
     <form id="frmStep2" asp-action="CreateJobRequest_step2" method="post" class="space-y-6">
             <input type="hidden" asp-for="dtoStep2.Id" value="@Model.Details.Id" />
 
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+
+            <!-- ردیف اول -->
             <div>
                 <label asp-for="dtoStep2.JobRequestId" class="block text-gray-700 font-medium mb-2"></label>
                 <select asp-for="dtoStep2.JobRequestId" asp-items="ViewBag.JobRequestType"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        class="w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500">
                     <option value="">انتخاب کنید</option>
                 </select>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-
-                <div>
-                    <label asp-for="dtoStep2.CityId" class="block text-gray-700 font-medium mb-2"></label>
-                    <select asp-for="dtoStep2.CityId" asp-items="ViewBag.Cities"
-                            class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <option value="">انتخاب کنید</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label asp-for="dtoStep2.AgencyTypeId" class="block text-gray-700 font-medium mb-2"></label>
-                    <select asp-for="dtoStep2.AgencyTypeId" asp-items="ViewBag.AgencyTypes"
-                            class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <option value="">انتخاب کنید</option>
-                    </select>
-                </div>
-
-                <div class="col-span-1 sm:col-span-2 md:col-span-3">
-                    <label asp-for="dtoStep2.BranchAddress" class="block text-gray-700 font-medium mb-2"></label>
-                    <input type="text" asp-for="dtoStep2.BranchAddress"
-                           placeholder="محل نمایندگی"
-                           class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                </div>
-
-                <div>
-                    <label asp-for="dtoStep2.ExperienceId" class="block text-gray-700 font-medium mb-2"></label>
-                    <select asp-for="dtoStep2.ExperienceId" asp-items="ViewBag.Experiences"
-                            class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <option value="">انتخاب کنید</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label asp-for="dtoStep2.VehicleAvailabilityId" class="block text-gray-700 font-medium mb-2"></label>
-                    <select asp-for="dtoStep2.VehicleAvailabilityId" asp-items="ViewBag.VehicleAvailabilities"
-                            class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <option value="">انتخاب کنید</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label asp-for="dtoStep2.VehicleTypeId" class="block text-gray-700 font-medium mb-2"></label>
-                    <select asp-for="dtoStep2.VehicleTypeId" asp-items="ViewBag.VehicleType"
-                            class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <option value="">انتخاب کنید</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label asp-for="dtoStep2.PropertyTypeId" class="block text-gray-700 font-medium mb-2"></label>
-                    <select asp-for="dtoStep2.PropertyTypeId" asp-items="ViewBag.PropertyTypes"
-                            class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <option value="">انتخاب کنید</option>
-                    </select>
-                </div>
-
-                <div class="col-span-1 sm:col-span-2 md:col-span-3">
-                    <label asp-for="dtoStep2.AdditionalDesc" class="block text-gray-700 font-medium mb-2"></label>
-                    <textarea rows="3" asp-for="dtoStep2.AdditionalDesc"
-                              class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-                </div>
+            <div>
+                <label asp-for="dtoStep2.CityId" class="block text-gray-700 font-medium mb-2"></label>
+                <select asp-for="dtoStep2.CityId" asp-items="ViewBag.Cities"
+                        class="w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500">
+                    <option value="">انتخاب کنید</option>
+                </select>
             </div>
+
+            <div>
+                <label asp-for="dtoStep2.AgencyTypeId" class="block text-gray-700 font-medium mb-2"></label>
+                <select asp-for="dtoStep2.AgencyTypeId" asp-items="ViewBag.AgencyTypes"
+                        class="w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500">
+                    <option value="">انتخاب کنید</option>
+                </select>
+            </div>
+
+            <!-- خالی برای حفظ ۳تایی بودن ردیف اول در lg -->
+            <div class="hidden lg:block"></div>
+
+            <!-- ردیف دوم -->
+            <div class="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4">
+                <label asp-for="dtoStep2.BranchAddress" class="block text-gray-700 font-medium mb-2"></label>
+                <input asp-for="dtoStep2.BranchAddress" type="text"
+                       placeholder="محل نمایندگی"
+                       class="w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <!-- ردیف سوم -->
+            <div>
+                <label asp-for="dtoStep2.ExperienceId" class="block text-gray-700 font-medium mb-2"></label>
+                <select asp-for="dtoStep2.ExperienceId" asp-items="ViewBag.Experiences"
+                        class="w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500">
+                    <option value="">انتخاب کنید</option>
+                </select>
+            </div>
+
+            <div>
+                <label asp-for="dtoStep2.VehicleAvailabilityId" class="block text-gray-700 font-medium mb-2"></label>
+                <select asp-for="dtoStep2.VehicleAvailabilityId" asp-items="ViewBag.VehicleAvailabilities"
+                        class="w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500">
+                    <option value="">انتخاب کنید</option>
+                </select>
+            </div>
+
+            <div>
+                <label asp-for="dtoStep2.VehicleTypeId" class="block text-gray-700 font-medium mb-2"></label>
+                <select asp-for="dtoStep2.VehicleTypeId" asp-items="ViewBag.VehicleType"
+                        class="w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500">
+                    <option value="">انتخاب کنید</option>
+                </select>
+            </div>
+
+            <div>
+                <label asp-for="dtoStep2.PropertyTypeId" class="block text-gray-700 font-medium mb-2"></label>
+                <select asp-for="dtoStep2.PropertyTypeId" asp-items="ViewBag.PropertyTypes"
+                        class="w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500">
+                    <option value="">انتخاب کنید</option>
+                </select>
+            </div>
+
+            <!-- ردیف چهارم -->
+            <div class="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4">
+                <label asp-for="dtoStep2.AdditionalDesc" class="block text-gray-700 font-medium mb-2"></label>
+                <textarea rows="3" asp-for="dtoStep2.AdditionalDesc"
+                          class="w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500"></textarea>
+            </div>
+
+        </div>
+
         <div id="formMessage" class="mt-4"></div>
-        <button type="submit" class="btn btn-primary accAjaxSubmit">مرحله بعد</button>
+        <button type="button" class="btn btn-primary accAjaxSubmit">مرحله بعد</button>
         </form>
     </div>
 
-</div>
 
+
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/sweetalert2/sweetalert2.js"></script>
 <script src="~/js/quine.js"></script>
-<script src="~/js/branch.js"></script>
+<script src="~/lib/select2/select2.js"></script>
+

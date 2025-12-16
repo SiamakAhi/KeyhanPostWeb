@@ -171,10 +171,13 @@
                     <button onclick="verifyContract()" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors flex-1">
                         احراز هویت و دریافت کد اعتباری
                     </button>
-                    <button onclick="openRepresentativePage()" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors flex-1">
+                    <a asp-controller="Job"
+                       asp-action="CreateJobRequest"
+                       class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors flex-1 text-center">
+
                         <i class="fas fa-handshake ml-2"></i>
                         درخواست نمایندگی
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

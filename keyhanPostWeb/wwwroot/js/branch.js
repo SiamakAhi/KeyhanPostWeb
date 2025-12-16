@@ -36,7 +36,7 @@ function HideLoading() {
 
 // --- Step 1 ---
 
-   $(document).on('submit', '#frmStep1', function (e) {
+  $(document).on('submit', '#frmStep1', function (e) {
     e.preventDefault();
     ShowLoading();
 

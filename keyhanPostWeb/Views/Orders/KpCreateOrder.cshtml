@@ -29,7 +29,7 @@
                     <span asp-validation-for="OrderCreate.Step0Vm.Mobile" class="text-danger"></span>
                 </div>
 
-                <button type="submit" class="btn btn-primary ">مرحله بعد</button>
+                <button type="button" class="btn btn-primary accAjaxSubmit">مرحله بعد</button>
 
 
             </section>
@@ -45,8 +45,8 @@
             <section class=" form-step @(currentStep == 1 ? "active" : "") card-shadow p-6 rounded-2xl bg-white" data-step="1">
             <h3 class="text-lg font-bold mb-4 text-gray-700 text-center">نوع بسته</h3>
                 <input type="hidden" name="OrderCreate.Step1Vm.OrderId" value="@(ViewBag.orderId ?? 0)" />
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             
                 <!-- کالای عادی -->
                 <label class="package-type-card p-3 rounded-xl text-center border border-gray-200 cursor-pointer" data-value="1">
@@ -67,7 +67,7 @@
                 </label>
 
                 <!-- اسناد -->
-                <label class="package-type-card p-3 rounded-xl text-center border border-gray-200 cursor-pointer data-value="3">
+                <label class="package-type-card p-3 rounded-xl text-center border border-gray-200 cursor-pointer" data-value="3">
                         <input type="radio" asp-for="OrderCreate.Step1Vm.PackageTypeId" value="3" class="hidden" />
                     <div class="card-icon bg-purple-100 text-purple-600 w-12 h-12 mx-auto flex items-center justify-center rounded-full">
                         <i class="fas fa-envelope text-xl"></i>
@@ -354,6 +354,18 @@
 
 
 </div>
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/sweetalert2/sweetalert2.js"></script>
+<script src="~/js/quine.js"></script>
+<script src="~/lib/select2/select2.js"></script>
+<script src="~/js/jquery.js"></script>
+<script src="~/lib/gymfit/js/popper.min.js"></script>
+<script src="~/lib/gymfit/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
          

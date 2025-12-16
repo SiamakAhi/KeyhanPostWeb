@@ -8,29 +8,38 @@
 }
 
 
-
 <section class="job-section section-padding parallax">
     <div class="container">
-        <div id="requestContainer">
-            @if (Model.jobRequest.CurrentStep == 0)
-            {
-                @await Html.PartialAsync("_CreateJobRequest_step1.cshtml", Model.jobRequest.dtoStep1)
-            }
-            else if (Model.jobRequest.CurrentStep == 1)
-            {
-
-                @await Html.PartialAsync("_CreateJobRequest_step2", Model.jobRequest)
-            }
-             else if (Model.jobRequest.CurrentStep == 2)
-            {
-                @await Html.PartialAsync("_CreateJobRequest_step3.cshtml", Model.jobRequest)
-            }
-
-           
-        </div>
-       
-    </div> <!-- end container -->
-
+        
+    <div id="requestContainer">
+        @if (Model.jobRequest.CurrentStep == 0)
+        {
+            @await Html.PartialAsync("_CreateJobRequest_step1", Model.jobRequest.dtoStep1)
+        }
+        else if (Model.jobRequest.CurrentStep == 1)
+        {
+            @await Html.PartialAsync("_CreateJobRequest_step2", Model.jobRequest)
+        }
+        else if (Model.jobRequest.CurrentStep == 2)
+        {
+            @await Html.PartialAsync("_CreateJobRequest_step3", Model.jobRequest)
+        }
+            </div>
+    </div>
 </section>
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/sweetalert2/sweetalert2.js"></script>
 <script src="~/js/quine.js"></script>
-<script src="~/js/branch.js"></script>
+<script src="~/lib/select2/select2.js"></script>
+<script src="~/js/jquery.js"></script>
+<script src="~/lib/gymfit/js/popper.min.js"></script>
+<script src="~/lib/gymfit/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+

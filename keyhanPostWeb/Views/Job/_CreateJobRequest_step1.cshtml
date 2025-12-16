@@ -4,53 +4,66 @@
     Layout = null;
 }
 
-<div class="max-w-5xl mx-auto bg-white p-10 rounded-xl shadow-md">
+<div class="max-w-5xl mx-auto bg-white p-10 rounded-xl shadow-md" style="margin: 50px 0">
     <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">ثبت نام درخواست همکاری</h2>
     <form id="frmStep1" asp-action="CreateJobRequest_step1" asp-controller="job" method="post" class="space-y-8">
         <input type="hidden" asp-for="Id" value="@Guid.NewGuid()" />
         <input type="hidden" asp-for="Username" value="@User.Identity.Name" />
         <input type="hidden" asp-for="RequestDate" value="@DateTime.Now" />
 
-       
-        <div>
-            <label asp-for="ApplicantName" class="block text-gray-700 font-medium mb-2">نام کامل</label>
-            <input type="text" asp-for="ApplicantName" placeholder="نام و نام خانوادگی"
-                   class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
-        </div>
-
-      
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <!-- خط ۱: نام کامل، موبایل، کد ملی، ایمیل -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
 
             <div>
-                <label asp-for="EntityTypeId" class="block text-gray-700 font-medium mb-2">نوع شخصیت</label>
-                <select asp-for="EntityTypeId" asp-items="ViewBag.EntityTypes"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option value="">انتخاب کنید</option>
-                </select>
-            </div>
-
-            <div>
-                <label asp-for="NationalId" class="block text-gray-700 font-medium mb-2">کد ملی / شناسه ملی</label>
-                <input type="text" asp-for="NationalId" placeholder="کد ملی خود را وارد کنید"
-                       class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <label asp-for="ApplicantName" class="block text-gray-700 font-medium mb-2">نام کامل</label>
+                <input type="text" asp-for="ApplicantName" placeholder="نام و نام خانوادگی"
+                       class="w-full p-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
 
             <div>
                 <label asp-for="MobileNumber" class="block text-gray-700 font-medium mb-2">شماره موبایل</label>
                 <input type="text" asp-for="MobileNumber" placeholder="09123254954"
-                       class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                       class="w-full p-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <div>
+                <label asp-for="NationalId" class="block text-gray-700 font-medium mb-2">کد ملی / شناسه ملی</label>
+                <input type="text" asp-for="NationalId" placeholder="کد ملی خود را وارد کنید"
+                       class="w-full p-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
 
             <div>
                 <label asp-for="Email" class="block text-gray-700 font-medium mb-2">ایمیل</label>
                 <input type="email" asp-for="Email" placeholder="youremail@example.com"
-                       class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                       class="w-full p-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+        </div>
+
+
+        <!-- خط ۲: آدرس (یک ستون کامل) -->
+        <div class="mt-6">
+            <label asp-for="Address" class="block text-gray-700 font-medium mb-2">آدرس</label>
+            <input type="text" asp-for="Address" placeholder="نشانی محل سکونت"
+                   class="w-full p-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+
+        <!-- خط ۳: نوع شخصیت، میزان تحصیلات، نحوه آشنایی -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6">
+
+            <div>
+                <label asp-for="EntityTypeId" class="block text-gray-700 font-medium mb-2">نوع شخصیت</label>
+                <select asp-for="EntityTypeId" asp-items="ViewBag.EntityTypes"
+                        class="w-full p-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="">انتخاب کنید</option>
+                </select>
             </div>
 
             <div>
                 <label asp-for="EducationDegreeId" class="block text-gray-700 font-medium mb-2">میزان تحصیلات</label>
                 <select asp-for="EducationDegreeId" asp-items="ViewBag.Education"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        class="w-full p-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <option value="">انتخاب کنید</option>
                 </select>
             </div>
@@ -58,23 +71,29 @@
             <div>
                 <label asp-for="IntroDuctionId" class="block text-gray-700 font-medium mb-2">نحوه آشنایی با کیهان پست</label>
                 <select asp-for="IntroDuctionId" asp-items="ViewBag.Intro"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        class="w-full p-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <option value="">انتخاب کنید</option>
                 </select>
             </div>
+
         </div>
 
 
-        <div>
-            <label asp-for="Address" class="block text-gray-700 font-medium mb-2">آدرس</label>
-            <input type="text" asp-for="Address" placeholder="نشانی محل سکونت"
-                   class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
-        </div>
         <div id="formMessage" class="mt-4"></div>
-        <button type="submit" class="btn btn-primary accAjaxSubmit">مرحله بعد</button>
+        <button type="button" class="btn btn-primary accAjaxSubmit">مرحله بعد</button>
 
     </form>
 </div>
 
+
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/sweetalert2/sweetalert2.js"></script>
 <script src="~/js/quine.js"></script>
-<script src="~/js/branch.js"></script>
+<script src="~/lib/select2/select2.js"></script>
+
+
+

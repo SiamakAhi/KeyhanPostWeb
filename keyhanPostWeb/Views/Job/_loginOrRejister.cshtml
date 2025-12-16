@@ -1,0 +1,321 @@
+﻿@using keyhanPostWeb.Areas.CMS.Dtos
+@using keyhanPostWeb.Areas.KP.Dto
+@using keyhanPostWeb.GeneralViewModels.Identity
+@model VmSiteContent
+<link rel="stylesheet" href="~/css/font.css" />
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    /* ======================
+            متغیرهای رنگی سایت
+        ====================== */
+    :root {
+        --primary-blue: #2563eb; /* آبی اصلی */
+        --primary-green: #10b981; /* سبز اصلی */
+        --light-bg: #f8fafc;
+        --dark-text: #1e293b;
+        --gray-border: #cbd5e1;
+        --white: #ffffff;
+        --success: #10b981;
+        --danger: #ef4444;
+    }
+
+    body {
+        min-height: 100vh;
+        margin: 0;
+        background: linear-gradient( 135deg, #e0e7ff 0%, /* آبی خیلی روشن */
+        #d1fae5 50%, /* سبز خیلی روشن */
+        #e0f2fe 100% /* آبی آسمانی ملایم */
+        );
+     
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* ======================
+            استایل کلی فرم
+        ====================== */
+    .login-wrapper {
+        max-width: 480px;
+        margin: 40px auto;
+        padding: 2.5rem;
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-radius: 16px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        font-family: 'YekanBakhFaNum-Light';
+        direction: rtl;
+    }
+
+        .login-wrapper h5 {
+            color: var(--dark-text);
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+    /* فیلدهای ورودی */
+    .form-control {
+        width: 100%;
+        padding: 0.625rem 0.875rem;
+        font-size: 1rem;
+        color: var(--dark-text);
+      
+        border: 1px solid var(--gray-border);
+        border-radius: 8px;
+        transition: all 0.25s ease;
+    }
+
+        .form-control:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+    /* برچسب‌ها */
+    label {
+        display: block;
+        font-weight: 600;
+        color: var(--dark-text);
+        margin-bottom: 0.5rem;
+        font-size: 0.95rem;
+       
+    }
+
+    /* چک‌باکس */
+    .form-check {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0.25rem;
+    }
+
+    .form-check-input {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+    }
+
+    .form-check-label {
+        font-weight: 500;
+        color: var(--dark-text);
+        cursor: pointer;
+    }
+
+    /* دکمه‌ها */
+    .btn {
+        padding: 0.625rem 1.25rem;
+        font-size: 1rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .btn-success {
+        background-color: var(--primary-green);
+        color: var(--white);
+    }
+
+        .btn-success:hover {
+            background-color: #0da271;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+    .btn-primary {
+        background-color: var(--primary-blue);
+        color: var(--white);
+    }
+
+        .btn-primary:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+    /* خطاهای اعتبارسنجی */
+    .text-danger {
+        color: var(--danger) !important;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+        display: block;
+    }
+
+    /* متن‌های خاکستری */
+    .text-muted {
+        color: #64748b !important;
+        font-size: 0.95rem;
+    }
+
+    /* لینک‌های رنگی */
+    .text-primary {
+        color: var(--primary-blue) !important;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+        .text-primary:hover {
+            text-decoration: underline;
+        }
+
+    /* فاصله‌گذاری */
+    .mb-2 {
+        margin-bottom: 1rem !important;
+    }
+
+    .mt-3 {
+        margin-top: 1.25rem !important;
+    }
+
+</style>
+
+
+
+<div class="login-wrapper">
+
+    <!-- LOGIN -->
+    <div id="loginBox">
+        <h5 class="text-center mb-4">ورود به حساب کاربری</h5>
+
+        <form asp-action="SignIn"
+              asp-controller="Account"
+              method="post"
+              class="loginform-form">
+
+            @Html.AntiForgeryToken()
+
+            <input type="hidden" name="ReturnUrl" value="@Model.jobRequest.LoginRegisterDto?.ReturnUrl" />
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-2">
+                <label for="UserName">نام کاربری</label>
+                <input id="UserName" name="UserName" value="@Model.jobRequest.LoginRegisterDto?.Login?.UserName" class="form-control" placeholder="نام کاربری" autocomplete="username" />
+         
+            </div>
+
+            <div class="mb-2">
+                <label for="Password">رمز عبور</label>
+                <input id="Password" name="Password" type="password" class="form-control" placeholder="رمز عبور" autocomplete="current-password" />
+              
+            </div>
+
+            <div class="form-check mb-3">
+                <input asp-for="@Model.jobRequest.LoginRegisterDto.Login.RememberMe" />
+                <label asp-for="@Model.jobRequest.LoginRegisterDto.Login.RememberMe"></label>
+            </div>
+
+            <button type="button" class="btn btn-success w-100 mt-3 accAjaxSubmit">
+                ورود
+            </button>
+        </form>
+
+        <div class="text-center mt-3">
+            <span class="text-muted">حساب کاربری ندارید؟</span>
+            <a href="javascript:void(0)" class="text-primary fw-bold" onclick="showRegister()">
+                ثبت‌نام
+            </a>
+        </div>
+    </div>
+    <!-- REGISTER -->
+    <div id="registerBox" style="display:none">
+        <h5 class="text-center mb-4">ایجاد حساب کاربری</h5>
+
+        <form asp-action="SignUp"
+              asp-controller="Account"
+              method="post"
+              class="loginform-form">
+
+            @Html.AntiForgeryToken()
+
+            <input type="hidden" name="Roles" value="Customer" />
+
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <label for="FName">نام</label>
+                    <input id="FName" name="FName" value="@Model.jobRequest.LoginRegisterDto?.Register?.FName" class="form-control" placeholder="نام " autocomplete="given-name" />
+                </div>
+
+                <div class="col-md-6">
+                    <label for="LName">نام خانوادگی</label>
+                    <input id="LName" name="LName" value="@Model.jobRequest.LoginRegisterDto?.Register?.LName" class="form-control" placeholder="نام خانوادگی" autocomplete="family-name" />
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <label for="Mobile">موبایل</label>
+                    <input id="Mobile" name="Mobile" value="@Model.jobRequest.LoginRegisterDto?.Register?.Mobile" class="form-control" placeholder="0912XXX4954 " autocomplete="tel" />
+                </div>
+
+                <div class="col-md-6">
+                    <label for="Email">ایمیل</label>
+                    <input id="Email" name="Email" value="@Model.jobRequest.LoginRegisterDto?.Register?.Email" class="form-control" placeholder="mailaddress@example.com" autocomplete="email" />
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-md-">
+                    <label for="Name">نام کاربری</label>
+                    <input id="Name" name="Name" value="@Model.jobRequest.LoginRegisterDto?.Register?.Name" class="form-control" placeholder="فقط لاتین" autocomplete="username" />
+                </div>
+
+                <div class="col-md-6">
+                   
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <label for="PasswordReg">رمز عبور</label>
+                    <input id="PasswordReg" name="Password" type="password" class="form-control" placeholder="رمز عبور" autocomplete="new-password" />
+                </div>
+
+                <div class="col-md-6">
+                    <label for="ConfirmPassword">تکرار رمز عبور</label>
+                    <input id="ConfirmPassword" name="ConfirmPassword" type="password" class="form-control" placeholder="تکرار رمز عبور" autocomplete="new-password" />
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-success w-100 mt-3 accAjaxSubmit">
+                ثبت نام
+            </button>
+        </form>
+
+        <div class="text-center mt-3">
+            <span class="text-muted">قبلاً حساب کاربری دارید؟</span>
+            <a href="javascript:void(0)" class="text-primary fw-bold" onclick="showLogin()">
+                ورود
+            </a>
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+    function showRegister() {
+        document.getElementById('loginBox').style.display = 'none';
+        document.getElementById('registerBox').style.display = 'block';
+    }
+
+    function showLogin() {
+        document.getElementById('registerBox').style.display = 'none';
+        document.getElementById('loginBox').style.display = 'block';
+    }
+</script>
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/sweetalert2/sweetalert2.js"></script>
+<script src="~/js/quine.js"></script>
+<script src="~/lib/select2/select2.js"></script>
+<script src="~/js/jquery.js"></script>
+<script src="~/lib/gymfit/js/popper.min.js"></script>
+<script src="~/lib/gymfit/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

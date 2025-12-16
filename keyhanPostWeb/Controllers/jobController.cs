@@ -7,6 +7,7 @@ using keyhanPostWeb.Areas.KP.KPInterfaces;
 using keyhanPostWeb.Areas.KP.KPservices;
 using keyhanPostWeb.Areas.KP.KPServices;
 using keyhanPostWeb.GeneralService;
+using keyhanPostWeb.GeneralViewModels.Identity;
 using keyhanPostWeb.GeneralViewModels.RepDto;
 using keyhanPostWeb.Models.Entities.Identity;
 using Microsoft.AspNetCore.Authorization;
@@ -165,14 +166,29 @@ namespace keyhanPostWeb.Controllers
         public async Task<IActionResult> CreateJobRequest()
 
         {
-
             VmSiteContent model = new VmSiteContent();
+
+            // اگر لاگین نیست
+            if (User.Identity.Name == null || !User.Identity.IsAuthenticated)
+            {
+                   model.jobRequest = new VmRepresentativeRequest
+    {
+        LoginRegisterDto = new LoginRegisterDto
+        {
+            Login = new SignInViewModel(),
+            Register = new VmSignUp(),
+            ReturnUrl = Url.Action("CreateJobRequest", "Job")
+        }
+    };
+
+    return PartialView("_loginOrRejister", model);
+            }
+
             model.CompanyInfo = await _IcontentManager.GetCompanyInfo();
             model.CompanyInfo = await _IcontentManager.GetCompanyInfo();
             var cinfo = await _IcontentManager.GetCompanyInfo();
             model.AllSection = await _IcontentManager.GetAllSection();
             model.ServicePages = await _IcontentManager.GetServicePages();
-
             ViewBag.emailAddress = await _IcontentManager.GetEmailAddresses();
             //
             model.jobRequest = new VmRepresentativeRequest();
@@ -199,7 +215,23 @@ namespace keyhanPostWeb.Controllers
             ViewBag.PropertyTypes = await _jobService.GetPropertyTypesAsync();
             ViewBag.DocumentTypes = await _jobService.GetDocumentTypesAsync();
 
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            {
+                // اگر درخواست AJAX بود (یعنی دکمه مرحله بعد زده شده)، فقط پارشیال خالی را برگردان
 
+                if (model.jobRequest.CurrentStep == 0)
+                {
+                    return PartialView("_CreateJobRequest_step1", model.jobRequest.dtoStep1);
+                }
+                else if (model.jobRequest.CurrentStep == 1)
+                {
+                    return PartialView("_CreateJobRequest_step2", model.jobRequest);
+                }
+                else if (model.jobRequest.CurrentStep == 2)
+                {
+                    return PartialView("_CreateJobRequest_step3", model.jobRequest);
+                }
+            }
             return View(model);
         }
 
@@ -300,5 +332,7 @@ namespace keyhanPostWeb.Controllers
                 message = result.Message
             });
         }
+       
+       
     }
 }

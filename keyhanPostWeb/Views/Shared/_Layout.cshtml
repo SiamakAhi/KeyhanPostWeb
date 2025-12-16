@@ -21,8 +21,7 @@
     <link rel="stylesheet" href="~/css/loginmodal.css" />
     <link rel="stylesheet" href="~/css/layout.css" />
     <link rel="stylesheet" href="~/css/ChatBot.css" />
-     
-
+    
     <script type="importmap"></script>
     <link href="~/lib/gymfit/css/bootstrap.css" rel="stylesheet">
     <link href="~/lib/gymfit/css/style.css" rel="stylesheet">
@@ -128,8 +127,8 @@
                 <details>
                     <summary class="py-2 hover:text-green-300 cursor-pointer">ثبت سفارش</summary>
                     <div class="flex flex-col pr-4 space-y-1">
-                        <a asp-controller="Home" asp-action="KpCreateOrder">سفارش داخلی</a>
-                        <a asp-controller="Home" asp-action="KpCreateInternationalOrder">سفارش بین‌المللی</a>
+                        <a asp-controller="Orders" asp-action="KpCreateOrder">سفارش داخلی</a>
+                        <a asp-controller="Orders" asp-action="KpCreateInternationalOrder">سفارش بین‌المللی</a>
                     </div>
                 </details>
 
@@ -347,7 +346,7 @@
     <script src="~/js/ChatBot.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="~/js/jquery.js"></script>
-    <script src="~/js/branch.js"></script>
+
   
     <script src="~/lib/gymfit/js/popper.min.js"></script>
     <script src="~/lib/gymfit/js/bootstrap.min.js"></script>
